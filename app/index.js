@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import RecordVideo from './screens/RecordVideo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Navigator from './config/routes';
 EStyleSheet.build({
@@ -12,3 +11,4 @@ EStyleSheet.build({
 
 });
 export default () => <Navigator />
+

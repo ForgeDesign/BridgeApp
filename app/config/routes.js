@@ -1,6 +1,5 @@
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import Home from '../screens/Home';
-import RecordVideo from '../screens/RecordVideo';
 
 export default StackNavigator({
     Home: {
@@ -10,11 +9,5 @@ export default StackNavigator({
         }
 
     },
-    RecordVideo: {
-        screen: RecordVideo,
-        navigationOptions: {
-            header: () => null,
-        }
-        
-    }
+    
 })
