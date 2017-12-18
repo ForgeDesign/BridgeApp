@@ -36,8 +36,10 @@ export default TabNavigator({
       animationEnabled: false,
       swipeEnabled: false,
       tabBarOptions: {
+        showIcon: true,
+        showLabel: false,
         activeTintColor: 'dimgray',
-        inactiveTintColor: 'lightgray',
+        inactiveTintColor: 'gray',
         allowFontScaling: false,
         style: {
           height: '8%',
