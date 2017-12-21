@@ -10,9 +10,8 @@ export default EStyleSheet.create({
       backgroundColor: '$primaryBlue',
     },
     threeIcons: {
-      padding: '10%',
       flexDirection: 'row',
-      alignItems: 'baseline',
+      alignItems: 'center',
       justifyContent: 'center'
     },
     icon: {
@@ -26,9 +25,9 @@ export default EStyleSheet.create({
       justifyContent: 'center'
     },
     profileIcon:{
-      height: circleWidth * 1.5,
-      width: circleWidth * 1.5,
-      borderRadius: (circleWidth * 1.5) / 2,
+      height: circleWidth * 2,
+      width: circleWidth * 2,
+      borderRadius: (circleWidth * 2) / 2,
       backgroundColor: '#000',
       alignItems: 'center'
     }
