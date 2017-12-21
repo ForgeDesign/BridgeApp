@@ -1,18 +1,13 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
 
-const circleWidth = Dimensions.get('window').width / 5;
+const circleWidth = Dimensions.get('window').width / 6;
 
 export default EStyleSheet.create({
     background: {
       flexDirection: 'row',
       height: '40%',
       backgroundColor: '$primaryBlue',
-    },
-    threeIcons: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center'
     },
     icon: {
       height: circleWidth,
@@ -23,6 +18,15 @@ export default EStyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    oval: {
+      width: circleWidth,
+      height: circleWidth / 4,
+      borderRadius: circleWidth,
+      backgroundColor: '$offwhite',
+      transform: [
+        {scaleX: 2}
+      ]
     },
     profileIcon:{
       height: circleWidth * 2,

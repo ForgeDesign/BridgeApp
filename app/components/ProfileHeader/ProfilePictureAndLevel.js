@@ -5,21 +5,18 @@ import { Icon } from 'native-base';
 import { View, TouchableOpacity, Text } from 'react-native';
 import styles from './styles';
 
-
-
-const ButtonWithDescription = ({pictureName, description}) => (
+const ProfilePictureAndLevel = () => (
     <TouchableOpacity>
         <View>
-            <View style={styles.icon}>
-                <Icon name={pictureName} style={{ color: '#fff' }}/>
+            <View style={styles.profileIcon}>
+                <View style={styles.oval}>
+                    <Text style={{fontSize:10, justifyContent:'center', alignContent:'center'}}>Level Here</Text>
+                </View>
             </View>
-            <Text style={{color:'#124C67'}}>
-                {description}
-            </Text>
         </View>
     </TouchableOpacity>
     
     
 );
 
-export default ButtonWithDescription;
+export default ProfilePictureAndLevel;
