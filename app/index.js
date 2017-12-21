@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import Navigator from './config/routes';
+import Navigator from './config/loginnav';
 EStyleSheet.build({
   $primaryBlue: '#003E5B',
   $lightGray: '#F0F0F0',
