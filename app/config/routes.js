@@ -5,9 +5,11 @@ import ProfileScreen from '../screens/ProfileScreen';
 import EcardScreen from '../screens/EcardScreen';
 import ContactsScreen from '../screens/ContactsScreen';
 import IsoScreen from '../screens/IsoScreen';
-
+import ImageCycleScreen from '../screens/ImageCycleScreen';
 export default TabNavigator({
     Profile: {
+      // ImageCycle: {
+      // screen: ImageCycleScreen,
       screen: ProfileScreen,
       navigationOptions: {
           tabBarLabel: 'Home',

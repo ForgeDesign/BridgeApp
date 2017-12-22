@@ -9,6 +9,7 @@ import { HeaderSmall } from '../components/HeaderSmall';
 import { CardInput } from '../components/CardInput';
 import { Container } from '../components/Container';
 import { CardPreview } from '../components/CardPreview';
+import { ImageCycler } from '../components/ImageCycler';
 
 var {height, width} = Dimensions.get('window');
 
@@ -46,7 +47,7 @@ export default class EcardScreen extends React.Component {
       <Container>
 
         <Header title={'Business Card'}/>
-        <CardPreview
+        <ImageCycler
           title={title}
           tagline={tagline}
           buisname={buisname}
@@ -70,15 +71,13 @@ export default class EcardScreen extends React.Component {
           transparent={true}
           visible={this.state.isModalVisible}>
 
-
-
           <Container>
             <KeyboardAvoidingView
               behavior={'position'}
               style={{ flex: 1 }}>
               <HeaderSmall title={'Business Card'}/>
 
-              <CardPreview
+              <ImageCycler
                 title={title}
                 tagline={tagline}
                 buisname={buisname}
