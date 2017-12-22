@@ -35,7 +35,7 @@ export default class EcardScreen extends React.Component {
     return (
       <Container>
 
-        <Header title={'Buisness Card'}/>
+        <Header title={'Business Card'}/>
         <CardPreview
           title={title}
           tagline={tagline}
