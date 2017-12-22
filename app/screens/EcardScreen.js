@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
+import store from 'react-native-simple-store';
 
 import { Header } from '../components/Header';
 import { HeaderSmall } from '../components/HeaderSmall';
@@ -28,6 +28,16 @@ export default class EcardScreen extends React.Component {
   _showModal = () => this.setState({ isModalVisible: true })
   _hideModal = () => this.setState({ isModalVisible: false })
 
+  saveData = () => {
+    let obj = {
+      title: this.state.title,
+      tagline: this.state.tagline,
+      buisname: this.state.buisname,
+      phonenum: this.state.phonenum
+    }
+    store.push('usercards', obj)
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     const { title, tagline, buisname, phonenum} = this.state;
@@ -49,7 +59,8 @@ export default class EcardScreen extends React.Component {
             <Text style={styles.buttonText}>Edit Texts</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button2}>
+            style={styles.button2}
+            onPress={this.saveData}>
             <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -65,7 +76,7 @@ export default class EcardScreen extends React.Component {
             <KeyboardAvoidingView
               behavior={'position'}
               style={{ flex: 1 }}>
-              <HeaderSmall title={'Buisness Card'}/>
+              <HeaderSmall title={'Business Card'}/>
 
               <CardPreview
                 title={title}
