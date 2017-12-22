@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Navigator from './config/loginnav';
 EStyleSheet.build({
   $primaryBlue: '#003E5B',
-  $lightGray: '#F0F0F0',
+  $lightGray: '#E6E6E6',
   $border: '#979797',
   $inputText: '#797979',
   $darkText: '#343434',
