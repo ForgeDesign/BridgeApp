@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
 import { Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
@@ -22,6 +22,7 @@ export default class LoginScreen extends React.Component {
   }
 
   render() {
+    
     const { email, password } = this.state
     const { navigate } = this.props.navigation
     const { isLoading, onLoginPress } = this.props
@@ -30,6 +31,7 @@ export default class LoginScreen extends React.Component {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.main}>
           <View style={styles.imageView}>
+          <StatusBar translucent={false} barStyle="light-content" />
             <Image
               style={styles.logo}
               source={require('../assets/images/logo.png')}/>
