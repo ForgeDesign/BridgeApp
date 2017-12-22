@@ -1,4 +1,4 @@
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, TabBarTop } from 'react-navigation';
 import { Icon } from 'native-base';
 import React from 'react';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -62,6 +62,7 @@ export default TabNavigator({
   },
     {
       tabBarPosition: 'bottom',
+      tabBarComponent: TabBarTop,
       animationEnabled: false,
       swipeEnabled: false,
       tabBarOptions: {
