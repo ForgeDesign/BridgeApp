@@ -5,6 +5,7 @@ import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { Navbar } from '../components/Navbar';
 import { ProfileHeader } from '../components/ProfileHeader';
+import { CardPreview } from '../components/CardPreview';
 export default class ProfileScreen extends Component {
 
   render() {
@@ -14,6 +15,8 @@ export default class ProfileScreen extends Component {
       <Container>
         <Header title={'Profile'}/>
         <ProfileHeader/>
+        <CardPreview title={'My Cards.'} tagline={''} buisname={'John Doe'} phonenum={'1-800-555-5555'}/>
+
       </Container>
     )
   };
