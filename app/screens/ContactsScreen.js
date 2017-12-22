@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry } from 'react-native';
 
-import { Navbar } from '../components/Navbar';
+import { Container } from '../components/Container';
+import { Header } from '../components/Header';
 
 export default class ContactsScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View>
-        <Text>Contacts</Text>
-      </View>
+      <Container>
+        <Header title={'Contacts'}/>
+      </Container>
     )
   }
 }

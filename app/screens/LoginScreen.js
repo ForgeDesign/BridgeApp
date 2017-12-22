@@ -30,6 +30,9 @@ export default class LoginScreen extends React.Component {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.main}>
           <View style={styles.imageView}>
+            <Image
+              style={styles.logo}
+              source={require('../assets/images/logo.png')}/>
           </View>
           <View style={styles.credView}>
             <EmailInput
@@ -84,6 +87,10 @@ const styles = EStyleSheet.create({
     flex: .6,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logo: {
+    height: width*.4,
+    width: width*.6,
   },
   credview: {
     flex: .15,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
 
@@ -8,6 +8,7 @@ import { Header } from '../components/Header';
 import { HeaderSmall } from '../components/HeaderSmall';
 import { CardInput } from '../components/CardInput';
 import { Container } from '../components/Container';
+import { CardPreview } from '../components/CardPreview';
 
 var {height, width} = Dimensions.get('window');
 
@@ -35,6 +36,12 @@ export default class EcardScreen extends React.Component {
       <Container>
 
         <Header title={'Buisness Card'}/>
+        <CardPreview
+          title={title}
+          tagline={tagline}
+          buisname={buisname}
+          phonenum={phonenum}/>
+
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.button2}
@@ -51,56 +58,71 @@ export default class EcardScreen extends React.Component {
           onRequestClose={this._hideModal}
           transparent={true}
           visible={this.state.isModalVisible}>
+
+
+
           <Container>
-            <HeaderSmall title={'Buisness Card'}/>
+            <KeyboardAvoidingView
+              behavior={'position'}
+              style={{ flex: 1 }}>
+              <HeaderSmall title={'Buisness Card'}/>
 
-            <CardInput
-              name={'title'}
-              placeholder={'Title'}
-              withRef={true}
-              ref={(ref) => this.TitleInputRef = ref}
-              editable={!isLoading}
-              value={this.state.title}
-              onChangeText={(value) => this.setState({title: value })}
-              isEnabled={!isLoading}/>
+              <CardPreview
+                title={title}
+                tagline={tagline}
+                buisname={buisname}
+                phonenum={phonenum}/>
 
-            <CardInput
-              name={'tagline'}
-              placeholder={'Tagline'}
-              withRef={true}
-              ref={(ref) => this.TaglineInputRef = ref}
-              editable={!isLoading}
-              value={this.state.tagline}
-              onChangeText={(value) => this.setState({tagline: value })}
-              isEnabled={!isLoading}/>
+              <CardInput
+                name={'title'}
+                placeholder={'Title'}
+                withRef={true}
+                ref={(ref) => this.TitleInputRef = ref}
+                editable={!isLoading}
+                value={this.state.title}
+                onChangeText={(value) => this.setState({title: value })}
+                isEnabled={!isLoading}/>
 
-            <CardInput
-              name={'buisname'}
-              placeholder={'Buisness Name'}
-              withRef={true}
-              ref={(ref) => this.BuisnameInputRef = ref}
-              editable={!isLoading}
-              value={this.state.buisname}
-              onChangeText={(value) => this.setState({buisname: value })}
-              isEnabled={!isLoading}/>
+              <CardInput
+                name={'tagline'}
+                placeholder={'Tagline'}
+                withRef={true}
+                ref={(ref) => this.TaglineInputRef = ref}
+                editable={!isLoading}
+                value={this.state.tagline}
+                onChangeText={(value) => this.setState({tagline: value })}
+                isEnabled={!isLoading}/>
 
-            <CardInput
-              name={'phonenum'}
-              placeholder={'Phone Number'}
-              withRef={true}
-              ref={(ref) => this.PhonenumInputRef = ref}
-              editable={!isLoading}
-              value={this.state.phonenum}
-              onChangeText={(value) => this.setState({phonenum: value })}
-              isEnabled={!isLoading}/>
+              <CardInput
+                name={'buisname'}
+                placeholder={'Buisness Name'}
+                withRef={true}
+                ref={(ref) => this.BuisnameInputRef = ref}
+                editable={!isLoading}
+                value={this.state.buisname}
+                onChangeText={(value) => this.setState({buisname: value })}
+                isEnabled={!isLoading}/>
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={this._hideModal}>
-              <Text style={styles.buttonText}>Save</Text>
-            </TouchableOpacity>
+              <CardInput
+                name={'phonenum'}
+                placeholder={'Phone Number'}
+                withRef={true}
+                ref={(ref) => this.PhonenumInputRef = ref}
+                editable={!isLoading}
+                value={this.state.phonenum}
+                onChangeText={(value) => this.setState({phonenum: value })}
+                isEnabled={!isLoading}/>
 
+
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this._hideModal}>
+                <Text style={styles.buttonText}>Save</Text>
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
           </Container>
+
         </Modal>
       </Container>
     )
