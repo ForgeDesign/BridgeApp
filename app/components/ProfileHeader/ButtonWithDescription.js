@@ -9,11 +9,11 @@ import styles from './styles';
 
 const ButtonWithDescription = ({pictureName, description}) => (
     <TouchableOpacity>
-        <View>
+        <View style={{flexDirection:'column', alignItems:'center'}}>
             <View style={styles.icon}>
                 <Icon name={pictureName} style={{ color: '#fff' }}/>
             </View>
-            <Text style={{color:'#124C67'}}>
+            <Text style={{color:'#668b9d'}}>
                 {description}
             </Text>
         </View>

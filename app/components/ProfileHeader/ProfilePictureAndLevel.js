@@ -7,12 +7,10 @@ import styles from './styles';
 
 const ProfilePictureAndLevel = () => (
     <TouchableOpacity>
-        <View>
             <View style={styles.profileIcon}>
                 <View style={styles.oval}>
-                    <Text style={{fontSize:10, justifyContent:'center', alignContent:'center'}}>Level Here</Text>
+                    <Text style={{fontSize:10}}>Level Here</Text>
                 </View>
-            </View>
         </View>
     </TouchableOpacity>
     

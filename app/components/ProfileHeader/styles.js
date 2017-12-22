@@ -5,7 +5,7 @@ const circleWidth = Dimensions.get('window').width / 6;
 
 export default EStyleSheet.create({
     background: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       height: '40%',
       backgroundColor: '$primaryBlue',
     },
@@ -22,17 +22,17 @@ export default EStyleSheet.create({
     oval: {
       width: circleWidth,
       height: circleWidth / 4,
-      borderRadius: circleWidth,
+      borderRadius: circleWidth / 2,
       backgroundColor: '$offwhite',
-      transform: [
-        {scaleX: 2}
-      ]
+      flexDirection: 'column',
+      alignItems: 'center'
     },
     profileIcon:{
       height: circleWidth * 2,
       width: circleWidth * 2,
       borderRadius: (circleWidth * 2) / 2,
       backgroundColor: '#000',
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'flex-end'
     }
 });
