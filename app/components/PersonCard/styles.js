@@ -17,6 +17,7 @@ export default EStyleSheet.create({
     piccontainer: {
       flex: 1.25,
       alignItems: 'center',
+      margin: 5,
     },
     image: {
       height: width*.25,

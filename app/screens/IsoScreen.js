@@ -18,12 +18,12 @@ export default class IsoScreen extends React.Component {
           {
             "name": "George Washington",
             "location": "Westmoreland, VA",
-            "imagepath": "../assets/images/george.jpg"
+            "imagepath": require("../assets/images/george.jpg")
           },
           {
             "name": 'Thomas Jefferson',
             "location": 'Shadwell, VA',
-            "imagepath": '../assets/images/tommy.jpg'
+            "imagepath": require("../assets/images/tommy.jpg")
           }
         ],
       active: true

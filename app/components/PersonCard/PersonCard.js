@@ -7,7 +7,7 @@ const PersonCard = ({name, location, imagepath}) => (
     <View style={styles.container}>
       <View style={styles.piccontainer}>
         <Image
-          source={{uri: imagepath}}
+          source={imagepath}
           style={styles.image}/>
       </View>
       <View style={styles.textcontainer}>
