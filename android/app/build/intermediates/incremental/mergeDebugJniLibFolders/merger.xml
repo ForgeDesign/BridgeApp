@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Rodney\Documents\Freelance Job\BridgeApp\android\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\Rodney\Documents\Freelance Job\BridgeApp\android\app\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Framesteel\Documents\Programming\Work\bridge\app\android\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\Framesteel\Documents\Programming\Work\bridge\app\android\app\src\debug\jniLibs"/></dataSet></merger>
