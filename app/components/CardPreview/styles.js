@@ -13,6 +13,10 @@ export default EStyleSheet.create({
       marginLeft: 10,
       marginTop: 15,
       borderRadius: 10,
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 1,
     },
     headView: {
       flex: .2,

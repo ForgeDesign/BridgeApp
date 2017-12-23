@@ -12,7 +12,11 @@ export default EStyleSheet.create({
       flexDirection: 'row',
       marginLeft: 10,
       marginTop: 15,
-      borderRadius: 10,
+      borderRadius: 10,       
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+
     },
     piccontainer: {
       flex: 1.25,

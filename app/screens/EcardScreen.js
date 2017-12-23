@@ -47,13 +47,22 @@ export default class EcardScreen extends React.Component {
       <Container>
 
         <Header title={'Business Card'}/>
+        <View style={{
+          borderBottomColor: '#003E5B',
+          borderBottomWidth: 4,
+          shadowOffset: { width: 0, height:2.8 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1}}/>
         <ImageCycler
-          title={title}
+        style={{overflow: 'hidden'}}
+          /* title={title}
           tagline={tagline}
           buisname={buisname}
-          phonenum={phonenum}/>
+          phonenum={phonenum}
+          *//> 
 
-        <View style={styles.buttonRow}>
+        <View style={styles.buttonRow }>
           <TouchableOpacity
             style={styles.button2}
             onPress={this._showModal}>
@@ -76,6 +85,13 @@ export default class EcardScreen extends React.Component {
               behavior={'position'}
               style={{ flex: 1 }}>
               <HeaderSmall title={'Business Card'}/>
+              <View style={{
+              borderBottomColor: '#003E5B',
+              borderBottomWidth: 4,
+              shadowOffset: { width: 0, height:2.8 },
+              shadowOpacity: 0.8,
+              shadowRadius: 2,
+              elevation: 1}}/>
 
               <ImageCycler
                 title={title}

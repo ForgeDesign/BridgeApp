@@ -11,6 +11,13 @@ export default class ContactsScreen extends React.Component {
     return (
       <Container>
         <Header title={'Contacts'}/>
+        <View style={{
+          borderBottomColor: '#003E5B',
+          borderBottomWidth: 4,
+          shadowOffset: { width: 0, height:2.8 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1}}/>
       </Container>
     )
   }

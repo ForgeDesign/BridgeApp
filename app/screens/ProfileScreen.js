@@ -6,7 +6,6 @@ import { Header } from '../components/Header';
 import { Navbar } from '../components/Navbar';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { CardPreview } from '../components/CardPreview';
-
 export default class ProfileScreen extends Component {
 
   constructor(props) {
@@ -43,8 +42,16 @@ export default class ProfileScreen extends Component {
 
     return (
       <Container>
-        <Header title={'Profile'}/>
+        <Header title={'Profile'} />
+        
         <ProfileHeader/>
+        <View style={{
+          borderBottomColor: '#003E5B',
+          borderBottomWidth: 4,
+          shadowOffset: { width: 0, height:2.8 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1}}/>
         <ScrollView
           style={{ backgroundColor: 'whitesmoke '}}
           refreshControl={

@@ -12,20 +12,35 @@ import Swiper from 'react-native-swiper';
 const ImageCycler = ({height = "40.25%"}) => {
     
     return (
-        <View height={height}>
+        <View height={height} style={{paddingTop: 5}}>
             <Swiper style={styles.wrapper} showsButtons={true}>
                 <View style={styles.slide1}>
                     <Image style={styles.card} 
-                    
-                    resizeMode="contain"
-
-                    source={require('../../data/CardTemplates/template1.jpg')} />  
+                    source={require('../../data/CardTemplates/businesscard1.png')} />  
                 </View>
                 <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
+                <Image style={styles.card} 
+                    
+
+                    source={require('../../data/CardTemplates/businesscard2.png')} />  
                 </View>
                 <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
+                <Image style={styles.card} 
+                    
+
+                    source={require('../../data/CardTemplates/businesscard3.png')} />  
+                </View>
+                <View style={styles.slide3}>
+                <Image style={styles.card} 
+                    
+
+                    source={require('../../data/CardTemplates/businesscard4.png')} />  
+                </View>
+                <View style={styles.slide3}>
+                <Image style={styles.card} 
+                    
+
+                    source={require('../../data/CardTemplates/businesscard5.png')} />  
                 </View>
             </Swiper>
         </View>

@@ -8,6 +8,7 @@ export default EStyleSheet.create({
       flexDirection: 'column',
       height: '40%',
       backgroundColor: '$primaryBlue',
+
     },
     icon: {
       height: circleWidth,
@@ -17,7 +18,9 @@ export default EStyleSheet.create({
       borderColor: '#124C67',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      
+  
     },
     oval: {
       width: circleWidth,
