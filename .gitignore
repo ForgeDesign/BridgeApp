@@ -7,7 +7,7 @@ yarn-error.log*
 
 # ios build files
 ios/build/*
-android/*
+android/local.properties
 
 
 # Runtime data
