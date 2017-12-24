@@ -1,11 +1,16 @@
 import { TabNavigator, TabBarTop } from 'react-navigation';
+import { Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 import React from 'react';
+
 import ProfileScreen from '../screens/ProfileScreen';
 import EcardScreen from '../screens/EcardScreen';
 import ContactsScreen from '../screens/ContactsScreen';
 import IsoScreen from '../screens/IsoScreen';
 import ImageCycleScreen from '../screens/ImageCycleScreen';
+
+var {height, width} = Dimensions.get('window');
+
 export default TabNavigator({
     Profile: {
       // ImageCycle: {
@@ -74,7 +79,7 @@ export default TabNavigator({
         inactiveTintColor: '#F0F0F0',
         allowFontScaling: false,
         style: {
-          height: '8%',
+          height: height*.08,
           backgroundColor: 'white',
         },
         labelStyle: {

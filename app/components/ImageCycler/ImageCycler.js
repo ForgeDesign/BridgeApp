@@ -4,50 +4,50 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 import styles from './styles';
 import Swiper from 'react-native-swiper';
 
-const ImageCycler = ({height = "40.25%"}) => {
-    
+import { CardPreview } from '../CardPreview'
+
+var {height, width} = Dimensions.get('window');
+
+const ImageCycler = () => {
+
     return (
-        <View height={height} style={{paddingTop: 5}}>
+      <View style={styles.main}>
             <Swiper style={styles.wrapper} showsButtons={true}>
-                <View style={styles.slide1}>
-                    <Image style={styles.card} 
-                    source={require('../../data/CardTemplates/businesscard1.png')} />  
-                </View>
-                <View style={styles.slide2}>
-                <Image style={styles.card} 
-                    
 
-                    source={require('../../data/CardTemplates/businesscard2.png')} />  
+                <View style={styles.slideView}>
+                  <Image style={styles.image}
+                    source={require('../../data/CardTemplates/businesscard1.png')} />
                 </View>
-                <View style={styles.slide3}>
-                <Image style={styles.card} 
-                    
 
-                    source={require('../../data/CardTemplates/businesscard3.png')} />  
+                <View style={styles.slideView}>
+                  <Image style={styles.image}
+                    source={require('../../data/CardTemplates/businesscard2.png')} />
                 </View>
-                <View style={styles.slide3}>
-                <Image style={styles.card} 
-                    
 
-                    source={require('../../data/CardTemplates/businesscard4.png')} />  
+                <View style={styles.slideView}>
+                  <Image style={styles.image}
+                    source={require('../../data/CardTemplates/businesscard3.png')} />
                 </View>
-                <View style={styles.slide3}>
-                <Image style={styles.card} 
-                    
 
-                    source={require('../../data/CardTemplates/businesscard5.png')} />  
+                <View style={styles.slideView}>
+                  <Image style={styles.image}
+                    source={require('../../data/CardTemplates/businesscard4.png')} />
+                </View>
+
+                <View style={styles.slideView}>
+                  <Image style={styles.image}
+                    source={require('../../data/CardTemplates/businesscard5.png')} />
                 </View>
             </Swiper>
-        </View>
+          </View>
       )
-        
+
 };
 
   export default ImageCycler;
-  
-

@@ -1,8 +1,11 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Dimensions } from 'react-native';
+
+var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
     container: {
-        height: '12%',
+        height: height*.12,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '$primaryBlue',

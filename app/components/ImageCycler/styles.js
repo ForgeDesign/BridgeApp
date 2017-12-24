@@ -1,49 +1,29 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { Dimensions } from 'react-native';
-const  myWidth  = Dimensions.get('window').width;
-const  myHeight  = Dimensions.get('window').height;
+
+var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: myWidth,
-    // height: myHeight,
-    justifyContent: 'center'
+  main: {
+    width: width,
+    height: width*.5,
   },
-    wrapper: {
-      position:'relative',
-      // overflow:'hidden',
-      // height: 0,
-      // width: 0,
-    },
-    slide1: {
-
-    
-      // alignSelf: 'stretch',
-      backgroundColor: 'transparent',
-      },
-    slide2: {
-
-      backgroundColor: 'transparent',
-      
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      // backgroundColor: 'transparent',
-    },
-    slide3: {
-
-      backgroundColor: 'transparent',
-      
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      // backgroundColor: 'transparent',
-    },
-    text: {
-      color: '#fff',
-      fontSize: 30,
-      fontWeight: 'bold',
-    }
-  
+  wrapper: {
+  },
+  image: {
+    width: (width-20),
+    height: ((width-20)*.5),
+    marginTop: 10,
+    marginLeft: 10,
+    borderRadius: 10,
+  },
+  slideView: {
+    backgroundColor: 'transparent',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
 });

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, PixelRatio } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import store from 'react-native-simple-store';
+import { ActionSheet } from 'native-base';
 
 import { Header } from '../components/Header';
-import { HeaderSmall } from '../components/HeaderSmall';
 import { CardInput } from '../components/CardInput';
 import { Container } from '../components/Container';
 import { CardPreview } from '../components/CardPreview';
 import { ImageCycler } from '../components/ImageCycler';
 
-var {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
+
+const pixdens = PixelRatio.get();
+const androidbar = pixdens * 25;
 
 export default class EcardScreen extends React.Component {
   static propTypes = {
@@ -26,8 +29,12 @@ export default class EcardScreen extends React.Component {
     isModalVisible: false,
   }
 
-  _showModal = () => this.setState({ isModalVisible: true })
-  _hideModal = () => this.setState({ isModalVisible: false })
+  _showModal = () => { this.setState({ isModalVisible: true })
+    console.log(width)
+  }
+  _hideModal = () => { this.setState({ isModalVisible: false })
+    console.log(width)
+  }
 
   saveData = () => {
     let obj = {
@@ -39,6 +46,14 @@ export default class EcardScreen extends React.Component {
     store.push('usercards', obj)
   }
 
+  /*<View style={{
+    borderBottomColor: '#003E5B',
+    borderBottomWidth: 4,
+    shadowOffset: { width: 0, height:2.8 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1}}/>*/
+
   render() {
     const { navigate } = this.props.navigation;
     const { title, tagline, buisname, phonenum} = this.state;
@@ -47,20 +62,8 @@ export default class EcardScreen extends React.Component {
       <Container>
 
         <Header title={'Business Card'}/>
-        <View style={{
-          borderBottomColor: '#003E5B',
-          borderBottomWidth: 4,
-          shadowOffset: { width: 0, height:2.8 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 1}}/>
-        <ImageCycler
-        style={{overflow: 'hidden'}}
-          /* title={title}
-          tagline={tagline}
-          buisname={buisname}
-          phonenum={phonenum}
-          *//> 
+
+        <ImageCycler/>
 
         <View style={styles.buttonRow }>
           <TouchableOpacity
@@ -80,24 +83,13 @@ export default class EcardScreen extends React.Component {
           transparent={true}
           visible={this.state.isModalVisible}>
 
-          <Container>
             <KeyboardAvoidingView
               behavior={'position'}
-              style={{ flex: 1 }}>
-              <HeaderSmall title={'Business Card'}/>
-              <View style={{
-              borderBottomColor: '#003E5B',
-              borderBottomWidth: 4,
-              shadowOffset: { width: 0, height:2.8 },
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              elevation: 1}}/>
+              style={{ backgroundColor: 'transparent'}}>
 
-              <ImageCycler
-                title={title}
-                tagline={tagline}
-                buisname={buisname}
-                phonenum={phonenum}/>
+            <View style={{backgroundColor: 'transparent',  height: (width*.62)+35}}/>
+
+            <View style={{backgroundColor: 'whitesmoke'}}>
 
               <CardInput
                 name={'title'}
@@ -146,9 +138,9 @@ export default class EcardScreen extends React.Component {
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Save</Text>
               </TouchableOpacity>
+              </View>
             </KeyboardAvoidingView>
-          </Container>
-
+            <View style={{height: 10000, backgroundColor: "whitesmoke"}}/>
         </Modal>
       </Container>
     )
