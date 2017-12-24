@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, PixelRatio } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, PixelRatio, Picker } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import store from 'react-native-simple-store';
-import { ActionSheet } from 'native-base';
+//import { Picker } from 'native-base';
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
@@ -26,6 +26,7 @@ export default class EcardScreen extends React.Component {
     tagline: '',
     buisname: '',
     phonenum: '',
+    cardnum: 0,
     isModalVisible: false,
   }
 
@@ -46,6 +47,10 @@ export default class EcardScreen extends React.Component {
     store.push('usercards', obj)
   }
 
+  onValueChange(value: integer) {
+    this.setState({ cardnum: value });
+    this.forceUpdate();
+  }
   /*<View style={{
     borderBottomColor: '#003E5B',
     borderBottomWidth: 4,
@@ -56,14 +61,31 @@ export default class EcardScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { title, tagline, buisname, phonenum} = this.state;
+    const { title, tagline, buisname, phonenum, cardnum } = this.state;
     const { isLoading } = this.props;
     return (
       <Container>
 
         <Header title={'Business Card'}/>
 
-        <ImageCycler/>
+        <CardPreview
+          cardnum={cardnum}
+          title={title}
+          tagline={tagline}
+          buisname={buisname}
+          phonenum={phonenum}/>
+
+        <Picker
+          mode="dialog"
+          placeholder="Select One"
+          selectedValue={cardnum}
+          onValueChange={(itemValue, itemIndex) => this.setState({ cardnum: itemValue })}>
+          <Picker.Item label={"Card 1"} value={0} />
+          <Picker.Item label={"Card 2"} value={1} />
+          <Picker.Item label={"Card 3"} value={2} />
+          <Picker.Item label={"Card 4"} value={3} />
+          <Picker.Item label={"Card 5"} value={4} />
+        </Picker>
 
         <View style={styles.buttonRow }>
           <TouchableOpacity
@@ -85,11 +107,16 @@ export default class EcardScreen extends React.Component {
 
             <KeyboardAvoidingView
               behavior={'position'}
-              style={{ backgroundColor: 'transparent'}}>
+              style={{ backgroundColor: 'whitesmoke', flex: 1}}>
 
-            <View style={{backgroundColor: 'transparent',  height: (width*.62)+35}}/>
+              <Header title={'Business Card'}/>
 
-            <View style={{backgroundColor: 'whitesmoke'}}>
+              <CardPreview
+                cardnum={cardnum}
+                title={title}
+                tagline={tagline}
+                buisname={buisname}
+                phonenum={phonenum}/>
 
               <CardInput
                 name={'title'}
@@ -131,18 +158,14 @@ export default class EcardScreen extends React.Component {
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
-
-
               <TouchableOpacity
                 style={styles.button}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Save</Text>
               </TouchableOpacity>
-              </View>
             </KeyboardAvoidingView>
-            <View style={{height: 10000, backgroundColor: "whitesmoke"}}/>
-        </Modal>
-      </Container>
+          </Modal>
+        </Container>
     )
   }
 }

@@ -4,23 +4,24 @@ import { Dimensions } from 'react-native';
 var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
+    top: {
+      width: (width-20),
+      height: ((width-20)*.5),
+      borderRadius: 10,
+      marginTop: 10,
+      marginLeft: 10,
+      borderRadius: 10,
+      overflow: 'hidden',
+    },
     container: {
       width: (width-20),
       height: ((width-20)*.5),
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: 10,
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.8,
-      shadowRadius: 2,
-      elevation: 1,
     },
     image: {
       width: (width-20),
       height: ((width-20)*.5),
-      marginLeft: 10,
-      marginTop: 15,
-      borderRadius: 10,
     },
     headView: {
       flex: .2,
