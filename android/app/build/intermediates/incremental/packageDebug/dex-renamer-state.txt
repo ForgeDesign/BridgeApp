@@ -1,4 +1,4 @@
-#Sun Dec 24 22:06:24 EST 2017
-base.0=C\:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+#Mon Dec 25 03:02:02 EST 2017
+base.0=C\:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
-file.0=C\:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+file.0=C\:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
