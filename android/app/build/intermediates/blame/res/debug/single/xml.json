@@ -12,6 +12,10 @@
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\xml\\preferences.xml"
     },
     {
+        "merged": "C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\xml\\preferences.xml"
+    },
+    {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\xml\\preferences.xml"
     }

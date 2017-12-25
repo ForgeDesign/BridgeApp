@@ -109,7 +109,8 @@ export default class EcardScreen extends React.Component {
         <Modal
           onRequestClose={this._hideModal}
           transparent={true}
-          visible={this.state.isModalVisible}>
+          visible={this.state.isModalVisible}
+          animationType='fade'>
 
             <KeyboardAvoidingView
               behavior={'position'}
