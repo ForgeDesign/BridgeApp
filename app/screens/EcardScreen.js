@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, PixelRatio, Picker } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import store from 'react-native-simple-store';
-//import { Picker } from 'native-base';
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
 import { Container } from '../components/Container';
-import { CardPreview } from '../components/CardPreview';
-import { ImageCycler } from '../components/ImageCycler';
+import { CardOnePreview } from '../components/CardOnePreview';
+import { CardTwoPreview } from '../components/CardTwoPreview';
+import { CardThreePreview } from '../components/CardThreePreview';
+import { CardFourPreview } from '../components/CardFourPreview';
+import { CardFivePreview } from '../components/CardFivePreview';
 
 const {height, width} = Dimensions.get('window');
-
-const pixdens = PixelRatio.get();
-const androidbar = pixdens * 25;
 
 export default class EcardScreen extends React.Component {
   static propTypes = {
@@ -26,7 +25,7 @@ export default class EcardScreen extends React.Component {
     tagline: '',
     buisname: '',
     phonenum: '',
-    cardnum: 0,
+    cardnum: 1,
     isModalVisible: false,
   }
 
@@ -39,18 +38,15 @@ export default class EcardScreen extends React.Component {
 
   saveData = () => {
     let obj = {
+      cardnum: this.state.cardnum,
       title: this.state.title,
       tagline: this.state.tagline,
       buisname: this.state.buisname,
-      phonenum: this.state.phonenum
+      phonenum: this.state.phonenum,
     }
-    store.push('usercards', obj)
+    store.push('usercard', obj)
   }
 
-  onValueChange(value: integer) {
-    this.setState({ cardnum: value });
-    this.forceUpdate();
-  }
   /*<View style={{
     borderBottomColor: '#003E5B',
     borderBottomWidth: 4,
@@ -68,24 +64,34 @@ export default class EcardScreen extends React.Component {
 
         <Header title={'Business Card'}/>
 
-        <CardPreview
-          cardnum={cardnum}
-          title={title}
-          tagline={tagline}
-          buisname={buisname}
-          phonenum={phonenum}/>
-
-        <Picker
-          mode="dialog"
-          placeholder="Select One"
-          selectedValue={cardnum}
-          onValueChange={(itemValue, itemIndex) => this.setState({ cardnum: itemValue })}>
-          <Picker.Item label={"Card 1"} value={0} />
-          <Picker.Item label={"Card 2"} value={1} />
-          <Picker.Item label={"Card 3"} value={2} />
-          <Picker.Item label={"Card 4"} value={3} />
-          <Picker.Item label={"Card 5"} value={4} />
-        </Picker>
+        { (() => {
+          switch(cardnum) {
+            case 1:
+              return ( <CardOnePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+            case 2:
+              return ( <CardTwoPreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+            case 3:
+              return ( <CardThreePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+            case 4:
+              return ( <CardFourPreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+            case 5:
+              return ( <CardFivePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+          }
+        })()}
+        <View style={styles.pickWrapper}>
+          <Picker
+            style={styles.picker}
+            mode="dialog"
+            placeholder="Select One"
+            selectedValue={cardnum}
+            onValueChange={(itemValue, itemIndex) => this.setState({ cardnum: itemValue })}>
+            <Picker.Item label={"Black and Yellow"} value={1} />
+            <Picker.Item label={"Blue and White"} value={2} />
+            <Picker.Item label={"Minimalistic"} value={3} />
+            <Picker.Item label={"Carbon"} value={4} />
+            <Picker.Item label={"Red and White"} value={5} />
+          </Picker>
+        </View>
 
         <View style={styles.buttonRow }>
           <TouchableOpacity
@@ -111,12 +117,20 @@ export default class EcardScreen extends React.Component {
 
               <Header title={'Business Card'}/>
 
-              <CardPreview
-                cardnum={cardnum}
-                title={title}
-                tagline={tagline}
-                buisname={buisname}
-                phonenum={phonenum}/>
+              { (() => {
+                switch(cardnum) {
+                  case 1:
+                    return ( <CardOnePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                  case 2:
+                    return ( <CardTwoPreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                  case 3:
+                    return ( <CardThreePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                  case 4:
+                    return ( <CardFourPreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                  case 5:
+                    return ( <CardFivePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                }
+              })()}
 
               <CardInput
                 name={'title'}
@@ -202,4 +216,15 @@ const styles = EStyleSheet.create({
     fontSize: 16,
     color: 'white',
   },
+  pickWrapper: {
+    margin: 10,
+    borderRadius: 5,
+    backgroundColor: '$lightGray',
+  },
+  pickWrapperText: {
+
+  },
+  picker: {
+
+  }
 })

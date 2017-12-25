@@ -10,7 +10,6 @@ import {
 import styles from './styles';
 import Swiper from 'react-native-swiper';
 
-import { CardPreview } from '../CardPreview'
 
 var {height, width} = Dimensions.get('window');
 

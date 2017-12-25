@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry, ScrollView, RefreshControl } from 'react-native';
 import store from 'react-native-simple-store';
+
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
-import { Navbar } from '../components/Navbar';
 import { ProfileHeader } from '../components/ProfileHeader';
-import { CardPreview } from '../components/CardPreview';
+import { CardOnePreview } from '../components/CardOnePreview';
+import { CardTwoPreview } from '../components/CardTwoPreview';
+import { CardThreePreview } from '../components/CardThreePreview';
+import { CardFourPreview } from '../components/CardFourPreview';
+import { CardFivePreview } from '../components/CardFivePreview';
+
 export default class ProfileScreen extends Component {
 
   constructor(props) {
@@ -17,7 +22,7 @@ export default class ProfileScreen extends Component {
   }
 
   componentWillMount() {
-    store.get('usercards').then((value) => {
+    store.get('usercard').then((value) => {
       if (value!==null){
       this.setState({cards: value});
       this.forceUpdate()
@@ -28,7 +33,7 @@ export default class ProfileScreen extends Component {
 
   _onRefresh() {
     this.setState({refreshing: true});
-    store.get('usercards').then((value) => {
+    store.get('usercard').then((value) => {
       if (value!==null){
         this.setState({cards: value});
         this.forceUpdate();
@@ -43,7 +48,7 @@ export default class ProfileScreen extends Component {
     return (
       <Container>
         <Header title={'Profile'} />
-        
+
         <ProfileHeader/>
         <View style={{
           borderBottomColor: '#003E5B',
@@ -58,9 +63,21 @@ export default class ProfileScreen extends Component {
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh.bind(this)}/>
+        }>
+        {this.state.cards.map((ref) => {
+          switch (ref.cardnum) {
+            case 1:
+              return ( <CardOnePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+            case 2:
+              return ( <CardTwoPreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+            case 3:
+              return ( <CardThreePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+            case 4:
+              return ( <CardFourPreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+            case 5:
+              return ( <CardFivePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
           }
-        >
-          {this.state.cards.map((ref) => <CardPreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/>)}
+          })}
         </ScrollView>
       </Container>
     )

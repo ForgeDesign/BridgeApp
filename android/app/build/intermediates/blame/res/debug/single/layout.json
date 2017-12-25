@@ -16,28 +16,28 @@
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\layout\\fps_view.xml"
     },
     {
-        "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\redbox_view.xml",
-        "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\layout\\redbox_view.xml"
+        "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
         "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
-        "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
-        "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_action_mode_bar.xml"
+        "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\redbox_view.xml",
+        "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.50.3\\res\\layout\\redbox_view.xml"
     },
     {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
-        "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
