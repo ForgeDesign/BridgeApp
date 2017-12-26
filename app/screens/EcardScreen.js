@@ -12,9 +12,9 @@ import { CardThreePreview } from '../components/CardThreePreview';
 import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview'
 
-import GL from 'gl-react'
-import { Surface } from "gl-react-native";
-import { HueRotate } from 'gl-react-hue-rotate'
+// import GL from 'gl-react'
+// import { Surface } from "gl-react-native";
+// import { HueRotate } from 'gl-react-hue-rotate'
 
 import {
     SlidersColorPicker,
