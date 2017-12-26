@@ -59,7 +59,7 @@ export default class IsoScreen extends React.Component {
         >
           {this.state.people.map((person, key) =>
           <TouchableOpacity
-            onPress={this._showModal}>
+            onPress={this._showModal} key={key}>
             <PersonCard
                 key={key}
               name={person.name}
