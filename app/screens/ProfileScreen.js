@@ -58,24 +58,23 @@ export default class ProfileScreen extends Component {
         shadowRadius: 2,
         elevation: 1}}/>
         <ScrollView
-          style={{ backgroundColor: 'whitesmoke '}}
           refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this._onRefresh.bind(this)}/>
         }>
-        {this.state.cards.map((ref) => {
+        {this.state.cards.map((ref, key) => {
           switch (ref.cardnum) {
             case 1:
-              return ( <CardOnePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardOnePreview key={key} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
             case 2:
-              return ( <CardTwoPreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardTwoPreview key={key} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
             case 3:
-              return ( <CardThreePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardThreePreview key={key} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
             case 4:
-              return ( <CardFourPreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardFourPreview key={key} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
             case 5:
-              return ( <CardFivePreview title={ref.title} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardFivePreview key={key} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
           }
           })}
         </ScrollView>
