@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, Dimensions} from 'react-native';
-// import { Dimensions } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
+
 import { Fab, Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
+import { CardOnePreview } from '../components/CardOnePreview';
 
 const myWidth = Dimensions.get('window').width;
 export default class IsoScreen extends React.Component {
 
-
+  _showModal = () => { this.setState({ isModalVisible: true })
+    console.log(myWidth);
+  }
+  _hideModal = () => { this.setState({ isModalVisible: false })
+    console.log(myWidth)
+  }
   constructor(){
     super();
 
@@ -30,7 +36,8 @@ export default class IsoScreen extends React.Component {
             "imagepath": require("../assets/images/tommy.jpg")
           }
         ],
-      active: true
+      active: true,
+      isModalVisible:false,
     };
   }
 
@@ -47,17 +54,41 @@ export default class IsoScreen extends React.Component {
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 1}}/>
-
-        <ScrollView style={{  flex: 1 }}
+        
+        <ScrollView style={{ flex: 1 }}
         >
           {this.state.people.map((person, key) =>
+          <TouchableOpacity
+            onPress={this._showModal}>
             <PersonCard
                 key={key}
               name={person.name}
               location={person.location}
               imagepath={person.imagepath}/>
+          </TouchableOpacity>
           )}
         </ScrollView>
+
+        <Modal
+          onRequestClose={this._hideModal}
+          transparent={false}
+          visible={this.state.isModalVisible}
+          animationType='slide'>
+          <KeyboardAvoidingView
+            behavior={'position'}
+            style={{ backgroundColor: 'whitesmoke', flex: 1}}>
+              <CardOnePreview cardnum={1} title={'Name'} tagline={'President'} buisname={'Example'} phonenum={'1-800-555-5555'}/>
+          
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={this._hideModal}>
+              <Text style={styles.buttonText}>Return</Text>
+            </TouchableOpacity>
+          </KeyboardAvoidingView>
+        </Modal>
+
+
         <Fab
           active={this.state.active}
           direction='up'
@@ -78,5 +109,20 @@ const styles = EStyleSheet.create({
   },
   fab: {
     backgroundColor: '$primaryBlue',
-  }
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: myWidth*.4,
+    height: myWidth*.12,
+    backgroundColor: '$primaryBlue',
+    borderRadius: 5,
+    marginLeft: myWidth*.3,
+    marginRight: myWidth*.3,
+    marginTop: 15,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+  },
 });
