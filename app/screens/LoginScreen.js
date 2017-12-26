@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
 import { Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -11,10 +10,6 @@ import { PasswordInput } from '../components/PasswordInput';
 var {height, width} = Dimensions.get('window');
 
 export default class LoginScreen extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    onLoginPress: PropTypes.func.isRequired,
-  }
 
   state = {
     email: '',

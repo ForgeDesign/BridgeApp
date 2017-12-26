@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import store from 'react-native-simple-store';
 
@@ -11,14 +10,25 @@ import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
 import { CardThreePreview } from '../components/CardThreePreview';
 import { CardFourPreview } from '../components/CardFourPreview';
-import { CardFivePreview } from '../components/CardFivePreview';
+import { CardFivePreview } from '../components/CardFivePreview'
+
+import GL from 'gl-react'
+import { Surface } from "gl-react-native";
+import { HueRotate } from 'gl-react-hue-rotate'
+
+import {
+    SlidersColorPicker,
+    HueGradient,
+    SaturationGradient,
+    LightnessGradient,
+    HueSlider,
+    SaturationSlider,
+    LightnessSlider
+} from 'react-native-color';
 
 const {height, width} = Dimensions.get('window');
 
 export default class EcardScreen extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-  }
 
   state = {
     title: '',
@@ -27,12 +37,19 @@ export default class EcardScreen extends React.Component {
     phonenum: '',
     cardnum: 1,
     isModalVisible: false,
+    color: "rgba(69,85,117,0.3)",
+    modalVisible: false,
+    recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
   }
 
   _showModal = () => { this.setState({ isModalVisible: true })
     console.log(width)
   }
   _hideModal = () => { this.setState({ isModalVisible: false })
+    console.log(width)
+  }
+
+  _showColorModal = () => { this.setState({ modalVisible: true })
     console.log(width)
   }
 
@@ -43,6 +60,7 @@ export default class EcardScreen extends React.Component {
       tagline: this.state.tagline,
       buisname: this.state.buisname,
       phonenum: this.state.phonenum,
+      color: this.state.color
     }
     store.push('usercard', obj)
   }
@@ -55,10 +73,29 @@ export default class EcardScreen extends React.Component {
     shadowRadius: 2,
     elevation: 1}}/>*/
 
+    changeColor() {
+        this.setState({ modalVisible: false })
+    }
+
   render() {
     const { navigate } = this.props.navigation;
     const { title, tagline, buisname, phonenum, cardnum } = this.state;
     const { isLoading } = this.props;
+
+    // testing the fucking color overlay shit
+    // return (
+    //     <Surface width={300} height={200}>
+    //         <HueRotate hue={12}>
+    //             <View key="pooP">
+    //                 <Image
+    //                     style={{ width: 256, height: 244 }}
+    //                     source={require('../data/CardTemplates/businesscard4.png')}
+    //                 />
+    //             </View>
+    //         </HueRotate>
+    //     </Surface>
+    // )
+
     return (
       <Container>
 
@@ -67,17 +104,18 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardOnePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 2:
-              return ( <CardTwoPreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardTwoPreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 3:
-              return ( <CardThreePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardThreePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 4:
-              return ( <CardFourPreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFourPreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 5:
-              return ( <CardFivePreview title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFivePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
           }
         })()}
+
         <View style={styles.pickWrapper}>
           <Picker
             style={styles.picker}
@@ -93,17 +131,49 @@ export default class EcardScreen extends React.Component {
           </Picker>
         </View>
 
+        <SlidersColorPicker
+            visible={this.state.modalVisible}
+            color={this.state.color}
+            returnMode={'rgb'}
+            onCancel={() => this.setState({ modalVisible: false })}
+            onOk={colorHex => {
+              this.setState({
+                modalVisible: false,
+                color: colorHex
+              });
+              this.setState({
+                recents: [
+                  colorHex,
+                  ...this.state.recents.filter(c => c !== colorHex).slice(0, 4)
+                ]
+              });
+            }}
+            swatches={this.state.recents}
+            swatchesLabel="RECENTS"
+            okLabel="Done"
+            cancelLabel="Cancel"
+        />
+
         <View style={styles.buttonRow }>
           <TouchableOpacity
             style={styles.button2}
             onPress={this._showModal}>
-            <Text style={styles.buttonText}>Edit Texts</Text>
+            <Text style={styles.buttonText}>Edit Text</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button2}
-            onPress={this.saveData}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button2}
+                onPress={this._showColorModal}>
+                <Text style={styles.buttonText}>Choose Color</Text>
+            </TouchableOpacity>
+          
+        </View>
+
+        <View style={styles.buttonRow }>
+            <TouchableOpacity
+                style={styles.button2}
+                onPress={this.saveData}>
+                <Text style={styles.buttonText}>Save Card</Text>
+            </TouchableOpacity>
         </View>
 
         <Modal
@@ -121,15 +191,15 @@ export default class EcardScreen extends React.Component {
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardOnePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 2:
-                    return ( <CardTwoPreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardTwoPreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 3:
-                    return ( <CardThreePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardThreePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 4:
-                    return ( <CardFourPreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFourPreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 5:
-                    return ( <CardFivePreview cardnum={cardnum} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFivePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                 }
               })()}
 
@@ -176,7 +246,7 @@ export default class EcardScreen extends React.Component {
               <TouchableOpacity
                 style={styles.button}
                 onPress={this._hideModal}>
-                <Text style={styles.buttonText}>Save</Text>
+                <Text style={styles.buttonText}>Confirm</Text>
               </TouchableOpacity>
             </KeyboardAvoidingView>
           </Modal>

@@ -14,11 +14,11 @@ export default EStyleSheet.create({
       overflow: 'hidden',
     },
     container: {
-      width: (width-20),
-      height: ((width-20)*.52),
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+        width: (width-20),
+        height: ((width-20)*.52),
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     image: {
       width: (width-20),
       height: ((width-20)*.52),
@@ -32,12 +32,16 @@ export default EStyleSheet.create({
       width: (width-20)
     },
     title: {
-      color: 'black',
-      fontSize: 22,
+      color: '$inputText',
+      fontSize: 12,
+      top: 4,
+      right: 75
     },
     tagline: {
-      color: 'white',
-      fontSize: 26,
+      color: '$inputText',
+      fontSize: 12,
+      top: 20,
+      right: 95
     },
     footView: {
       flex: .3,
@@ -45,14 +49,22 @@ export default EStyleSheet.create({
       width: (width-20)
     },
     buisname: {
-      color: 'white',
-      fontSize: 14,
-      marginRight: 8,
+      color: '$inputText',
+      fontSize: 12,
+      top: 40,
+      left: 95
+
     },
     phonenum: {
       color: '$inputText',
       fontSize: 12,
-      marginRight: 8,
+      top: 36,
+      left: 115
+    },
+    name: {
+      color: '$inputText',
+      fontSize: 16,
+      left: 60,
     },
 
 });

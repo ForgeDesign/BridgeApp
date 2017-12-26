@@ -11,6 +11,10 @@ export default EStyleSheet.create({
   },
   wrapper: {
   },
+  color: {
+    ...EStyleSheet.absoluteFillOsbject,
+    backgroundColor: 'rgba(69,85,117,1)',
+    },
   image: {
     width: (width-20),
     height: ((width-20)*.5),

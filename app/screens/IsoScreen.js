@@ -55,13 +55,13 @@ export default class IsoScreen extends React.Component {
         shadowRadius: 2,
         elevation: 1}}/>
         
-        <ScrollView style={{  flex: 1,
-    backgroundColor: '$offwhite',}}
+        <ScrollView style={{ flex: 1 }}
         >
-          {this.state.people.map((person) =>
+          {this.state.people.map((person, key) =>
           <TouchableOpacity
             onPress={this._showModal}>
             <PersonCard
+                key={key}
               name={person.name}
               location={person.location}
               imagepath={person.imagepath}/>
