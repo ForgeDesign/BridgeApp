@@ -2,12 +2,14 @@ import React from 'react';
 import Hero from 'react-native-hero';
 import { View, Text, Image } from 'react-native';
 import styles from './styles';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
-const CardTwoPreview = ({ title, tagline, buisname, phonenum }) => {
+const CardTwoPreview = ({ color, title, tagline, buisname, phonenum }) => {
 
   return (
     <View style={styles.top}>
       <Hero style={styles.image}
+        colorOverlay={color}
         source={require('../../data/CardTemplates/businesscard2.png')}
         renderOverlay={() => (
           <View style={styles.container}>

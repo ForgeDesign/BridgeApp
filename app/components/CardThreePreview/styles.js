@@ -14,11 +14,11 @@ export default EStyleSheet.create({
       overflow: 'hidden',
     },
     container: {
-      width: (width-20),
-      height: ((width-20)*.52),
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+        width: (width-20),
+        height: ((width-20)*.52),
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     image: {
       width: (width-20),
       height: ((width-20)*.52),
