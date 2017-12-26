@@ -24,12 +24,20 @@
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
         "source": "C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
         "source": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Rodney\\Documents\\Freelance Job\\BridgeApp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\steve\\github\\FD\\bridgeapp\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "C:\\Users\\gatesyp\\github\\FD\\BridgeApp\\android\\C:\\Users\\Framesteel\\Documents\\Programming\\Work\\bridge\\app\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",

@@ -32,12 +32,21 @@ export default EStyleSheet.create({
       width: (width-20)
     },
     title: {
-      color: 'black',
-      fontSize: 22,
+      color: 'white',
+      fontSize: 12,
+      top: 4,
+      right: 75
+    },
+    name: {
+      color: 'white',
+      fontSize: 26,
+      top: 0,
+      right: 75
     },
     tagline: {
       color: 'white',
-      fontSize: 26,
+      fontSize: 12,
+      right: 50
     },
     footView: {
       flex: .3,
@@ -46,13 +55,14 @@ export default EStyleSheet.create({
     },
     buisname: {
       color: 'white',
-      fontSize: 14,
-      marginRight: 8,
+      fontSize: 12,
+      right: 47,
     },
     phonenum: {
-      color: '$inputText',
+      color: 'white',
       fontSize: 12,
-      marginRight: 8,
+      right: 75,
+      bottom: 8
     },
 
 });
