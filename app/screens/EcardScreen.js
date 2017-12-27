@@ -12,9 +12,11 @@ import { CardThreePreview } from '../components/CardThreePreview';
 import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview'
 
-import GL from 'gl-react'
-import { Surface } from "gl-react-native";
-import { HueRotate } from 'gl-react-hue-rotate'
+import ImagePicker from 'react-native-image-picker'
+
+// import GL from 'gl-react'
+// import { Surface } from "gl-react-native";
+// import { HueRotate } from 'gl-react-hue-rotate'
 
 import {
     SlidersColorPicker,
@@ -37,9 +39,10 @@ export default class EcardScreen extends React.Component {
     phonenum: '',
     cardnum: 1,
     isModalVisible: false,
-    color: "rgba(69,85,117,0.3)",
+    color: "rgba(255,255,255,0.3)",
     modalVisible: false,
     recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
+    avatarSource: "null"
   }
 
   _showModal = () => { this.setState({ isModalVisible: true })
@@ -60,7 +63,8 @@ export default class EcardScreen extends React.Component {
       tagline: this.state.tagline,
       buisname: this.state.buisname,
       phonenum: this.state.phonenum,
-      color: this.state.color
+      color: this.state.color,
+      logo: this.state.avatarSource
     }
     store.push('usercard', obj)
   }
@@ -75,6 +79,12 @@ export default class EcardScreen extends React.Component {
 
     changeColor() {
         this.setState({ modalVisible: false })
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.addLogo = this.addLogo.bind(this);
     }
 
   render() {
@@ -104,15 +114,15 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 2:
-              return ( <CardTwoPreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 3:
-              return ( <CardThreePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 4:
-              return ( <CardFourPreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
             case 5:
-              return ( <CardFivePreview color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
           }
         })()}
 
@@ -158,7 +168,7 @@ export default class EcardScreen extends React.Component {
           <TouchableOpacity
             style={styles.button2}
             onPress={this._showModal}>
-            <Text style={styles.buttonText}>Edit Text</Text>
+            <Text style={styles.buttonText}>Edit Content</Text>
           </TouchableOpacity>
             <TouchableOpacity
                 style={styles.button2}
@@ -191,21 +201,21 @@ export default class EcardScreen extends React.Component {
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardOnePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 2:
-                    return ( <CardTwoPreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardTwoPreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 3:
-                    return ( <CardThreePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardThreePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 4:
-                    return ( <CardFourPreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFourPreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                   case 5:
-                    return ( <CardFivePreview cardnum={cardnum} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFivePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
                 }
               })()}
 
               <CardInput
                 name={'title'}
-                placeholder={'Title'}
+                placeholder={'Large Text'}
                 withRef={true}
                 ref={(ref) => this.TitleInputRef = ref}
                 editable={!isLoading}
@@ -243,6 +253,12 @@ export default class EcardScreen extends React.Component {
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.addLogo}>
+                    <Text style={styles.buttonText}>Add Logo</Text>
+                </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.button}
                 onPress={this._hideModal}>
@@ -253,49 +269,84 @@ export default class EcardScreen extends React.Component {
         </Container>
     )
   }
+
+    options = {
+        title: 'Select Logo',
+        noData: true,
+        storageOptions: {
+            skipBackup: true,
+            path: 'images',
+            waitUntilSaved: true
+        }
+    };
+
+    async addLogo() {
+        await ImagePicker.showImagePicker(this.options, (response) => {   
+                   
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+                
+                // You can also display the image using data:
+                let source = response.uri;
+
+                this.setState({
+                    avatarSource: source
+                });
+
+            }
+        })
+    }
 }
 
 const styles = EStyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width*.4,
-    height: width*.12,
-    backgroundColor: '$primaryBlue',
-    borderRadius: 5,
-    marginLeft: width*.3,
-    marginRight: width*.3,
-    marginTop: 15,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button2: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width*.4,
-    height: width*.12,
-    backgroundColor: '$primaryBlue',
-    borderRadius: 5,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 15,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: 'white',
-  },
-  pickWrapper: {
-    margin: 10,
-    borderRadius: 5,
-    backgroundColor: '$lightGray',
-  },
-  pickWrapperText: {
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: width*.3,
+        marginRight: width*.3,
+        marginTop: 15,
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 15,
+    },
+    buttonText: {
+        fontSize: 16,
+        color: 'white',
+    },
+    pickWrapper: {
+        margin: 10,
+        borderRadius: 5,
+        backgroundColor: '$lightGray',
+    },
+    pickWrapperText: {
 
-  },
-  picker: {
+    },
+    picker: {
 
-  }
+    }
 })

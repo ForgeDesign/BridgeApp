@@ -59,7 +59,7 @@ export default class IsoScreen extends React.Component {
         >
           {this.state.people.map((person, key) =>
           <TouchableOpacity
-            onPress={this._showModal}>
+            onPress={this._showModal} key={key}>
             <PersonCard
                 key={key}
               name={person.name}
@@ -73,10 +73,11 @@ export default class IsoScreen extends React.Component {
           onRequestClose={this._hideModal}
           transparent={false}
           visible={this.state.isModalVisible}
-          animationType='slide'>
+          animationType='slide'
+          style={{ backgroundColor: 'whitesmoke' }}>
           <KeyboardAvoidingView
             behavior={'position'}
-            style={{ backgroundColor: 'whitesmoke', flex: 1}}>
+            style={{ backgroundColor: 'whitesmoke', flex: 1, marginTop: 25}}>
               <CardOnePreview cardnum={1} title={'Name'} tagline={'President'} buisname={'Example'} phonenum={'1-800-555-5555'}/>
           
 
