@@ -4,7 +4,7 @@ import { View, Text, Image } from 'react-native';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const CardOnePreview = ({ logo, color, title, tagline, buisname, phonenum }) => {
+const CardOnePreview = ({ logo, color, title, website, buisname, phonenum, email, address, name }) => {
 
     return (
         <View style={styles.top}>
@@ -13,24 +13,20 @@ const CardOnePreview = ({ logo, color, title, tagline, buisname, phonenum }) => 
                 source={require('../../data/CardTemplates/businesscard1.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
-                        <View style={styles.headView}>
-                            
-                        </View>
-
-                        <View style={styles.mainView}>
                             <Image
-                                style={styles.logo} 
-                                source={{uri: logo }} 
+                                style={styles.logo}
+                                source={{uri: logo }}
                             />
-                            <Text style={styles.title}>{title}</Text>
-                            <Text style={styles.tagline}>{tagline}</Text>
-                        </View>
-                        <View style={styles.footView}>
-                            <Text style={styles.buisname}>{buisname}</Text>
+                            <Text style={styles.email}>{email}</Text>
+                            <Text style={styles.address}>{address}</Text>
+                            <Text style={styles.website}>{website}</Text>
                             <Text style={styles.phonenum}>{phonenum}</Text>
-                        </View>
+                            <Text style={styles.name}>{name}</Text>
+                            <Text style={styles.buisname}>{buisname}</Text>
+                            <Text style={styles.title}>{title}</Text>
+
                     </View>
-                )} 
+                )}
             />
         </View>
     )

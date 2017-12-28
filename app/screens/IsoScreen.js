@@ -21,19 +21,44 @@ export default class IsoScreen extends React.Component {
   constructor(){
     super();
 
-    
+
     this.state = {
       people:
         [
           {
-            "name": "George Washington",
-            "location": "Westmoreland, VA",
-            "imagepath": require("../assets/images/george.jpg")
+            "name": "Mark Brown",
+            "location": "71 Pilgrim Ave. Chevy Chase, MD",
+            "imagepath": require("../assets/images/markbrown.jpg")
           },
           {
-            "name": 'Thomas Jefferson',
-            "location": 'Shadwell, VA',
-            "imagepath": require("../assets/images/tommy.jpg")
+            "name": "Steve Kelly",
+            "location": "123 6th St. Melbourne, FL",
+            "imagepath": require("../assets/images/stevekelly.jpg")
+          },
+          {
+            "name": 'James Smith',
+            "location": '70 Bowman St. South Windsor, CT',
+            "imagepath": require("../assets/images/jamessmith.jpg")
+          },
+          {
+            "name": "Brian Amin",
+            "location": "3052 Parker Dr. Akron, OH",
+            "imagepath": require("../assets/images/brianamin.jpg")
+          },
+          {
+            "name": "Mary Lewis",
+            "location": "4 Goldfield Rd. Honolulu, HI",
+            "imagepath": require("../assets/images/marylewis.jpg")
+          },
+          {
+            "name": "David Rodriguez",
+            "location": "44 Shirley Ave. West Chicago, IL",
+            "imagepath": require("../assets/images/davidrodriguez.jpg")
+          },
+          {
+            "name": "Frank Barnes",
+            "location": "530 Winding Way Reynoldsburg, OH",
+            "imagepath": require("../assets/images/frankbarnes.jpg")
           }
         ],
       active: true,
@@ -45,7 +70,7 @@ export default class IsoScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <Container>
-        
+
         <Header title={'Connect'} />
         <View style={{
           borderBottomColor: '#003E5B',
@@ -54,7 +79,7 @@ export default class IsoScreen extends React.Component {
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 1}}/>
-        
+
         <ScrollView style={{ flex: 1 }}
         >
           {this.state.people.map((person, key) =>
@@ -79,7 +104,7 @@ export default class IsoScreen extends React.Component {
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, marginTop: 25}}>
               <CardOnePreview cardnum={1} title={'Name'} tagline={'President'} buisname={'Example'} phonenum={'1-800-555-5555'}/>
-          
+
 
             <TouchableOpacity
               style={styles.button}

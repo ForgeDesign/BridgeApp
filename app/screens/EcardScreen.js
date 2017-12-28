@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import store from 'react-native-simple-store';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
@@ -34,9 +35,12 @@ export default class EcardScreen extends React.Component {
 
   state = {
     title: '',
-    tagline: '',
+    name: '',
     buisname: '',
     phonenum: '',
+    email: '',
+    address: '',
+    website: '',
     cardnum: 1,
     isModalVisible: false,
     color: "rgba(255,255,255,0.3)",
@@ -60,9 +64,12 @@ export default class EcardScreen extends React.Component {
     let obj = {
       cardnum: this.state.cardnum,
       title: this.state.title,
-      tagline: this.state.tagline,
+      website: this.state.website,
       buisname: this.state.buisname,
       phonenum: this.state.phonenum,
+      email: this.state.email,
+      name: this.state.name,
+      address: this.state.address,
       color: this.state.color,
       logo: this.state.avatarSource
     }
@@ -89,7 +96,7 @@ export default class EcardScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { title, tagline, buisname, phonenum, cardnum } = this.state;
+    const { title, website, buisname, phonenum, cardnum, name, email, address } = this.state;
     const { isLoading } = this.props;
 
     // testing the fucking color overlay shit
@@ -110,19 +117,26 @@ export default class EcardScreen extends React.Component {
       <Container>
 
         <Header title={'Business Card'}/>
+        <View style={{
+          borderBottomColor: '#003E5B',
+          borderBottomWidth: 4,
+          shadowOffset: { width: 0, height:2.8 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1}}/>
 
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
           }
         })()}
 
@@ -175,7 +189,7 @@ export default class EcardScreen extends React.Component {
                 onPress={this._showColorModal}>
                 <Text style={styles.buttonText}>Choose Color</Text>
             </TouchableOpacity>
-          
+
         </View>
 
         <View style={styles.buttonRow }>
@@ -192,24 +206,29 @@ export default class EcardScreen extends React.Component {
           visible={this.state.isModalVisible}
           animationType='fade'>
 
-            <KeyboardAvoidingView
-              behavior={'position'}
-              style={{ backgroundColor: 'whitesmoke', flex: 1}}>
-
               <Header title={'Business Card'}/>
+              <View style={{
+                borderBottomColor: '#003E5B',
+                borderBottomWidth: 4,
+                shadowOffset: { width: 0, height:2.8 },
+              shadowOpacity: 0.8,
+              shadowRadius: 2,
+              elevation: 1}}/>
+
+              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
 
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                   case 2:
-                    return ( <CardTwoPreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                   case 3:
-                    return ( <CardThreePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                   case 4:
-                    return ( <CardFourPreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                   case 5:
-                    return ( <CardFivePreview cardnum={cardnum} logo={this.state.avatarSource} color={this.state.color} title={title} tagline={tagline} buisname={buisname} phonenum={phonenum}/> );
+                    return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 }
               })()}
 
@@ -224,13 +243,13 @@ export default class EcardScreen extends React.Component {
                 isEnabled={!isLoading}/>
 
               <CardInput
-                name={'tagline'}
-                placeholder={'Tagline'}
+                name={'name'}
+                placeholder={'Name'}
                 withRef={true}
-                ref={(ref) => this.TaglineInputRef = ref}
+                ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
-                value={this.state.tagline}
-                onChangeText={(value) => this.setState({tagline: value })}
+                value={this.state.name}
+                onChangeText={(value) => this.setState({name: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -253,18 +272,51 @@ export default class EcardScreen extends React.Component {
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
+              <CardInput
+                name={'email'}
+                placeholder={'Email Address'}
+                withRef={true}
+                ref={(ref) => this.EmailInputRef = ref}
+                editable={!isLoading}
+                value={this.state.email}
+                onChangeText={(value) => this.setState({email: value })}
+                isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'website'}
+                placeholder={'Website'}
+                withRef={true}
+                ref={(ref) => this.WebsiteInputRef = ref}
+                editable={!isLoading}
+                value={this.state.website}
+                onChangeText={(value) => this.setState({website: value })}
+                isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'address'}
+                placeholder={'Buisness Address'}
+                withRef={true}
+                ref={(ref) => this.AddressInputRef = ref}
+                editable={!isLoading}
+                value={this.state.Address}
+                onChangeText={(value) => this.setState({address: value })}
+                isEnabled={!isLoading}/>
+
+              <View style={styles.buttonRow}>
+
                 <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.addLogo}>
+                  style={styles.button2}
+                  onPress={this.addLogo}>
                     <Text style={styles.buttonText}>Add Logo</Text>
                 </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this._hideModal}>
-                <Text style={styles.buttonText}>Confirm</Text>
-              </TouchableOpacity>
-            </KeyboardAvoidingView>
+                <TouchableOpacity
+                  style={styles.button2}
+                  onPress={this._hideModal}>
+                  <Text style={styles.buttonText}>Confirm</Text>
+                </TouchableOpacity>
+              </View>
+              </KeyboardAwareScrollView>
           </Modal>
         </Container>
     )
@@ -281,8 +333,8 @@ export default class EcardScreen extends React.Component {
     };
 
     async addLogo() {
-        await ImagePicker.showImagePicker(this.options, (response) => {   
-                   
+        await ImagePicker.showImagePicker(this.options, (response) => {
+
             if (response.didCancel) {
                 console.log('User cancelled image picker');
             }
@@ -293,7 +345,7 @@ export default class EcardScreen extends React.Component {
                 console.log('User tapped custom button: ', response.customButton);
             }
             else {
-                
+
                 // You can also display the image using data:
                 let source = response.uri;
 

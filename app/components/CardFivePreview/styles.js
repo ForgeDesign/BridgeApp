@@ -14,64 +14,45 @@ export default EStyleSheet.create({
         overflow: 'hidden',
     },
     logo: {
-        width: 50, 
-        height: 50, 
-        left: 120,
-        bottom: 20,
+        width: 50,
+        height: 50,
+        right: 110,
         borderRadius: 50/2,
     },
     container: {
         width: (width-20),
         height: ((width-20)*.52),
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     image: {
         width: (width-20),
         height: ((width-20)*.52),
     },
-    headView: {
-        flex: .2,
-    },
-    mainView: {
-        flex: .5,
-        alignItems: 'center',
-        width: (width-20)
-    },
     title: {
-        color: 'red',
+        color: 'black',
         fontSize: 22,
-        right: 75,
-        top: 5    
     },
-    tagline: {
+    website: {
         color: 'white',
-        fontSize: 12,
-        right: 77,
-        top: 4
-    },
-    footView: {
-        flex: .3,
-        alignItems: 'flex-end',
-        width: (width-20)
+        fontSize: 26,
     },
     buisname: {
         color: 'white',
         fontSize: 14,
-        right: 240,
-        top: 34
+        marginRight: 8,
     },
     phonenum: {
-        color: 'white',
-        fontSize: 16,
-        right: 93,
-        top: 50
+        color: '$inputText',
+        fontSize: 12,
+        marginRight: 8,
+    },
+    email: {
+
+    },
+    address: {
+
     },
     name: {
-        color: 'red',
-        fontSize: 25,
-        right: 67,
-        top: 10
+
     },
 
 });

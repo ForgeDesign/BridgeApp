@@ -14,51 +14,60 @@ export default EStyleSheet.create({
         overflow: 'hidden',
     },
     logo: {
-        width: 50, 
-        height: 50, 
-        right: 110,
+        width: 50,
+        height: 50,
+        right: 50,
         borderRadius: 50/2,
     },
     container: {
         width: (width-20),
         height: ((width-20)*.52),
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     image: {
         width: (width-20),
         height: ((width-20)*.52),
     },
-    headView: {
-        flex: .2,
-    },
-    mainView: {
-        flex: .5,
-        alignItems: 'center',
-        width: (width-20)
-    },
     title: {
         color: 'black',
         fontSize: 22,
+        alignSelf: 'flex-end'
     },
-    tagline: {
-        color: 'white',
-        fontSize: 26,
-    },
-    footView: {
-        flex: .3,
-        alignItems: 'flex-end',
-        width: (width-20)
+    website: {
+      color: 'white',
+      fontSize: 10,
+      marginLeft: 6,
+      alignSelf: 'flex-start'
     },
     buisname: {
-        color: 'white',
-        fontSize: 14,
-        marginRight: 8,
+      color: 'black',
+      fontSize: 14,
+      marginRight: 6,
+      alignSelf: 'flex-end'
     },
     phonenum: {
-        color: '$inputText',
-        fontSize: 12,
-        marginRight: 8,
+      color: 'white',
+      fontSize: 10,
+      marginLeft: 6,
+      alignSelf: 'flex-start'
+    },
+    email: {
+      color: 'white',
+      fontSize: 10,
+      marginTop: 6,
+      marginLeft: 6,
+      alignSelf: 'flex-start'
+    },
+    address: {
+      color: 'white',
+      fontSize: 10,
+      marginLeft: 6,
+      alignSelf: 'flex-start'
+    },
+    name: {
+      color: 'white',
+      fontSize: 10,
+      marginLeft: 6,
+      alignSelf: 'flex-start'
     },
 
 });

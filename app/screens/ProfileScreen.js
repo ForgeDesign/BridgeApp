@@ -66,15 +66,15 @@ export default class ProfileScreen extends Component {
         {this.state.cards.map((ref, key) => {
           switch (ref.cardnum) {
             case 1:
-              return ( <CardOnePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardOnePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 2:
-              return ( <CardTwoPreview key={key} logo={ref.logo} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardTwoPreview key={key} logo={ref.logo} title={ref.title} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 3:
-              return ( <CardThreePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardThreePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 4:
-              return ( <CardFourPreview key={key} logo={ref.logo} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardFourPreview key={key} logo={ref.logo} title={ref.title} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 5:
-              return ( <CardFivePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} tagline={ref.tagline} buisname={ref.buisname} phonenum={ref.phonenum}/> );
+              return ( <CardFivePreview key={key} logo={ref.logo} title={ref.title} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
           }
           })}
         </ScrollView>

@@ -13,12 +13,12 @@ public class MainActivity extends ReactActivity {
         return "BridgeApp";
     }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            ...
-            new RNGLPackage()
-        );
-    }
+//    @Override
+//    protected List<ReactPackage> getPackages() {
+//        return Arrays.<ReactPackage>asList(
+//            new MainReactPackage(),
+//            ...
+//            new RNGLPackage()
+//        );
+//    }
 }
