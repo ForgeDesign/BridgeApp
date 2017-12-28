@@ -16,8 +16,11 @@ export default EStyleSheet.create({
     logo: {
         width: 50,
         height: 50,
-        right: 50,
         borderRadius: 50/2,
+        position: 'absolute',
+        top: '5%',
+        right: '5%'
+
     },
     container: {
         width: (width-20),
@@ -30,44 +33,51 @@ export default EStyleSheet.create({
     title: {
         color: 'black',
         fontSize: 22,
-        alignSelf: 'flex-end'
+        position: 'absolute',
+        top: '50%',
+        left: '52%'
     },
     website: {
+      position: 'absolute',
       color: 'white',
-      fontSize: 10,
-      marginLeft: 6,
-      alignSelf: 'flex-start'
+      fontSize: 12,
+      top: '85%',
+      right: '8%',
     },
     buisname: {
-      color: 'black',
+      position: 'absolute',
+      color: 'white',
       fontSize: 14,
-      marginRight: 6,
-      alignSelf: 'flex-end'
+      top: '5%',
+      left: '5%'
     },
     phonenum: {
+      position: 'absolute',
       color: 'white',
-      fontSize: 10,
-      marginLeft: 6,
-      alignSelf: 'flex-start'
+      fontSize: 12,
+      top: '76%',
+      right: '8%',
     },
     email: {
       color: 'white',
       fontSize: 10,
-      marginTop: 6,
-      marginLeft: 6,
-      alignSelf: 'flex-start'
+      position: 'absolute',
+      top: '16%',
+      left: '5%'
     },
     address: {
       color: 'white',
       fontSize: 10,
-      marginLeft: 6,
-      alignSelf: 'flex-start'
+      position: 'absolute',
+      top: '23%',
+      left: '5%'
     },
     name: {
       color: 'white',
       fontSize: 10,
-      marginLeft: 6,
-      alignSelf: 'flex-start'
+      position: 'absolute',
+      top: '30%',
+      left: '5%'
     },
 
 });

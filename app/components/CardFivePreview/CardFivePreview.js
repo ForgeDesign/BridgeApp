@@ -4,7 +4,7 @@ import { View, Text, Image } from 'react-native';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const CardFourPreview = ({ logo, color, title, website, buisname, phonenum, email, address, name }) => {
+const CardFivePreview = ({ logo, color, title, website, buisname, phonenum, email, address, name }) => {
 
     return (
         <View style={styles.top}>
@@ -13,21 +13,18 @@ const CardFourPreview = ({ logo, color, title, website, buisname, phonenum, emai
                 source={require('../../data/CardTemplates/businesscard5.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
-                        <View style={styles.headView}/>
-                          <Text style={styles.name}>{name}</Text>
-                          <Text style={styles.phonenum}>{phonenum}</Text>
-                        <View style={styles.mainView}>
                             <Image
                                 style={styles.logo}
-                                source={{uri: logo }}/>
-                            <Text style={styles.title}>{title}</Text>
-                            <Text style={styles.website}>{website}</Text>
-                        </View>
-                        <View style={styles.footView}>
-                            <Text style={styles.address}>{address}</Text>
+                                source={{uri: logo }}
+                            />
                             <Text style={styles.email}>{email}</Text>
+                            <Text style={styles.address}>{address}</Text>
+                            <Text style={styles.website}>{website}</Text>
+                            <Text style={styles.phonenum}>{phonenum}</Text>
+                            <Text style={styles.name}>{name}</Text>
                             <Text style={styles.buisname}>{buisname}</Text>
-                        </View>
+                            <Text style={styles.title}>{title}</Text>
+
                     </View>
                 )}
             />
@@ -35,4 +32,4 @@ const CardFourPreview = ({ logo, color, title, website, buisname, phonenum, emai
     )
 };
 
-export default CardFourPreview;
+export default CardFivePreview;

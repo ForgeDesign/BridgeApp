@@ -13,8 +13,6 @@ const CardFourPreview = ({ logo, color, title, website, buisname, phonenum, emai
                 source={require('../../data/CardTemplates/businesscard4.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
-                        <View style={styles.headView}/>
-                        <View style={styles.mainView}>
                             <Image
                                 style={styles.logo}
                                 source={{uri: logo }}
@@ -25,11 +23,8 @@ const CardFourPreview = ({ logo, color, title, website, buisname, phonenum, emai
                             <Text style={styles.name}></Text>
                             <Text style={styles.title}>{title}</Text>
                             <Text style={styles.website}>{website}</Text>
-                        </View>
-                        <View style={styles.footView}>
                             <Text style={styles.phonenum}>{phonenum}</Text>
                             <Text style={styles.buisname}>{buisname}</Text>
-                        </View>
                     </View>
                 )}
             />

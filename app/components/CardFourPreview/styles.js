@@ -16,8 +16,11 @@ export default EStyleSheet.create({
     logo: {
         width: 50,
         height: 50,
-        right: 110,
         borderRadius: 50/2,
+        position: 'absolute',
+        top: '5%',
+        left: '7%'
+
     },
     container: {
         width: (width-20),
@@ -28,31 +31,53 @@ export default EStyleSheet.create({
         height: ((width-20)*.52),
     },
     title: {
-        color: 'black',
+        color: 'gray',
         fontSize: 22,
+        position: 'absolute',
+        top: '36%',
+        right: '5%'
     },
     website: {
-        color: 'white',
-        fontSize: 26,
+      position: 'absolute',
+      color: 'gray',
+      fontSize: 11,
+      top: '78%',
+      left: '63%',
     },
     buisname: {
-        color: 'white',
-        fontSize: 14,
-        marginRight: 8,
+      position: 'absolute',
+      color: 'gray',
+      fontSize: 14,
+      top: '71%',
+      right: '44%'
     },
     phonenum: {
-        color: '$inputText',
-        fontSize: 12,
-        marginRight: 8,
+      position: 'absolute',
+      color: 'gray',
+      fontSize: 11,
+      top: '65%',
+      left: '64%',
     },
     email: {
-
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      top: '11%',
+      right: '3%'
     },
     address: {
-
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      top: '19%',
+      right: '3%'
     },
     name: {
-
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      top: '3%',
+      right: '3%'
     },
 
 });
