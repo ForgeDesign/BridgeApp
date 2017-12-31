@@ -80,7 +80,7 @@ export default class IsoScreen extends React.Component {
         shadowRadius: 2,
         elevation: 1}}/>
 
-        <ScrollView style={{ flex: 1 }}
+        <ScrollView style={{ flex: 1, marginTop: 6 }}
         >
           {this.state.people.map((person, key) =>
           <TouchableOpacity

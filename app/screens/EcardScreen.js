@@ -15,6 +15,9 @@ import { CardFivePreview } from '../components/CardFivePreview'
 
 import ImagePicker from 'react-native-image-picker'
 
+var MessageBarAlert = require('react-native-message-bar').MessageBar;
+var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+
 // import GL from 'gl-react'
 // import { Surface } from "gl-react-native";
 // import { HueRotate } from 'gl-react-hue-rotate'
@@ -74,6 +77,15 @@ export default class EcardScreen extends React.Component {
       logo: this.state.avatarSource
     }
     store.push('usercard', obj)
+
+    MessageBarManager.showAlert({
+        title: 'Saved card!',
+        message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
+        alertType: 'info',
+        viewTopOffset : 35
+        // See Properties section for full customization
+        // Or check `index.ios.js` or `index.android.js` for a complete example
+    });
   }
 
   /*<View style={{
@@ -83,6 +95,15 @@ export default class EcardScreen extends React.Component {
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1}}/>*/
+
+    componentDidMount() {
+        MessageBarManager.registerMessageBar(this.refs.alert);
+    }
+
+    componentWillUnmount() {
+        // Remove the alert located on this master page from the manager
+        MessageBarManager.unregisterMessageBar();
+    }
 
     changeColor() {
         this.setState({ modalVisible: false })
@@ -318,6 +339,9 @@ export default class EcardScreen extends React.Component {
               </View>
               </KeyboardAwareScrollView>
           </Modal>
+
+          <MessageBarAlert ref="alert" />
+
         </Container>
     )
   }
@@ -368,7 +392,7 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: width*.3,
         marginRight: width*.3,
-        marginTop: 15,
+        marginTop: 3,
     },
     buttonRow: {
         flexDirection: 'row',
@@ -384,7 +408,7 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: 10,
         marginRight: 10,
-        marginTop: 15,
+        marginTop: 3,
     },
     buttonText: {
         fontSize: 16,

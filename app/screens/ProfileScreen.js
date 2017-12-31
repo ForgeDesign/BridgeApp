@@ -11,7 +11,9 @@ import { CardThreePreview } from '../components/CardThreePreview';
 import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview';
 
-export default class ProfileScreen extends Component {
+import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
+
+class ProfileScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -42,22 +44,37 @@ export default class ProfileScreen extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isFocused && nextProps.isFocused) {
+        // console.log("here we are in screen")
+        this._onRefresh()
+    }
+    if (this.props.isFocused && !nextProps.isFocused) {
+        // console.log("NOT HERE")
+    }
+  }
+
+  
   render() {
     const { navigate } = this.props.navigation;
-
+    
     return (
       <Container>
         <Header title={'Profile'} />
 
         <ProfileHeader/>
+
         <View style={{
           borderBottomColor: '#003E5B',
           borderBottomWidth: 4,
           shadowOffset: { width: 0, height:2.8 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
-        elevation: 1}}/>
+        elevation: 1,
+        bottom: 3}}/>
+      
         <ScrollView
+        style={{marginTop: 6}}
           refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
@@ -82,3 +99,5 @@ export default class ProfileScreen extends Component {
     )
   };
 }
+
+export default withNavigationFocus(ProfileScreen, 'Profile')
