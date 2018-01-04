@@ -6,7 +6,7 @@ const circleWidth = Dimensions.get('window').width / 6;
 export default EStyleSheet.create({
     background: {
       flexDirection: 'column',
-      height: '35%',
+      height: Dimensions.get('window').height * 0.35,
       backgroundColor: '$primaryBlue',
 
     },
