@@ -74,7 +74,7 @@ export default class EcardScreen extends React.Component {
       name: this.state.name,
       address: this.state.address,
       color: this.state.color,
-      logo: this.state.avatarSource
+      logo: this.state.avatarSource,
     }
     store.push('usercard', obj)
 
@@ -133,6 +133,15 @@ export default class EcardScreen extends React.Component {
     //         </HueRotate>
     //     </Surface>
     // )
+    /*<CardInput
+      name={'title'}
+      placeholder={'Large Text'}
+      withRef={true}
+      ref={(ref) => this.TitleInputRef = ref}
+      editable={!isLoading}
+      value={this.state.title}
+      onChangeText={(value) => this.setState({title: value })}
+      isEnabled={!isLoading}/>*/
 
     return (
       <Container>
@@ -253,15 +262,7 @@ export default class EcardScreen extends React.Component {
                 }
               })()}
 
-              <CardInput
-                name={'title'}
-                placeholder={'Large Text'}
-                withRef={true}
-                ref={(ref) => this.TitleInputRef = ref}
-                editable={!isLoading}
-                value={this.state.title}
-                onChangeText={(value) => this.setState({title: value })}
-                isEnabled={!isLoading}/>
+
 
               <CardInput
                 name={'name'}
@@ -398,6 +399,8 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 5,
+        marginBottom:  5,
     },
     button2: {
         justifyContent: 'center',

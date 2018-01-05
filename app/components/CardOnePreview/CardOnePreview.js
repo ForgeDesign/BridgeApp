@@ -24,7 +24,6 @@ const CardOnePreview = ({ logo, color, title, website, buisname, phonenum, email
                             <Text style={styles.name}>{name}</Text>
                             <Text style={styles.buisname}>{buisname}</Text>
                             <Text style={styles.title}>{title}</Text>
-
                     </View>
                 )}
             />

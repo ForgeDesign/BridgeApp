@@ -17,7 +17,6 @@ const CardTwoPreview = ({ logo, color, title, website, buisname, phonenum, email
                                 style={styles.logo}
                                 source={{uri: logo }}
                             />
-                            <Text style={styles.name}></Text>
                             <Text style={styles.email}>{email}</Text>
                             <Text style={styles.address}>{address}</Text>
                             <Text style={styles.name}>{name}</Text>

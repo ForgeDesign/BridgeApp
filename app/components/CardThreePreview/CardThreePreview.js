@@ -22,8 +22,8 @@ const CardThreePreview = ({ logo, color, title, website, buisname, phonenum, ema
                             <Text style={styles.buisname}>{buisname}</Text>
                             <Text style={styles.title}>{title}</Text>
                             <Text style={styles.website}>{website}</Text>
-                          <Text style={styles.phonenum}>{phonenum}</Text>
-                          <Text style={styles.address}>{address}</Text>
+                            <Text style={styles.phonenum}>{phonenum}</Text>
+                            <Text style={styles.address}>{address}</Text>
                     </View>
                 )}
             />
