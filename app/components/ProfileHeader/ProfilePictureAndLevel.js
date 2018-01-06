@@ -32,7 +32,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
         this.state = 
         {
-            profilePic: require("../../assets/images/black.jpg")
+            profilePic: '../../assets/images/black.jpg'
         };
 
         this.addProfilePic = this.addProfilePic.bind(this);
@@ -79,19 +79,20 @@ export default class ProfilePictureAndLevel extends React.Component
                 //         />
                 //     </TouchableOpacity>
                 // </View>
-
-                // <Image source={this.state.profilePic} style={styles.profileIcon}>
-                // </Image>
-            <TouchableOpacity  onPress={this.addProfilePic}>
-                <Hero source={this.state.profilePic}
-                style={styles.profileIcon}
-                    renderOverlay={() => (
-                        <View style={styles.oval}>
-                            <Text style={{fontSize:10}}>Level Here</Text>
-                        </View>
-                    )}
-                />
-            </TouchableOpacity>
+                <TouchableOpacity  onPress={this.addProfilePic}>
+                    <Image source={{uri: this.state.profilePic}} style={styles.profileIcon}>
+                    </Image>
+                </TouchableOpacity> 
+            // <TouchableOpacity  onPress={this.addProfilePic}>
+            //     <Hero source={this.state.profilePic}
+            //     style={styles.profileIcon}
+            //         renderOverlay={() => (
+            //             <View style={styles.oval}>
+            //                 <Text style={{fontSize:10}}>Level Here</Text>
+            //             </View>
+            //         )}
+            //     />
+            // </TouchableOpacity>
         )
 
     }
