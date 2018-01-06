@@ -15,7 +15,7 @@ const CardOnePreview = ({ logo, color, title, website, buisname, phonenum, email
                     <View style={styles.container}>
                             <Image
                                 style={styles.logo}
-                                source={{uri: logo }}
+                                source={{uri: logo}}
                             />
                             <Text style={styles.email}>{email}</Text>
                             <Text style={styles.address}>{address}</Text>

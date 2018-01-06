@@ -34,7 +34,7 @@ export default EStyleSheet.create({
       height: circleWidth * 2,
       width: circleWidth * 2,
       borderRadius: circleWidth,
-      flexDirection: 'row',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-end'
     },

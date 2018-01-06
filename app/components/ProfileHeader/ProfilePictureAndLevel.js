@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hero from 'react-native-hero';
 import { Icon } from 'native-base';
@@ -13,10 +13,7 @@ import styles from './styles';
 
 export default class ProfilePictureAndLevel extends React.Component 
 {
-    state = 
-    {
-        profilePic: require("../../assets/images/black.jpg")
-    }
+    
 
     options = 
     {
@@ -29,6 +26,18 @@ export default class ProfilePictureAndLevel extends React.Component
             waitUntilSaved: true
         }
     };
+
+    constructor(props) {
+        super(props)
+
+        this.state = 
+        {
+            profilePic: require("../../assets/images/black.jpg")
+        };
+
+        this.addProfilePic = this.addProfilePic.bind(this);
+    }
+
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -47,14 +56,15 @@ export default class ProfilePictureAndLevel extends React.Component
                 // You can also display the image using data:
                 let source = response.uri;
 
-                this.setState({
-                    profilePic: source
-                });
+
+                this.setState({profilePic: source});
+                
             }
         })
     }
 
     render(){
+        const { profilePic } = this.state;
         return(
                 // <View style={styles.profileIcon}>
                 //     <TouchableOpacity onPress={this.addProfilePic} > 
@@ -72,14 +82,16 @@ export default class ProfilePictureAndLevel extends React.Component
 
                 // <Image source={this.state.profilePic} style={styles.profileIcon}>
                 // </Image>
-
+            <TouchableOpacity  onPress={this.addProfilePic}>
                 <Hero source={this.state.profilePic}
+                style={styles.profileIcon}
                     renderOverlay={() => (
                         <View style={styles.oval}>
                             <Text style={{fontSize:10}}>Level Here</Text>
                         </View>
                     )}
                 />
+            </TouchableOpacity>
         )
 
     }
