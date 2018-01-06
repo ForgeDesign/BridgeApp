@@ -210,7 +210,6 @@ export default class EcardScreen extends React.Component {
                 onPress={this._showColorModal}>
                 <Text style={styles.buttonText}>Choose Color</Text>
             </TouchableOpacity>
-
         </View>
 
         <View style={styles.buttonRow }>

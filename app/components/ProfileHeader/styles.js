@@ -33,9 +33,11 @@ export default EStyleSheet.create({
     profileIcon:{
       height: circleWidth * 2,
       width: circleWidth * 2,
-      borderRadius: (circleWidth * 2) / 2,
-      backgroundColor: '#000',
+      borderRadius: circleWidth,
+      flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end'
-    }
+    },
+
+
 });
