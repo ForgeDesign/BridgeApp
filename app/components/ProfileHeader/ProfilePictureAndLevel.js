@@ -14,10 +14,6 @@ import styles from './styles';
 export default class ProfilePictureAndLevel extends React.Component 
 {
 
-    state = 
-        {
-            profilePic: "../../assets/images/jamessmith.jpg"
-        };
     
     constructor(props) {
         super(props)
@@ -40,6 +36,7 @@ export default class ProfilePictureAndLevel extends React.Component
             waitUntilSaved: true
         }
     };
+
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -70,6 +67,7 @@ export default class ProfilePictureAndLevel extends React.Component
         return(
                 <TouchableOpacity  onPress={this.addProfilePic}>
                     <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+
                         <View>
                             <Image source={{uri: this.state.profilePic}} style={styles.profileIcon}/>
                         </View>
