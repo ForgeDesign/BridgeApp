@@ -28,7 +28,8 @@ export default EStyleSheet.create({
       borderRadius: circleWidth / 2,
       backgroundColor: '$offwhite',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
+
     },
     profileIcon:{
       height: circleWidth * 2,

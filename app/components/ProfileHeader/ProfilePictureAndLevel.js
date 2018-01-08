@@ -13,7 +13,16 @@ import styles from './styles';
 
 export default class ProfilePictureAndLevel extends React.Component 
 {
+
+    state = 
+        {
+            profilePic: "../../assets/images/jamessmith.jpg"
+        };
     
+    constructor(props) {
+        super(props)
+        this.addProfilePic = this.addProfilePic.bind(this);
+    }
 
     options = 
     {
@@ -26,18 +35,6 @@ export default class ProfilePictureAndLevel extends React.Component
             waitUntilSaved: true
         }
     };
-
-    constructor(props) {
-        super(props)
-
-        this.state = 
-        {
-            profilePic: '../../assets/images/black.jpg'
-        };
-
-        this.addProfilePic = this.addProfilePic.bind(this);
-    }
-
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -64,35 +61,20 @@ export default class ProfilePictureAndLevel extends React.Component
     }
 
     render(){
-        const { profilePic } = this.state;
+        
         return(
-                // <View style={styles.profileIcon}>
-                //     <TouchableOpacity onPress={this.addProfilePic} > 
-                //         <Hero source={this.state.profilePic}
-                //         renderOverlay={() => (
-                            
-                //                 <View style={styles.oval}>
-                //                     <Text style={{fontSize:10}}>Level Here</Text>
-                //                 </View>
-                            
-                //         )}
-                //         />
-                //     </TouchableOpacity>
-                // </View>
                 <TouchableOpacity  onPress={this.addProfilePic}>
-                    <Image source={{uri: this.state.profilePic}} style={styles.profileIcon}>
-                    </Image>
+                    <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                        <View>
+                            <Image source={{uri: this.state.profilePic}} style={styles.profileIcon}/>
+                        </View>
+
+                        <View style={styles.oval}>
+                            <Text style={{fontSize:10}}>Level Here</Text>
+                        </View>
+                    </View>
+                    
                 </TouchableOpacity> 
-            // <TouchableOpacity  onPress={this.addProfilePic}>
-            //     <Hero source={this.state.profilePic}
-            //     style={styles.profileIcon}
-            //         renderOverlay={() => (
-            //             <View style={styles.oval}>
-            //                 <Text style={{fontSize:10}}>Level Here</Text>
-            //             </View>
-            //         )}
-            //     />
-            // </TouchableOpacity>
         )
 
     }
