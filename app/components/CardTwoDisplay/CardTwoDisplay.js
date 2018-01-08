@@ -41,7 +41,7 @@ class CardTwoDisplay extends React.Component {
                               <Text style={styles.phonenum}>{this.props.phonenum}</Text>
                               <Text style={styles.name}>{this.props.name}</Text>
                               <Text style={styles.buisname}>{this.props.buisname}</Text>
-                              <Text style={styles.title}>{this.props.title}</Text>
+                              <Text style={styles.title}>{this.props.position}</Text>
                       </View>
                   )}
               />
