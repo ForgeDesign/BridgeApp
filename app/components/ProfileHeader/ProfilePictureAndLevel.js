@@ -21,6 +21,11 @@ export default class ProfilePictureAndLevel extends React.Component
     
     constructor(props) {
         super(props)
+
+        this.state = 
+        {
+            profilePic: "../../assets/images/jamessmith.jpg"
+        };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
 
