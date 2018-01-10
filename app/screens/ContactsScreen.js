@@ -10,7 +10,7 @@ export default class ContactsScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <Container>
-        <Header title={'Contacts'}/>
+        <Header title={'Activity'}/>
         <View style={{
           borderBottomColor: '#003E5B',
           borderBottomWidth: 4,

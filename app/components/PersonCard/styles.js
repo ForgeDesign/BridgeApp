@@ -42,5 +42,20 @@ export default EStyleSheet.create({
       fontSize: 12,
       color: '$inputText',
     },
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: width*.4,
+      height: width*.12,
+      backgroundColor: '$primaryBlue',
+      borderRadius: 5,
+      marginLeft: width*.3,
+      marginRight: width*.3,
+      marginTop: 15,
+    },
+    buttonText: {
+      fontSize: 16,
+      color: 'white',
+    },
 
 });

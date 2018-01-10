@@ -28,37 +28,77 @@ export default class IsoScreen extends React.Component {
           {
             "name": "Mark Brown",
             "location": "71 Pilgrim Ave. Chevy Chase, MD",
-            "imagepath": require("../assets/images/markbrown.jpg")
-          },
-          {
-            "name": "Steve Kelly",
-            "location": "123 6th St. Melbourne, FL",
-            "imagepath": require("../assets/images/stevekelly.jpg")
-          },
-          {
-            "name": 'James Smith',
-            "location": '70 Bowman St. South Windsor, CT',
-            "imagepath": require("../assets/images/jamessmith.jpg")
+            "imagepath": require("../assets/images/markbrown.jpg"),
+            "card":{
+              "position":"Chief Operating Officer",
+              "website":"gsb.com",
+              "buisname":"Global Secure Bank",
+              "phonenum":"(213)6129713",
+              "name":"Mark Brown",
+              "email":"brownmark@gsb.com",
+              "address":"71 Pilgrim Ave. Chevy Chase, MD",
+              "cardnum": 1
+            }
           },
           {
             "name": "Brian Amin",
             "location": "3052 Parker Dr. Akron, OH",
-            "imagepath": require("../assets/images/brianamin.jpg")
+            "imagepath": require("../assets/images/brianamin.jpg"),
+            "card":{
+              "position":"Project Manager",
+              "website":"polyend.com",
+              "buisname":"Polyend Deseign",
+              "phonenum":"(330)6510981",
+              "name":"Brian Amin",
+              "email":"brian.amin@gmail.com",
+              "address":"3052 Parker Dr. Akron, OH",
+              "cardnum": 2
+            }
           },
           {
             "name": "Mary Lewis",
             "location": "4 Goldfield Rd. Honolulu, HI",
-            "imagepath": require("../assets/images/marylewis.jpg")
+            "imagepath": require("../assets/images/marylewis.jpg"),
+            "card":{
+              "position":"VP of Engineering",
+              "website":"arkp.net",
+              "buisname":"Ark Petrol",
+              "phonenum":"(541)9241536",
+              "name":"Mary Lewis",
+              "email":"mlewis1@arkp.net",
+              "address":"4 Goldfield Rd. Honolulu, HI",
+              "cardnum": 3
+            }
           },
           {
             "name": "David Rodriguez",
             "location": "44 Shirley Ave. West Chicago, IL",
-            "imagepath": require("../assets/images/davidrodriguez.jpg")
+            "imagepath": require("../assets/images/davidrodriguez.jpg"),
+            "card":{
+              "position":"Head of Product Development",
+              "website":"zatri.net",
+              "buisname":"Zatri Co.",
+              "phonenum":"(338)1459857",
+              "name":"David Rodriguez",
+              "email":"djrodriguez@zatri.net",
+              "address":"44 Shirley Ave. West Chicago, IL",
+              "cardnum": 4
+            }
           },
           {
             "name": "Frank Barnes",
             "location": "530 Winding Way Reynoldsburg, OH",
-            "imagepath": require("../assets/images/frankbarnes.jpg")
+            "imagepath": require("../assets/images/frankbarnes.jpg"),
+            "card":{
+              "position":"Sales Director",
+              "website":"shop.vindu.com",
+              "buisname":"Vindu",
+              "phonenum":"(330)2523647",
+              "name":"Frank Barnes",
+              "email":"barnes2@gmail.com",
+              "address":"530 Winding Way Reynoldsburg, OH",
+              "cardnum": 5
+            }
           }
         ],
       active: true,
@@ -80,40 +120,16 @@ export default class IsoScreen extends React.Component {
         shadowRadius: 2,
         elevation: 1}}/>
 
-        <ScrollView style={{ flex: 1, marginTop: 6 }}
-        >
+        <ScrollView style={{ flex: 1, marginTop: 6 }}>
           {this.state.people.map((person, key) =>
-          <TouchableOpacity
-            onPress={this._showModal} key={key}>
             <PersonCard
-                key={key}
+              key={key}
               name={person.name}
+              card={person.card}
               location={person.location}
               imagepath={person.imagepath}/>
-          </TouchableOpacity>
           )}
         </ScrollView>
-
-        <Modal
-          onRequestClose={this._hideModal}
-          transparent={false}
-          visible={this.state.isModalVisible}
-          animationType='slide'
-          style={{ backgroundColor: 'whitesmoke' }}>
-          <KeyboardAvoidingView
-            behavior={'position'}
-            style={{ backgroundColor: 'whitesmoke', flex: 1, marginTop: 25}}>
-              <CardOnePreview cardnum={1} title={'Name'} tagline={'President'} buisname={'Example'} phonenum={'1-800-555-5555'}/>
-
-
-            <TouchableOpacity
-              style={styles.button}
-              onPress={this._hideModal}>
-              <Text style={styles.buttonText}>Return</Text>
-            </TouchableOpacity>
-          </KeyboardAvoidingView>
-        </Modal>
-
 
         <Fab
           active={this.state.active}
@@ -136,19 +152,5 @@ const styles = EStyleSheet.create({
   fab: {
     backgroundColor: '$primaryBlue',
   },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: myWidth*.4,
-    height: myWidth*.12,
-    backgroundColor: '$primaryBlue',
-    borderRadius: 5,
-    marginLeft: myWidth*.3,
-    marginRight: myWidth*.3,
-    marginTop: 15,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: 'white',
-  },
+
 });

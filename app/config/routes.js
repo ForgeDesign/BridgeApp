@@ -34,19 +34,6 @@ export default TabNavigator(
                 tabBarLabel: 'Ecard',
                 tabBarIcon: ({ tintColor }) => (
                     <Icon
-                        name={'ios-folder-open'}
-                        size={26}
-                        style={{ color: tintColor }}
-                    />
-                )
-            }
-        },
-        Contacts: {
-            screen: ContactsScreen,
-            navigationOptions: {
-                tabBarLabel: 'Contacts',
-                tabBarIcon: ({ tintColor }) => (
-                    <Icon
                         name={'md-add'}
                         size={26}
                         style={{ color: tintColor }}
@@ -54,13 +41,26 @@ export default TabNavigator(
                 )
             }
         },
-        Iso: {
+        Contacts: {
             screen: IsoScreen,
+            navigationOptions: {
+                tabBarLabel: 'Contacts',
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name={'md-contact'}
+                        size={26}
+                        style={{ color: tintColor }}
+                    />
+                )
+            }
+        },
+        Iso: {
+            screen: ContactsScreen,
             navigationOptions: {
                 tabBarLabel: 'ISO',
                 tabBarIcon: ({ tintColor }) => (
                     <Icon
-                        name={'md-contact'}
+                        name={'md-time'}
                         size={26}
                         style={{ color: tintColor }}
                     />
