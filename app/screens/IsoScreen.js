@@ -7,7 +7,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
-import { CardOnePreview } from '../components/CardOnePreview';
 
 const myWidth = Dimensions.get('window').width;
 export default class IsoScreen extends React.Component {
