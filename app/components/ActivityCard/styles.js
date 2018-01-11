@@ -6,7 +6,7 @@ var {height, width} = Dimensions.get('window');
 export default EStyleSheet.create({
     container: {
       width: (width-20),
-      height: ((width*.35)-10),
+      height: ((width*.3)-10),
       alignItems: 'center',
       backgroundColor: 'white',
       flexDirection: 'row',
@@ -20,14 +20,14 @@ export default EStyleSheet.create({
 
     },
     piccontainer: {
-      flex: 1.25,
-      alignItems: 'center',
-      margin: 5,
+      flex: .75,
+  //    alignItems: 'center',
+      marginLeft: 10,
     },
     image: {
-      height: width*.25,
-      width: width*.25,
-      borderRadius: width*.125
+      height: width*.15,
+      width: width*.15,
+      borderRadius: width*.075
     },
     textcontainer: {
       flex: 3,
@@ -35,7 +35,7 @@ export default EStyleSheet.create({
       justifyContent: 'center',
     },
     name: {
-      fontSize: 18,
+      fontSize: 14,
       color: '$primaryBlue',
     },
     location: {

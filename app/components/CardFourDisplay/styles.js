@@ -79,5 +79,42 @@ export default EStyleSheet.create({
       top: '3%',
       right: '3%'
     },
+    modal: {
+      justifyContent: 'center',
+      backgroundColor: 'rgba(0, 0, 0, .7)',
+      width: width,
+      height: height,
+      alignItems: 'center',
+    },
+    modalView: {
+      backgroundColor: 'white',
+      width: width*.7,
+      height: height*.3,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10,
+    },
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: width*.4,
+      height: width*.12,
+      backgroundColor: '$primaryBlue',
+      borderRadius: 5,
+      marginLeft: 10,
+      marginRight: 10,
+      marginTop: 3,
+    },
+    buttonText: {
+      fontSize: 16,
+      color: 'white',
+    },
+    buttonView: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 5,
+      marginBottom:  5,
+    },
 
 });

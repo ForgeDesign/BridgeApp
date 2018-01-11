@@ -30,9 +30,9 @@ export default EStyleSheet.create({
         width: (width-20),
         height: ((width-20)*.52),
     },
-    title: {
+    buisname: {
         color: 'black',
-        fontSize: 22,
+        fontSize: 16,
         position: 'absolute',
         top: '50%',
         left: '52%'
@@ -44,7 +44,7 @@ export default EStyleSheet.create({
       top: '85%',
       right: '8%',
     },
-    buisname: {
+    title: {
       position: 'absolute',
       color: 'white',
       fontSize: 14,

@@ -37,12 +37,19 @@ const {height, width} = Dimensions.get('window');
 export default class EcardScreen extends React.Component {
 
   state = {
-    title: '',
+    preposition: '',
+    position: '',
+    prename: '',
     name: '',
+    prebuisname: '',
     buisname: '',
+    prephonenum: '',
     phonenum: '',
+    preemail: '',
     email: '',
+    preaddress: '',
     address: '',
+    prewebsite: '',
     website: '',
     cardnum: 1,
     isModalVisible: false,
@@ -63,10 +70,23 @@ export default class EcardScreen extends React.Component {
     console.log(width)
   }
 
+  confirmChanges = () => {
+    this.setState({
+      address: this.state.preaddress,
+      position: this.state.preposition,
+      name: this.state.prename,
+      buisname: this.state.prebuisname,
+      email: this.state.preemail,
+      website: this.state.prewebsite,
+      phonenum: this.state.prephonenum,
+      avatarSource: this.state.preavatarSource });
+    this._hideModal();
+  }
+
   saveData = () => {
     let obj = {
+      position: this.state.position,
       cardnum: this.state.cardnum,
-      title: this.state.title,
       website: this.state.website,
       buisname: this.state.buisname,
       phonenum: this.state.phonenum,
@@ -74,9 +94,9 @@ export default class EcardScreen extends React.Component {
       name: this.state.name,
       address: this.state.address,
       color: this.state.color,
-      logo: this.state.avatarSource
+      logo: this.state.avatarSource,
     }
-    store.push('usercard', obj)
+    store.push('buiscards', obj)
 
     MessageBarManager.showAlert({
         title: 'Saved card!',
@@ -117,7 +137,8 @@ export default class EcardScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { title, website, buisname, phonenum, cardnum, name, email, address } = this.state;
+    const { position, website, buisname, phonenum, cardnum, name, email, address } = this.state;
+    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress } = this.state;
     const { isLoading } = this.props;
 
     // testing the fucking color overlay shit
@@ -133,6 +154,15 @@ export default class EcardScreen extends React.Component {
     //         </HueRotate>
     //     </Surface>
     // )
+    /*<CardInput
+      name={'title'}
+      placeholder={'Large Text'}
+      withRef={true}
+      ref={(ref) => this.TitleInputRef = ref}
+      editable={!isLoading}
+      value={this.state.title}
+      onChangeText={(value) => this.setState({title: value })}
+      isEnabled={!isLoading}/>*/
 
     return (
       <Container>
@@ -149,15 +179,15 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
           }
         })()}
 
@@ -240,27 +270,19 @@ export default class EcardScreen extends React.Component {
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 2:
-                    return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 3:
-                    return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 4:
-                    return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 5:
-                    return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} title={title} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                 }
               })()}
 
-              <CardInput
-                name={'title'}
-                placeholder={'Large Text'}
-                withRef={true}
-                ref={(ref) => this.TitleInputRef = ref}
-                editable={!isLoading}
-                value={this.state.title}
-                onChangeText={(value) => this.setState({title: value })}
-                isEnabled={!isLoading}/>
+
 
               <CardInput
                 name={'name'}
@@ -268,8 +290,18 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
-                value={this.state.name}
-                onChangeText={(value) => this.setState({name: value })}
+                value={this.state.prename}
+                onChangeText={(value) => this.setState({prename: value })}
+                isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'position'}
+                placeholder={'Position Title'}
+                withRef={true}
+                ref={(ref) => this.PositionInputRef = ref}
+                editable={!isLoading}
+                value={this.state.preposition}
+                onChangeText={(value) => this.setState({preposition: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -278,8 +310,8 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.BuisnameInputRef = ref}
                 editable={!isLoading}
-                value={this.state.buisname}
-                onChangeText={(value) => this.setState({buisname: value })}
+                value={this.state.prebuisname}
+                onChangeText={(value) => this.setState({prebuisname: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -288,8 +320,8 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.PhonenumInputRef = ref}
                 editable={!isLoading}
-                value={this.state.phonenum}
-                onChangeText={(value) => this.setState({phonenum: value })}
+                value={this.state.prephonenum}
+                onChangeText={(value) => this.setState({prephonenum: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -298,8 +330,8 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.EmailInputRef = ref}
                 editable={!isLoading}
-                value={this.state.email}
-                onChangeText={(value) => this.setState({email: value })}
+                value={this.state.preemail}
+                onChangeText={(value) => this.setState({preemail: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -308,8 +340,8 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.WebsiteInputRef = ref}
                 editable={!isLoading}
-                value={this.state.website}
-                onChangeText={(value) => this.setState({website: value })}
+                value={this.state.prewebsite}
+                onChangeText={(value) => this.setState({prewebsite: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -318,8 +350,8 @@ export default class EcardScreen extends React.Component {
                 withRef={true}
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
-                value={this.state.Address}
-                onChangeText={(value) => this.setState({address: value })}
+                value={this.state.preaddress}
+                onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
 
               <View style={styles.buttonRow}>
@@ -332,10 +364,15 @@ export default class EcardScreen extends React.Component {
 
                 <TouchableOpacity
                   style={styles.button2}
-                  onPress={this._hideModal}>
+                  onPress={this.confirmChanges}>
                   <Text style={styles.buttonText}>Confirm</Text>
                 </TouchableOpacity>
               </View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={this._hideModal}>
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
               </KeyboardAwareScrollView>
           </Modal>
 
@@ -373,7 +410,7 @@ export default class EcardScreen extends React.Component {
                 let source = response.uri;
 
                 this.setState({
-                    avatarSource: source
+                    preavatarSource: source
                 });
 
             }
@@ -397,6 +434,8 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 5,
+        marginBottom:  5,
     },
     button2: {
         justifyContent: 'center',

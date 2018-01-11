@@ -4,7 +4,7 @@ import { View, Text, Image } from 'react-native';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const CardThreePreview = ({ logo, color, title, website, buisname, phonenum, email, address, name }) => {
+const CardThreePreview = ({ logo, color, position, website, buisname, phonenum, email, address, name }) => {
 
     return (
         <View style={styles.top}>
@@ -20,10 +20,10 @@ const CardThreePreview = ({ logo, color, title, website, buisname, phonenum, ema
                             <Text style={styles.name}>{name}</Text>
                             <Text style={styles.email}>{email}</Text>
                             <Text style={styles.buisname}>{buisname}</Text>
-                            <Text style={styles.title}>{title}</Text>
+                            <Text style={styles.title}>{position}</Text>
                             <Text style={styles.website}>{website}</Text>
-                          <Text style={styles.phonenum}>{phonenum}</Text>
-                          <Text style={styles.address}>{address}</Text>
+                            <Text style={styles.phonenum}>{phonenum}</Text>
+                            <Text style={styles.address}>{address}</Text>
                     </View>
                 )}
             />
