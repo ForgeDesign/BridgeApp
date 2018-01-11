@@ -21,7 +21,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
         this.state = 
         {
-            profilePic: "../../assets/images/black.jpg"
+            profilePic: '../../assets/images/black.jpg'
         };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
@@ -38,6 +38,26 @@ export default class ProfilePictureAndLevel extends React.Component
         }
     };
 
+    componentWillMount() {
+        store.get('profilePic').then((value) => {
+          if (value!==null){
+          this.setState({profilePic: value.profilePic});
+          this.forceUpdate();
+          }
+          else{
+              this.setState({profilePic: '../../assets/images/black.jpg'})
+          }
+        });
+      }
+
+      _onRefresh() {
+        store.get('profilePic').then((value) => {
+          if (value!==null){
+            this.setState({profilePic: value.profilePic});
+            this.forceUpdate();
+          }
+        });
+      }
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -53,7 +73,6 @@ export default class ProfilePictureAndLevel extends React.Component
             }
             else {
 
-                // You can also display the image using data:
                 let source = response.uri;
 
 
@@ -62,24 +81,15 @@ export default class ProfilePictureAndLevel extends React.Component
                 let obj = {
                     profilePic: this.state.profilePic
                 }
-                store.update('profilePic', obj);
+                store.push('profilePic', obj);
+                
             }
         })
     }
 
-    _onRefresh() {
-        this.setState({refreshing: true});
-        store.get('profilePic').then((value) => {
-          if (value!==null){
-            this.setState({profilePic: value});
-            this.forceUpdate();
-          }
-          this.setState({refreshing: false});
-        });
-      }
+    
 
     render(){
-        
         return(
                 <TouchableOpacity  onPress={this.addProfilePic} style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
                     
