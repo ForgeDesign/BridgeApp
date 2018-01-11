@@ -19,8 +19,6 @@ export default EStyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      
-  
     },
     oval: {
       width: circleWidth,
@@ -39,7 +37,5 @@ export default EStyleSheet.create({
       alignItems: 'center',
       justifyContent: 'flex-end'
     },
-
-
 
 });

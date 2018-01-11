@@ -5,22 +5,23 @@ import { Icon } from 'native-base';
 import { View, TouchableOpacity, AppRegistry, Text, Picker, AsyncStorage, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import styles from './styles';
+import store from 'react-native-simple-store';
+import { Dimensions } from 'react-native';
 
 
 
-
+const circleWidth = Dimensions.get('window').width / 6;
 
 
 export default class ProfilePictureAndLevel extends React.Component 
 {
-
     
     constructor(props) {
         super(props)
 
         this.state = 
         {
-            profilePic: "../../assets/images/jamessmith.jpg"
+            profilePic: "../../assets/images/black.jpg"
         };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
@@ -57,25 +58,43 @@ export default class ProfilePictureAndLevel extends React.Component
 
 
                 this.setState({profilePic: source});
-                
+
+                let obj = {
+                    profilePic: this.state.profilePic
+                }
+                store.push('profilePic', obj);
             }
         })
     }
 
+    _onRefresh() {
+        this.setState({refreshing: true});
+        store.get('profilePic').then((value) => {
+          if (value!==null){
+            this.setState({profilePic: value});
+            this.forceUpdate();
+          }
+          this.setState({refreshing: false});
+        });
+      }
+
     render(){
         
         return(
-                <TouchableOpacity  onPress={this.addProfilePic}>
-                    <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity  onPress={this.addProfilePic} style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
+                    
+                    <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:circleWidth *2, height:circleWidth*2, borderRadius:circleWidth, backgroundColor:'black'}}>
 
                         <View>
-                            <Image source={{uri: this.state.profilePic}} style={styles.profileIcon}/>
+                            <Image source={{uri:this.state.profilePic}} style={styles.profileIcon}/>
                         </View>
 
+
+                        </View>
                         <View style={styles.oval}>
                             <Text style={{fontSize:10}}>Level Here</Text>
                         </View>
-                    </View>
+                    
                     
                 </TouchableOpacity> 
         )
