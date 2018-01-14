@@ -13,20 +13,20 @@ import { Dimensions } from 'react-native';
 const circleWidth = Dimensions.get('window').width / 6;
 
 
-export default class ProfilePictureAndLevel extends React.Component 
+export default class ProfilePictureAndLevel extends React.Component
 {
-    
+
     constructor(props) {
         super(props)
 
-        this.state = 
+        this.state =
         {
             profilePic: '../../assets/images/black.jpg'
         };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
 
-    options = 
+    options =
     {
         title: 'Select Profile Picture',
         noData: true,
@@ -39,7 +39,7 @@ export default class ProfilePictureAndLevel extends React.Component
     };
 
     componentWillMount() {
-        store.get('profilePic').then((value) => {
+        store.get('profileImage').then((value) => {
           if (value!==null){
           this.setState({profilePic: value.profilePic});
           this.forceUpdate();
@@ -50,14 +50,14 @@ export default class ProfilePictureAndLevel extends React.Component
         });
       }
 
-      _onRefresh() {
+      /*_onRefresh() {
         store.get('profilePic').then((value) => {
           if (value!==null){
             this.setState({profilePic: value.profilePic});
             this.forceUpdate();
           }
         });
-      }
+      }*/
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -81,18 +81,19 @@ export default class ProfilePictureAndLevel extends React.Component
                 let obj = {
                     profilePic: this.state.profilePic
                 }
-                store.push('profilePic', obj);
-                
+                store.update('profileImage', {
+                  profilePic: obj.profilePic });
+
             }
         })
     }
 
-    
+
 
     render(){
         return(
                 <TouchableOpacity  onPress={this.addProfilePic} style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
-                    
+
                     <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:circleWidth *2, height:circleWidth*2, borderRadius:circleWidth, backgroundColor:'black'}}>
 
                         <View>
@@ -104,10 +105,9 @@ export default class ProfilePictureAndLevel extends React.Component
                         <View style={styles.oval}>
                             <Text style={{fontSize:10}}>Level Here</Text>
                         </View>
-                    
-                    
-                </TouchableOpacity> 
-        )
 
+
+                </TouchableOpacity>
+        )
     }
 }
