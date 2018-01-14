@@ -5,6 +5,7 @@ import { Icon } from 'native-base';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 import styles from './styles';
 import ButtonWithDescription from './ButtonWithDescription';
+import ConnectButtonWithDescription from './ConnectButtonWithDescription';
 import ProfilePictureAndLevel from './ProfilePictureAndLevel';
 import BigTextAndLowerText from './BigTextAndLowerText';
 
@@ -12,7 +13,7 @@ const ProfileHeader = () => (
     <View style={styles.background}>
         <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems:'center'}}>
             <View>
-                <ButtonWithDescription pictureName='md-share' description='Connect'/>
+                <ConnectButtonWithDescription pictureName='md-share' description='Connect'/>
             </View>
 
             <View>
@@ -31,9 +32,9 @@ const ProfileHeader = () => (
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems:'center', paddingTop:'2%'}}>
-            <BigTextAndLowerText bigText='325' lowerText='Captured Cards'/>
+            <BigTextAndLowerText bigText='5' lowerText='Captured Cards'/>
             <View style={{borderRightWidth:1, height:'100%', borderRightColor:'#668b9d'}}/>
-            <BigTextAndLowerText bigText='12' lowerText='Business Cards'/>
+            <BigTextAndLowerText bigText='3' lowerText='Business Cards'/>
             <View style={{borderRightWidth:1, height:'100%', borderRightColor:'#668b9d'}}/>
             <BigTextAndLowerText bigText='11/17' lowerText='Member Since'/>
         </View>
