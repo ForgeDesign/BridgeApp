@@ -83,15 +83,15 @@ class ProfileScreen extends Component {
         {this.state.cards.map((ref, key) => {
           switch (ref.cardnum) {
             case 1:
-              return ( <CardOneDisplay key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
+              return ( <CardOneDisplay navigation={this.props.navigation} cardnum={ref.cardnum} key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 2:
-              return ( <CardTwoDisplay key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
+              return ( <CardTwoDisplay navigation={this.props.navigation} key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 3:
-              return ( <CardThreeDisplay key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
+              return ( <CardThreeDisplay navigation={this.props.navigation} key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 4:
-              return ( <CardFourDisplay key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
+              return ( <CardFourDisplay navigation={this.props.navigation} key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
             case 5:
-              return ( <CardFiveDisplay key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
+              return ( <CardFiveDisplay navigation={this.props.navigation} key={key} logo={ref.logo} position={ref.position} color={ref.color} website={ref.website} buisname={ref.buisname} phonenum={ref.phonenum} name={ref.name} email={ref.email} address={ref.address}/> );
           }
           })}
         </ScrollView>

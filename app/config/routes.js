@@ -3,20 +3,18 @@ import { Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 import React from 'react';
 
+import ProfileNavigator from './homestack';
 import ProfileScreen from '../screens/ProfileScreen';
 import EcardScreen from '../screens/EcardScreen';
 import ContactsScreen from '../screens/ContactsScreen';
 import IsoScreen from '../screens/IsoScreen';
-import ImageCycleScreen from '../screens/ImageCycleScreen';
 
 var {height, width} = Dimensions.get('window');
 
 export default TabNavigator(
     {
         Profile: {
-            // ImageCycle: {
-            // screen: ImageCycleScreen,
-            screen: ProfileScreen,
+            screen: ProfileNavigator,
             navigationOptions: {
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ tintColor }) => (

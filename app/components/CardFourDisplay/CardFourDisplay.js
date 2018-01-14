@@ -15,6 +15,11 @@ class CardFourDisplay extends React.Component {
 
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
+  editCard = () => {
+    this._hideModal();
+    this.props.navigation.navigate('Edit');
+  }
+
   render() {
 
     if (this.state.hidden==true) {
@@ -68,6 +73,12 @@ class CardFourDisplay extends React.Component {
                     style={styles.button}
                     onPress={this._hideModal}>
                     <Text style={styles.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.editCard}>
+                    <Text style={styles.buttonText}>Edit Card</Text>
                   </TouchableOpacity>
 
                 </View>

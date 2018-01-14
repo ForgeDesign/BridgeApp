@@ -15,8 +15,24 @@ class CardOneDisplay extends React.Component {
 
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
-  render() {
+  editCard = () => {
+    this._hideModal();
+    this.props.navigation.navigate('Edit', {
+      email: this.props.email,
+      address: this.props.address,
+      website: this.props.website,
+      phonenum: this.props.phonenum,
+      name: this.props.name,
+      buisname: this.props.buisname,
+      position: this.props.position,
+      color: this.props.color,
+      logo: this.props.logo,
+      cardnum: this.props.cardnum,
+    });
+  }
 
+  render() {
+    const { navigate } = this.props.navigation
     if (this.state.hidden==true) {
       return null;
     }
@@ -68,6 +84,12 @@ class CardOneDisplay extends React.Component {
                     style={styles.button}
                     onPress={this._hideModal}>
                     <Text style={styles.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.editCard}>
+                    <Text style={styles.buttonText}>Edit Card</Text>
                   </TouchableOpacity>
 
                 </View>
