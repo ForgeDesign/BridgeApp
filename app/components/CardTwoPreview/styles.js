@@ -18,7 +18,7 @@ export default EStyleSheet.create({
         height: 50,
         borderRadius: 50/2,
         position: 'absolute',
-        top: '40%',
+        top: '33%',
         left: '8%'
 
     },
@@ -34,7 +34,7 @@ export default EStyleSheet.create({
         color: 'white',
         fontSize: 16,
         position: 'absolute',
-        bottom: '8%',
+        bottom: '15%',
         left: '3%'
     },
     website: {
@@ -48,7 +48,7 @@ export default EStyleSheet.create({
       position: 'absolute',
       color: 'white',
       fontSize: 14,
-      bottom: '21%',
+      bottom: '25%',
       left: '3%'
     },
     phonenum: {
@@ -66,6 +66,13 @@ export default EStyleSheet.create({
       right: '3%'
     },
     address: {
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      bottom: '9%',
+      left: '5%'
+    },
+    address2: {
       color: 'white',
       fontSize: 10,
       position: 'absolute',

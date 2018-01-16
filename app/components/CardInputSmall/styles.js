@@ -5,7 +5,7 @@ var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
     container: {
-      width: width-20,
+      width: (width-40)*.5,
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
@@ -16,7 +16,7 @@ export default EStyleSheet.create({
       marginRight: 10,
     },
     inputWrapper:{
-      flex: 1
+      flex: 1,
     },
     input: {
       fontSize: 16,

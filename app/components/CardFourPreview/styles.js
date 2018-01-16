@@ -34,7 +34,7 @@ export default EStyleSheet.create({
         color: 'gray',
         fontSize: 16,
         position: 'absolute',
-        top: '36%',
+        top: '40%',
         right: '5%'
     },
     website: {
@@ -70,6 +70,13 @@ export default EStyleSheet.create({
       fontSize: 10,
       position: 'absolute',
       top: '19%',
+      right: '3%'
+    },
+    address2: {
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      top: '28%',
       right: '3%'
     },
     name: {

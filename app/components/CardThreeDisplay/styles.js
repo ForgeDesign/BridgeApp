@@ -72,6 +72,13 @@ export default EStyleSheet.create({
       top: '19%',
       left: '3%'
     },
+    address2: {
+      color: 'black',
+      fontSize: 10,
+      position: 'absolute',
+      top: '27%',
+      left: '3%'
+    },
     name: {
       color: 'gray',
       fontSize: 10,

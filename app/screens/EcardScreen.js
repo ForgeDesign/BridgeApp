@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
+import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
@@ -37,6 +38,12 @@ const {height, width} = Dimensions.get('window');
 export default class EcardScreen extends React.Component {
 
   state = {
+    precity: '',
+    city: '',
+    prestateabb: '',
+    stateabb: '',
+    prezip: '',
+    zip: '',
     preposition: '',
     position: '',
     prename: '',
@@ -72,6 +79,9 @@ export default class EcardScreen extends React.Component {
 
   confirmChanges = () => {
     this.setState({
+      city: this.state.precity,
+      stateabb: this.state.prestateabb,
+      zip: this.state.prezip,
       address: this.state.preaddress,
       position: this.state.preposition,
       name: this.state.prename,
@@ -85,6 +95,9 @@ export default class EcardScreen extends React.Component {
 
   saveData = () => {
     let obj = {
+      city: this.state.city,
+      stateabb: this.state.stateabb,
+      zip: this.state.zip,
       position: this.state.position,
       cardnum: this.state.cardnum,
       website: this.state.website,
@@ -138,8 +151,8 @@ export default class EcardScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, cardnum, name, email, address } = this.state;
-    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress } = this.state;
+    const { position, website, buisname, phonenum, cardnum, name, email, address, city, stateabb, zip } = this.state;
+    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip } = this.state;
     const { isLoading } = this.props;
 
     // testing the fucking color overlay shit
@@ -180,15 +193,15 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
           }
         })()}
 
@@ -271,15 +284,15 @@ export default class EcardScreen extends React.Component {
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 2:
-                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 3:
-                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 4:
-                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 5:
-                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                 }
               })()}
 
@@ -347,13 +360,49 @@ export default class EcardScreen extends React.Component {
 
               <CardInput
                 name={'address'}
-                placeholder={'Business Address'}
+                placeholder={'Street Address'}
                 withRef={true}
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preaddress}
                 onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'city'}
+                placeholder={'City'}
+                withRef={true}
+                ref={(ref) => this.CityInputRef = ref}
+                editable={!isLoading}
+                value={this.state.precity}
+                onChangeText={(value) => this.setState({precity: value })}
+                isEnabled={!isLoading}/>
+
+              <View style={styles.inputRow}>
+
+                <CardInputSmall
+                  name={'stateabb'}
+                  placeholder={'State'}
+                  withRef={true}
+                  ref={(ref) => this.StateInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.prestateabb}
+                  maxLength={2}
+                  onChangeText={(value) => this.setState({prestateabb: value })}
+                  isEnabled={!isLoading}/>
+
+                <CardInputSmall
+                  name={'zip'}
+                  placeholder={'Zip Code'}
+                  withRef={true}
+                  maxLength={10}
+                  ref={(ref) => this.ZipInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.prezip}
+                  onChangeText={(value) => this.setState({prezip: value })}
+                  isEnabled={!isLoading}/>
+
+              </View>
 
               <View style={styles.buttonRow}>
 
@@ -437,6 +486,9 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
         marginTop: 5,
         marginBottom:  5,
+    },
+    inputRow: {
+      flexDirection: 'row',
     },
     button2: {
         justifyContent: 'center',
