@@ -478,17 +478,16 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: width*.3,
         marginRight: width*.3,
-        marginTop: 3,
+        marginTop: 10,
     },
     buttonRow: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom:  5,
     },
     inputRow: {
       flexDirection: 'row',
+      justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',
@@ -497,9 +496,9 @@ const styles = EStyleSheet.create({
         height: width*.12,
         backgroundColor: '$primaryBlue',
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
     },
     buttonText: {
         fontSize: 16,

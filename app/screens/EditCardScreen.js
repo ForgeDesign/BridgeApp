@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
+import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
@@ -310,8 +311,8 @@ render() {
                 withRef={true}
                 ref={(ref) => this.CityInputRef = ref}
                 editable={!isLoading}
-                value={this.state.precity}
-                onChangeText={(value) => this.setState({precity: value })}
+                value={this.state.city}
+                onChangeText={(value) => this.setState({city: value })}
                 isEnabled={!isLoading}/>
 
               <View style={styles.inputRow}>
@@ -322,9 +323,9 @@ render() {
                   withRef={true}
                   ref={(ref) => this.StateInputRef = ref}
                   editable={!isLoading}
-                  value={this.state.prestateabb}
+                  value={this.state.stateabb}
                   maxLength={2}
-                  onChangeText={(value) => this.setState({prestateabb: value })}
+                  onChangeText={(value) => this.setState({stateabb: value })}
                   isEnabled={!isLoading}/>
 
                 <CardInputSmall
@@ -334,8 +335,8 @@ render() {
                   maxLength={10}
                   ref={(ref) => this.ZipInputRef = ref}
                   editable={!isLoading}
-                  value={this.state.prezip}
-                  onChangeText={(value) => this.setState({prezip: value })}
+                  value={this.state.zip}
+                  onChangeText={(value) => this.setState({zip: value })}
                   isEnabled={!isLoading}/>
 
               </View>
@@ -415,11 +416,10 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom:  5,
     },
     inputRow: {
       flexDirection: 'row',
+      justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',
@@ -428,9 +428,9 @@ const styles = EStyleSheet.create({
         height: width*.12,
         backgroundColor: '$primaryBlue',
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
     },
     buttonText: {
         fontSize: 16,
