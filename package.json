@@ -42,6 +42,7 @@
     "react-native-message-bar": "^2.0.7",
     "react-native-simple-store": "^1.3.0",
     "react-native-svg": "^5.5.1",
+    "react-native-swipeable": "^0.6.0",
     "react-native-swiper": "^1.5.13",
     "react-navigation": "^1.0.0-beta.22",
     "react-navigation-is-focused-hoc": "^1.0.0",

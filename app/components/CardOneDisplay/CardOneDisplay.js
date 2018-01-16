@@ -39,8 +39,7 @@ class CardOneDisplay extends React.Component {
 
     else {
       return (
-        <TouchableOpacity
-          onLongPress={this._showModal}>
+        <TouchableOpacity>
           <View style={styles.top}>
               <Hero style={styles.image}
                   colorOverlay={this.props.color}

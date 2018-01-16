@@ -41,8 +41,8 @@ export default EStyleSheet.create({
       position: 'absolute',
       color: 'gray',
       fontSize: 11,
-      top: '78%',
-      left: '63%',
+      top: '80%',
+      left: '64%',
     },
     title: {
       position: 'absolute',
@@ -55,7 +55,7 @@ export default EStyleSheet.create({
       position: 'absolute',
       color: 'gray',
       fontSize: 11,
-      top: '65%',
+      top: '66.5%',
       left: '64%',
     },
     email: {

@@ -98,6 +98,7 @@ export default class EcardScreen extends React.Component {
     }
     store.push('buiscards', obj)
 
+    console.log("SHOWING ALERT")
     MessageBarManager.showAlert({
         title: 'Saved card!',
         message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
@@ -306,7 +307,7 @@ export default class EcardScreen extends React.Component {
 
               <CardInput
                 name={'buisname'}
-                placeholder={'Buisness Name'}
+                placeholder={'Business Name'}
                 withRef={true}
                 ref={(ref) => this.BuisnameInputRef = ref}
                 editable={!isLoading}
@@ -346,7 +347,7 @@ export default class EcardScreen extends React.Component {
 
               <CardInput
                 name={'address'}
-                placeholder={'Buisness Address'}
+                placeholder={'Business Address'}
                 withRef={true}
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}

@@ -6,93 +6,92 @@ import styles from './styles';
 
 class CardThreeDisplay extends React.Component {
 
-  state = {
-    isModalVisible: false,
-    hidden: false
-  }
-
-  _showModal = () => { this.setState({ isModalVisible: true })}
-
-  _hideModal = () => { this.setState({ isModalVisible: false })}
-
-  editCard = () => {
-    this._hideModal();
-    this.props.navigation.navigate('Edit');
-  }
-
-  render() {
-
-    if (this.state.hidden==true) {
-      return null;
+    state = {
+        isModalVisible: false,
+        hidden: false
     }
 
-    else {
-      return (
-        <TouchableOpacity
-          onLongPress={this._showModal}>
-          <View style={styles.top}>
-              <Hero style={styles.image}
-                  colorOverlay={this.props.color}
-                  source={require('../../data/CardTemplates/businesscard3.png')}
-                  renderOverlay={() => (
-                      <View style={styles.container}>
-                              <Image
-                                  style={styles.logo}
-                                  source={{uri: this.props.logo }}
-                              />
-                              <Text style={styles.email}>{this.props.email}</Text>
-                              <Text style={styles.address}>{this.props.address}</Text>
-                              <Text style={styles.website}>{this.props.website}</Text>
-                              <Text style={styles.phonenum}>{this.props.phonenum}</Text>
-                              <Text style={styles.name}>{this.props.name}</Text>
-                              <Text style={styles.buisname}>{this.props.buisname}</Text>
-                              <Text style={styles.title}>{this.props.position}</Text>
-                      </View>
-                  )}
-              />
-          </View>
-          <Modal
-            onRequestClose={this._hideModal}
-            transparent={true}
-            visible={this.state.isModalVisible}
-            animationType='fade'>
+    _showModal = () => { this.setState({ isModalVisible: true })}
 
-            <View style={styles.modal}>
+    _hideModal = () => { this.setState({ isModalVisible: false })}
 
-              <View style={styles.modalView}>
+    editCard = () => {
+        this._hideModal();
+        this.props.navigation.navigate('Edit');
+    }
 
-                <View style={styles.buttonRow}>
+    render() {
 
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => this.setState({ hidden: true })}>
-                      <Text style={styles.buttonText}>Delete Card</Text>
-                  </TouchableOpacity>
+        if (this.state.hidden==true) {
+            return null;
+        }
 
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this._hideModal}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.editCard}>
-                    <Text style={styles.buttonText}>Edit Card</Text>
-                  </TouchableOpacity>
-
+        else {
+            return (
+                <TouchableOpacity>
+                <View style={styles.top}>
+                    <Hero style={styles.image}
+                        colorOverlay={this.props.color}
+                        source={require('../../data/CardTemplates/businesscard3.png')}
+                        renderOverlay={() => (
+                            <View style={styles.container}>
+                                    <Image
+                                        style={styles.logo}
+                                        source={{uri: this.props.logo }}
+                                    />
+                                    <Text style={styles.email}>{this.props.email}</Text>
+                                    <Text style={styles.address}>{this.props.address}</Text>
+                                    <Text style={styles.website}>{this.props.website}</Text>
+                                    <Text style={styles.phonenum}>{this.props.phonenum}</Text>
+                                    <Text style={styles.name}>{this.props.name}</Text>
+                                    <Text style={styles.buisname}>{this.props.buisname}</Text>
+                                    <Text style={styles.title}>{this.props.position}</Text>
+                            </View>
+                        )}
+                    />
                 </View>
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalVisible}
+                    animationType='fade'>
 
-              </View>
+                    <View style={styles.modal}>
 
-            </View>
+                    <View style={styles.modalView}>
 
-          </Modal>
+                        <View style={styles.buttonRow}>
 
-        </TouchableOpacity>
-      )
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => this.setState({ hidden: true })}>
+                            <Text style={styles.buttonText}>Delete Card</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={this._hideModal}>
+                            <Text style={styles.buttonText}>Cancel</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={this.editCard}>
+                            <Text style={styles.buttonText}>Edit Card</Text>
+                        </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+
+                    </View>
+
+                </Modal>
+
+                </TouchableOpacity>
+            )
+        }
     }
-  }
 }
 
 export default CardThreeDisplay;

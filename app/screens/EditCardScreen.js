@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import store from 'react-native-simple-store';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Header } from '../components/Header';
@@ -36,57 +35,58 @@ const {height, width} = Dimensions.get('window');
 
 export default class EditCardScreen extends React.Component {
 
-  state = {
-    position: this.props.navigation.state.params.position,
-    name: this.props.navigation.state.params.name,
-    buisname: this.props.navigation.state.params.buisname,
-    phonenum: this.props.navigation.state.params.phonenum,
-    email: this.props.navigation.state.params.email,
-    address: this.props.navigation.state.params.address,
-    website: this.props.navigation.state.params.website,
-    cardnum: this.props.navigation.state.params.cardnum,
-    isModalVisible: false,
-    color: this.props.navigation.state.params.color,
-    modalVisible: false,
-    recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
-    avatarSource: this.props.navigation.state.params.logo,
-  }
+    constructor(props) {
+        super(props)
 
-  _showModal = () => { this.setState({ isModalVisible: true })
-    console.log(width)
-  }
-  _hideModal = () => { this.setState({ isModalVisible: false })
-    console.log(width)
-  }
+        console.log(props)
 
-  _showColorModal = () => { this.setState({ modalVisible: true })
-    console.log(width)
-  }
-
-  saveData = () => {
-    let obj = {
-      position: this.state.position,
-      cardnum: this.state.cardnum,
-      website: this.state.website,
-      buisname: this.state.buisname,
-      phonenum: this.state.phonenum,
-      email: this.state.email,
-      name: this.state.name,
-      address: this.state.address,
-      color: this.state.color,
-      logo: this.state.avatarSource,
+        this.addLogo = this.addLogo.bind(this);
+        this.state = {
+            position: this.props.navigation.state.params.card.item.position,
+            name: this.props.navigation.state.params.card.item.name,
+            buisname: this.props.navigation.state.params.card.item.buisname,
+            phonenum: this.props.navigation.state.params.card.item.phonenum,
+            email: this.props.navigation.state.params.card.item.email,
+            address: this.props.navigation.state.params.card.item.address,
+            website: this.props.navigation.state.params.card.item.website,
+            cardnum: this.props.navigation.state.params.card.item.cardnum,
+            isModalVisible: false,
+            color: this.props.navigation.state.params.card.item.color,
+            modalVisible: false,
+            recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
+            logo: this.props.navigation.state.params.card.item.logo,
+        }
     }
-    //store.push('buiscards', obj)
 
-    MessageBarManager.showAlert({
-        title: 'Saved card!',
-        message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
-        alertType: 'info',
-        viewTopOffset : 35
-        // See Properties section for full customization
-        // Or check `index.ios.js` or `index.android.js` for a complete example
-    });
-  }
+    _showModal = () => { this.setState({ isModalVisible: true })
+        console.log(width)
+    }
+    _hideModal = () => { this.setState({ isModalVisible: false })
+        console.log(width)
+    }
+
+    _showColorModal = () => { this.setState({ modalVisible: true })
+        console.log(width)
+    }
+
+    saveData = () => {
+        cards = this.props.navigation.state.params.cards
+        cards[this.props.navigation.state.params.card.index] = this.state
+        AsyncStorage.setItem('buiscards', JSON.stringify(cards))
+
+        MessageBarManager.showAlert({
+            title: 'Saved card!',
+            message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
+            alertType: 'info',
+            viewTopOffset : 35
+            // See Properties section for full customization
+            // Or check `index.ios.js` or `index.android.js` for a complete example
+        });
+
+        console.log(this.state)
+
+        this.props.navigation.goBack()
+    }
 
     componentDidMount() {
         MessageBarManager.registerMessageBar(this.refs.alert);
@@ -101,46 +101,40 @@ export default class EditCardScreen extends React.Component {
         this.setState({ modalVisible: false })
     }
 
-    constructor(props) {
-        super(props)
-
-        this.addLogo = this.addLogo.bind(this);
-    }
-
-  render() {
+render() {
     const { navigate } = this.props.navigation;
     const { position, website, buisname, phonenum, name, email, address, cardnum } = this.state;
     const { isLoading } = this.props;
 
     return (
-      <Container>
+    <Container>
 
         <Header title={'Edit Card'}/>
         <View style={{
-          borderBottomColor: '#003E5B',
-          borderBottomWidth: 4,
-          shadowOffset: { width: 0, height:2.8 },
+        borderBottomColor: '#003E5B',
+        borderBottomWidth: 4,
+        shadowOffset: { width: 0, height:2.8 },
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 1}}/>
 
         { (() => {
-          switch(cardnum) {
+        switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
-          }
+            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+        }
         })()}
 
         <View style={styles.pickWrapper}>
-          <Picker
+        <Picker
             style={styles.picker}
             mode="dialog"
             placeholder="Select One"
@@ -151,7 +145,7 @@ export default class EditCardScreen extends React.Component {
             <Picker.Item label={"Minimalistic"} value={3} />
             <Picker.Item label={"Carbon"} value={4} />
             <Picker.Item label={"Red and White"} value={5} />
-          </Picker>
+        </Picker>
         </View>
 
         <SlidersColorPicker
@@ -160,16 +154,16 @@ export default class EditCardScreen extends React.Component {
             returnMode={'rgb'}
             onCancel={() => this.setState({ modalVisible: false })}
             onOk={colorHex => {
-              this.setState({
+            this.setState({
                 modalVisible: false,
                 color: colorHex
-              });
-              this.setState({
+            });
+            this.setState({
                 recents: [
-                  colorHex,
-                  ...this.state.recents.filter(c => c !== colorHex).slice(0, 4)
+                colorHex,
+                ...this.state.recents.filter(c => c !== colorHex).slice(0, 4)
                 ]
-              });
+            });
             }}
             swatches={this.state.recents}
             swatchesLabel="RECENTS"
@@ -178,22 +172,22 @@ export default class EditCardScreen extends React.Component {
         />
 
         <View style={styles.buttonRow }>
-          <TouchableOpacity
+        <TouchableOpacity
             style={styles.button2}
             onPress={this._showModal}>
             <Text style={styles.buttonText}>Edit Content</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+        </TouchableOpacity>
+        <TouchableOpacity
             style={styles.button2}
             onPress={this._showColorModal}>
             <Text style={styles.buttonText}>Choose Color</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow }>
             <TouchableOpacity
                 style={styles.button2}
-                onPress={() => this.props.navigation.navigate('Profile')}>
+                onPress={() => this.props.navigation.goBack()}>
                 <Text style={styles.buttonText}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -204,40 +198,40 @@ export default class EditCardScreen extends React.Component {
         </View>
 
         <Modal
-          onRequestClose={this._hideModal}
-          transparent={true}
-          visible={this.state.isModalVisible}
-          animationType='fade'>
+        onRequestClose={this._hideModal}
+        transparent={true}
+        visible={this.state.isModalVisible}
+        animationType='fade'>
 
-              <Header title={'Business Card'}/>
-              <View style={{
+            <Header title={'Business Card'}/>
+            <View style={{
                 borderBottomColor: '#003E5B',
                 borderBottomWidth: 4,
                 shadowOffset: { width: 0, height:2.8 },
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              elevation: 1}}/>
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
+            elevation: 1}}/>
 
-              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
+            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
 
-              { (() => {
+            { (() => {
                 switch(cardnum) {
-                  case 1:
-                    return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
-                  case 2:
-                    return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
-                  case 3:
-                    return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
-                  case 4:
-                    return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
-                  case 5:
-                    return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                case 1:
+                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                case 2:
+                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                case 3:
+                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                case 4:
+                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                case 5:
+                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 }
-              })()}
+            })()}
 
 
 
-              <CardInput
+            <CardInput
                 name={'name'}
                 placeholder={'Name'}
                 withRef={true}
@@ -247,7 +241,7 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({name: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'position'}
                 placeholder={'Position Title'}
                 withRef={true}
@@ -257,9 +251,9 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({position: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'buisname'}
-                placeholder={'Buisness Name'}
+                placeholder={'Business Name'}
                 withRef={true}
                 ref={(ref) => this.BuisnameInputRef = ref}
                 editable={!isLoading}
@@ -267,7 +261,7 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({buisname: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'phonenum'}
                 placeholder={'Phone Number'}
                 withRef={true}
@@ -277,7 +271,7 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'email'}
                 placeholder={'Email Address'}
                 withRef={true}
@@ -287,7 +281,7 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({email: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'website'}
                 placeholder={'Website'}
                 withRef={true}
@@ -297,9 +291,9 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({website: value })}
                 isEnabled={!isLoading}/>
 
-              <CardInput
+            <CardInput
                 name={'address'}
-                placeholder={'Buisness Address'}
+                placeholder={'Business Address'}
                 withRef={true}
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
@@ -307,28 +301,28 @@ export default class EditCardScreen extends React.Component {
                 onChangeText={(value) => this.setState({address: value })}
                 isEnabled={!isLoading}/>
 
-              <View style={styles.buttonRow}>
+            <View style={styles.buttonRow}>
 
                 <TouchableOpacity
-                  style={styles.button2}
-                  onPress={this.addLogo}>
+                style={styles.button2}
+                onPress={this.addLogo}>
                     <Text style={styles.buttonText}>Add Logo</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  style={styles.button2}
-                  onPress={this._hideModal}>
-                  <Text style={styles.buttonText}>Done</Text>
+                style={styles.button2}
+                onPress={this._hideModal}>
+                <Text style={styles.buttonText}>Done</Text>
                 </TouchableOpacity>
-              </View>
-              </KeyboardAwareScrollView>
-          </Modal>
+            </View>
+            </KeyboardAwareScrollView>
+        </Modal>
 
-          <MessageBarAlert ref="alert" />
+        <MessageBarAlert ref="alert" />
 
         </Container>
     )
-  }
+}
 
     options = {
         title: 'Select Logo',
@@ -358,7 +352,7 @@ export default class EditCardScreen extends React.Component {
                 let source = response.uri;
 
                 this.setState({
-                    avatarSource: source
+                    logo: source
                 });
 
             }
