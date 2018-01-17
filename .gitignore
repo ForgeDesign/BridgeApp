@@ -7,6 +7,10 @@ yarn-error.log*
 
 # ios build files
 ios/build/*
+
+# android build files
+android/app/build
+android/.gradle
 android/local.properties
 
 
