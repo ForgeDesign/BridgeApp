@@ -20,6 +20,22 @@ class PersonCard extends React.Component {
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
   render() {
+
+    if(this.props.action == "None") {
+        return(
+            <View style={styles.container}>
+                <View style={styles.piccontainer}>
+                    <Image
+                        source={this.props.imagepath}
+                        style={styles.image}/>
+                </View>
+                <View style={styles.textcontainer}>
+                    <Text style={styles.name}>{this.props.name}</Text>
+                    <Text style={styles.location}>{this.props.location}</Text>
+                </View>
+            </View>
+        )
+    }
     return(
       <TouchableOpacity
         style={styles.container}

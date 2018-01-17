@@ -5,6 +5,7 @@ import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { ActivityCard } from '../components/ActivityCard'
 import { PersonCard } from '../components/PersonCard';
+import { Col, Row, Grid } from "react-native-easy-grid";
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -119,12 +120,21 @@ export default class ContactsScreen extends React.Component {
     }
 
     _renderItem = ({item}) => (
-        <PersonCard
-            name={item.name}
-            card={item.card}
-            location={item.location}
-            imagepath={item.imagepath}
-        />
+        <Grid>
+            <Col size={75}>
+                <PersonCard
+                    action={"None"}
+                    name={item.name}
+                    card={item.card}
+                    location={item.location}
+                    imagepath={item.imagepath}
+                />
+            </Col>
+            <Col size={25}>
+                {/* <Text> hi </Text> */}
+            </Col>
+        </Grid>
+        
     )
 
     _keyExtractor = (item, index) => index;
@@ -156,6 +166,7 @@ export default class ContactsScreen extends React.Component {
                     dialogTitle={<DialogTitle title="Recommend a Contact" />}
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
                     dialogAnimation={slideAnimation}
+                    height={0.65}
                     actions={[
                         <DialogButton
                             style={{bottom: 0}}
@@ -169,6 +180,7 @@ export default class ContactsScreen extends React.Component {
                     >
                     <View>
                         <FlatList
+                            height={'78%'}
                             data={this.state.people}
                             keyExtractor={this._keyExtractor}
                             renderItem={this._renderItem}
