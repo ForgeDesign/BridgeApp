@@ -37,6 +37,7 @@
     "react-native-dropdownalert": "^3.1.2",
     "react-native-extended-stylesheet": "^0.8.0",
     "react-native-hero": "^0.3.0",
+    "react-native-image-crop-picker": "^0.19.1",
     "react-native-image-picker": "^0.26.7",
     "react-native-keyboard-aware-scroll-view": "^0.4.1",
     "react-native-message-bar": "^2.0.7",

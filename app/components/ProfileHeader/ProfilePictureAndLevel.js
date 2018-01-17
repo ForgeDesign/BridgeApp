@@ -4,6 +4,8 @@ import Hero from 'react-native-hero';
 import { Icon } from 'native-base';
 import { View, TouchableOpacity, AppRegistry, Text, Picker, AsyncStorage, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import ImageCropper from 'react-native-image-crop-picker';
+
 import styles from './styles';
 import store from 'react-native-simple-store';
 import { Dimensions } from 'react-native';
@@ -74,15 +76,22 @@ export default class ProfilePictureAndLevel extends React.Component
             else {
 
                 let source = response.uri;
+                ImageCropper.openCropper({
+                    path: source,
+                    width: 300,
+                    height: 400,
+                    cropperCircleOverlay: true
+                  }).then(image => {
+                    this.setState({profilePic: image.path});
 
-
-                this.setState({profilePic: source});
-
-                let obj = {
-                    profilePic: this.state.profilePic
-                }
-                store.update('profileImage', {
-                  profilePic: obj.profilePic });
+                    let obj = {
+                        profilePic: this.state.profilePic
+                    }
+                    store.update('profileImage', {
+                      profilePic: obj.profilePic });
+    
+                  });
+                  
 
             }
         })
