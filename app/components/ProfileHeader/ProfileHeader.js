@@ -72,17 +72,35 @@ export default class ProfileHeader extends React.Component {
                     title="What is your name? "
                     placeholder="John Doe"
                     visible={this.state.promptVisible}
-                    onCancel={() => this.setState({
-                        promptVisible: false
-                    })}
+                    onCancel={() => {
+                        
+                            this.setState({
+                                promptVisible: false
+                            });
+                        }
+                    }
                     onSubmit={(value) => {
-                        this.setState({
-                            promptVisible: false,
-                            profileName: value
-                        });
-                        store.update('profileName', {
-                            profileName: value
-                        });
+                        if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                            this.setState({
+                                promptVisible: false,
+                                profileName: 'Tap to add name'
+                            });
+                            store.update('profileName', {
+                                profileName: 'Tap to add name'
+                            });
+                        }
+                        else {
+                            this.setState({
+                                promptVisible: false,
+                                profileName: value
+                            });
+                            store.update('profileName', {
+                                profileName: value
+                            });
+
+                        }
+
+
                     }
 
                     } />
