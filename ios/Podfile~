@@ -1,0 +1,34 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'BridgeApp' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for BridgeApp
+    pod 'RSKImageCropper'
+    pod 'QBImagePickerController'
+  target 'BridgeApp-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'BridgeAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'BridgeApp-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for BridgeApp-tvOS
+
+  target 'BridgeApp-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
