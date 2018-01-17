@@ -18,9 +18,8 @@ export default EStyleSheet.create({
         height: 50,
         borderRadius: 50/2,
         position: 'absolute',
-        bottom: '43%',
-        left: '58%'
-
+        bottom: '4%',
+        left: '55%'
     },
     container: {
         width: (width-20),
@@ -70,6 +69,13 @@ export default EStyleSheet.create({
       fontSize: 10,
       position: 'absolute',
       top: '19%',
+      right: '3%'
+    },
+    address2: {
+      color: 'black',
+      fontSize: 10,
+      position: 'absolute',
+      top: '27%',
       right: '3%'
     },
     name: {
