@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
+import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
@@ -50,6 +51,9 @@ export default class EditCardScreen extends React.Component {
             address: this.props.navigation.state.params.card.item.address,
             website: this.props.navigation.state.params.card.item.website,
             cardnum: this.props.navigation.state.params.card.item.cardnum,
+            city: this.props.navigation.state.params.card.item.city,
+            stateabb: this.props.navigation.state.params.card.item.stateabb,
+            zip: this.props.navigation.state.params.card.item.zip,
             isModalVisible: false,
             color: this.props.navigation.state.params.card.item.color,
             modalVisible: false,
@@ -103,7 +107,7 @@ export default class EditCardScreen extends React.Component {
 
 render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, name, email, address, cardnum } = this.state;
+    const { position, website, buisname, phonenum, name, email, address, cardnum, city, stateabb, zip } = this.state;
     const { isLoading } = this.props;
 
     return (
@@ -121,15 +125,15 @@ render() {
         { (() => {
         switch(cardnum) {
             case 1:
-            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
         }
         })()}
 
@@ -217,15 +221,15 @@ render() {
             { (() => {
                 switch(cardnum) {
                 case 1:
-                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 2:
-                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 3:
-                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 4:
-                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 5:
-                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 }
             })()}
 
@@ -300,6 +304,42 @@ render() {
                 value={this.state.address}
                 onChangeText={(value) => this.setState({address: value })}
                 isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'city'}
+                placeholder={'City'}
+                withRef={true}
+                ref={(ref) => this.CityInputRef = ref}
+                editable={!isLoading}
+                value={this.state.city}
+                onChangeText={(value) => this.setState({city: value })}
+                isEnabled={!isLoading}/>
+
+              <View style={styles.inputRow}>
+
+                <CardInputSmall
+                  name={'stateabb'}
+                  placeholder={'State'}
+                  withRef={true}
+                  ref={(ref) => this.StateInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.stateabb}
+                  maxLength={2}
+                  onChangeText={(value) => this.setState({stateabb: value })}
+                  isEnabled={!isLoading}/>
+
+                <CardInputSmall
+                  name={'zip'}
+                  placeholder={'Zip Code'}
+                  withRef={true}
+                  maxLength={10}
+                  ref={(ref) => this.ZipInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.zip}
+                  onChangeText={(value) => this.setState({zip: value })}
+                  isEnabled={!isLoading}/>
+
+              </View>
 
             <View style={styles.buttonRow}>
 
@@ -376,8 +416,10 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom:  5,
+    },
+    inputRow: {
+      flexDirection: 'row',
+      justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',
@@ -386,9 +428,9 @@ const styles = EStyleSheet.create({
         height: width*.12,
         backgroundColor: '$primaryBlue',
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
     },
     buttonText: {
         fontSize: 16,

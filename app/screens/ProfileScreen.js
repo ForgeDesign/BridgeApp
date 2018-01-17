@@ -67,8 +67,8 @@ class ProfileScreen extends Component {
         index = ref.index
         switch (ref.item.cardnum) {
             case 1:
-                return ( 
-                    <Swipeable 
+                return (
+                    <Swipeable
                         onRef={ref => this.swipeable[index] = ref}
                         rightButtons={[
                             <View style={styles.buttonRow}>
@@ -77,34 +77,37 @@ class ProfileScreen extends Component {
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
                                 </TouchableOpacity>
-                    
+
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
                             </View>
-                        ]} 
+                        ]}
                         rightButtonWidth={width*.4 + 30}>
                         <CardOneDisplay
-                            navigation={navigation} 
-                            cardnum={ref.item.cardnum} 
-                            key={ref.index} 
-                            logo={ref.item.logo} 
-                            position={ref.item.position} 
-                            color={ref.item.color} 
-                            website={ref.item.website} 
-                            buisname={ref.item.buisname} 
-                            phonenum={ref.item.phonenum} 
-                            name={ref.item.name} 
-                            email={ref.item.email} 
+                            navigation={navigation}
+                            cardnum={ref.item.cardnum}
+                            key={ref.index}
+                            logo={ref.item.logo}
+                            position={ref.item.position}
+                            color={ref.item.color}
+                            website={ref.item.website}
+                            buisname={ref.item.buisname}
+                            phonenum={ref.item.phonenum}
+                            name={ref.item.name}
+                            email={ref.item.email}
                             address={ref.item.address}
+                            city={ref.item.city}
+                            stateabb={ref.item.stateabb}
+                            zip={ref.item.zip}
                         />
                     </Swipeable>
                 )
             case 2:
-                return ( 
-                    <Swipeable 
+                return (
+                    <Swipeable
                         onRef={ref => this.swipeable[index] = ref}
                         rightButtons={[
                             <View style={styles.buttonRow}>
@@ -113,34 +116,37 @@ class ProfileScreen extends Component {
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
                                 </TouchableOpacity>
-                    
+
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
                             </View>
-                        ]} 
+                        ]}
                         rightButtonWidth={width*.4 + 30}>
                         <CardTwoDisplay
-                            navigation={navigation} 
-                            cardnum={ref.item.cardnum} 
-                            key={ref.index} 
-                            logo={ref.item.logo} 
-                            position={ref.item.position} 
-                            color={ref.item.color} 
-                            website={ref.item.website} 
-                            buisname={ref.item.buisname} 
-                            phonenum={ref.item.phonenum} 
-                            name={ref.item.name} 
-                            email={ref.item.email} 
+                            navigation={navigation}
+                            cardnum={ref.item.cardnum}
+                            key={ref.index}
+                            logo={ref.item.logo}
+                            position={ref.item.position}
+                            color={ref.item.color}
+                            website={ref.item.website}
+                            buisname={ref.item.buisname}
+                            phonenum={ref.item.phonenum}
+                            name={ref.item.name}
+                            email={ref.item.email}
                             address={ref.item.address}
+                            city={ref.item.city}
+                            stateabb={ref.item.stateabb}
+                            zip={ref.item.zip}
                         />
                     </Swipeable>
                 )
             case 3:
-                return ( 
-                    <Swipeable 
+                return (
+                    <Swipeable
                         onRef={ref => this.swipeable[index] = ref}
                         rightButtons={[
                             <View style={styles.buttonRow}>
@@ -149,34 +155,37 @@ class ProfileScreen extends Component {
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
                                 </TouchableOpacity>
-                    
+
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
                             </View>
-                        ]} 
+                        ]}
                         rightButtonWidth={width*.4 + 30}>
                         <CardThreeDisplay
-                            navigation={navigation} 
-                            cardnum={ref.item.cardnum} 
-                            key={ref.index} 
-                            logo={ref.item.logo} 
-                            position={ref.item.position} 
-                            color={ref.item.color} 
-                            website={ref.item.website} 
-                            buisname={ref.item.buisname} 
-                            phonenum={ref.item.phonenum} 
-                            name={ref.item.name} 
-                            email={ref.item.email} 
+                            navigation={navigation}
+                            cardnum={ref.item.cardnum}
+                            key={ref.index}
+                            logo={ref.item.logo}
+                            position={ref.item.position}
+                            color={ref.item.color}
+                            website={ref.item.website}
+                            buisname={ref.item.buisname}
+                            phonenum={ref.item.phonenum}
+                            name={ref.item.name}
+                            email={ref.item.email}
                             address={ref.item.address}
+                            city={ref.item.city}
+                            stateabb={ref.item.stateabb}
+                            zip={ref.item.zip}
                         />
                     </Swipeable>
                 )
             case 4:
-                return ( 
-                    <Swipeable 
+                return (
+                    <Swipeable
                         onRef={ref => this.swipeable[index] = ref}
                         rightButtons={[
                             <View style={styles.buttonRow}>
@@ -185,34 +194,37 @@ class ProfileScreen extends Component {
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
                                 </TouchableOpacity>
-                    
+
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
                             </View>
-                        ]} 
+                        ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardFourDisplay 
-                            navigation={navigation} 
-                            cardnum={ref.item.cardnum} 
-                            key={ref.index} 
-                            logo={ref.item.logo} 
-                            position={ref.item.position} 
-                            color={ref.item.color} 
-                            website={ref.item.website} 
-                            buisname={ref.item.buisname} 
-                            phonenum={ref.item.phonenum} 
-                            name={ref.item.name} 
-                            email={ref.item.email} 
+                        <CardFourDisplay
+                            navigation={navigation}
+                            cardnum={ref.item.cardnum}
+                            key={ref.index}
+                            logo={ref.item.logo}
+                            position={ref.item.position}
+                            color={ref.item.color}
+                            website={ref.item.website}
+                            buisname={ref.item.buisname}
+                            phonenum={ref.item.phonenum}
+                            name={ref.item.name}
+                            email={ref.item.email}
                             address={ref.item.address}
+                            city={ref.item.city}
+                            stateabb={ref.item.stateabb}
+                            zip={ref.item.zip}
                         />
                     </Swipeable>
                 )
             case 5:
-                return ( 
-                    <Swipeable 
+                return (
+                    <Swipeable
                         onRef={ref => this.swipeable[index] = ref}
                         rightButtons={[
                             <View style={styles.buttonRow}>
@@ -221,28 +233,31 @@ class ProfileScreen extends Component {
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
                                 </TouchableOpacity>
-                    
+
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
                             </View>
-                        ]} 
+                        ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardFiveDisplay 
-                            navigation={navigation} 
-                            cardnum={ref.item.cardnum} 
-                            key={ref.index} 
-                            logo={ref.item.logo} 
-                            position={ref.item.position} 
-                            color={ref.item.color} 
-                            website={ref.item.website} 
-                            buisname={ref.item.buisname} 
-                            phonenum={ref.item.phonenum} 
-                            name={ref.item.name} 
-                            email={ref.item.email} 
+                        <CardFiveDisplay
+                            navigation={navigation}
+                            cardnum={ref.item.cardnum}
+                            key={ref.index}
+                            logo={ref.item.logo}
+                            position={ref.item.position}
+                            color={ref.item.color}
+                            website={ref.item.website}
+                            buisname={ref.item.buisname}
+                            phonenum={ref.item.phonenum}
+                            name={ref.item.name}
+                            email={ref.item.email}
                             address={ref.item.address}
+                            city={ref.item.city}
+                            stateabb={ref.item.stateabb}
+                            zip={ref.item.zip}
                         />
                     </Swipeable>
                 )
@@ -257,7 +272,7 @@ class ProfileScreen extends Component {
         AsyncStorage.setItem('buiscards', JSON.stringify(arrayCopy))
     }
 
-    _editItem(ref) {        
+    _editItem(ref) {
         console.log("edit")
         this.props.navigation.navigate('Edit', { card: ref, cards: this.state.cards })
         this.swipeable[ref.index].recenter()

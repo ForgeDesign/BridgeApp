@@ -58,25 +58,32 @@ export default EStyleSheet.create({
       top: '76%',
       right: '8%',
     },
-    email: {
+    name: {
       color: 'white',
       fontSize: 10,
       position: 'absolute',
       top: '16%',
       left: '5%'
     },
-    address: {
+    email: {
       color: 'white',
       fontSize: 10,
       position: 'absolute',
       top: '23%',
       left: '5%'
     },
-    name: {
+    address: {
       color: 'white',
       fontSize: 10,
       position: 'absolute',
       top: '30%',
+      left: '5%'
+    },
+    address2: {
+      color: 'white',
+      fontSize: 10,
+      position: 'absolute',
+      top: '37%',
       left: '5%'
     },
 
