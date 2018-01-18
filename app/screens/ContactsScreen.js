@@ -138,6 +138,8 @@ export default class ContactsScreen extends React.Component {
 
     onPressHandle(key) {
         this.popupRelatedConnect = key
+        console.log(key)
+        console.log(this.trackContactChecks[key])
         if (this.trackContactChecks[key] == undefined) {
             this.trackContactChecks[key] = {}
             for (let index = 0; index < this.state.people.length; index++) {
