@@ -66,16 +66,9 @@ export default class EcardScreen extends React.Component {
     avatarSource: "null"
   }
 
-  _showModal = () => { this.setState({ isModalVisible: true })
-    console.log(width)
-  }
-  _hideModal = () => { this.setState({ isModalVisible: false })
-    console.log(width)
-  }
-
-  _showColorModal = () => { this.setState({ modalVisible: true })
-    console.log(width)
-  }
+  _showModal = () => { this.setState({ isModalVisible: true }) }
+  _hideModal = () => { this.setState({ isModalVisible: false }) }
+  _showColorModal = () => { this.setState({ modalVisible: true }) }
 
   confirmChanges = () => {
     this.setState({
@@ -111,7 +104,6 @@ export default class EcardScreen extends React.Component {
     }
     store.push('buiscards', obj)
 
-    console.log("SHOWING ALERT")
     MessageBarManager.showAlert({
         title: 'Saved card!',
         message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',

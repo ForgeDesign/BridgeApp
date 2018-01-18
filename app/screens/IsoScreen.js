@@ -11,12 +11,8 @@ import { PersonCard } from '../components/PersonCard';
 const myWidth = Dimensions.get('window').width;
 export default class IsoScreen extends React.Component {
 
-  _showModal = () => { this.setState({ isModalVisible: true })
-    console.log(myWidth);
-  }
-  _hideModal = () => { this.setState({ isModalVisible: false })
-    console.log(myWidth)
-  }
+  _showModal = () => { this.setState({ isModalVisible: true }) }
+  _hideModal = () => { this.setState({ isModalVisible: false }) }
   constructor(){
     super();
 

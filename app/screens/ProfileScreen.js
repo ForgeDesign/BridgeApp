@@ -50,11 +50,11 @@ class ProfileScreen extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
-            // console.log("here we are in screen")
+            // here we are in screen
             this._onRefresh()
         }
         if (this.props.isFocused && !nextProps.isFocused) {
-            // console.log("NOT HERE")
+            // NOT HERE
         }
     }
 
@@ -63,7 +63,6 @@ class ProfileScreen extends Component {
     _keyExtractor = (item, index) => index;
 
     _renderItem(ref, navigation) {
-        console.log(this.state.cards)
         index = ref.index
         switch (ref.item.cardnum) {
             case 1:
@@ -273,7 +272,6 @@ class ProfileScreen extends Component {
     }
 
     _editItem(ref) {
-        console.log("edit")
         this.props.navigation.navigate('Edit', { card: ref, cards: this.state.cards })
         this.swipeable[ref.index].recenter()
     }

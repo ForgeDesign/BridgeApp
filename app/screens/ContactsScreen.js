@@ -6,14 +6,32 @@ import { Header } from '../components/Header';
 import { ActivityCard } from '../components/ActivityCard'
 import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import CheckBox from 'react-native-checkbox-heaven'
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
+var MessageBarAlert = require('react-native-message-bar').MessageBar;
+var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+
 export default class ContactsScreen extends React.Component {
 
+    componentDidMount() {
+        // Register the alert located on this master page
+        // This MessageBar will be accessible from the current (same) component, and from its child component
+        // The MessageBar is then declared only once, in your main component.
+        MessageBarManager.registerMessageBar(this.refs.alert);
+    }
+    
+    componentWillUnmount() {
+        // Remove the alert located on this master page from the manager
+        MessageBarManager.unregisterMessageBar();
+    }
+
     state = {
+        disabled: true,
         people:
         [
             {
@@ -115,23 +133,83 @@ export default class ContactsScreen extends React.Component {
         ]
     }
 
-    onPressHandle() {
+    popupRelatedConnect = null
+
+    onPressHandle(key) {
+        this.popupRelatedConnect = key
         this.popupDialog.show()
     }
 
-    _renderItem = ({item}) => (
+    initiate = false
+
+    _handleCheck(val, item) {
+        if (!this.initiate) {
+            for (let index = 0; index < this.state.people.length; index++) {
+                this.trackContactChecks[index] = false
+            }
+            this.initiate = true
+        }
+        this.trackContactChecks[item.index] = val
+        isCheck = false
+        for (let index = 0; index < this.state.people.length; index++) {
+            if (this.trackContactChecks[index]) {
+                isCheck = true
+                break
+            }
+        }
+        if (isCheck) {
+            this.setState({disabled : false})
+        }
+        else {
+            this.setState({disabled : true})
+        }
+    }
+
+    _handleRecommendation() {
+        numberOfRecs = 0
+        for (let index = 0; index < this.state.people.length; index++) {
+            if (this.trackContactChecks[index])
+                numberOfRecs += 1
+        }
+        descriptor = " people"
+        if (numberOfRecs == 1) {
+            descriptor = " person"
+        }
+        this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
+        this.popupDialog.dismiss()
+        MessageBarManager.showAlert({
+            title: 'Recommended!',
+            message: 'You recommended ' + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee,
+            alertType: 'info',
+            viewTopOffset : 35
+            // See Properties section for full customization
+            // Or check `index.ios.js` or `index.android.js` for a complete example
+        });
+    }
+
+    trackContactChecks = {
+
+    }
+
+    _renderItem = (item) => (
         <Grid>
             <Col size={75}>
                 <PersonCard
-                    action={"None"}
-                    name={item.name}
-                    card={item.card}
-                    location={item.location}
-                    imagepath={item.imagepath}
+                    name={item.item.name}
+                    card={item.item.card}
+                    location={item.item.location}
+                    imagepath={item.item.imagepath}
                 />
             </Col>
             <Col size={25}>
-                {/* <Text> hi </Text> */}
+                <CheckBox
+                    style={{left: '45%', flex: 1, top: '15%'}}
+                    onChange={(val) => this._handleCheck(val, item)}
+                    checked={false}
+                    checkedColor={$primaryBlue}
+                    uncheckedColor={$lightGray}
+                    iconName='matMix'
+                />
             </Col>
         </Grid>
         
@@ -155,11 +233,12 @@ export default class ContactsScreen extends React.Component {
                     {this.state.activity.map((ref, key) =>
                         <ActivityCard
                         key={key}
+                        ref={(card) => {this[key] = card}}
                         connector={ref.connector}
                         connectee={ref.connectee}
                         connectorpath={ref.connectorpath}
                         time={ref.time}
-                        navigate={this.onPressHandle.bind(this)}/>
+                        navigate={this.onPressHandle.bind(this, key)}/>
                     )}
                 </ScrollView>
                 <PopupDialog
@@ -168,15 +247,26 @@ export default class ContactsScreen extends React.Component {
                     dialogAnimation={slideAnimation}
                     height={0.65}
                     actions={[
-                        <DialogButton
-                            style={{bottom: 0}}
-                            text="Cancel"
-                            onPress={() => {
-                            this.popupDialog.dismiss();
-                            }}
-                            key="button-1"
-                        />,
-                    ]}
+                        <Grid key="grid">
+                            <Row style={{justifyContent: 'center'}}>
+                                <DialogButton
+                                    text="Cancel"
+                                    onPress={() => {
+                                        this.popupDialog.dismiss();
+                                    }}
+                                    key="button-1"
+                                />
+                                <DialogButton
+                                    disabled={this.state.disabled}
+                                    text="Recommend"
+                                    onPress={() => {
+                                        this._handleRecommendation();
+                                    }}
+                                    key="button-2"
+                                />
+                            </Row>
+                        </Grid>]
+                    }
                     >
                     <View>
                         <FlatList
@@ -187,6 +277,7 @@ export default class ContactsScreen extends React.Component {
                         />
                     </View>
                 </PopupDialog>
+                <MessageBarAlert ref="alert" />
             </Container>
         )
     }

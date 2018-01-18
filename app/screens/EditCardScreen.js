@@ -39,8 +39,6 @@ export default class EditCardScreen extends React.Component {
     constructor(props) {
         super(props)
 
-        console.log(props)
-
         this.addLogo = this.addLogo.bind(this);
         this.state = {
             position: this.props.navigation.state.params.card.item.position,
@@ -62,16 +60,9 @@ export default class EditCardScreen extends React.Component {
         }
     }
 
-    _showModal = () => { this.setState({ isModalVisible: true })
-        console.log(width)
-    }
-    _hideModal = () => { this.setState({ isModalVisible: false })
-        console.log(width)
-    }
-
-    _showColorModal = () => { this.setState({ modalVisible: true })
-        console.log(width)
-    }
+    _showModal = () => { this.setState({ isModalVisible: true }) }
+    _hideModal = () => { this.setState({ isModalVisible: false }) }
+    _showColorModal = () => { this.setState({ modalVisible: true }) }
 
     saveData = () => {
         cards = this.props.navigation.state.params.cards
@@ -86,8 +77,6 @@ export default class EditCardScreen extends React.Component {
             // See Properties section for full customization
             // Or check `index.ios.js` or `index.android.js` for a complete example
         });
-
-        console.log(this.state)
 
         this.props.navigation.goBack()
     }
