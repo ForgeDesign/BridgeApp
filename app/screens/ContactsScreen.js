@@ -31,6 +31,7 @@ export default class ContactsScreen extends React.Component {
     }
 
     state = {
+        checked: false,
         disabled: true,
         people:
         [
@@ -137,22 +138,31 @@ export default class ContactsScreen extends React.Component {
 
     onPressHandle(key) {
         this.popupRelatedConnect = key
+        if (this.trackContactChecks[key] == undefined) {
+            this.trackContactChecks[key] = {}
+            for (let index = 0; index < this.state.people.length; index++) {
+                this.trackContactChecks[key][index] = false
+            }
+        }
+        else {
+            for (let index = 0; index < this.state.people.length; index++) {
+                if (this.trackContactChecks[key][index]) {
+                    this["check" + index].check()
+                }
+                else {
+                    this["check" + index].uncheck()
+                }
+            }
+        }
+
         this.popupDialog.show()
     }
 
-    initiate = false
-
     _handleCheck(val, item) {
-        if (!this.initiate) {
-            for (let index = 0; index < this.state.people.length; index++) {
-                this.trackContactChecks[index] = false
-            }
-            this.initiate = true
-        }
-        this.trackContactChecks[item.index] = val
+        this.trackContactChecks[this.popupRelatedConnect][item.index] = val
         isCheck = false
         for (let index = 0; index < this.state.people.length; index++) {
-            if (this.trackContactChecks[index]) {
+            if (this.trackContactChecks[this.popupRelatedConnect][index]) {
                 isCheck = true
                 break
             }
@@ -168,7 +178,7 @@ export default class ContactsScreen extends React.Component {
     _handleRecommendation() {
         numberOfRecs = 0
         for (let index = 0; index < this.state.people.length; index++) {
-            if (this.trackContactChecks[index])
+            if (this.trackContactChecks[this.popupRelatedConnect][index])
                 numberOfRecs += 1
         }
         descriptor = " people"
@@ -176,15 +186,16 @@ export default class ContactsScreen extends React.Component {
             descriptor = " person"
         }
         this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
-        this.popupDialog.dismiss()
         MessageBarManager.showAlert({
             title: 'Recommended!',
             message: 'You recommended ' + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee,
             alertType: 'info',
             viewTopOffset : 35
-            // See Properties section for full customization
-            // Or check `index.ios.js` or `index.android.js` for a complete example
         });
+        for (let index = 0; index < this.state.people.length; index++) {
+            this["check" + index].uncheck()
+        }
+        this.popupDialog.dismiss()
     }
 
     trackContactChecks = {
@@ -206,6 +217,7 @@ export default class ContactsScreen extends React.Component {
                     style={{left: '45%', flex: 1, top: '15%'}}
                     onChange={(val) => this._handleCheck(val, item)}
                     checked={false}
+                    ref={(check) => {this["check" + item.index] = check}}
                     checkedColor={$primaryBlue}
                     uncheckedColor={$lightGray}
                     iconName='matMix'
