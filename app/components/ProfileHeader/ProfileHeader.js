@@ -11,9 +11,6 @@ import BigTextAndLowerText from './BigTextAndLowerText';
 import Prompt from 'rn-prompt';
 import store from 'react-native-simple-store';
 
-popupDialog = () => (
-    console.log("presed it")
-)
 export default class ProfileHeader extends React.Component {
 
     constructor(props) {

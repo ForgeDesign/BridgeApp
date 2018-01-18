@@ -12,7 +12,6 @@ class Home extends Component {
         navigation: PropTypes.object,
     };
     handlePress = () => {
-        console.log('row press');
         this.props.navigation.navigate('RecordVideo');
     };
 

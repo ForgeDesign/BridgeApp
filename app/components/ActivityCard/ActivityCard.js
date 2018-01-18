@@ -7,6 +7,11 @@ class ActivityCard extends React.Component {
 
     state = {
         heart: false,
+        activity: ""
+    }
+
+    addActivity(activity) {
+        this.setState({activity: activity})
     }
 
     heart = () => { this.setState({heart: true})}
@@ -18,7 +23,7 @@ class ActivityCard extends React.Component {
         addButton = <TouchableOpacity
                         style={{alignSelf: 'flex-end', marginRight: 15, justifyContent: 'center', alignItems: 'center'}}
                         onPress={() => this.props.navigate()}>
-                        <Icon name="md-add" style={{fontSize: 24, color: '$primaryBlue'}}/>
+                        <Icon name="md-add" style={{fontSize: 24, color: $primaryBlue}}/>
                     </TouchableOpacity>;
         let button = null;
         if (heart) {
@@ -45,7 +50,9 @@ class ActivityCard extends React.Component {
                 </View>
                 <View style={styles.textcontainer}>
                     <Text style={styles.name}>{this.props.connector} is looking for a {this.props.connectee}!</Text>
-                    <Text style={styles.location}>{this.props.time}</Text>
+                    <Text style={styles.location}>{this.state.activity}</Text>
+                    <Text style={styles.activity}></Text>
+                    <Text style={styles.activity}>{this.props.time}</Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
                         {addButton}{button}
                     </View>
