@@ -411,7 +411,7 @@ export default class EcardScreen extends React.Component {
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
-                style={styles.button}
+                style={styles.buttonCancel}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Cancel</Text>
               </TouchableOpacity>
@@ -471,6 +471,18 @@ const styles = EStyleSheet.create({
         marginLeft: width*.3,
         marginRight: width*.3,
         marginTop: 10,
+    },
+    buttonCancel: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: width*.3,
+        marginRight: width*.3,
+        marginTop: 10,
+        marginBottom: 10,
     },
     buttonRow: {
         flexDirection: 'row',

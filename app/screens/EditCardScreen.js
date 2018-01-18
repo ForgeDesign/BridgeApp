@@ -333,13 +333,13 @@ render() {
             <View style={styles.buttonRow}>
 
                 <TouchableOpacity
-                style={styles.button2}
+                style={styles.button3}
                 onPress={this.addLogo}>
                     <Text style={styles.buttonText}>Add Logo</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                style={styles.button2}
+                style={styles.button3}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Done</Text>
                 </TouchableOpacity>
@@ -420,6 +420,18 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
+    },
+    button3: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: 16,
