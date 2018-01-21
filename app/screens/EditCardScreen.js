@@ -183,7 +183,7 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 100 }}>
+            <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke' }}>
 
             { (() => {
                 switch(cardnum) {
@@ -407,7 +407,7 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 30,
     },
     buttonText: {
         fontSize: 16,
