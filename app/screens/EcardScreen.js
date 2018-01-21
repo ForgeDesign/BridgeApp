@@ -61,7 +61,7 @@ export default class EcardScreen extends React.Component {
     color: "rgba(255,255,255,0.3)",
     modalVisible: false,
     recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
-    avatarSource: "null",
+    avatarSource: undefined,
     alertVisible: false
   }
 

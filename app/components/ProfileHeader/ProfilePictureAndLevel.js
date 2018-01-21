@@ -23,7 +23,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
         this.state =
         {
-            profilePic: '../../assets/images/black.jpg'
+            profilePic: undefined
         };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
@@ -47,7 +47,7 @@ export default class ProfilePictureAndLevel extends React.Component
           this.forceUpdate();
           }
           else{
-              this.setState({profilePic: '../../assets/images/black.jpg'})
+              this.setState({profilePic: undefined})
           }
         });
       }
