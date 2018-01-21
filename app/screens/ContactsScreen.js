@@ -6,7 +6,7 @@ import { Header } from '../components/Header';
 import { ActivityCard } from '../components/ActivityCard'
 import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import CheckBox from 'react-native-checkbox-heaven'
+import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const slideAnimation = new SlideAnimation({
@@ -215,7 +215,7 @@ export default class ContactsScreen extends React.Component {
                 />
             </Col>
             <Col size={25}>
-                <CheckBox
+                <Checkbox
                     style={{left: '45%', flex: 1, top: '15%'}}
                     onChange={(val) => this._handleCheck(val, item)}
                     checked={false}
