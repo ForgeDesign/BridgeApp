@@ -15,9 +15,7 @@ import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview'
 
 import ImagePicker from 'react-native-image-picker'
-
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+import StatusBarAlert from 'react-native-statusbar-alert';
 
 // import GL from 'gl-react'
 // import { Surface } from "gl-react-native";
@@ -63,7 +61,8 @@ export default class EcardScreen extends React.Component {
     color: "rgba(255,255,255,0.3)",
     modalVisible: false,
     recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
-    avatarSource: "null"
+    avatarSource: "null",
+    alertVisible: false
   }
 
   _showModal = () => { this.setState({ isModalVisible: true }) }
@@ -104,14 +103,11 @@ export default class EcardScreen extends React.Component {
     }
     store.push('buiscards', obj)
 
-    MessageBarManager.showAlert({
-        title: 'Saved card!',
-        message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
-        alertType: 'info',
-        viewTopOffset : 35
-        // See Properties section for full customization
-        // Or check `index.ios.js` or `index.android.js` for a complete example
-    });
+    this.makeAlertAppear()
+    setTimeout(() => {
+        this.makeAlertDisappear()
+    }, 2000)
+
   }
 
   /*<View style={{
@@ -122,15 +118,6 @@ export default class EcardScreen extends React.Component {
     shadowRadius: 2,
     elevation: 1}}/>*/
 
-    componentDidMount() {
-        MessageBarManager.registerMessageBar(this.refs.alert);
-    }
-
-    componentWillUnmount() {
-        // Remove the alert located on this master page from the manager
-        MessageBarManager.unregisterMessageBar();
-    }
-
     changeColor() {
         this.setState({ modalVisible: false })
     }
@@ -139,6 +126,13 @@ export default class EcardScreen extends React.Component {
         super(props)
 
         this.addLogo = this.addLogo.bind(this);
+    }
+
+    makeAlertAppear() {
+        this.setState({alertVisible: true})
+    }
+    makeAlertDisappear() {
+        this.setState({alertVisible: false})
     }
 
   render() {
@@ -172,6 +166,14 @@ export default class EcardScreen extends React.Component {
 
     return (
       <Container>
+
+        <StatusBarAlert
+            visible={this.state.alertVisible}
+            message="Bridge Card Saved!"
+            backgroundColor={$primaryBlue}
+            color="white"
+            height={68}
+        />
 
         <Header title={'Business Card'}/>
         <View style={{
@@ -271,7 +273,7 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
+              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 100 }}>
 
               { (() => {
                 switch(cardnum) {
@@ -417,8 +419,6 @@ export default class EcardScreen extends React.Component {
               </TouchableOpacity>
               </KeyboardAwareScrollView>
           </Modal>
-
-          <MessageBarAlert ref="alert" />
 
         </Container>
     )

@@ -15,9 +15,6 @@ import { CardFivePreview } from '../components/CardFivePreview'
 
 import ImagePicker from 'react-native-image-picker'
 
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
-
 // import GL from 'gl-react'
 // import { Surface } from "gl-react-native";
 // import { HueRotate } from 'gl-react-hue-rotate'
@@ -68,26 +65,7 @@ export default class EditCardScreen extends React.Component {
         cards = this.props.navigation.state.params.cards
         cards[this.props.navigation.state.params.card.index] = this.state
         AsyncStorage.setItem('buiscards', JSON.stringify(cards))
-
-        MessageBarManager.showAlert({
-            title: 'Saved card!',
-            message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
-            alertType: 'info',
-            viewTopOffset : 35
-            // See Properties section for full customization
-            // Or check `index.ios.js` or `index.android.js` for a complete example
-        });
-
         this.props.navigation.goBack()
-    }
-
-    componentDidMount() {
-        MessageBarManager.registerMessageBar(this.refs.alert);
-    }
-
-    componentWillUnmount() {
-        // Remove the alert located on this master page from the manager
-        MessageBarManager.unregisterMessageBar();
     }
 
     changeColor() {
@@ -205,7 +183,7 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
+            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 100 }}>
 
             { (() => {
                 switch(cardnum) {
@@ -346,8 +324,6 @@ render() {
             </View>
             </KeyboardAwareScrollView>
         </Modal>
-
-        <MessageBarAlert ref="alert" />
 
         </Container>
     )
