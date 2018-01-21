@@ -8,31 +8,19 @@ import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
+import StatusBarAlert from 'react-native-statusbar-alert';
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
-
 export default class ContactsScreen extends React.Component {
-
-    componentDidMount() {
-        // Register the alert located on this master page
-        // This MessageBar will be accessible from the current (same) component, and from its child component
-        // The MessageBar is then declared only once, in your main component.
-        MessageBarManager.registerMessageBar(this.refs.alert);
-    }
-    
-    componentWillUnmount() {
-        // Remove the alert located on this master page from the manager
-        MessageBarManager.unregisterMessageBar();
-    }
 
     state = {
         checked: false,
         disabled: true,
+        alertMessage: "",
+        alertVisible: false,
         people:
         [
             {
@@ -109,7 +97,7 @@ export default class ContactsScreen extends React.Component {
                     "address":"530 Winding Way Reynoldsburg, OH",
                     "cardnum": 5
                 }
-            }
+            }            
         ],
         activity:
         [
@@ -132,6 +120,13 @@ export default class ContactsScreen extends React.Component {
                 time: "8h"
             }
         ]
+    }
+
+    makeAlertAppear(message) {
+        this.setState({alertVisible: true, alertMessage: message})
+    }
+    makeAlertDisappear() {
+        this.setState({alertVisible: false})
     }
 
     popupRelatedConnect = null
@@ -188,16 +183,15 @@ export default class ContactsScreen extends React.Component {
             descriptor = " person"
         }
         this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
-        MessageBarManager.showAlert({
-            title: 'Recommended!',
-            message: 'You recommended ' + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee,
-            alertType: 'info',
-            viewTopOffset : 35
-        });
+        
         for (let index = 0; index < this.state.people.length; index++) {
             this["check" + index].uncheck()
         }
         this.popupDialog.dismiss()
+        this.makeAlertAppear("You recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee + "!")
+        setTimeout(() => {
+            this.makeAlertDisappear()
+        }, 2000)
     }
 
     trackContactChecks = {
@@ -235,6 +229,14 @@ export default class ContactsScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <Container>
+                <StatusBarAlert
+                    visible={this.state.alertVisible}
+                    backgroundColor={$primaryBlue}
+                    color="white"
+                    height={68}
+                    >
+                    <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
+                </StatusBarAlert>
                 <Header title={'Activity'}/>
                 <View style={{
                     borderBottomColor: '#003E5B',
@@ -267,6 +269,16 @@ export default class ContactsScreen extends React.Component {
                                     text="Cancel"
                                     onPress={() => {
                                         this.popupDialog.dismiss();
+                                        isRecommendations = false
+                                        for (let index = 0; index < this.state.people.length; index++) {
+                                            if (this.trackContactChecks[this.popupRelatedConnect][index]) {
+                                                isRecommendations = true
+                                                break
+                                            }
+                                        }
+                                        if (!isRecommendations) {
+                                            this[this.popupRelatedConnect].addActivity("")
+                                        }
                                     }}
                                     key="button-1"
                                 />
@@ -291,7 +303,6 @@ export default class ContactsScreen extends React.Component {
                         />
                     </View>
                 </PopupDialog>
-                <MessageBarAlert ref="alert" />
             </Container>
         )
     }
