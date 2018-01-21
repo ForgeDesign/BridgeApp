@@ -1,4 +1,4 @@
-package com.bridgeapp;
+package com.geczy.react.native.bridgecard;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,7 +10,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "BridgeApp";
+        return "BridgeCard";
     }
 
 //    @Override

@@ -1,4 +1,4 @@
-package com.bridgeapp;
+package com.geczy.react.native.bridgecard;
 
 import android.app.Application;
 
