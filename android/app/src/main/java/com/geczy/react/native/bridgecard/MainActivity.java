@@ -1,4 +1,4 @@
-package com.geczy.react.native.bridgecard;
+package com.geczy.bridgecard;
 
 import com.facebook.react.ReactActivity;
 
