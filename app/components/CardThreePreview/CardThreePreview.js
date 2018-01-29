@@ -11,6 +11,7 @@ const CardThreePreview = ({ city, stateabb, zip, logo, color, position, website,
             <Hero style={styles.image}
                 colorOverlay={color}
                 source={require('../../data/CardTemplates/businesscard3.png')}
+                fullWidth={false}
                 renderOverlay={() => (
                     <View style={styles.container}>
                             <Image

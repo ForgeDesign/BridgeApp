@@ -10,7 +10,8 @@ const CardTwoPreview = ({ city, stateabb, zip, logo, color, position, website, b
         <View style={styles.top}>
             <Hero style={styles.image}
                 colorOverlay={color}
-                source={require('../../data/CardTemplates/businesscard2.png')}
+                fullWidth={false}
+                source={require('../../data/CardTemplates/businesscard2update.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
                             <Image

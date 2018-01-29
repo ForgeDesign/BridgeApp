@@ -10,7 +10,8 @@ const CardFivePreview = ({ city, stateabb, zip, logo, color, position, website, 
         <View style={styles.top}>
             <Hero style={styles.image}
                 colorOverlay={color}
-                source={require('../../data/CardTemplates/businesscard5.png')}
+                fullWidth={false}
+                source={require('../../data/CardTemplates/businesscard5update.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
                             <Image

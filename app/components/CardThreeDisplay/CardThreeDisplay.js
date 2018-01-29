@@ -27,6 +27,7 @@ class CardThreeDisplay extends React.Component {
                 <View style={styles.top}>
                     <Hero style={styles.image}
                         colorOverlay={this.props.color}
+                        fullWidth={false}
                         source={require('../../data/CardTemplates/businesscard3.png')}
                         renderOverlay={() => (
                             <View style={styles.container}>

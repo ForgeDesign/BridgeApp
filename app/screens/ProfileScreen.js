@@ -283,7 +283,7 @@ class ProfileScreen extends Component {
             <Container>
                 <Header title={'Profile'} />
 
-                <ProfileHeader/>
+                <ProfileHeader navigation={this.props.navigation}/>
 
                 <View style={{
                     borderBottomColor: '#003E5B',
