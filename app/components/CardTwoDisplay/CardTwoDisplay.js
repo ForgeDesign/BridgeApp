@@ -27,7 +27,8 @@ class CardTwoDisplay extends React.Component {
           <View style={styles.top}>
               <Hero style={styles.image}
                   colorOverlay={this.props.color}
-                  source={require('../../data/CardTemplates/businesscard2.png')}
+                  fullWidth={false}
+                  source={require('../../data/CardTemplates/businesscard2update.png')}
                   renderOverlay={() => (
                       <View style={styles.container}>
                               <Image

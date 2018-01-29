@@ -183,7 +183,7 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 100 }}>
+            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 0}}>
 
             { (() => {
                 switch(cardnum) {

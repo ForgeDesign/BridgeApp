@@ -6,7 +6,7 @@ var {height, width} = Dimensions.get('window');
 export default EStyleSheet.create({
     top: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
         borderRadius: 10,
         marginTop: 10,
         marginLeft: 10,
@@ -18,22 +18,22 @@ export default EStyleSheet.create({
         height: 50,
         borderRadius: 50/2,
         position: 'absolute',
-        bottom: '4%',
-        left: '55%'
+        top: '6%',
+        left: '14%'
     },
     container: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
     },
     image: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
     },
     buisname: {
-        color: 'red',
+        color: 'white',
         fontSize: 14,
         position: 'absolute',
-        top: '10%',
+        top: '44%',
         left: '5%'
     },
     website: {
@@ -41,49 +41,49 @@ export default EStyleSheet.create({
       color: 'white',
       fontSize: 13,
       bottom: '4%',
-      left: '15%',
+      left: '13%',
     },
     title: {
+      color: 'black',
+      fontSize: 12,
       position: 'absolute',
-      color: 'white',
-      fontSize: 14,
-      top: '44%',
-      left: '5%'
+      top: '13%',
+      left: '63%'
     },
     phonenum: {
       position: 'absolute',
       color: 'white',
       fontSize: 13,
-      bottom: '22%',
-      left: '15%',
+      bottom: '28%',
+      left: '13%',
     },
     email: {
-      color: 'black',
-      fontSize: 10,
       position: 'absolute',
-      top: '11%',
-      right: '3%'
+      color: 'white',
+      fontSize: 13,
+      bottom: '16%',
+      left: '13%',
     },
     address: {
       color: 'black',
       fontSize: 10,
       position: 'absolute',
-      top: '19%',
-      right: '3%'
+      top: '28%',
+      left: '63%'
     },
     address2: {
       color: 'black',
       fontSize: 10,
       position: 'absolute',
-      top: '27%',
-      right: '3%'
+      top: '36%',
+      left: '63%'
     },
     name: {
       color: 'black',
-      fontSize: 10,
+      fontSize: 12,
       position: 'absolute',
-      top: '3%',
-      right: '3%'
+      top: '6%',
+      left: '63%'
     },
     modal: {
       justifyContent: 'center',

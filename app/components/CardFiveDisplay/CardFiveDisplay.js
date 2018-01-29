@@ -16,7 +16,7 @@ class CardFiveDisplay extends React.Component {
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
   render() {
-    
+
     if (this.state.hidden==true) {
       return null;
     }
@@ -27,7 +27,8 @@ class CardFiveDisplay extends React.Component {
           <View style={styles.top}>
               <Hero style={styles.image}
                   colorOverlay={this.props.color}
-                  source={require('../../data/CardTemplates/businesscard5.png')}
+                  fullWidth={false}
+                  source={require('../../data/CardTemplates/businesscard5update.png')}
                   renderOverlay={() => (
                       <View style={styles.container}>
                               <Image
