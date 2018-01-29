@@ -273,7 +273,7 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 0, }}>
+              <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
 
               { (() => {
                 switch(cardnum) {
