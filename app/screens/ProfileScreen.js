@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, AsyncStorage } from 'react-native';
 import store from 'react-native-simple-store';
 
 import styles from './ProfileStyles'
@@ -20,13 +20,37 @@ var {height, width} = Dimensions.get('window');
 
 class ProfileScreen extends Component {
 
+    
     constructor(props) {
         super(props);
         this.state = {
             refreshing: false,
-            cards: []
+            cards: [],
+            isModalVisible: false,
+            isModalOneVisible: false,
+            isModalTwoVisible: false,
+            isModalThreeVisible: false,
+            isModalFourVisible: false,
+            isModalFiveVisible: false,
+            _navigation: null,
+            _cardnum: null,
+            _key: null,
+            _logo: null,
+            _position: null,
+            _color: null,
+            _website: null,
+            _buisname: null,
+            _phonenum: null,
+            _name: null,
+            _email: null,
+            _address: null,
+            _city: null,
+            _stateabb: null,
+            _zip: null
         };
     }
+
+
 
     componentWillMount() {
         store.get('buiscards').then((value) => {
@@ -36,6 +60,25 @@ class ProfileScreen extends Component {
             }
         });
     }
+    
+    // assignVariables(nav,reference){
+    //     this.setState({isModalVisible: true})
+    //     this.setState({_navigation: nav})
+    //     this.setState({_cardnum: reference.item.cardnum})
+    //     this.setState({_key: reference.index})
+    //     this.setState({_logo: reference.item.logo})
+    //     this.setState({_position: reference.item.position})
+    //     this.setState({_color: reference.item.color})
+    //     this.setState({_website: reference.item.website})
+    //     this.setState({_buisname: reference.item.buisname})
+    //     this.setState({_phonenum: reference.item.phonenum})
+    //     this.setState({_name: reference.item.name})
+    //     this.setState({_email: reference.item.email})
+    //     this.setState({_address: reference.item.address})
+    //     this.setState({_city: reference.item.city})
+    //     this.setState({_stateabb: reference.item.stateabb})
+    //     this.setState({_zip: reference.item.zip})
+    // }
 
     _onRefresh() {
         this.setState({refreshing: true});
@@ -58,8 +101,37 @@ class ProfileScreen extends Component {
         }
     }
 
-    swipeable = {}
+    
+    _showModal = () => {this.setState({isModalVisible: true})}
+    _hideModal = () => {this.setState({isModalVisible: false})}
 
+    // _showModal = (ref) => { 
+    //     switch(ref.item.cardnum){
+    //         case 1:
+    //             this.setState({isModalOneVisible: true});
+    //         case 2:
+    //             this.setState({isModalTwoVisible: true});
+    //         case 3:
+    //             this.setState({isModalThreeVisible: true});
+    //         case 4:
+    //             this.setState({isModalFourVisible: true});
+    //         case 5:
+    //             this.setState({isModalFiveVisible: true});
+    //     }
+        
+    //  }
+
+    // _hideModal = () => { 
+    //     this.setState({ isModalOneVisible: false });
+    //     this.setState({ isModalTwoVisible: false });
+    //     this.setState({ isModalThreeVisible: false });
+    //     this.setState({ isModalFourVisible: false });
+    //     this.setState({ isModalFiveVisible: false });
+    // }
+
+    
+    swipeable = {}
+    
     _keyExtractor = (item, index) => index;
 
     _renderItem(ref, navigation) {
@@ -85,23 +157,26 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardOneDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            buisname={ref.item.buisname}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
+                        <TouchableOpacity onPress = {this._showModal}>
+                            <CardOneDisplay
+                                navigation={navigation}
+                                cardnum={ref.item.cardnum}
+                                key={ref.index}
+                                logo={ref.item.logo}
+                                position={ref.item.position}
+                                color={ref.item.color}
+                                website={ref.item.website}
+                                buisname={ref.item.buisname}
+                                phonenum={ref.item.phonenum}
+                                name={ref.item.name}
+                                email={ref.item.email}
+                                address={ref.item.address}
+                                city={ref.item.city}
+                                stateabb={ref.item.stateabb}
+                                zip={ref.item.zip}
+                            />
+                        </TouchableOpacity>
+                        
                     </Swipeable>
                 )
             case 2:
@@ -124,23 +199,25 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardTwoDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            buisname={ref.item.buisname}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
+                        <TouchableOpacity onPress = {this._showModal}>
+                            <CardTwoDisplay
+                                navigation={navigation}
+                                cardnum={ref.item.cardnum}
+                                key={ref.index}
+                                logo={ref.item.logo}
+                                position={ref.item.position}
+                                color={ref.item.color}
+                                website={ref.item.website}
+                                buisname={ref.item.buisname}
+                                phonenum={ref.item.phonenum}
+                                name={ref.item.name}
+                                email={ref.item.email}
+                                address={ref.item.address}
+                                city={ref.item.city}
+                                stateabb={ref.item.stateabb}
+                                zip={ref.item.zip}
+                            />
+                        </TouchableOpacity>
                     </Swipeable>
                 )
             case 3:
@@ -163,23 +240,25 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardThreeDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            buisname={ref.item.buisname}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
+                        <TouchableOpacity onPress = {this._showModal}>
+                            <CardThreeDisplay
+                                navigation={navigation}
+                                cardnum={ref.item.cardnum}
+                                key={ref.index}
+                                logo={ref.item.logo}
+                                position={ref.item.position}
+                                color={ref.item.color}
+                                website={ref.item.website}
+                                buisname={ref.item.buisname}
+                                phonenum={ref.item.phonenum}
+                                name={ref.item.name}
+                                email={ref.item.email}
+                                address={ref.item.address}
+                                city={ref.item.city}
+                                stateabb={ref.item.stateabb}
+                                zip={ref.item.zip}
+                            />
+                        </TouchableOpacity>
                     </Swipeable>
                 )
             case 4:
@@ -202,23 +281,25 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardFourDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            buisname={ref.item.buisname}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
+                        <TouchableOpacity onPress = {this._showModal}>
+                            <CardFourDisplay
+                                navigation={navigation}
+                                cardnum={ref.item.cardnum}
+                                key={ref.index}
+                                logo={ref.item.logo}
+                                position={ref.item.position}
+                                color={ref.item.color}
+                                website={ref.item.website}
+                                buisname={ref.item.buisname}
+                                phonenum={ref.item.phonenum}
+                                name={ref.item.name}
+                                email={ref.item.email}
+                                address={ref.item.address}
+                                city={ref.item.city}
+                                stateabb={ref.item.stateabb}
+                                zip={ref.item.zip}
+                            />
+                        </TouchableOpacity>
                     </Swipeable>
                 )
             case 5:
@@ -241,23 +322,25 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <CardFiveDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            buisname={ref.item.buisname}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
+                        <TouchableOpacity onPress = {this._showModal}>
+                            <CardFiveDisplay
+                                navigation={navigation}
+                                cardnum={ref.item.cardnum}
+                                key={ref.index}
+                                logo={ref.item.logo}
+                                position={ref.item.position}
+                                color={ref.item.color}
+                                website={ref.item.website}
+                                buisname={ref.item.buisname}
+                                phonenum={ref.item.phonenum}
+                                name={ref.item.name}
+                                email={ref.item.email}
+                                address={ref.item.address}
+                                city={ref.item.city}
+                                stateabb={ref.item.stateabb}
+                                zip={ref.item.zip}
+                            />
+                        </TouchableOpacity>
                     </Swipeable>
                 )
         }
@@ -303,6 +386,73 @@ class ProfileScreen extends Component {
                     extraData={this.props.navigation}
                     renderItem={(item) => this._renderItem(item, this.props.navigation)}
                 />
+                
+
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={false}
+                    visible={this.state.isModalVisible}
+                    animationType='slide'>
+                    <View style={{ transform: [{ rotate: '90deg'}, {scaleX: 1.75}, {scaleY: 1.75}], alignContent:"center", justifyContent: "center" }}>
+                        <CardOneDisplay
+                            navigation={this.state._navigation}
+                            cardnum={this.state._cardnum}
+                            key={this.state._key}
+                            logo={this.state._logo}
+                            position={this.state._position}
+                            color={this.state._color}
+                            website={"this.state._website"}
+                            buisname={this.state._buisname}
+                            phonenum={this.state._phonenum}
+                            name={this.state._name}
+                            email={this.state._email}
+                            address={this.state._address}
+                            city={this.state._city}
+                            stateabb={this.state._stateabb}
+                            zip={this.state._zip}
+                        />
+                    </View>
+                </Modal>
+
+                {/* <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalOneVisible}
+                    animationType='fade'>
+                    <Text>Modal 1</Text>
+                </Modal>
+
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalTwoVisible}
+                    animationType='fade'>
+                    <Text>Modal 2</Text>
+                </Modal>
+
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalThreeVisible}
+                    animationType='fade'>
+                    <Text>Modal 3</Text>
+                </Modal>
+
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalFourVisible}
+                    animationType='fade'>
+                    <Text>Modal 4</Text>
+                </Modal>
+
+                <Modal
+                    onRequestClose={this._hideModal}
+                    transparent={true}
+                    visible={this.state.isModalFiveVisible}
+                    animationType='fade'>
+                    <Text>Modal 5</Text>
+                </Modal> */}
 
             </Container>
         )
