@@ -3,7 +3,7 @@ import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Moda
 
 import { Fab, Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import SearchList from '@unpourtous/react-native-search-list'
+import SearchInput, { createFilter } from 'react-native-search-filter';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
