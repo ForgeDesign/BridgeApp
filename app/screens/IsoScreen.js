@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
-
+import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import SearchInput, { createFilter } from 'react-native-search-filter';
+import { createFilter } from 'react-native-search-filter';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
 
 const myWidth = Dimensions.get('window').width;
+const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.buisname', 'card.phonenum', 'card.email', 'card.cardnum'];
 
 export default class IsoScreen extends React.Component {
 
@@ -99,11 +100,18 @@ export default class IsoScreen extends React.Component {
             ],
             active: true,
             isModalVisible:false,
+            searchTerm: '',
         };
+    }
+
+    searchUpdated(term) {
+        this.setState({ searchTerm: term })
     }
 
     render() {
         const { navigate } = this.props.navigation;
+        const filteredPeople = this.state.people.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+
         return (
             <Container>
 
@@ -116,16 +124,39 @@ export default class IsoScreen extends React.Component {
                 shadowRadius: 2,
                 elevation: 1}}/>
 
+                <SearchBar
+                    round
+                    showLoading
+                    clearIcon
+                    cancelButtonTitle="Cancel"
+                    icon={{ type: 'font-awesome', name: 'search' }}
+                    onChangeText={(term) => { this.searchUpdated(term) }} 
+                    onClearText={() => this.setState({searchTerm:''})}
+                    inputStyle={{
+                        backgroundColor: $offwhite
+                    }}
+                    containerStyle={{
+                        borderRadius: 0,
+                        borderWidth: 0,
+                        borderTopWidth: 0,
+                        borderBottomWidth: 0,
+                        padding: 0,
+                        margin: 0,
+                        backgroundColor: $primaryBlue}}
+                    placeholder="Type anything to search"
+                />
+
                 <ScrollView style={{ flex: 1, marginTop: 6 }}>
-                {this.state.people.map((person, key) =>
-                    <PersonCard
-                    key={key}
-                    name={person.name}
-                    card={person.card}
-                    location={person.location}
-                    imagepath={person.imagepath}/>
-                )}
+                    {filteredPeople.map((person, key) =>
+                        <PersonCard
+                        key={key}
+                        name={person.name}
+                        card={person.card}
+                        location={person.location}
+                        imagepath={person.imagepath}/>
+                    )}
                 </ScrollView>
+                
 
                 <Fab
                 active={this.state.active}
