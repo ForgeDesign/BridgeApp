@@ -10,6 +10,8 @@ import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
 import StatusBarAlert from 'react-native-statusbar-alert';
 
+
+
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
