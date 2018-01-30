@@ -143,7 +143,9 @@ dependencies {
     compile project(':react-native-share')
     compile project(':gl-react-native')
     compile project(':react-native-image-picker')
-        compile project(':react-native-image-crop-picker')
+    compile project(':react-native-image-crop-picker')
+    compile project(':react-native-share')
+
 
     compile project(':react-native-svg')
     compile fileTree(dir: "libs", include: ["*.jar"])
