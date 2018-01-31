@@ -26,7 +26,7 @@ export default class ContactsScreen extends React.Component {
         this.state = {
             people: 
             {
-                'B': [
+                'A': [
                     {
                         "name": "Brian Amin",
                         "location": "3052 Parker Dr. Akron, OH",
@@ -43,41 +43,22 @@ export default class ContactsScreen extends React.Component {
                         }
                     }
                 ],
-                'D': [
+                'B': [
                     {
-                        "name": "David Rodriguez",
-                        "location": "44 Shirley Ave. West Chicago, IL",
-                        "imagepath": require("../assets/images/davidrodriguez.jpg"),
+                        "name": "Frank Barnes",
+                        "location": "530 Winding Way Reynoldsburg, OH",
+                        "imagepath": require("../assets/images/frankbarnes.jpg"),
                         "card":{
-                            "position":"Head of Product Development",
-                            "website":"zatri.net",
-                            "businame":"Zatri Co.",
-                            "phonenum":"(338)1459857",
-                            "name":"David Rodriguez",
-                            "email":"djrodriguez@zatri.net",
-                            "address":"44 Shirley Ave. West Chicago, IL",
-                            "cardnum": 4
+                            "position":"Sales Director",
+                            "website":"shop.vindu.com",
+                            "businame":"Vindu",
+                            "phonenum":"(330)2523647",
+                            "name":"Frank Barnes",
+                            "email":"barnes2@gmail.com",
+                            "address":"530 Winding Way Reynoldsburg, OH",
+                            "cardnum": 5
                         }
-                    }
-                ],
-                'F': [
-                        {
-                            "name": "Frank Barnes",
-                            "location": "530 Winding Way Reynoldsburg, OH",
-                            "imagepath": require("../assets/images/frankbarnes.jpg"),
-                            "card":{
-                                "position":"Sales Director",
-                                "website":"shop.vindu.com",
-                                "businame":"Vindu",
-                                "phonenum":"(330)2523647",
-                                "name":"Frank Barnes",
-                                "email":"barnes2@gmail.com",
-                                "address":"530 Winding Way Reynoldsburg, OH",
-                                "cardnum": 5
-                            }
-                        }
-                ],
-                'M': [
+                    },
                     {
                         "name": "Mark Brown",
                         "location": "71 Pilgrim Ave. Chevy Chase, MD",
@@ -93,6 +74,8 @@ export default class ContactsScreen extends React.Component {
                             "cardnum": 1
                         }
                     },
+                ],
+                'L': [
                     {
                         "name": "Mary Lewis",
                         "location": "4 Goldfield Rd. Honolulu, HI",
@@ -106,6 +89,23 @@ export default class ContactsScreen extends React.Component {
                             "email":"mlewis1@arkp.net",
                             "address":"4 Goldfield Rd. Honolulu, HI",
                             "cardnum": 3
+                        }
+                    }
+                ],
+                'R': [
+                    {
+                        "name": "David Rodriguez",
+                        "location": "44 Shirley Ave. West Chicago, IL",
+                        "imagepath": require("../assets/images/davidrodriguez.jpg"),
+                        "card":{
+                            "position":"Head of Product Development",
+                            "website":"zatri.net",
+                            "businame":"Zatri Co.",
+                            "phonenum":"(338)1459857",
+                            "name":"David Rodriguez",
+                            "email":"djrodriguez@zatri.net",
+                            "address":"44 Shirley Ave. West Chicago, IL",
+                            "cardnum": 4
                         }
                     }
                 ],
