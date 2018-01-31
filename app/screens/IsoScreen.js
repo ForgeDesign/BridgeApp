@@ -4,14 +4,13 @@ import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-na
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { ActivityCard } from '../components/ActivityCard'
+import { createFilter } from 'react-native-search-filter';
 import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
-
-import { createFilter } from 'react-native-search-filter';
 import { SearchBar } from 'react-native-elements'
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
 

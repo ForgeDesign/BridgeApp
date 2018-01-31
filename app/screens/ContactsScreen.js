@@ -4,7 +4,6 @@ import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-na
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { createFilter } from 'react-native-search-filter';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
