@@ -8,6 +8,7 @@ import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 
 import { createFilter } from 'react-native-search-filter';
@@ -17,6 +18,11 @@ const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'c
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
+  _showModal = () => { this.setState({ isModalVisible: true }) }
+  _hideModal = () => { this.setState({ isModalVisible: false }) }
+  
+  constructor(){
+    super();
 
 export default class IsoScreen extends React.Component {
 
@@ -25,7 +31,9 @@ export default class IsoScreen extends React.Component {
         disabled: true,
         alertMessage: "",
         alertVisible: false,
+        promptVisible: false,
         searchTerm: '',
+        contactName: 'fox-hunter5',   
         people:
         [
             {
@@ -242,8 +250,18 @@ export default class IsoScreen extends React.Component {
                 />
             </Col>
         </Grid>
-        
-    )
+          }
+        ],
+      active: true,
+      isModalVisible:false,
+    };
+  }
+  makeAlertAppear() {
+    this.setState({alertVisible: true})
+}
+  makeAlertDisappear() {
+    this.setState({alertVisible: false})
+  }
 
     _keyExtractor = (item, index) => index;
 
