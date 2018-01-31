@@ -30,7 +30,7 @@ export default EStyleSheet.create({
         width: (width-20),
         height: ((width-20)*.57),
     },
-    buisname: {
+    businame: {
         color: 'white',
         fontSize: 12,
         position: 'absolute',
