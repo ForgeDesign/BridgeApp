@@ -28,7 +28,7 @@ export default class AllCardsScreen extends React.Component {
   }
 
   componentWillMount() {
-      store.get('buiscards').then((value) => {
+      store.get('busicards').then((value) => {
           if (value!==null){
               this.setState({cards: value});
               this.forceUpdate()
@@ -38,7 +38,7 @@ export default class AllCardsScreen extends React.Component {
 
   _onRefresh() {
       this.setState({refreshing: true});
-      store.get('buiscards').then((value) => {
+      store.get('busicards').then((value) => {
           if (value!==null){
               this.setState({cards: value});
               this.forceUpdate();
@@ -92,7 +92,7 @@ export default class AllCardsScreen extends React.Component {
                           position={ref.item.position}
                           color={ref.item.color}
                           website={ref.item.website}
-                          buisname={ref.item.buisname}
+                          businame={ref.item.businame}
                           phonenum={ref.item.phonenum}
                           name={ref.item.name}
                           email={ref.item.email}
@@ -131,7 +131,7 @@ export default class AllCardsScreen extends React.Component {
                           position={ref.item.position}
                           color={ref.item.color}
                           website={ref.item.website}
-                          buisname={ref.item.buisname}
+                          businame={ref.item.businame}
                           phonenum={ref.item.phonenum}
                           name={ref.item.name}
                           email={ref.item.email}
@@ -170,7 +170,7 @@ export default class AllCardsScreen extends React.Component {
                           position={ref.item.position}
                           color={ref.item.color}
                           website={ref.item.website}
-                          buisname={ref.item.buisname}
+                          businame={ref.item.businame}
                           phonenum={ref.item.phonenum}
                           name={ref.item.name}
                           email={ref.item.email}
@@ -209,7 +209,7 @@ export default class AllCardsScreen extends React.Component {
                           position={ref.item.position}
                           color={ref.item.color}
                           website={ref.item.website}
-                          buisname={ref.item.buisname}
+                          businame={ref.item.businame}
                           phonenum={ref.item.phonenum}
                           name={ref.item.name}
                           email={ref.item.email}
@@ -248,7 +248,7 @@ export default class AllCardsScreen extends React.Component {
                           position={ref.item.position}
                           color={ref.item.color}
                           website={ref.item.website}
-                          buisname={ref.item.buisname}
+                          businame={ref.item.businame}
                           phonenum={ref.item.phonenum}
                           name={ref.item.name}
                           email={ref.item.email}
@@ -267,7 +267,7 @@ export default class AllCardsScreen extends React.Component {
       arrayCopy = this.state.cards
       arrayCopy.splice(index, 1)
       setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
-      AsyncStorage.setItem('buiscards', JSON.stringify(arrayCopy))
+      AsyncStorage.setItem('busicards', JSON.stringify(arrayCopy))
   }
 
   _editItem(ref) {

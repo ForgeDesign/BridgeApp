@@ -62,15 +62,15 @@ class PersonCard extends React.Component {
             { (() => {
               switch(this.props.card.cardnum) {
                 case 1:
-                  return ( <CardOnePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} buisname={this.props.card.buisname} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
+                  return ( <CardOnePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
                 case 2:
-                  return ( <CardTwoPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} buisname={this.props.card.buisname} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
+                  return ( <CardTwoPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
                 case 3:
-                  return ( <CardThreePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} buisname={this.props.card.buisname} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
+                  return ( <CardThreePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
                 case 4:
-                  return ( <CardFourPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} buisname={this.props.card.buisname} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
+                  return ( <CardFourPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
                 case 5:
-                  return ( <CardFivePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} buisname={this.props.card.buisname} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
+                  return ( <CardFivePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
               }
             })()}
             <TouchableOpacity

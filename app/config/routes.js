@@ -6,8 +6,8 @@ import React from 'react';
 import ProfileNavigator from './homestack';
 import ProfileScreen from '../screens/ProfileScreen';
 import EcardScreen from '../screens/EcardScreen';
-import ContactsScreen from '../screens/ContactsScreen';
 import IsoScreen from '../screens/IsoScreen';
+import ContactsScreen from '../screens/ContactsScreen';
 
 var {height, width} = Dimensions.get('window');
 
@@ -40,7 +40,7 @@ export default TabNavigator(
             }
         },
         Contacts: {
-            screen: IsoScreen,
+            screen: ContactsScreen,
             navigationOptions: {
                 tabBarLabel: 'Contacts',
                 tabBarIcon: ({ tintColor }) => (
@@ -53,7 +53,7 @@ export default TabNavigator(
             }
         },
         Iso: {
-            screen: ContactsScreen,
+            screen: IsoScreen,
             navigationOptions: {
                 tabBarLabel: 'ISO',
                 tabBarIcon: ({ tintColor }) => (
