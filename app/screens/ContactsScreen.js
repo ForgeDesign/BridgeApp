@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
+import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -9,7 +10,7 @@ import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
 import AtoZListView from 'react-native-atoz-listview';
 import Prompt from 'rn-prompt';
-
+import StatusBarAlert from 'react-native-statusbar-alert';
 const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -113,7 +114,17 @@ export default class ContactsScreen extends React.Component {
             active: true,
             isModalVisible:false,
             searchTerm: '',
+            promptVisible: false,    
+            alertVisible: false,
+            contactName: 'fox-hunter5',   
         };
+    }
+
+    makeAlertAppear() {
+        this.setState({alertVisible: true})
+    }
+    makeAlertDisappear() {
+        this.setState({alertVisible: false})
     }
 
     searchUpdated(term) {
@@ -170,7 +181,14 @@ export default class ContactsScreen extends React.Component {
         )
         return (
             <Container>
-
+                <StatusBarAlert
+                    visible={this.state.alertVisible}
+                    message="Bridge Card Added!"
+                    backgroundColor='#5BB85B'
+                    color="white"
+                    height={30}
+                />
+        
                 <Header title={'Contacts'} />
                 <View style={{
                 borderBottomColor: '#003E5B',
