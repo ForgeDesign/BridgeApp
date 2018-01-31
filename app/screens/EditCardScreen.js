@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
+import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
@@ -13,9 +14,6 @@ import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview'
 
 import ImagePicker from 'react-native-image-picker'
-
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 
 // import GL from 'gl-react'
 // import { Surface } from "gl-react-native";
@@ -38,8 +36,6 @@ export default class EditCardScreen extends React.Component {
     constructor(props) {
         super(props)
 
-        console.log(props)
-
         this.addLogo = this.addLogo.bind(this);
         this.state = {
             position: this.props.navigation.state.params.card.item.position,
@@ -50,6 +46,9 @@ export default class EditCardScreen extends React.Component {
             address: this.props.navigation.state.params.card.item.address,
             website: this.props.navigation.state.params.card.item.website,
             cardnum: this.props.navigation.state.params.card.item.cardnum,
+            city: this.props.navigation.state.params.card.item.city,
+            stateabb: this.props.navigation.state.params.card.item.stateabb,
+            zip: this.props.navigation.state.params.card.item.zip,
             isModalVisible: false,
             color: this.props.navigation.state.params.card.item.color,
             modalVisible: false,
@@ -58,43 +57,15 @@ export default class EditCardScreen extends React.Component {
         }
     }
 
-    _showModal = () => { this.setState({ isModalVisible: true })
-        console.log(width)
-    }
-    _hideModal = () => { this.setState({ isModalVisible: false })
-        console.log(width)
-    }
-
-    _showColorModal = () => { this.setState({ modalVisible: true })
-        console.log(width)
-    }
+    _showModal = () => { this.setState({ isModalVisible: true }) }
+    _hideModal = () => { this.setState({ isModalVisible: false }) }
+    _showColorModal = () => { this.setState({ modalVisible: true }) }
 
     saveData = () => {
         cards = this.props.navigation.state.params.cards
         cards[this.props.navigation.state.params.card.index] = this.state
         AsyncStorage.setItem('buiscards', JSON.stringify(cards))
-
-        MessageBarManager.showAlert({
-            title: 'Saved card!',
-            message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
-            alertType: 'info',
-            viewTopOffset : 35
-            // See Properties section for full customization
-            // Or check `index.ios.js` or `index.android.js` for a complete example
-        });
-
-        console.log(this.state)
-
         this.props.navigation.goBack()
-    }
-
-    componentDidMount() {
-        MessageBarManager.registerMessageBar(this.refs.alert);
-    }
-
-    componentWillUnmount() {
-        // Remove the alert located on this master page from the manager
-        MessageBarManager.unregisterMessageBar();
     }
 
     changeColor() {
@@ -103,7 +74,7 @@ export default class EditCardScreen extends React.Component {
 
 render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, name, email, address, cardnum } = this.state;
+    const { position, website, buisname, phonenum, name, email, address, cardnum, city, stateabb, zip } = this.state;
     const { isLoading } = this.props;
 
     return (
@@ -121,15 +92,15 @@ render() {
         { (() => {
         switch(cardnum) {
             case 1:
-            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
         }
         })()}
 
@@ -212,20 +183,20 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
+            <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke' }}>
 
             { (() => {
                 switch(cardnum) {
                 case 1:
-                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 2:
-                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 3:
-                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 4:
-                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 5:
-                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
                 }
             })()}
 
@@ -301,24 +272,58 @@ render() {
                 onChangeText={(value) => this.setState({address: value })}
                 isEnabled={!isLoading}/>
 
+              <CardInput
+                name={'city'}
+                placeholder={'City'}
+                withRef={true}
+                ref={(ref) => this.CityInputRef = ref}
+                editable={!isLoading}
+                value={this.state.city}
+                onChangeText={(value) => this.setState({city: value })}
+                isEnabled={!isLoading}/>
+
+              <View style={styles.inputRow}>
+
+                <CardInputSmall
+                  name={'stateabb'}
+                  placeholder={'State'}
+                  withRef={true}
+                  ref={(ref) => this.StateInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.stateabb}
+                  maxLength={2}
+                  onChangeText={(value) => this.setState({stateabb: value })}
+                  isEnabled={!isLoading}/>
+
+                <CardInputSmall
+                  name={'zip'}
+                  placeholder={'Zip Code'}
+                  withRef={true}
+                  maxLength={10}
+                  ref={(ref) => this.ZipInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.zip}
+                  onChangeText={(value) => this.setState({zip: value })}
+                  isEnabled={!isLoading}/>
+
+              </View>
+
             <View style={styles.buttonRow}>
 
                 <TouchableOpacity
-                style={styles.button2}
+                style={styles.button3}
                 onPress={this.addLogo}>
                     <Text style={styles.buttonText}>Add Logo</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                style={styles.button2}
+                style={styles.button3}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Done</Text>
                 </TouchableOpacity>
             </View>
             </KeyboardAwareScrollView>
         </Modal>
-
-        <MessageBarAlert ref="alert" />
 
         </Container>
     )
@@ -376,8 +381,10 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom:  5,
+    },
+    inputRow: {
+      flexDirection: 'row',
+      justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',
@@ -386,9 +393,21 @@ const styles = EStyleSheet.create({
         height: width*.12,
         backgroundColor: '$primaryBlue',
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+    },
+    button3: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 30,
     },
     buttonText: {
         fontSize: 16,

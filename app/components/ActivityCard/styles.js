@@ -37,10 +37,17 @@ export default EStyleSheet.create({
     name: {
       fontSize: 14,
       color: '$primaryBlue',
+      top: '10%'
+    },
+    activity: {
+        fontSize: 12,
+        top: '10%',
+        // color: '$primaryBlue',
     },
     location: {
       fontSize: 12,
       color: '$inputText',
+      top: '10%'
     },
     button: {
       justifyContent: 'center',

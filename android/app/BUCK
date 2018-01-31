@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.bridgeapp",
+    package = "com.geczy.bridgecard",
 )
 
 android_resource(
     name = "res",
-    package = "com.bridgeapp",
+    package = "com.geczy.bridgecard",
     res = "src/main/res",
 )
 

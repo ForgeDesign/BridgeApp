@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
 
-AppRegistry.registerComponent('BridgeApp', () => App);
+AppRegistry.registerComponent('BridgeCard', () => App);

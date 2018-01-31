@@ -1,6 +1,7 @@
 import { StackNavigator } from 'react-navigation';
 import React from 'react';
 import ProfileScreen from '../screens/ProfileScreen';
+import AllCardsScreen from '../screens/AllCardsScreen';
 import EditCardScreen from '../screens/EditCardScreen'
 
 export default ProfileNavigator = StackNavigator({
@@ -15,5 +16,11 @@ export default ProfileNavigator = StackNavigator({
         navigationOptions: {
             header: null,
         }
+    },
+    AllCards: {
+      screen: AllCardsScreen,
+      navigationOptions: {
+        header: null,
+      }
     }
 });

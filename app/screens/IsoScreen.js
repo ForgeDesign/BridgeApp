@@ -7,21 +7,23 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
+import Prompt from 'rn-prompt';
+import StatusBarAlert from 'react-native-statusbar-alert';
 
 const myWidth = Dimensions.get('window').width;
 export default class IsoScreen extends React.Component {
 
-  _showModal = () => { this.setState({ isModalVisible: true })
-    console.log(myWidth);
-  }
-  _hideModal = () => { this.setState({ isModalVisible: false })
-    console.log(myWidth)
-  }
+  _showModal = () => { this.setState({ isModalVisible: true }) }
+  _hideModal = () => { this.setState({ isModalVisible: false }) }
+  
   constructor(){
     super();
 
 
     this.state = {
+      promptVisible: false,    
+      alertVisible: false,
+      contactName: 'fox-hunter5',      
       people:
         [
           {
@@ -104,11 +106,24 @@ export default class IsoScreen extends React.Component {
       isModalVisible:false,
     };
   }
-
+  makeAlertAppear() {
+    this.setState({alertVisible: true})
+}
+  makeAlertDisappear() {
+    this.setState({alertVisible: false})
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <Container>
+        <StatusBarAlert
+            visible={this.state.alertVisible}
+            message="Bridge Card Added!"
+            backgroundColor='#5BB85B'
+            color="white"
+            height={30}
+        />
+
 
         <Header title={'Connect'} />
         <View style={{
@@ -135,9 +150,42 @@ export default class IsoScreen extends React.Component {
           direction='up'
           style={styles.fab}
           position='bottomRight'
-          onPress={() => this.setState({active: !this.state.active})}>
+          onPress={() => this.setState({ promptVisible: true }) }>
           <Icon name="md-add"/>
         </Fab>
+        <Prompt
+                    title="Type in the BridgeCard code. "
+                    placeholder="fox-hunter5"
+                    visible={this.state.promptVisible}
+                    onCancel={() => {
+
+                            this.setState({
+                                promptVisible: false
+                            });
+                        }
+                    }
+                    onSubmit={(value) => {
+                        if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                            this.setState({
+                                promptVisible: false,
+                                
+                            });
+                            
+                        }
+                        else {
+                            this.setState({
+                                promptVisible: false,
+                                contactName: value
+                            });
+                            {this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) }
+
+                        }
+
+
+                    }
+
+                    } />
+
       </Container>
     )
   }

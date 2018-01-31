@@ -15,11 +15,6 @@ class CardFourDisplay extends React.Component {
 
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
-  editCard = () => {
-    this._hideModal();
-    this.props.navigation.navigate('Edit');
-  }
-
   render() {
 
     if (this.state.hidden==true) {
@@ -32,7 +27,8 @@ class CardFourDisplay extends React.Component {
           <View style={styles.top}>
               <Hero style={styles.image}
                   colorOverlay={this.props.color}
-                  source={require('../../data/CardTemplates/businesscard4.png')}
+                  fullWidth={false}
+                  source={require('../../data/CardTemplates/businesscard4update.png')}
                   renderOverlay={() => (
                       <View style={styles.container}>
                               <Image
@@ -43,6 +39,7 @@ class CardFourDisplay extends React.Component {
                               <Text style={styles.address}>{this.props.address}</Text>
                               <Text style={styles.website}>{this.props.website}</Text>
                               <Text style={styles.phonenum}>{this.props.phonenum}</Text>
+                              <Text style={styles.address2}>{this.props.city} {this.props.stateabb} {this.props.zip}</Text>
                               <Text style={styles.name}>{this.props.name}</Text>
                               <Text style={styles.buisname}>{this.props.buisname}</Text>
                               <Text style={styles.title}>{this.props.position}</Text>

@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
+import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { CardOnePreview } from '../components/CardOnePreview';
 import { CardTwoPreview } from '../components/CardTwoPreview';
@@ -14,9 +15,7 @@ import { CardFourPreview } from '../components/CardFourPreview';
 import { CardFivePreview } from '../components/CardFivePreview'
 
 import ImagePicker from 'react-native-image-picker'
-
-var MessageBarAlert = require('react-native-message-bar').MessageBar;
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+import StatusBarAlert from 'react-native-statusbar-alert';
 
 // import GL from 'gl-react'
 // import { Surface } from "gl-react-native";
@@ -37,6 +36,12 @@ const {height, width} = Dimensions.get('window');
 export default class EcardScreen extends React.Component {
 
   state = {
+    precity: '',
+    city: '',
+    prestateabb: '',
+    stateabb: '',
+    prezip: '',
+    zip: '',
     preposition: '',
     position: '',
     prename: '',
@@ -56,22 +61,19 @@ export default class EcardScreen extends React.Component {
     color: "rgba(255,255,255,0.3)",
     modalVisible: false,
     recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
-    avatarSource: "null"
+    avatarSource: undefined,
+    alertVisible: false
   }
 
-  _showModal = () => { this.setState({ isModalVisible: true })
-    console.log(width)
-  }
-  _hideModal = () => { this.setState({ isModalVisible: false })
-    console.log(width)
-  }
-
-  _showColorModal = () => { this.setState({ modalVisible: true })
-    console.log(width)
-  }
+  _showModal = () => { this.setState({ isModalVisible: true }) }
+  _hideModal = () => { this.setState({ isModalVisible: false }) }
+  _showColorModal = () => { this.setState({ modalVisible: true }) }
 
   confirmChanges = () => {
     this.setState({
+      city: this.state.precity,
+      stateabb: this.state.prestateabb,
+      zip: this.state.prezip,
       address: this.state.preaddress,
       position: this.state.preposition,
       name: this.state.prename,
@@ -85,6 +87,9 @@ export default class EcardScreen extends React.Component {
 
   saveData = () => {
     let obj = {
+      city: this.state.city,
+      stateabb: this.state.stateabb,
+      zip: this.state.zip,
       position: this.state.position,
       cardnum: this.state.cardnum,
       website: this.state.website,
@@ -98,15 +103,11 @@ export default class EcardScreen extends React.Component {
     }
     store.push('buiscards', obj)
 
-    console.log("SHOWING ALERT")
-    MessageBarManager.showAlert({
-        title: 'Saved card!',
-        message: 'Your new Bridge Card is now available. Checkout your profile page to view it!',
-        alertType: 'info',
-        viewTopOffset : 35
-        // See Properties section for full customization
-        // Or check `index.ios.js` or `index.android.js` for a complete example
-    });
+    this.makeAlertAppear()
+    setTimeout(() => {
+        this.makeAlertDisappear()
+    }, 2000)
+
   }
 
   /*<View style={{
@@ -116,15 +117,6 @@ export default class EcardScreen extends React.Component {
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1}}/>*/
-
-    componentDidMount() {
-        MessageBarManager.registerMessageBar(this.refs.alert);
-    }
-
-    componentWillUnmount() {
-        // Remove the alert located on this master page from the manager
-        MessageBarManager.unregisterMessageBar();
-    }
 
     changeColor() {
         this.setState({ modalVisible: false })
@@ -136,10 +128,17 @@ export default class EcardScreen extends React.Component {
         this.addLogo = this.addLogo.bind(this);
     }
 
+    makeAlertAppear() {
+        this.setState({alertVisible: true})
+    }
+    makeAlertDisappear() {
+        this.setState({alertVisible: false})
+    }
+
   render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, cardnum, name, email, address } = this.state;
-    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress } = this.state;
+    const { position, website, buisname, phonenum, cardnum, name, email, address, city, stateabb, zip } = this.state;
+    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip } = this.state;
     const { isLoading } = this.props;
 
     // testing the fucking color overlay shit
@@ -168,6 +167,14 @@ export default class EcardScreen extends React.Component {
     return (
       <Container>
 
+        <StatusBarAlert
+            visible={this.state.alertVisible}
+            message="Bridge Card Saved!"
+            backgroundColor={$primaryBlue}
+            color="white"
+            height={68}
+        />
+
         <Header title={'Business Card'}/>
         <View style={{
           borderBottomColor: '#003E5B',
@@ -180,15 +187,15 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
           }
         })()}
 
@@ -266,20 +273,20 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView style={{backgroundColor: 'whitesmoke', marginBottom: 10 }}>
+              <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
 
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 2:
-                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 3:
-                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 4:
-                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 5:
-                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                 }
               })()}
 
@@ -347,13 +354,49 @@ export default class EcardScreen extends React.Component {
 
               <CardInput
                 name={'address'}
-                placeholder={'Business Address'}
+                placeholder={'Street Address'}
                 withRef={true}
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preaddress}
                 onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
+
+              <CardInput
+                name={'city'}
+                placeholder={'City'}
+                withRef={true}
+                ref={(ref) => this.CityInputRef = ref}
+                editable={!isLoading}
+                value={this.state.precity}
+                onChangeText={(value) => this.setState({precity: value })}
+                isEnabled={!isLoading}/>
+
+              <View style={styles.inputRow}>
+
+                <CardInputSmall
+                  name={'stateabb'}
+                  placeholder={'State'}
+                  withRef={true}
+                  ref={(ref) => this.StateInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.prestateabb}
+                  maxLength={2}
+                  onChangeText={(value) => this.setState({prestateabb: value })}
+                  isEnabled={!isLoading}/>
+
+                <CardInputSmall
+                  name={'zip'}
+                  placeholder={'Zip Code'}
+                  withRef={true}
+                  maxLength={10}
+                  ref={(ref) => this.ZipInputRef = ref}
+                  editable={!isLoading}
+                  value={this.state.prezip}
+                  onChangeText={(value) => this.setState({prezip: value })}
+                  isEnabled={!isLoading}/>
+
+              </View>
 
               <View style={styles.buttonRow}>
 
@@ -370,14 +413,12 @@ export default class EcardScreen extends React.Component {
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
-                style={styles.button}
+                style={styles.buttonCancel}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Cancel</Text>
               </TouchableOpacity>
               </KeyboardAwareScrollView>
           </Modal>
-
-          <MessageBarAlert ref="alert" />
 
         </Container>
     )
@@ -429,14 +470,28 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: width*.3,
         marginRight: width*.3,
-        marginTop: 3,
+        marginTop: 10,
+    },
+    buttonCancel: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: width*.3,
+        marginRight: width*.3,
+        marginTop: 10,
+        marginBottom: 30,
     },
     buttonRow: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 5,
-        marginBottom:  5,
+    },
+    inputRow: {
+      flexDirection: 'row',
+      justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',
@@ -445,9 +500,9 @@ const styles = EStyleSheet.create({
         height: width*.12,
         backgroundColor: '$primaryBlue',
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
     },
     buttonText: {
         fontSize: 16,
