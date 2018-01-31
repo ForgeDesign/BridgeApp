@@ -4,14 +4,13 @@ import { View, Text, Image } from 'react-native';
 import styles from './styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const CardTwoPreview = ({ city, stateabb, zip, logo, color, position, website, buisname, phonenum, email, address, name }) => {
+const CardTwoPreview = ({ logo, color, position, website, buisname, phonenum, email, address, name }) => {
 
     return (
         <View style={styles.top}>
             <Hero style={styles.image}
                 colorOverlay={color}
-                fullWidth={false}
-                source={require('../../data/CardTemplates/businesscard2update.png')}
+                source={require('../../data/CardTemplates/businesscard2.png')}
                 renderOverlay={() => (
                     <View style={styles.container}>
                             <Image
@@ -23,7 +22,6 @@ const CardTwoPreview = ({ city, stateabb, zip, logo, color, position, website, b
                             <Text style={styles.name}>{name}</Text>
                             <Text style={styles.phonenum}>{phonenum}</Text>
                             <Text style={styles.buisname}>{buisname}</Text>
-                            <Text style={styles.address2}>{city} {stateabb} {zip}</Text>
                             <Text style={styles.title}>{position}</Text>
                             <Text style={styles.website}>{website}</Text>
                     </View>

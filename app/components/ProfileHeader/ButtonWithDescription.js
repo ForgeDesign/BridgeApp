@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Icon } from 'native-base';
@@ -7,22 +7,19 @@ import styles from './styles';
 
 
 
-export default class ButtonWithDescription extends Component {
+const ButtonWithDescription = ({pictureName, description}) => (
+    <TouchableOpacity>
+        <View style={{flexDirection:'column', alignItems:'center'}}>
+            <View style={styles.icon}>
+                <Icon name={pictureName} style={{ color: '#fff' }}/>
+            </View>
+            <Text style={{color:'#668b9d'}}>
+                {description}
+            </Text>
+        </View>
+    </TouchableOpacity>
+    
+    
+);
 
-  back = () => this.props.navigation.navigate('AllCards');
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={this.back}>
-          <View style={{flexDirection:'column', alignItems:'center'}}>
-              <View style={styles.icon}>
-                  <Icon name={this.props.pictureName} style={{ color: '#fff' }}/>
-              </View>
-              <Text style={{color:'#668b9d'}}>
-                  {this.props.description}
-              </Text>
-          </View>
-      </TouchableOpacity>
-    )
-  }
-}
+export default ButtonWithDescription;

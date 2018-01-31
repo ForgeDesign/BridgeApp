@@ -11,10 +11,4 @@ EStyleSheet.build({
   $offwhite: 'whitesmoke',
 
 });
-$primaryBlue = '#003E5B'
-$lightGray = '#E6E6E6'
-$border = '#979797'
-$inputText = '#797979'
-$darkText = '#343434'
-$offwhite = 'whitesmoke'
 export default () => <Navigator />
