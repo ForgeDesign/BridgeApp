@@ -10,6 +10,10 @@ import Checkbox from '../components/Checkbox'
 import EStyleSheet from 'react-native-extended-stylesheet';
 import StatusBarAlert from 'react-native-statusbar-alert';
 
+import { createFilter } from 'react-native-search-filter';
+import { SearchBar } from 'react-native-elements'
+const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.buisname', 'card.phonenum', 'card.email', 'card.cardnum'];
+
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
@@ -21,6 +25,7 @@ export default class ContactsScreen extends React.Component {
         disabled: true,
         alertMessage: "",
         alertVisible: false,
+        searchTerm: '',
         people:
         [
             {
@@ -122,10 +127,20 @@ export default class ContactsScreen extends React.Component {
         ]
     }
 
+    searchUpdated(term) {
+        for (let index = 0; index < this.state.people.length; index++) {
+            if(this["check" + index] != null)
+                this["check" + index].uncheck()
+        }
+        this.setState({ searchTerm: term })
+    }
+
     makeAlertAppear(message) {
         this.setState({alertVisible: true, alertMessage: message})
+        this.setState({searchTerm: ''})
     }
     makeAlertDisappear() {
+        this.setState({searchTerm: ''})
         this.setState({alertVisible: false})
     }
 
@@ -144,14 +159,17 @@ export default class ContactsScreen extends React.Component {
         else {
             for (let index = 0; index < this.state.people.length; index++) {
                 if (this.trackContactChecks[key][index]) {
-                    this["check" + index].check()
+                    if(this["check" + index] != null)
+                        this["check" + index].check()
                 }
                 else {
-                    this["check" + index].uncheck()
+                    if(this["check" + index] != null)
+                        this["check" + index].uncheck()
                 }
             }
         }
 
+        this.setState({searchTerm: ''})
         this.popupDialog.show()
     }
 
@@ -185,8 +203,12 @@ export default class ContactsScreen extends React.Component {
         this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
         
         for (let index = 0; index < this.state.people.length; index++) {
-            this["check" + index].uncheck()
+            if(this["check" + index] != null)
+                this["check" + index].uncheck()
         }
+
+        this.setState({searchTerm: ''})
+        this.search.clearText();
         this.popupDialog.dismiss()
         this.makeAlertAppear("You recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee + "!")
         setTimeout(() => {
@@ -227,6 +249,8 @@ export default class ContactsScreen extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        const filteredPeople = this.state.people.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+
         return (
             <Container>
                 <StatusBarAlert
@@ -261,7 +285,7 @@ export default class ContactsScreen extends React.Component {
                     dialogTitle={<DialogTitle title="Recommend a Contact" />}
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
                     dialogAnimation={slideAnimation}
-                    height={0.65}
+                    height={0.70}
                     actions={[
                         <Grid key="grid">
                             <Row style={{justifyContent: 'center'}}>
@@ -295,9 +319,31 @@ export default class ContactsScreen extends React.Component {
                     }
                     >
                     <View>
+                        <SearchBar
+                            round
+                            ref={search => this.search = search}
+                            showLoading
+                            clearIcon
+                            cancelButtonTitle="Cancel"
+                            icon={{ type: 'font-awesome', name: 'search' }}
+                            onChangeText={(term) => { this.searchUpdated(term) }} 
+                            onClearText={() => this.setState({searchTerm:''})}
+                            inputStyle={{
+                                backgroundColor: $offwhite
+                            }}
+                            containerStyle={{
+                                borderRadius: 0,
+                                borderWidth: 0,
+                                borderTopWidth: 0,
+                                borderBottomWidth: 0,
+                                padding: 0,
+                                margin: 0,
+                                backgroundColor: 'white'}}
+                            placeholder="Type anything to search"
+                        />
                         <FlatList
-                            height={'78%'}
-                            data={this.state.people}
+                            height={'68%'}
+                            data={filteredPeople}
                             keyExtractor={this._keyExtractor}
                             renderItem={this._renderItem}
                         />
