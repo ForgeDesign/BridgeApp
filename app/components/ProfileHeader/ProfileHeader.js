@@ -34,12 +34,16 @@ export default class ProfileHeader extends React.Component {
         });
     }
 
+    openConnect() {
+        this.connect.openConnect()
+    }
+
     render() {
         return (
             <View style={styles.background}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <View>
-                        <ConnectButtonWithDescription pictureName='md-share' description='Connect' />
+                        <ConnectButtonWithDescription ref={ref => this.connect = ref} pictureName='md-share' description='Connect' />
                     </View>
 
                     <View>

@@ -42,7 +42,7 @@ export default EStyleSheet.create({
     color: 'gray',
     fontSize: 10,
     top: '3%',
-    right: '3%',
+    right: '5%',
   },
   title: {
     position: 'absolute',

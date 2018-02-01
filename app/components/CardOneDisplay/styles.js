@@ -39,7 +39,7 @@ export default EStyleSheet.create({
     },
     website: {
       position: 'absolute',
-      color: 'white',
+      color: '$darkText',
       fontSize: 10,
       bottom: '12.5%',
       right: '12%',
@@ -53,7 +53,7 @@ export default EStyleSheet.create({
     },
     phonenum: {
       position: 'absolute',
-      color: 'white',
+      color: '$darkText',
       fontSize: 10,
       bottom: '20%',
       right: '12%',
@@ -66,7 +66,7 @@ export default EStyleSheet.create({
       left: '5%'
     },
     email: {
-      color: 'white',
+      color: '$darkText',
       fontSize: 10,
       position: 'absolute',
       bottom: '5%',

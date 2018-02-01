@@ -42,6 +42,18 @@ export default class ConnectButtonWithDescription extends React.Component{
             visible: false            
         };
     }
+
+    openConnect() {
+        let shareOptions = {
+            title: "Bridge Card",
+            message: "Add me on Bridge Card! ",
+            url: "http://share.bridgecard.io/test-share5/",
+            subject: "Let's Connect on Bridge Card!" //  for email
+        };
+        
+        Share.open(shareOptions)
+    }
+
     onCancel() {
         console.log("CANCEL")
         this.setState({visible:false});

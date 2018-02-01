@@ -170,8 +170,9 @@ export default class EcardScreen extends React.Component {
         <StatusBarAlert
             visible={this.state.alertVisible}
             message="Bridge Card Saved!"
-            backgroundColor={$primaryBlue}
+            backgroundColor={$alertSuccess}
             color="white"
+            onPress={() => this.props.navigation.navigate('Profile')}
             height={68}
         />
 
@@ -273,7 +274,7 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
+              <KeyboardAwareScrollView innerRef={ref => {this.scroll = ref}} extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
 
               { (() => {
                 switch(cardnum) {
@@ -299,6 +300,7 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prename}
+                returnKeyType = {"next"}
                 onChangeText={(value) => this.setState({prename: value })}
                 isEnabled={!isLoading}/>
 
@@ -309,6 +311,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.PositionInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preposition}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({preposition: value })}
                 isEnabled={!isLoading}/>
 
@@ -319,6 +323,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.businameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prebusiname}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({prebusiname: value })}
                 isEnabled={!isLoading}/>
 
@@ -329,6 +335,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.PhonenumInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prephonenum}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({prephonenum: value })}
                 isEnabled={!isLoading}/>
 
@@ -339,6 +347,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.EmailInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preemail}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({preemail: value })}
                 isEnabled={!isLoading}/>
 
@@ -349,6 +359,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.WebsiteInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prewebsite}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({prewebsite: value })}
                 isEnabled={!isLoading}/>
 
@@ -359,6 +371,8 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preaddress}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
 
@@ -369,32 +383,38 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.CityInputRef = ref}
                 editable={!isLoading}
                 value={this.state.precity}
+                returnKeyType = {"next"}
+                
                 onChangeText={(value) => this.setState({precity: value })}
                 isEnabled={!isLoading}/>
 
               <View style={styles.inputRow}>
 
                 <CardInputSmall
-                  name={'stateabb'}
-                  placeholder={'State'}
-                  withRef={true}
-                  ref={(ref) => this.StateInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.prestateabb}
-                  maxLength={2}
-                  onChangeText={(value) => this.setState({prestateabb: value })}
-                  isEnabled={!isLoading}/>
+                name={'stateabb'}
+                placeholder={'State'}
+                withRef={true}
+                ref={(ref) => this.StateInputRef = ref}
+                editable={!isLoading}
+                value={this.state.prestateabb}
+                maxLength={2}
+                returnKeyType = {"next"}
+                
+                onChangeText={(value) => this.setState({prestateabb: value })}
+                isEnabled={!isLoading}/>
 
                 <CardInputSmall
-                  name={'zip'}
-                  placeholder={'Zip Code'}
-                  withRef={true}
-                  maxLength={10}
-                  ref={(ref) => this.ZipInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.prezip}
-                  onChangeText={(value) => this.setState({prezip: value })}
-                  isEnabled={!isLoading}/>
+                name={'zip'}
+                placeholder={'Zip Code'}
+                withRef={true}
+                maxLength={10}
+                ref={(ref) => this.ZipInputRef = ref}
+                editable={!isLoading}
+                value={this.state.prezip}
+                returnKeyType = {"next"}
+                
+                onChangeText={(value) => this.setState({prezip: value })}
+                isEnabled={!isLoading}/>
 
               </View>
 

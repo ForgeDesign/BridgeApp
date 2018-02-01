@@ -183,7 +183,7 @@ export default class ContactsScreen extends React.Component {
                 <StatusBarAlert
                     visible={this.state.alertVisible}
                     message="Bridge Card Added!"
-                    backgroundColor='#5BB85B'
+                    backgroundColor={$alertSuccess}
                     color="white"
                     height={30}
                 />

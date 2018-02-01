@@ -79,6 +79,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -114,6 +120,12 @@ class ProfileScreen extends Component {
                                     style={styles.button}
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -157,6 +169,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -196,6 +214,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -231,6 +255,12 @@ class ProfileScreen extends Component {
                                     style={styles.button}
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -276,6 +306,10 @@ class ProfileScreen extends Component {
         this.swipeable[ref.index].recenter()
     }
 
+    openConnect() {
+        this.header.openConnect()
+    }
+
     render() {
         const { navigate } = this.props.navigation;
 
@@ -283,7 +317,7 @@ class ProfileScreen extends Component {
             <Container>
                 <Header title={'Profile'} />
 
-                <ProfileHeader navigation={this.props.navigation}/>
+                <ProfileHeader ref={ref => this.header = ref} navigation={this.props.navigation}/>
 
                 <View style={{
                     borderBottomColor: '#003E5B',
