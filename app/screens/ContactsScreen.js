@@ -188,14 +188,7 @@ export default class ContactsScreen extends React.Component {
                     height={30}
                 />
         
-                <Header title={'Contacts'} />
-                <View style={{
-                borderBottomColor: '#003E5B',
-                borderBottomWidth: 4,
-                shadowOffset: { width: 0, height:2.8 },
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-                elevation: 1}}/>
+                <Header title={'Contacts'} />   
 
                 <SearchBar
                     round
@@ -219,6 +212,15 @@ export default class ContactsScreen extends React.Component {
                         backgroundColor: $primaryBlue}}
                     placeholder="Type anything to search"
                 />
+
+                <View style={{
+                bottom: 30,
+                borderBottomColor: '#003E5B',
+                borderBottomWidth: 4,
+                shadowOffset: { width: 0, height:2.8 },
+                shadowOpacity: 0.8,
+                shadowRadius: 2,
+                elevation: 1}}/>
 
                 <AtoZListView
                     style={{ marginTop: 6, bottom: 30 }}
