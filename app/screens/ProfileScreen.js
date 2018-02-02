@@ -46,11 +46,10 @@ class ProfileScreen extends Component {
             _address: null,
             _city: null,
             _stateabb: null,
-            _zip: null
+            _zip: null,
+            landscapedCard: []
         };
     }
-
-
 
     componentWillMount() {
         store.get('buiscards').then((value) => {
@@ -102,7 +101,10 @@ class ProfileScreen extends Component {
     }
 
     
-    _showModal = () => {this.setState({isModalVisible: true})}
+    _showModal(ref) {
+        this.setState({isModalVisible: true, landscapedCard: [ref]})
+        console.log(this)
+    }
     _hideModal = () => {this.setState({isModalVisible: false})}
 
     // _showModal = (ref) => { 
@@ -157,7 +159,7 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <TouchableOpacity onPress = {this._showModal}>
+                        <TouchableOpacity onPress = {() => this._showModal(ref)}>
                             <CardOneDisplay
                                 navigation={navigation}
                                 cardnum={ref.item.cardnum}
@@ -174,6 +176,7 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
+
                             />
                         </TouchableOpacity>
                         
@@ -199,7 +202,7 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <TouchableOpacity onPress = {this._showModal}>
+                        <TouchableOpacity onPress = {() => this._showModal(ref)}>
                             <CardTwoDisplay
                                 navigation={navigation}
                                 cardnum={ref.item.cardnum}
@@ -216,6 +219,7 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
+
                             />
                         </TouchableOpacity>
                     </Swipeable>
@@ -240,7 +244,7 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <TouchableOpacity onPress = {this._showModal}>
+                        <TouchableOpacity onPress = {() => this._showModal(ref)}>
                             <CardThreeDisplay
                                 navigation={navigation}
                                 cardnum={ref.item.cardnum}
@@ -257,6 +261,7 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
+
                             />
                         </TouchableOpacity>
                     </Swipeable>
@@ -281,7 +286,7 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <TouchableOpacity onPress = {this._showModal}>
+                        <TouchableOpacity onPress = {() => this._showModal(ref)}>
                             <CardFourDisplay
                                 navigation={navigation}
                                 cardnum={ref.item.cardnum}
@@ -298,6 +303,7 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
+
                             />
                         </TouchableOpacity>
                     </Swipeable>
@@ -322,7 +328,7 @@ class ProfileScreen extends Component {
                             </View>
                         ]}
                         rightButtonWidth={width*.4 + 30}>
-                        <TouchableOpacity onPress = {this._showModal}>
+                        <TouchableOpacity onPress = {() => this._showModal(ref)}>
                             <CardFiveDisplay
                                 navigation={navigation}
                                 cardnum={ref.item.cardnum}
@@ -339,6 +345,7 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
+
                             />
                         </TouchableOpacity>
                     </Swipeable>
@@ -393,24 +400,123 @@ class ProfileScreen extends Component {
                     transparent={false}
                     visible={this.state.isModalVisible}
                     animationType='slide'>
-                    <View style={{ transform: [{ rotate: '90deg'}, {scaleX: 1.75}, {scaleY: 1.75}], alignContent:"center", justifyContent: "center" }}>
-                        <CardOneDisplay
-                            navigation={this.state._navigation}
-                            cardnum={this.state._cardnum}
-                            key={this.state._key}
-                            logo={this.state._logo}
-                            position={this.state._position}
-                            color={this.state._color}
-                            website={"this.state._website"}
-                            buisname={this.state._buisname}
-                            phonenum={this.state._phonenum}
-                            name={this.state._name}
-                            email={this.state._email}
-                            address={this.state._address}
-                            city={this.state._city}
-                            stateabb={this.state._stateabb}
-                            zip={this.state._zip}
-                        />
+                    <View style={{ top: '40%', left: '3%', transform: [{ rotate: '90deg'}, {scaleX: 2}, {scaleY: 2}], alignContent:"center", justifyContent: "center" }}>
+                        {this.state.landscapedCard.map((ref, key) =>
+                            {
+                                index = ref.index
+                                switch (ref.item.cardnum) {
+                                    case 1:
+                                    return (
+                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                            <CardOneDisplay
+                                                cardnum={ref.item.cardnum}
+                                                key={ref.index + 'landscaped'}
+                                                logo={ref.item.logo}
+                                                position={ref.item.position}
+                                                color={ref.item.color}
+                                                website={ref.item.website}
+                                                buisname={ref.item.buisname}
+                                                phonenum={ref.item.phonenum}
+                                                name={ref.item.name}
+                                                email={ref.item.email}
+                                                address={ref.item.address}
+                                                city={ref.item.city}
+                                                stateabb={ref.item.stateabb}
+                                                zip={ref.item.zip}
+
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                    case 2:
+                                    return (
+                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                            <CardTwoDisplay
+                                                cardnum={ref.item.cardnum}
+                                                key={ref.index + 'landscaped'}
+                                                logo={ref.item.logo}
+                                                position={ref.item.position}
+                                                color={ref.item.color}
+                                                website={ref.item.website}
+                                                buisname={ref.item.buisname}
+                                                phonenum={ref.item.phonenum}
+                                                name={ref.item.name}
+                                                email={ref.item.email}
+                                                address={ref.item.address}
+                                                city={ref.item.city}
+                                                stateabb={ref.item.stateabb}
+                                                zip={ref.item.zip}
+
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                    case 3:
+                                    return (
+                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                            <CardThreeDisplay
+                                                cardnum={ref.item.cardnum}
+                                                key={ref.index + 'landscaped'}
+                                                logo={ref.item.logo}
+                                                position={ref.item.position}
+                                                color={ref.item.color}
+                                                website={ref.item.website}
+                                                buisname={ref.item.buisname}
+                                                phonenum={ref.item.phonenum}
+                                                name={ref.item.name}
+                                                email={ref.item.email}
+                                                address={ref.item.address}
+                                                city={ref.item.city}
+                                                stateabb={ref.item.stateabb}
+                                                zip={ref.item.zip}
+
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                    case 4:
+                                    return (
+                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                            <CardFourDisplay
+                                                cardnum={ref.item.cardnum}
+                                                key={ref.index + 'landscaped'}
+                                                logo={ref.item.logo}
+                                                position={ref.item.position}
+                                                color={ref.item.color}
+                                                website={ref.item.website}
+                                                buisname={ref.item.buisname}
+                                                phonenum={ref.item.phonenum}
+                                                name={ref.item.name}
+                                                email={ref.item.email}
+                                                address={ref.item.address}
+                                                city={ref.item.city}
+                                                stateabb={ref.item.stateabb}
+                                                zip={ref.item.zip}
+
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                    case 5:
+                                    return (
+                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                            <CardFiveDisplay
+                                                cardnum={ref.item.cardnum}
+                                                key={ref.index + 'landscaped'}
+                                                logo={ref.item.logo}
+                                                position={ref.item.position}
+                                                color={ref.item.color}
+                                                website={ref.item.website}
+                                                buisname={ref.item.buisname}
+                                                phonenum={ref.item.phonenum}
+                                                name={ref.item.name}
+                                                email={ref.item.email}
+                                                address={ref.item.address}
+                                                city={ref.item.city}
+                                                stateabb={ref.item.stateabb}
+                                                zip={ref.item.zip}
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                }
+                            }
+                        )}
                     </View>
                 </Modal>
 
