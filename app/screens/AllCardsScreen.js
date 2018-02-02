@@ -322,7 +322,9 @@
         this.swipeable[ref.index].recenter()
     }
 
-    back = () => this.props.navigation.navigate('Profile');
+    back() {
+        this.props.navigation.goBack()
+    }
 
     _showModal(ref) {
         this.setState({isModalVisible: true, landscapedCard: [ref]})
@@ -346,7 +348,7 @@
 
                     <TouchableOpacity
                     style={styles.button}
-                    onPress={this.back}>
+                    onPress={() => this.back()}>
                         <Text style={styles.buttonText}>Return</Text>
                     </TouchableOpacity>
 
