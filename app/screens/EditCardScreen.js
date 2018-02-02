@@ -40,7 +40,7 @@ export default class EditCardScreen extends React.Component {
         this.state = {
             position: this.props.navigation.state.params.card.item.position,
             name: this.props.navigation.state.params.card.item.name,
-            buisname: this.props.navigation.state.params.card.item.buisname,
+            businame: this.props.navigation.state.params.card.item.businame,
             phonenum: this.props.navigation.state.params.card.item.phonenum,
             email: this.props.navigation.state.params.card.item.email,
             address: this.props.navigation.state.params.card.item.address,
@@ -64,7 +64,7 @@ export default class EditCardScreen extends React.Component {
     saveData = () => {
         cards = this.props.navigation.state.params.cards
         cards[this.props.navigation.state.params.card.index] = this.state
-        AsyncStorage.setItem('buiscards', JSON.stringify(cards))
+        AsyncStorage.setItem('busicards', JSON.stringify(cards))
         this.props.navigation.goBack()
     }
 
@@ -74,7 +74,7 @@ export default class EditCardScreen extends React.Component {
 
 render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, name, email, address, cardnum, city, stateabb, zip } = this.state;
+    const { position, website, businame, phonenum, name, email, address, cardnum, city, stateabb, zip } = this.state;
     const { isLoading } = this.props;
 
     return (
@@ -92,15 +92,15 @@ render() {
         { (() => {
         switch(cardnum) {
             case 1:
-            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
         }
         })()}
 
@@ -183,20 +183,20 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke' }}>
+            <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
             { (() => {
                 switch(cardnum) {
                 case 1:
-                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 2:
-                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 3:
-                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 4:
-                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
                 case 5:
-                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
                 }
             })()}
 
@@ -209,6 +209,10 @@ render() {
                 ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.name}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PositionInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({name: value })}
                 isEnabled={!isLoading}/>
 
@@ -219,17 +223,25 @@ render() {
                 ref={(ref) => this.PositionInputRef = ref}
                 editable={!isLoading}
                 value={this.state.position}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.businameInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({position: value })}
                 isEnabled={!isLoading}/>
 
             <CardInput
-                name={'buisname'}
+                name={'businame'}
                 placeholder={'Business Name'}
                 withRef={true}
-                ref={(ref) => this.BuisnameInputRef = ref}
+                ref={(ref) => this.businameInputRef = ref}
                 editable={!isLoading}
-                value={this.state.buisname}
-                onChangeText={(value) => this.setState({buisname: value })}
+                value={this.state.businame}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PhonenumInputRef.focus(); 
+                }}
+                onChangeText={(value) => this.setState({businame: value })}
                 isEnabled={!isLoading}/>
 
             <CardInput
@@ -239,6 +251,10 @@ render() {
                 ref={(ref) => this.PhonenumInputRef = ref}
                 editable={!isLoading}
                 value={this.state.phonenum}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.EmailInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
@@ -249,6 +265,10 @@ render() {
                 ref={(ref) => this.EmailInputRef = ref}
                 editable={!isLoading}
                 value={this.state.email}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.WebsiteInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({email: value })}
                 isEnabled={!isLoading}/>
 
@@ -259,6 +279,10 @@ render() {
                 ref={(ref) => this.WebsiteInputRef = ref}
                 editable={!isLoading}
                 value={this.state.website}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.AddressInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({website: value })}
                 isEnabled={!isLoading}/>
 
@@ -269,6 +293,10 @@ render() {
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.address}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.CityInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({address: value })}
                 isEnabled={!isLoading}/>
 
@@ -279,34 +307,42 @@ render() {
                 ref={(ref) => this.CityInputRef = ref}
                 editable={!isLoading}
                 value={this.state.city}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.StateInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({city: value })}
                 isEnabled={!isLoading}/>
 
-              <View style={styles.inputRow}>
+                <View style={styles.inputRow}>
 
-                <CardInputSmall
-                  name={'stateabb'}
-                  placeholder={'State'}
-                  withRef={true}
-                  ref={(ref) => this.StateInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.stateabb}
-                  maxLength={2}
-                  onChangeText={(value) => this.setState({stateabb: value })}
-                  isEnabled={!isLoading}/>
+                    <CardInputSmall
+                    name={'stateabb'}
+                    placeholder={'State'}
+                    withRef={true}
+                    ref={(ref) => this.StateInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.stateabb}
+                    returnKeyType = {"next"}
+                    onSubmitEditing={(event) => { 
+                        this.ZipInputRef.focus(); 
+                    }}
+                    maxLength={2}
+                    onChangeText={(value) => this.setState({stateabb: value })}
+                    isEnabled={!isLoading}/>
 
-                <CardInputSmall
-                  name={'zip'}
-                  placeholder={'Zip Code'}
-                  withRef={true}
-                  maxLength={10}
-                  ref={(ref) => this.ZipInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.zip}
-                  onChangeText={(value) => this.setState({zip: value })}
-                  isEnabled={!isLoading}/>
+                    <CardInputSmall
+                    name={'zip'}
+                    placeholder={'Zip Code'}
+                    withRef={true}
+                    maxLength={10}
+                    ref={(ref) => this.ZipInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.zip}
+                    onChangeText={(value) => this.setState({zip: value })}
+                    isEnabled={!isLoading}/>
 
-              </View>
+                </View>
 
             <View style={styles.buttonRow}>
 

@@ -4,86 +4,86 @@ import { Dimensions } from 'react-native';
 var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
-    top: {
-        width: (width-20),
-        height: ((width-20)*.52),
-        borderRadius: 10,
-        marginTop: 10,
-        marginLeft: 10,
-        borderRadius: 10,
-        overflow: 'hidden',
-    },
-    logo: {
-        width: 50,
-        height: 50,
-        borderRadius: 50/2,
-        position: 'absolute',
-        bottom: '4%',
-        left: '55%'
-    },
-    container: {
-        width: (width-20),
-        height: ((width-20)*.52),
-    },
-    image: {
-        width: (width-20),
-        height: ((width-20)*.52),
-    },
-    buisname: {
-        color: 'red',
-        fontSize: 14,
-        position: 'absolute',
-        top: '10%',
-        left: '5%'
-    },
-    website: {
+  top: {
+      width: (width-20),
+      height: ((width-20)*.57),
+      borderRadius: 10,
+      marginTop: 10,
+      marginLeft: 10,
+      borderRadius: 10,
+      overflow: 'hidden',
+  },
+  logo: {
+      width: 50,
+      height: 50,
+      borderRadius: 50/2,
       position: 'absolute',
-      color: 'white',
-      fontSize: 13,
-      bottom: '4%',
-      left: '15%',
-    },
-    title: {
-      position: 'absolute',
+      top: '6%',
+      left: '14%'
+  },
+  container: {
+      width: (width-20),
+      height: ((width-20)*.57),
+  },
+  image: {
+      width: (width-20),
+      height: ((width-20)*.57),
+  },
+  businame: {
       color: 'white',
       fontSize: 14,
+      position: 'absolute',
       top: '44%',
       left: '5%'
-    },
-    phonenum: {
-      position: 'absolute',
-      color: 'white',
-      fontSize: 13,
-      bottom: '22%',
-      left: '15%',
-    },
-    email: {
-      color: 'black',
-      fontSize: 10,
-      position: 'absolute',
-      top: '11%',
-      right: '3%'
-    },
-    address: {
-      color: 'black',
-      fontSize: 10,
-      position: 'absolute',
-      top: '19%',
-      right: '3%'
-    },
-    address2: {
-      color: 'black',
-      fontSize: 10,
-      position: 'absolute',
-      top: '27%',
-      right: '3%'
-    },
-    name: {
-      color: 'black',
-      fontSize: 10,
-      position: 'absolute',
-      top: '3%',
-      right: '3%'
-    },
+  },
+  website: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 13,
+    bottom: '4%',
+    left: '13%',
+  },
+  title: {
+    color: 'black',
+    fontSize: 12,
+    position: 'absolute',
+    top: '13%',
+    left: '63%'
+  },
+  phonenum: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 13,
+    bottom: '28%',
+    left: '13%',
+  },
+  email: {
+    position: 'absolute',
+    color: 'white',
+    fontSize: 13,
+    bottom: '16%',
+    left: '13%',
+  },
+  address: {
+    color: 'black',
+    fontSize: 10,
+    position: 'absolute',
+    top: '28%',
+    left: '63%'
+  },
+  address2: {
+    color: 'black',
+    fontSize: 10,
+    position: 'absolute',
+    top: '36%',
+    left: '63%'
+  },
+  name: {
+    color: 'black',
+    fontSize: 12,
+    position: 'absolute',
+    top: '6%',
+    left: '63%'
+  },
 
 });

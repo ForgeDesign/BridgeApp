@@ -1,309 +1,285 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, FlatList } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
+import { SearchBar } from 'react-native-elements'
+import { Fab, Icon } from 'native-base';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
-import { ActivityCard } from '../components/ActivityCard'
 import { PersonCard } from '../components/PersonCard';
-import { Col, Row, Grid } from "react-native-easy-grid";
-import Checkbox from '../components/Checkbox'
-import EStyleSheet from 'react-native-extended-stylesheet';
+import AtoZListView from 'react-native-atoz-listview';
+import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
-
+const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
 export default class ContactsScreen extends React.Component {
 
-    state = {
-        checked: false,
-        disabled: true,
-        alertMessage: "",
-        alertVisible: false,
-        people:
-        [
+    _showModal = () => { this.setState({ isModalVisible: true }) }
+    _hideModal = () => { this.setState({ isModalVisible: false }) }
+
+    constructor(){
+        super();
+
+        this.state = {
+            people: 
             {
-                "name": "Mark Brown",
-                "location": "71 Pilgrim Ave. Chevy Chase, MD",
-                "imagepath": require("../assets/images/markbrown.jpg"),
-                "card":{
-                    "position":"Chief Operating Officer",
-                    "website":"gsb.com",
-                    "buisname":"Global Secure Bank",
-                    "phonenum":"(213)6129713",
-                    "name":"Mark Brown",
-                    "email":"brownmark@gsb.com",
-                    "address":"71 Pilgrim Ave. Chevy Chase, MD",
-                    "cardnum": 1
-                }
+                'A': [
+                    {
+                        "name": "Brian Amin",
+                        "location": "3052 Parker Dr. Akron, OH",
+                        "imagepath": require("../assets/images/brianamin.jpg"),
+                        "card":{
+                            "position":"Project Manager",
+                            "website":"polyend.com",
+                            "businame":"Polyend Design",
+                            "phonenum":"(330)6510981",
+                            "name":"Brian Amin",
+                            "email":"brian.amin@gmail.com",
+                            "address":"3052 Parker Dr. Akron, OH",
+                            "cardnum": 2
+                        }
+                    }
+                ],
+                'B': [
+                    {
+                        "name": "Frank Barnes",
+                        "location": "530 Winding Way Reynoldsburg, OH",
+                        "imagepath": require("../assets/images/frankbarnes.jpg"),
+                        "card":{
+                            "position":"Sales Director",
+                            "website":"shop.vindu.com",
+                            "businame":"Vindu",
+                            "phonenum":"(330)2523647",
+                            "name":"Frank Barnes",
+                            "email":"barnes2@gmail.com",
+                            "address":"530 Winding Way Reynoldsburg, OH",
+                            "cardnum": 5
+                        }
+                    },
+                    {
+                        "name": "Mark Brown",
+                        "location": "71 Pilgrim Ave. Chevy Chase, MD",
+                        "imagepath": require("../assets/images/markbrown.jpg"),
+                        "card":{
+                            "position":"Chief Operating Officer",
+                            "website":"gsb.com",
+                            "businame":"Global Secure Bank",
+                            "phonenum":"(213)6129713",
+                            "name":"Mark Brown",
+                            "email":"brownmark@gsb.com",
+                            "address":"71 Pilgrim Ave. Chevy Chase, MD",
+                            "cardnum": 1
+                        }
+                    },
+                ],
+                'L': [
+                    {
+                        "name": "Mary Lewis",
+                        "location": "4 Goldfield Rd. Honolulu, HI",
+                        "imagepath": require("../assets/images/marylewis.jpg"),
+                        "card":{
+                            "position":"VP of Engineering",
+                            "website":"arkp.net",
+                            "businame":"Ark Petrol",
+                            "phonenum":"(541)9241536",
+                            "name":"Mary Lewis",
+                            "email":"mlewis1@arkp.net",
+                            "address":"4 Goldfield Rd. Honolulu, HI",
+                            "cardnum": 3
+                        }
+                    }
+                ],
+                'R': [
+                    {
+                        "name": "David Rodriguez",
+                        "location": "44 Shirley Ave. West Chicago, IL",
+                        "imagepath": require("../assets/images/davidrodriguez.jpg"),
+                        "card":{
+                            "position":"Head of Product Development",
+                            "website":"zatri.net",
+                            "businame":"Zatri Co.",
+                            "phonenum":"(338)1459857",
+                            "name":"David Rodriguez",
+                            "email":"djrodriguez@zatri.net",
+                            "address":"44 Shirley Ave. West Chicago, IL",
+                            "cardnum": 4
+                        }
+                    }
+                ],
             },
-            {
-                "name": "Brian Amin",
-                "location": "3052 Parker Dr. Akron, OH",
-                "imagepath": require("../assets/images/brianamin.jpg"),
-                "card":{
-                    "position":"Project Manager",
-                    "website":"polyend.com",
-                    "buisname":"Polyend Deseign",
-                    "phonenum":"(330)6510981",
-                    "name":"Brian Amin",
-                    "email":"brian.amin@gmail.com",
-                    "address":"3052 Parker Dr. Akron, OH",
-                    "cardnum": 2
-                }
-            },
-            {
-                "name": "Mary Lewis",
-                "location": "4 Goldfield Rd. Honolulu, HI",
-                "imagepath": require("../assets/images/marylewis.jpg"),
-                "card":{
-                    "position":"VP of Engineering",
-                    "website":"arkp.net",
-                    "buisname":"Ark Petrol",
-                    "phonenum":"(541)9241536",
-                    "name":"Mary Lewis",
-                    "email":"mlewis1@arkp.net",
-                    "address":"4 Goldfield Rd. Honolulu, HI",
-                    "cardnum": 3
-                }
-            },
-            {
-                "name": "David Rodriguez",
-                "location": "44 Shirley Ave. West Chicago, IL",
-                "imagepath": require("../assets/images/davidrodriguez.jpg"),
-                "card":{
-                    "position":"Head of Product Development",
-                    "website":"zatri.net",
-                    "buisname":"Zatri Co.",
-                    "phonenum":"(338)1459857",
-                    "name":"David Rodriguez",
-                    "email":"djrodriguez@zatri.net",
-                    "address":"44 Shirley Ave. West Chicago, IL",
-                    "cardnum": 4
-                }
-            },
-            {
-                "name": "Frank Barnes",
-                "location": "530 Winding Way Reynoldsburg, OH",
-                "imagepath": require("../assets/images/frankbarnes.jpg"),
-                "card":{
-                    "position":"Sales Director",
-                    "website":"shop.vindu.com",
-                    "buisname":"Vindu",
-                    "phonenum":"(330)2523647",
-                    "name":"Frank Barnes",
-                    "email":"barnes2@gmail.com",
-                    "address":"530 Winding Way Reynoldsburg, OH",
-                    "cardnum": 5
-                }
-            }            
-        ],
-        activity:
-        [
-            {
-                connector: "Brian Amin",
-                connectee: "Software Developer",
-                connectorpath: require("../assets/images/brianamin.jpg"),
-                time: "21m"
-            },
-            {
-                connector: "Mark Brown",
-                connectee: "Marketing Supervisor",
-                connectorpath: require("../assets/images/markbrown.jpg"),
-                time: "3h"
-            },
-            {
-                connector: "Frank Barnes",
-                connectee: "Social Media Manager",
-                connectorpath: require("../assets/images/frankbarnes.jpg"),
-                time: "8h"
-            }
-        ]
+            active: true,
+            isModalVisible:false,
+            searchTerm: '',
+            promptVisible: false,    
+            alertVisible: false,
+            contactName: 'fox-hunter5',   
+        };
     }
 
-    makeAlertAppear(message) {
-        this.setState({alertVisible: true, alertMessage: message})
+    makeAlertAppear() {
+        this.setState({alertVisible: true})
     }
     makeAlertDisappear() {
         this.setState({alertVisible: false})
     }
 
-    popupRelatedConnect = null
-
-    onPressHandle(key) {
-        this.popupRelatedConnect = key
-        console.log(key)
-        console.log(this.trackContactChecks[key])
-        if (this.trackContactChecks[key] == undefined) {
-            this.trackContactChecks[key] = {}
-            for (let index = 0; index < this.state.people.length; index++) {
-                this.trackContactChecks[key][index] = false
-            }
-        }
-        else {
-            for (let index = 0; index < this.state.people.length; index++) {
-                if (this.trackContactChecks[key][index]) {
-                    this["check" + index].check()
-                }
-                else {
-                    this["check" + index].uncheck()
-                }
-            }
-        }
-
-        this.popupDialog.show()
+    searchUpdated(term) {
+        this.setState({ searchTerm: term })
     }
 
-    _handleCheck(val, item) {
-        this.trackContactChecks[this.popupRelatedConnect][item.index] = val
-        isCheck = false
-        for (let index = 0; index < this.state.people.length; index++) {
-            if (this.trackContactChecks[this.popupRelatedConnect][index]) {
-                isCheck = true
-                break
-            }
-        }
-        if (isCheck) {
-            this.setState({disabled : false})
-        }
-        else {
-            this.setState({disabled : true})
-        }
+    renderRow = (person, sectionId, index) => {
+        if (person == undefined)
+            return(<View/>)
+        return (
+            <PersonCard
+                containerStyle={{width: 10}}
+                key={sectionId + '' + index}
+                name={person.name}
+                card={person.card}
+                location={person.location}
+                imagepath={person.imagepath}
+            />
+        )
     }
 
-    _handleRecommendation() {
-        numberOfRecs = 0
-        for (let index = 0; index < this.state.people.length; index++) {
-            if (this.trackContactChecks[this.popupRelatedConnect][index])
-                numberOfRecs += 1
-        }
-        descriptor = " people"
-        if (numberOfRecs == 1) {
-            descriptor = " person"
-        }
-        this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
-        
-        for (let index = 0; index < this.state.people.length; index++) {
-            this["check" + index].uncheck()
-        }
-        this.popupDialog.dismiss()
-        this.makeAlertAppear("You recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee + "!")
-        setTimeout(() => {
-            this.makeAlertDisappear()
-        }, 2000)
+    sectionHeader(test) {
+        return (
+            <Text containerStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}} style={{textAlign: "center", color: $inputText}}> {test.title} </Text>
+        )
     }
 
-    trackContactChecks = {
-
+    sectionListItem(test) {
+        console.log(test)
+        return (
+            <Text style={{fontSize: 16, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3}}> 
+                {test.sectionId}
+            </Text>
+        )
     }
-
-    _renderItem = (item) => (
-        <Grid>
-            <Col size={75}>
-                <PersonCard
-                    name={item.item.name}
-                    card={item.item.card}
-                    location={item.item.location}
-                    imagepath={item.item.imagepath}
-                />
-            </Col>
-            <Col size={25}>
-                <Checkbox
-                    style={{left: '45%', flex: 1, top: '15%'}}
-                    onChange={(val) => this._handleCheck(val, item)}
-                    checked={false}
-                    ref={(check) => {this["check" + item.index] = check}}
-                    checkedColor={$primaryBlue}
-                    uncheckedColor={$lightGray}
-                    iconName='matMix'
-                />
-            </Col>
-        </Grid>
-        
-    )
-
-    _keyExtractor = (item, index) => index;
 
     render() {
-        const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;        
+        const filteredPeople = JSON.parse(JSON.stringify(this.state.people))
+        Object.keys(this.state.people).filter(key => 
+            this.state.people[key].map((person, index) => {
+                if (
+                    person.name.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1 
+                    && person.location.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                    && person.card.position.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                    && person.card.website.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                    && person.card.businame.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                    && person.card.phonenum.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                    && person.card.email.toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) == -1
+                ) {
+                    filteredPeople[key][index] = undefined
+                }
+            })
+        )
         return (
             <Container>
                 <StatusBarAlert
                     visible={this.state.alertVisible}
-                    backgroundColor={$primaryBlue}
+                    message="Bridge Card Added!"
+                    backgroundColor={$alertSuccess}
                     color="white"
-                    height={68}
-                    >
-                    <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
-                </StatusBarAlert>
-                <Header title={'Activity'}/>
+                    height={30}
+                />
+        
+                <Header title={'Contacts'} />
                 <View style={{
-                    borderBottomColor: '#003E5B',
-                    borderBottomWidth: 4,
-                    shadowOffset: { width: 0, height:2.8 },
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    elevation: 1}}/>
-                <ScrollView style={{ flex: 1, marginTop: 6 }}>
-                    {this.state.activity.map((ref, key) =>
-                        <ActivityCard
-                        key={key}
-                        ref={(card) => {this[key] = card}}
-                        connector={ref.connector}
-                        connectee={ref.connectee}
-                        connectorpath={ref.connectorpath}
-                        time={ref.time}
-                        navigate={this.onPressHandle.bind(this, key)}/>
-                    )}
-                </ScrollView>
-                <PopupDialog
-                    dialogTitle={<DialogTitle title="Recommend a Contact" />}
-                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-                    dialogAnimation={slideAnimation}
-                    height={0.65}
-                    actions={[
-                        <Grid key="grid">
-                            <Row style={{justifyContent: 'center'}}>
-                                <DialogButton
-                                    text="Cancel"
-                                    onPress={() => {
-                                        this.popupDialog.dismiss();
-                                        isRecommendations = false
-                                        for (let index = 0; index < this.state.people.length; index++) {
-                                            if (this.trackContactChecks[this.popupRelatedConnect][index]) {
-                                                isRecommendations = true
-                                                break
-                                            }
-                                        }
-                                        if (!isRecommendations) {
-                                            this[this.popupRelatedConnect].addActivity("")
-                                        }
-                                    }}
-                                    key="button-1"
-                                />
-                                <DialogButton
-                                    disabled={this.state.disabled}
-                                    text="Recommend"
-                                    onPress={() => {
-                                        this._handleRecommendation();
-                                    }}
-                                    key="button-2"
-                                />
-                            </Row>
-                        </Grid>]
-                    }
-                    >
-                    <View>
-                        <FlatList
-                            height={'78%'}
-                            data={this.state.people}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                    </View>
-                </PopupDialog>
+                borderBottomColor: '#003E5B',
+                borderBottomWidth: 4,
+                shadowOffset: { width: 0, height:2.8 },
+                shadowOpacity: 0.8,
+                shadowRadius: 2,
+                elevation: 1}}/>
+
+                <SearchBar
+                    round
+                    showLoading
+                    clearIcon
+                    cancelButtonTitle="Cancel"
+                    icon={{ type: 'font-awesome', name: 'search' }}
+                    onChangeText={(term) => { this.searchUpdated(term) }} 
+                    onClearText={() => this.setState({searchTerm:''})}
+                    inputStyle={{
+                        backgroundColor: $offwhite
+                    }}
+                    containerStyle={{
+                        borderRadius: 0,
+                        borderWidth: 0,
+                        borderTopWidth: 0,
+                        borderBottomWidth: 0,
+                        padding: 0,
+                        margin: 0,
+                        bottom: 30,
+                        backgroundColor: $primaryBlue}}
+                    placeholder="Type anything to search"
+                />
+
+                <AtoZListView
+                    style={{ marginTop: 6, bottom: 30 }}
+                    data={filteredPeople}       // required array|object
+                    renderRow={this.renderRow}  // required func
+                    rowHeight={150}              // required number
+                    sectionHeaderHeight={5}    // required number
+                    sectionHeader={this.sectionHeader}
+                    removeClippedSubviews={false}
+                    sectionListStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
+                    sectionListItem={this.sectionListItem}
+                />
+
+                <Fab
+                  active={this.state.active}
+                  direction='up'
+                  style={styles.fab}
+                  position='bottomRight'
+                  onPress={() => this.setState({ promptVisible: true }) }>
+                  <Icon name="md-add"/>
+                </Fab>
+                <Prompt
+                  title="Type in the BridgeCard code. "
+                  placeholder="fox-hunter5"
+                  visible={this.state.promptVisible}
+                  onCancel={() => {
+
+                          this.setState({
+                              promptVisible: false
+                          });
+                      }
+                  }
+                  onSubmit={(value) => {
+                      if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                          this.setState({
+                              promptVisible: false,
+
+                          });
+
+                      }
+                      else {
+                          this.setState({
+                              promptVisible: false,
+                              contactName: value
+                          });
+                          {this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) }
+
+                      }
+                  }
+                  } />
             </Container>
         )
     }
 }
+
+const styles = EStyleSheet.create({
+    scroll: {
+        flex: 1,
+        backgroundColor: '$offwhite',
+    },
+    fab: {
+        backgroundColor: '$primaryBlue',
+    },
+});

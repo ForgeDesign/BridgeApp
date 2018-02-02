@@ -52,7 +52,7 @@ class ProfileScreen extends Component {
     }
 
     componentWillMount() {
-        store.get('buiscards').then((value) => {
+        store.get('busicards').then((value) => {
             if (value!==null){
                 this.setState({cards: value});
                 this.forceUpdate()
@@ -81,7 +81,7 @@ class ProfileScreen extends Component {
 
     _onRefresh() {
         this.setState({refreshing: true});
-        store.get('buiscards').then((value) => {
+        store.get('busicards').then((value) => {
             if (value!==null){
                 this.setState({cards: value});
                 this.forceUpdate();
@@ -153,6 +153,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -179,7 +185,6 @@ class ProfileScreen extends Component {
 
                             />
                         </TouchableOpacity>
-                        
                     </Swipeable>
                 )
             case 2:
@@ -192,6 +197,12 @@ class ProfileScreen extends Component {
                                     style={styles.button}
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -238,6 +249,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -280,6 +297,12 @@ class ProfileScreen extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
                                     onPress={() => this._deleteItem(ref.index)}>
                                         <Text style={styles.buttonText}>Delete Card</Text>
                                 </TouchableOpacity>
@@ -303,7 +326,6 @@ class ProfileScreen extends Component {
                                 city={ref.item.city}
                                 stateabb={ref.item.stateabb}
                                 zip={ref.item.zip}
-
                             />
                         </TouchableOpacity>
                     </Swipeable>
@@ -318,6 +340,12 @@ class ProfileScreen extends Component {
                                     style={styles.button}
                                     onPress={() => this._editItem(ref)}>
                                         <Text style={styles.buttonText}>Edit Card</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.openConnect()}>
+                                        <Text style={styles.buttonText}>Share Card</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -358,12 +386,16 @@ class ProfileScreen extends Component {
         arrayCopy = this.state.cards
         arrayCopy.splice(index, 1)
         setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
-        AsyncStorage.setItem('buiscards', JSON.stringify(arrayCopy))
+        AsyncStorage.setItem('busicards', JSON.stringify(arrayCopy))
     }
 
     _editItem(ref) {
         this.props.navigation.navigate('Edit', { card: ref, cards: this.state.cards })
         this.swipeable[ref.index].recenter()
+    }
+
+    openConnect() {
+        this.header.openConnect()
     }
 
     render() {
@@ -373,7 +405,7 @@ class ProfileScreen extends Component {
             <Container>
                 <Header title={'Profile'} />
 
-                <ProfileHeader/>
+                <ProfileHeader ref={ref => this.header = ref} navigation={this.props.navigation}/>
 
                 <View style={{
                     borderBottomColor: '#003E5B',

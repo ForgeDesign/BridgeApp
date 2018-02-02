@@ -6,7 +6,7 @@ var {height, width} = Dimensions.get('window');
 export default EStyleSheet.create({
     top: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
         borderRadius: 10,
         marginTop: 10,
         marginLeft: 10,
@@ -24,13 +24,13 @@ export default EStyleSheet.create({
     },
     container: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
     },
     image: {
         width: (width-20),
-        height: ((width-20)*.52),
+        height: ((width-20)*.57),
     },
-    buisname: {
+    businame: {
         color: 'black',
         fontSize: 16,
         position: 'absolute',
@@ -42,7 +42,7 @@ export default EStyleSheet.create({
       color: 'gray',
       fontSize: 10,
       top: '3%',
-      right: '3%',
+      right: '5%',
     },
     title: {
       position: 'absolute',
@@ -56,14 +56,14 @@ export default EStyleSheet.create({
       color: 'black',
       fontSize: 12,
       top: '48%',
-      left: '61%',
+      left: '58%',
     },
     email: {
       color: 'black',
       fontSize: 12,
       position: 'absolute',
-      top: '59%',
-      left: '61%'
+      top: '58%',
+      left: '58%'
     },
     address: {
       color: 'black',

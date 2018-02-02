@@ -34,12 +34,16 @@ export default class ProfileHeader extends React.Component {
         });
     }
 
+    openConnect() {
+        this.connect.openConnect()
+    }
+
     render() {
         return (
             <View style={styles.background}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <View>
-                        <ConnectButtonWithDescription pictureName='md-share' description='Connect' />
+                        <ConnectButtonWithDescription ref={ref => this.connect = ref} pictureName='md-share' description='Connect' />
                     </View>
 
                     <View>
@@ -47,7 +51,7 @@ export default class ProfileHeader extends React.Component {
                     </View>
 
                     <View>
-                        <ButtonWithDescription pictureName='md-card' description='Cards' />
+                        <ButtonWithDescription pictureName='md-card' description='Cards' navigation={this.props.navigation} />
                     </View>
                 </View>
 
@@ -70,7 +74,7 @@ export default class ProfileHeader extends React.Component {
                     placeholder="John Doe"
                     visible={this.state.promptVisible}
                     onCancel={() => {
-                        
+
                             this.setState({
                                 promptVisible: false
                             });
@@ -106,4 +110,3 @@ export default class ProfileHeader extends React.Component {
         )
     }
 }
-

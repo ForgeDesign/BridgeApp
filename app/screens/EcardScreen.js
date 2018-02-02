@@ -46,8 +46,8 @@ export default class EcardScreen extends React.Component {
     position: '',
     prename: '',
     name: '',
-    prebuisname: '',
-    buisname: '',
+    prebusiname: '',
+    businame: '',
     prephonenum: '',
     phonenum: '',
     preemail: '',
@@ -77,7 +77,7 @@ export default class EcardScreen extends React.Component {
       address: this.state.preaddress,
       position: this.state.preposition,
       name: this.state.prename,
-      buisname: this.state.prebuisname,
+      businame: this.state.prebusiname,
       email: this.state.preemail,
       website: this.state.prewebsite,
       phonenum: this.state.prephonenum,
@@ -93,7 +93,7 @@ export default class EcardScreen extends React.Component {
       position: this.state.position,
       cardnum: this.state.cardnum,
       website: this.state.website,
-      buisname: this.state.buisname,
+      businame: this.state.businame,
       phonenum: this.state.phonenum,
       email: this.state.email,
       name: this.state.name,
@@ -101,7 +101,7 @@ export default class EcardScreen extends React.Component {
       color: this.state.color,
       logo: this.state.avatarSource,
     }
-    store.push('buiscards', obj)
+    store.push('busicards', obj)
 
     this.makeAlertAppear()
     setTimeout(() => {
@@ -137,8 +137,8 @@ export default class EcardScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { position, website, buisname, phonenum, cardnum, name, email, address, city, stateabb, zip } = this.state;
-    const { preposition, prewebsite, prebuisname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip } = this.state;
+    const { position, website, businame, phonenum, cardnum, name, email, address, city, stateabb, zip } = this.state;
+    const { preposition, prewebsite, prebusiname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip } = this.state;
     const { isLoading } = this.props;
 
     // testing the fucking color overlay shit
@@ -170,8 +170,9 @@ export default class EcardScreen extends React.Component {
         <StatusBarAlert
             visible={this.state.alertVisible}
             message="Bridge Card Saved!"
-            backgroundColor={$primaryBlue}
+            backgroundColor={$alertSuccess}
             color="white"
+            onPress={() => this.props.navigation.navigate('Profile')}
             height={68}
         />
 
@@ -187,15 +188,15 @@ export default class EcardScreen extends React.Component {
         { (() => {
           switch(cardnum) {
             case 1:
-              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardOnePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 2:
-              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardTwoPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 3:
-              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardThreePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 4:
-              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFourPreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
             case 5:
-              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} buisname={buisname} phonenum={phonenum} name={name} email={email} address={address}/> );
+              return ( <CardFivePreview logo={this.state.avatarSource} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
           }
         })()}
 
@@ -273,20 +274,20 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
+              <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke'}}>
 
               { (() => {
                 switch(cardnum) {
                   case 1:
-                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardOnePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} businame={prebusiname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 2:
-                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardTwoPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} businame={prebusiname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 3:
-                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardThreePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} businame={prebusiname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 4:
-                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFourPreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} businame={prebusiname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                   case 5:
-                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} buisname={prebuisname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
+                    return ( <CardFivePreview logo={this.state.preavatarSource} color={this.state.color} city={precity} stateabb={prestateabb} zip={prezip} position={preposition} website={prewebsite} businame={prebusiname} phonenum={prephonenum} name={prename} email={preemail} address={preaddress}/> );
                 }
               })()}
 
@@ -299,6 +300,10 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prename}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PositionInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prename: value })}
                 isEnabled={!isLoading}/>
 
@@ -309,17 +314,25 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.PositionInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preposition}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.businameInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preposition: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
-                name={'buisname'}
+                name={'businame'}
                 placeholder={'Business Name'}
                 withRef={true}
-                ref={(ref) => this.BuisnameInputRef = ref}
+                ref={(ref) => this.businameInputRef = ref}
                 editable={!isLoading}
-                value={this.state.prebuisname}
-                onChangeText={(value) => this.setState({prebuisname: value })}
+                value={this.state.prebusiname}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PhonenumInputRef.focus(); 
+                }}
+                onChangeText={(value) => this.setState({prebusiname: value })}
                 isEnabled={!isLoading}/>
 
               <CardInput
@@ -329,6 +342,10 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.PhonenumInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prephonenum}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.EmailInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prephonenum: value })}
                 isEnabled={!isLoading}/>
 
@@ -339,6 +356,10 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.EmailInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preemail}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.WebsiteInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preemail: value })}
                 isEnabled={!isLoading}/>
 
@@ -349,6 +370,10 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.WebsiteInputRef = ref}
                 editable={!isLoading}
                 value={this.state.prewebsite}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.AddressInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prewebsite: value })}
                 isEnabled={!isLoading}/>
 
@@ -359,6 +384,10 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.preaddress}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.CityInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
 
@@ -369,32 +398,41 @@ export default class EcardScreen extends React.Component {
                 ref={(ref) => this.CityInputRef = ref}
                 editable={!isLoading}
                 value={this.state.precity}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.StateInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({precity: value })}
                 isEnabled={!isLoading}/>
 
               <View style={styles.inputRow}>
 
                 <CardInputSmall
-                  name={'stateabb'}
-                  placeholder={'State'}
-                  withRef={true}
-                  ref={(ref) => this.StateInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.prestateabb}
-                  maxLength={2}
-                  onChangeText={(value) => this.setState({prestateabb: value })}
-                  isEnabled={!isLoading}/>
+                name={'stateabb'}
+                placeholder={'State'}
+                withRef={true}
+                ref={(ref) => this.StateInputRef = ref}
+                editable={!isLoading}
+                value={this.state.prestateabb}
+                maxLength={2}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.ZipInputRef.focus(); 
+                }}
+                onChangeText={(value) => this.setState({prestateabb: value })}
+                isEnabled={!isLoading}/>
 
                 <CardInputSmall
-                  name={'zip'}
-                  placeholder={'Zip Code'}
-                  withRef={true}
-                  maxLength={10}
-                  ref={(ref) => this.ZipInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.prezip}
-                  onChangeText={(value) => this.setState({prezip: value })}
-                  isEnabled={!isLoading}/>
+                name={'zip'}
+                placeholder={'Zip Code'}
+                withRef={true}
+                maxLength={10}
+                ref={(ref) => this.ZipInputRef = ref}
+                editable={!isLoading}
+                value={this.state.prezip}
+                returnKeyType = {"next"}
+                onChangeText={(value) => this.setState({prezip: value })}
+                isEnabled={!isLoading}/>
 
               </View>
 
