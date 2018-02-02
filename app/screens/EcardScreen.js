@@ -274,7 +274,7 @@ export default class EcardScreen extends React.Component {
               shadowRadius: 2,
               elevation: 1}}/>
 
-              <KeyboardAwareScrollView innerRef={ref => {this.scroll = ref}} extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke'}}>
+              <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke'}}>
 
               { (() => {
                 switch(cardnum) {
@@ -301,6 +301,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.prename}
                 returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PositionInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prename: value })}
                 isEnabled={!isLoading}/>
 
@@ -312,7 +315,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.preposition}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.businameInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preposition: value })}
                 isEnabled={!isLoading}/>
 
@@ -324,7 +329,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.prebusiname}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.PhonenumInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prebusiname: value })}
                 isEnabled={!isLoading}/>
 
@@ -336,7 +343,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.prephonenum}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.EmailInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prephonenum: value })}
                 isEnabled={!isLoading}/>
 
@@ -348,7 +357,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.preemail}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.WebsiteInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preemail: value })}
                 isEnabled={!isLoading}/>
 
@@ -360,7 +371,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.prewebsite}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.AddressInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prewebsite: value })}
                 isEnabled={!isLoading}/>
 
@@ -372,7 +385,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.preaddress}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.CityInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({preaddress: value })}
                 isEnabled={!isLoading}/>
 
@@ -384,7 +399,9 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.precity}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.StateInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({precity: value })}
                 isEnabled={!isLoading}/>
 
@@ -399,7 +416,9 @@ export default class EcardScreen extends React.Component {
                 value={this.state.prestateabb}
                 maxLength={2}
                 returnKeyType = {"next"}
-                
+                onSubmitEditing={(event) => { 
+                    this.ZipInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({prestateabb: value })}
                 isEnabled={!isLoading}/>
 
@@ -412,7 +431,6 @@ export default class EcardScreen extends React.Component {
                 editable={!isLoading}
                 value={this.state.prezip}
                 returnKeyType = {"next"}
-                
                 onChangeText={(value) => this.setState({prezip: value })}
                 isEnabled={!isLoading}/>
 

@@ -183,7 +183,7 @@ render() {
             shadowRadius: 2,
             elevation: 1}}/>
 
-            <KeyboardAwareScrollView extraScrollHeight={100} extraHeight={100} style={{backgroundColor: 'whitesmoke' }}>
+            <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
             { (() => {
                 switch(cardnum) {
@@ -209,6 +209,10 @@ render() {
                 ref={(ref) => this.NameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.name}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PositionInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({name: value })}
                 isEnabled={!isLoading}/>
 
@@ -219,6 +223,10 @@ render() {
                 ref={(ref) => this.PositionInputRef = ref}
                 editable={!isLoading}
                 value={this.state.position}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.businameInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({position: value })}
                 isEnabled={!isLoading}/>
 
@@ -229,6 +237,10 @@ render() {
                 ref={(ref) => this.businameInputRef = ref}
                 editable={!isLoading}
                 value={this.state.businame}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.PhonenumInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({businame: value })}
                 isEnabled={!isLoading}/>
 
@@ -239,6 +251,10 @@ render() {
                 ref={(ref) => this.PhonenumInputRef = ref}
                 editable={!isLoading}
                 value={this.state.phonenum}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.EmailInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({phonenum: value })}
                 isEnabled={!isLoading}/>
 
@@ -249,6 +265,10 @@ render() {
                 ref={(ref) => this.EmailInputRef = ref}
                 editable={!isLoading}
                 value={this.state.email}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.WebsiteInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({email: value })}
                 isEnabled={!isLoading}/>
 
@@ -259,6 +279,10 @@ render() {
                 ref={(ref) => this.WebsiteInputRef = ref}
                 editable={!isLoading}
                 value={this.state.website}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.AddressInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({website: value })}
                 isEnabled={!isLoading}/>
 
@@ -269,6 +293,10 @@ render() {
                 ref={(ref) => this.AddressInputRef = ref}
                 editable={!isLoading}
                 value={this.state.address}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.CityInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({address: value })}
                 isEnabled={!isLoading}/>
 
@@ -279,34 +307,42 @@ render() {
                 ref={(ref) => this.CityInputRef = ref}
                 editable={!isLoading}
                 value={this.state.city}
+                returnKeyType = {"next"}
+                onSubmitEditing={(event) => { 
+                    this.StateInputRef.focus(); 
+                }}
                 onChangeText={(value) => this.setState({city: value })}
                 isEnabled={!isLoading}/>
 
-              <View style={styles.inputRow}>
+                <View style={styles.inputRow}>
 
-                <CardInputSmall
-                  name={'stateabb'}
-                  placeholder={'State'}
-                  withRef={true}
-                  ref={(ref) => this.StateInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.stateabb}
-                  maxLength={2}
-                  onChangeText={(value) => this.setState({stateabb: value })}
-                  isEnabled={!isLoading}/>
+                    <CardInputSmall
+                    name={'stateabb'}
+                    placeholder={'State'}
+                    withRef={true}
+                    ref={(ref) => this.StateInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.stateabb}
+                    returnKeyType = {"next"}
+                    onSubmitEditing={(event) => { 
+                        this.ZipInputRef.focus(); 
+                    }}
+                    maxLength={2}
+                    onChangeText={(value) => this.setState({stateabb: value })}
+                    isEnabled={!isLoading}/>
 
-                <CardInputSmall
-                  name={'zip'}
-                  placeholder={'Zip Code'}
-                  withRef={true}
-                  maxLength={10}
-                  ref={(ref) => this.ZipInputRef = ref}
-                  editable={!isLoading}
-                  value={this.state.zip}
-                  onChangeText={(value) => this.setState({zip: value })}
-                  isEnabled={!isLoading}/>
+                    <CardInputSmall
+                    name={'zip'}
+                    placeholder={'Zip Code'}
+                    withRef={true}
+                    maxLength={10}
+                    ref={(ref) => this.ZipInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.zip}
+                    onChangeText={(value) => this.setState({zip: value })}
+                    isEnabled={!isLoading}/>
 
-              </View>
+                </View>
 
             <View style={styles.buttonRow}>
 
