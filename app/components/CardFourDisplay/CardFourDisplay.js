@@ -23,7 +23,7 @@ class CardFourDisplay extends React.Component {
 
     else {
       return (
-        <TouchableOpacity>
+        <View>
           <View style={styles.top}>
               <Hero style={styles.image}
                   colorOverlay={this.props.color}
@@ -85,7 +85,7 @@ class CardFourDisplay extends React.Component {
 
           </Modal>
 
-        </TouchableOpacity>
+        </View>
       )
     }
   }
