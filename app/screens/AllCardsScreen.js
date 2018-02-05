@@ -328,7 +328,6 @@
 
     _showModal(ref) {
         this.setState({isModalVisible: true, landscapedCard: [ref]})
-        console.log(this)
     }
     _hideModal = () => {this.setState({isModalVisible: false})}
 
