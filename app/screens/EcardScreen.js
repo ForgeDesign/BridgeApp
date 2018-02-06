@@ -9,7 +9,7 @@ import { CardInput } from '../components/CardInput';
 import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { BusinessCard } from '../components/BusinessCard';
-
+import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 import StatusBarAlert from 'react-native-statusbar-alert';
 
@@ -32,11 +32,27 @@ const {height, width} = Dimensions.get('window');
 export default class EcardScreen extends React.Component {
 
 state = {
+    fonts : [
+        {
+            value: 'Arial'
+        },
+        {
+            value: 'Avenir'
+        },
+        {
+            value: 'Helvetica'
+        },  
+        {
+            value: 'System Font'
+        },
+    ],
     precity: '',
     city: '',
     prestateabb: '',
     stateabb: '',
     prezip: '',
+    prefont: '',
+    font: '',
     zip: '',
     preposition: '',
     position: '',
@@ -70,6 +86,7 @@ confirmChanges = () => {
         city: this.state.precity,
         stateabb: this.state.prestateabb,
         zip: this.state.prezip,
+        font: this.state.prefont,
         address: this.state.preaddress,
         position: this.state.preposition,
         name: this.state.prename,
@@ -84,6 +101,7 @@ confirmChanges = () => {
 
 saveData = () => {
     let obj = {
+        font: this.state.font,
         city: this.state.city,
         stateabb: this.state.stateabb,
         zip: this.state.zip,
@@ -138,8 +156,8 @@ saveData = () => {
 
     render() {
         const { navigate } = this.props.navigation;
-        const { position, website, businame, phonenum, cardnum, name, email, address, city, stateabb, zip } = this.state;
-        const { preposition, prewebsite, prebusiname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip } = this.state;
+        const { position, website, businame, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
+        const { preposition, prewebsite, prebusiname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
         const { isLoading } = this.props;
 
         // testing the fucking color overlay shit
@@ -186,6 +204,7 @@ saveData = () => {
                 elevation: 1}}/>
 
                 <BusinessCard
+                    font={this.state.prefont}
                     cardnum={this.state.cardnum}
                     logo={this.state.logo} 
                     color={this.state.color} 
@@ -280,6 +299,7 @@ saveData = () => {
                     <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke'}}>
 
                     <BusinessCard
+                        font={this.state.prefont}
                         cardnum={this.state.cardnum}
                         logo={this.state.logo} 
                         color={this.state.color} 
@@ -438,6 +458,17 @@ saveData = () => {
 
                     </View>
 
+                    <Dropdown
+                        onChangeText={(value) => this.update("prefont", value)}
+                        value={this.state.prefont}
+                        containerStyle={styles.container}
+                        style={styles.containerInner}
+                        label='Card Font'
+                        data={this.state.fonts}
+                        textColor={$primaryBlue}
+                        selectedItemColor={$primaryBlue}
+                    />
+
                     <View style={styles.buttonRow}>
 
                         <TouchableOpacity
@@ -501,6 +532,26 @@ saveData = () => {
 }
 
 const styles = EStyleSheet.create({
+    container: {
+        width: width-20,
+        height: width*.16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderRadius: 5,
+        backgroundColor: '$lightGray',
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      },
+      containerInner: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderRadius: 5,
+        marginLeft: '40%',
+        marginRight: '40%',
+      },
     button: {
         justifyContent: 'center',
         alignItems: 'center',

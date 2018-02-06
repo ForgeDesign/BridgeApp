@@ -17,7 +17,7 @@ export default class BusinessCard extends React.Component {
     }
 
     updateWith(props, constructor) {
-        var cardStyle = new CardStyle().getCardStyle(props.cardnum)
+        var cardStyle = new CardStyle().getCardStyle(props.cardnum, props.font)
         object = {
             hidden: false,
             style : cardStyle.style,

@@ -97,6 +97,7 @@ class ProfileScreen extends Component {
             <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>
                     <BusinessCard
+                        font={ref.item.font}
                         cardnum={ref.item.cardnum}
                         key={ref.index}
                         logo={ref.item.logo}

@@ -56,6 +56,7 @@ class PersonCard extends React.Component {
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
             <BusinessCard 
+                font={this.props.card.font}
                 cardnum={this.props.card.cardnum}
                 logo={this.props.card.avatarSource} 
                 color={this.props.card.color} 

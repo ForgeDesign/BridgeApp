@@ -91,6 +91,7 @@
             >
                 <TouchableOpacity onPress = {() => this._showModal(item)}>
                     <BusinessCard
+                        font={item.item.font}
                         cardnum={item.item.cardnum}
                         key={item.index}
                         logo={item.item.logo}
@@ -174,6 +175,7 @@
                         {this.state.landscapedCard.map((ref, key) =>
                             <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
                                 <BusinessCard
+                                    font={ref.item.font}
                                     cardnum={ref.item.cardnum}
                                     key={ref.index + 'landscaped'}
                                     logo={ref.item.logo}

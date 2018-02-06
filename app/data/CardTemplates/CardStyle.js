@@ -6,7 +6,10 @@ var {height, width} = Dimensions.get('window');
 
 export default class CardStyle {
 
-    getCardStyle(cardnum) {
+    getCardStyle(cardnum, fontFamily) {
+        if (fontFamily == undefined || fontFamily == '') {
+            fontFamily = 'system font'
+        }
         let cardStyleDetails = new SimulateGetRequestForNow().card(cardnum)
         return {
             style: EStyleSheet.create({
@@ -40,6 +43,7 @@ export default class CardStyle {
                 businame: {
                     color: cardStyleDetails.businame.color,
                     fontSize: cardStyleDetails.businame.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.businame.top,
                     bottom: cardStyleDetails.businame.bottom,
@@ -49,6 +53,7 @@ export default class CardStyle {
                 website: {
                     color: cardStyleDetails.website.color,
                     fontSize: cardStyleDetails.website.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.website.top,
                     bottom: cardStyleDetails.website.bottom,
@@ -58,6 +63,7 @@ export default class CardStyle {
                 title: {
                     color: cardStyleDetails.title.color,
                     fontSize: cardStyleDetails.title.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.title.top,
                     bottom: cardStyleDetails.title.bottom,
@@ -67,6 +73,7 @@ export default class CardStyle {
                 phonenum: {
                     color: cardStyleDetails.phonenum.color,
                     fontSize: cardStyleDetails.phonenum.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.phonenum.top,
                     bottom: cardStyleDetails.phonenum.bottom,
@@ -76,6 +83,7 @@ export default class CardStyle {
                 name: {
                     color: cardStyleDetails.name.color,
                     fontSize: cardStyleDetails.name.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.name.top,
                     bottom: cardStyleDetails.name.bottom,
@@ -85,6 +93,7 @@ export default class CardStyle {
                 email: {
                     color: cardStyleDetails.email.color,
                     fontSize: cardStyleDetails.email.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.email.top,
                     bottom: cardStyleDetails.email.bottom,
@@ -94,6 +103,7 @@ export default class CardStyle {
                 address: {
                     color: cardStyleDetails.address.color,
                     fontSize: cardStyleDetails.address.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.address.top,
                     bottom: cardStyleDetails.address.bottom,
@@ -103,6 +113,7 @@ export default class CardStyle {
                 address2: {
                     color: cardStyleDetails.address2.color,
                     fontSize: cardStyleDetails.address2.fontSize,
+                    fontFamily: fontFamily,
                     position: 'absolute',
                     top: cardStyleDetails.address2.top,
                     bottom: cardStyleDetails.address2.bottom,

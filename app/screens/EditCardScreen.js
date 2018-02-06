@@ -8,7 +8,7 @@ import { CardInput } from '../components/CardInput';
 import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
 import { BusinessCard } from '../components/BusinessCard';
-
+import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 
 // import GL from 'gl-react'
@@ -45,11 +45,26 @@ export default class EditCardScreen extends React.Component {
             city: this.props.navigation.state.params.card.item.city,
             stateabb: this.props.navigation.state.params.card.item.stateabb,
             zip: this.props.navigation.state.params.card.item.zip,
+            font: this.props.navigation.state.params.card.item.font,
             isModalVisible: false,
             color: this.props.navigation.state.params.card.item.color,
             modalVisible: false,
             recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
             logo: this.props.navigation.state.params.card.item.logo,
+            fonts : [
+                {
+                    value: 'Arial'
+                },
+                {
+                    value: 'Avenir'
+                },
+                {
+                    value: 'Helvetica'
+                },  
+                {
+                    value: 'System Font'
+                },
+            ],
         }
     }
 
@@ -70,7 +85,7 @@ export default class EditCardScreen extends React.Component {
 
 render() {
     const { navigate } = this.props.navigation;
-    const { position, website, businame, phonenum, name, email, address, cardnum, city, stateabb, zip } = this.state;
+    const { position, website, businame, phonenum, name, email, address, cardnum, city, stateabb, zip, font } = this.state;
     const { isLoading } = this.props;
 
     return (
@@ -86,6 +101,7 @@ render() {
         elevation: 1}}/>
 
         <BusinessCard
+            font={this.state.font}
             cardnum={this.state.cardnum}
             logo={this.state.logo} 
             color={this.state.color} 
@@ -183,6 +199,7 @@ render() {
             <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
             <BusinessCard
+                font={this.state.font}
                 cardnum={this.state.cardnum}
                 logo={this.state.logo} 
                 color={this.state.color} 
@@ -342,6 +359,17 @@ render() {
 
                 </View>
 
+                <Dropdown
+                    onChangeText={(value) => this.setState({font: value})}
+                    value={this.state.prefont}
+                    containerStyle={styles.container}
+                    style={styles.containerInner}
+                    label='Card Font'
+                    data={this.state.fonts}
+                    textColor={$primaryBlue}
+                    selectedItemColor={$primaryBlue}
+                />
+
             <View style={styles.buttonRow}>
 
                 <TouchableOpacity
@@ -400,6 +428,26 @@ render() {
 }
 
 const styles = EStyleSheet.create({
+    container: {
+        width: width-20,
+        height: width*.16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderRadius: 5,
+        backgroundColor: '$lightGray',
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+      },
+      containerInner: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderRadius: 5,
+        marginLeft: '40%',
+        marginRight: '40%',
+      },
     button: {
         justifyContent: 'center',
         alignItems: 'center',
