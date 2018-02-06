@@ -8,7 +8,8 @@ import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { ProfileHeader } from '../components/ProfileHeader';
 import { BusinessCard } from '../components/BusinessCard';
-import Checkbox from '../components/Checkbox'
+import Checkbox from '../components/Checkbox';
+import { ProfileActivity } from '../components/ProfileActivity';
 
 import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 import Swipeable from 'react-native-swipeable';
@@ -23,12 +24,45 @@ var {height, width} = Dimensions.get('window');
 
 class ProfileScreen extends Component {
 
-    
+
     constructor(props) {
         super(props)
 
         this.state = {
-            disabled: true
+            disabled: true,
+            activity:
+            [
+              {
+                connector: "Brian Amin",
+                connectee: "Frank Barnes",
+                connectorpath: require("../assets/images/brianamin.jpg"),
+                time: "21m"
+              },
+              {
+                connector: "Mark Brown",
+                connectee: "Brian Amin",
+                connectorpath: require("../assets/images/markbrown.jpg"),
+                time: "3h"
+              },
+              {
+                connector: "Frank Barnes",
+                connectee: "Mary Lewis",
+                connectorpath: require("../assets/images/frankbarnes.jpg"),
+                time: "4h"
+              },
+              {
+                connector: "Mary Lewis",
+                connectee: "David Rodriguez",
+                connectorpath: require("../assets/images/marylewis.jpg"),
+                time: "8h"
+              },
+              {
+                connector: "David Rodriguez",
+                connectee: "Mark Brown",
+                connectorpath: require("../assets/images/davidrodriguez.jpg"),
+                time: "11h"
+              }
+            ]
         }
 
         this._handleCheck.bind(this)
@@ -136,8 +170,8 @@ class ProfileScreen extends Component {
             <Container>
                 <Header title={'Profile'} />
 
-                <ProfileHeader 
-                    ref={ref => this.header = ref} 
+                <ProfileHeader
+                    ref={ref => this.header = ref}
                     navigation={this.props.navigation}
                     showPopup={this.openPopup.bind(this)}
                 />
@@ -188,6 +222,17 @@ class ProfileScreen extends Component {
                         />
                     </View>
                 </PopupDialog>
+                <ScrollView style={{ flex: 1, marginTop: 3 }}>
+                    {this.state.activity.map((ref, key) =>
+                        <ProfileActivity
+                          key={key}
+                          ref={(card) => {this[key] = card}}
+                          connector={ref.connector}
+                          connectee={ref.connectee}
+                          connectorpath={ref.connectorpath}
+                          time={ref.time}/>
+                    )}
+                </ScrollView>
             </Container>
         )
     }
