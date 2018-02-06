@@ -121,7 +121,7 @@ saveData = () => {
     this.makeAlertAppear()
     setTimeout(() => {
         this.makeAlertDisappear()
-    }, 2000)
+    }, 3000)
 
 }
 
