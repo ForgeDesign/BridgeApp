@@ -18,4 +18,5 @@ $border = '#979797'
 $inputText = '#797979'
 $darkText = '#343434'
 $offwhite = 'whitesmoke'
+
 export default () => <Navigator />

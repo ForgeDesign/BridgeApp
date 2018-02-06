@@ -7,14 +7,17 @@ import styles from './ProfileStyles'
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { ProfileHeader } from '../components/ProfileHeader';
-import { CardTwoDisplay } from '../components/CardTwoDisplay';
-import { CardThreeDisplay } from '../components/CardThreeDisplay';
-import { CardFourDisplay } from '../components/CardFourDisplay';
-import { CardFiveDisplay } from '../components/CardFiveDisplay';
-import { CardOneDisplay } from '../components/CardOneDisplay';
+import { BusinessCard } from '../components/BusinessCard';
+import Checkbox from '../components/Checkbox'
 
 import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 import Swipeable from 'react-native-swipeable';
+
+import { Col, Row, Grid } from "react-native-easy-grid";
+import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
+const slideAnimation = new SlideAnimation({
+    slideFrom: 'bottom',
+});
 
 var {height, width} = Dimensions.get('window');
 
@@ -22,7 +25,22 @@ class ProfileScreen extends Component {
 
     
     constructor(props) {
-        super(props);
+        super(props)
+
+        this.state = {
+            disabled: true
+        }
+
+        this._getCards()
+    }
+
+    _getCards() {
+        store.get('busicards').then((value) => {
+            if (value!==null){
+                this.setState({cards: value});
+                this.forceUpdate();
+            }
+        });
     }
 
     // this tells you if the profile screen is active
@@ -30,10 +48,62 @@ class ProfileScreen extends Component {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
             // this._onRefresh()
+            this._getCards()
         }
         if (this.props.isFocused && !nextProps.isFocused) {
             // NOT HERE
         }
+    }
+
+    openPopup() {
+        this.popupDialog.show()
+    }
+
+    _keyExtractor = (item, index) => index;
+
+    _handleCheck(val, ref) {
+        console.log(val, ref)
+    }
+
+    _renderItem(ref) {
+
+        return (
+            <Grid>
+                <Col size={75}>
+                    <BusinessCard
+                        cardnum={ref.item.cardnum}
+                        key={ref.index}
+                        logo={ref.item.logo}
+                        position={ref.item.position}
+                        color={ref.item.color}
+                        website={ref.item.website}
+                        businame={ref.item.businame}
+                        phonenum={ref.item.phonenum}
+                        name={ref.item.name}
+                        email={ref.item.email}
+                        address={ref.item.address}
+                        city={ref.item.city}
+                        stateabb={ref.item.stateabb}
+                        zip={ref.item.zip}
+                    />
+                </Col>
+                <Col size={25}>
+                    <Checkbox
+                        style={{left: '45%', flex: 1, top: '15%'}}
+                        onChange={(val) => this._handleCheck(val, ref)}
+                        checked={false}
+                        ref={(check) => {this["check" + ref.index] = check}}
+                        checkedColor={$primaryBlue}
+                        uncheckedColor={$lightGray}
+                        iconName='matMix'
+                    />
+                </Col>
+            </Grid>
+        )
+    }
+
+    _handleShares() {
+
     }
 
     render() {
@@ -43,7 +113,11 @@ class ProfileScreen extends Component {
             <Container>
                 <Header title={'Profile'} />
 
-                <ProfileHeader ref={ref => this.header = ref} navigation={this.props.navigation}/>
+                <ProfileHeader 
+                    ref={ref => this.header = ref} 
+                    navigation={this.props.navigation}
+                    showPopup={this.openPopup.bind(this)}
+                />
 
                 <View style={{
                     borderBottomColor: '#003E5B',
@@ -55,6 +129,42 @@ class ProfileScreen extends Component {
                     bottom: 3
                 }}/>
 
+                <PopupDialog
+                    dialogTitle={<DialogTitle title="Select a Card" />}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+                    dialogAnimation={slideAnimation}
+                    height={0.70}
+                    actions={[
+                        <Grid key="grid">
+                            <Row style={{justifyContent: 'center'}}>
+                                <DialogButton
+                                    text="Cancel"
+                                    onPress={() => {
+                                        this.popupDialog.dismiss();
+                                    }}
+                                    key="button-1"
+                                />
+                                <DialogButton
+                                    disabled={this.state.disabled}
+                                    text="Share"
+                                    onPress={() => {
+                                        this._handleShares();
+                                    }}
+                                    key="button-2"
+                                />
+                            </Row>
+                        </Grid>]
+                    }
+                    >
+                    <View>
+                        <FlatList
+                            height={'68%'}
+                            data={this.state.cards}
+                            keyExtractor={this._keyExtractor}
+                            renderItem={this._renderItem}
+                        />
+                    </View>
+                </PopupDialog>
             </Container>
         )
     }

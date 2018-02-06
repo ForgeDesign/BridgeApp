@@ -2,11 +2,7 @@ import React from 'react';
 
 import { View, Text, Image, TouchableOpacity, Modal, KeyboardAvoidingView } from 'react-native';
 import styles from './styles';
-import { CardOnePreview } from '../CardOnePreview';
-import { CardTwoPreview } from '../CardTwoPreview';
-import { CardThreePreview } from '../CardThreePreview';
-import { CardFourPreview } from '../CardFourPreview';
-import { CardFivePreview } from '../CardFivePreview';
+import { BusinessCard } from '../BusinessCard';
 
 class PersonCard extends React.Component {
 
@@ -59,20 +55,18 @@ class PersonCard extends React.Component {
           <View
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
-            { (() => {
-              switch(this.props.card.cardnum) {
-                case 1:
-                  return ( <CardOnePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
-                case 2:
-                  return ( <CardTwoPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
-                case 3:
-                  return ( <CardThreePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
-                case 4:
-                  return ( <CardFourPreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
-                case 5:
-                  return ( <CardFivePreview logo={this.props.card.avatarSource} color={this.props.card.color} position={this.props.card.position} website={this.props.card.website} businame={this.props.card.businame} phonenum={this.props.card.phonenum} name={this.props.card.name} email={this.props.card.email} address={this.props.card.address}/> );
-              }
-            })()}
+            <BusinessCard 
+                cardnum={this.props.card.cardnum}
+                logo={this.props.card.avatarSource} 
+                color={this.props.card.color} 
+                position={this.props.card.position} 
+                website={this.props.card.website} 
+                businame={this.props.card.businame} 
+                phonenum={this.props.card.phonenum} 
+                name={this.props.card.name} 
+                email={this.props.card.email} 
+                address={this.props.card.address}
+            />
             <TouchableOpacity
               style={styles.button}
               onPress={this._hideModal}>

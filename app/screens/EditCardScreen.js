@@ -7,11 +7,7 @@ import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
 import { CardInputSmall } from '../components/CardInputSmall';
 import { Container } from '../components/Container';
-import { CardOnePreview } from '../components/CardOnePreview';
-import { CardTwoPreview } from '../components/CardTwoPreview';
-import { CardThreePreview } from '../components/CardThreePreview';
-import { CardFourPreview } from '../components/CardFourPreview';
-import { CardFivePreview } from '../components/CardFivePreview'
+import { BusinessCard } from '../components/BusinessCard';
 
 import ImagePicker from 'react-native-image-picker'
 
@@ -89,20 +85,21 @@ render() {
         shadowRadius: 2,
         elevation: 1}}/>
 
-        { (() => {
-        switch(cardnum) {
-            case 1:
-            return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-            case 2:
-            return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-            case 3:
-            return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-            case 4:
-            return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-            case 5:
-            return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-        }
-        })()}
+        <BusinessCard
+            cardnum={this.state.cardnum}
+            logo={this.state.logo} 
+            color={this.state.color} 
+            city={city} 
+            stateabb={stateabb} 
+            zip={zip} 
+            position={position} 
+            website={website} 
+            businame={businame} 
+            phonenum={phonenum} 
+            name={name} 
+            email={email} 
+            address={address}
+        />
 
         <View style={styles.pickWrapper}>
         <Picker
@@ -185,20 +182,21 @@ render() {
 
             <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
-            { (() => {
-                switch(cardnum) {
-                case 1:
-                    return ( <CardOnePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-                case 2:
-                    return ( <CardTwoPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-                case 3:
-                    return ( <CardThreePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-                case 4:
-                    return ( <CardFourPreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-                case 5:
-                    return ( <CardFivePreview logo={this.state.logo} color={this.state.color} city={city} stateabb={stateabb} zip={zip} position={position} website={website} businame={businame} phonenum={phonenum} name={name} email={email} address={address}/> );
-                }
-            })()}
+            <BusinessCard
+                cardnum={this.state.cardnum}
+                logo={this.state.logo} 
+                color={this.state.color} 
+                city={city} 
+                stateabb={stateabb} 
+                zip={zip} 
+                position={position} 
+                website={website} 
+                businame={businame} 
+                phonenum={phonenum} 
+                name={name} 
+                email={email} 
+                address={address}
+            />
 
 
 

@@ -19,8 +19,6 @@ export default class ProfileHeader extends React.Component {
             profileName: 'Tap to add name',
             promptVisible: false
         };
-
-
     }
     componentWillMount() {
         store.get('profileName').then((value) => {
@@ -43,7 +41,9 @@ export default class ProfileHeader extends React.Component {
             <View style={styles.background}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <View>
-                        <ConnectButtonWithDescription ref={ref => this.connect = ref} pictureName='md-share' description='Connect' />
+                        <TouchableOpacity onPress={() => this.props.showPopup()}>
+                            <ConnectButtonWithDescription ref={ref => this.connect = ref} pictureName='md-share' description='Connect' />
+                        </TouchableOpacity>
                     </View>
 
                     <View>

@@ -7,11 +7,7 @@
     import { Container } from '../components/Container';
     import { Header } from '../components/Header';
     import { ProfileHeader } from '../components/ProfileHeader';
-    import { CardTwoDisplay } from '../components/CardTwoDisplay';
-    import { CardThreeDisplay } from '../components/CardThreeDisplay';
-    import { CardFourDisplay } from '../components/CardFourDisplay';
-    import { CardFiveDisplay } from '../components/CardFiveDisplay';
-    import { CardOneDisplay } from '../components/CardOneDisplay';
+    import { BusinessCard } from '../components/BusinessCard';
 
     import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
     import Swipeable from 'react-native-swipeable';
@@ -60,266 +56,72 @@
         }
     }
 
-    swipeable = {}
-
     _keyExtractor = (item, index) => index;
 
     openConnect() {
         this.connect.openConnect()
     }
 
-    _renderItem(ref, navigation) {
-        index = ref.index
-        switch (ref.item.cardnum) {
-            case 1:
-            return (
-                <Swipeable
-                    onRef={ref => this.swipeable[index] = ref}
-                    rightButtons={[
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._editItem(ref)}>
-                                    <Text style={styles.buttonText}>Edit Card</Text>
-                            </TouchableOpacity>
+    _renderItem(item) {
+        return(
+            <Swipeable
+                ref={ref => this["swipable" + item.index] = ref}
+                rightButtons={[
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => this._editItem(item)}>
+                                <Text style={styles.buttonText}>Edit Card</Text>
+                        </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this.openConnect()}>
-                                    <Text style={styles.buttonText}>Share Card</Text>
-                            </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => this.openConnect()}>
+                                <Text style={styles.buttonText}>Share Card</Text>
+                        </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._deleteItem(ref.index)}>
-                                    <Text style={styles.buttonText}>Delete Card</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ]}
-                    rightButtonWidth={width*.4 + 30}>
-                    <TouchableOpacity onPress = {() => this._showModal(ref)}>
-                        <CardOneDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            businame={ref.item.businame}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
-                    </TouchableOpacity>
-                </Swipeable>
-            )
-            case 2:
-            return (
-                <Swipeable
-                    onRef={ref => this.swipeable[index] = ref}
-                    rightButtons={[
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._editItem(ref)}>
-                                    <Text style={styles.buttonText}>Edit Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this.openConnect()}>
-                                    <Text style={styles.buttonText}>Share Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._deleteItem(ref.index)}>
-                                    <Text style={styles.buttonText}>Delete Card</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ]}
-                    rightButtonWidth={width*.4 + 30}>
-                    <TouchableOpacity onPress = {() => this._showModal(ref)}>
-                        <CardTwoDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            businame={ref.item.businame}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
-                    </TouchableOpacity>
-                </Swipeable>
-            )
-            case 3:
-            return (
-                <Swipeable
-                    onRef={ref => this.swipeable[index] = ref}
-                    rightButtons={[
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._editItem(ref)}>
-                                    <Text style={styles.buttonText}>Edit Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this.openConnect()}>
-                                    <Text style={styles.buttonText}>Share Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._deleteItem(ref.index)}>
-                                    <Text style={styles.buttonText}>Delete Card</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ]}
-                    rightButtonWidth={width*.4 + 30}>
-                    <TouchableOpacity onPress = {() => this._showModal(ref)}>
-                        <CardThreeDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            businame={ref.item.businame}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
-                    </TouchableOpacity>
-                </Swipeable>
-            )
-            case 4:
-            return (
-                <Swipeable
-                    onRef={ref => this.swipeable[index] = ref}
-                    rightButtons={[
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._editItem(ref)}>
-                                    <Text style={styles.buttonText}>Edit Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this.openConnect()}>
-                                    <Text style={styles.buttonText}>Share Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._deleteItem(ref.index)}>
-                                    <Text style={styles.buttonText}>Delete Card</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ]}
-                    rightButtonWidth={width*.4 + 30}>
-                    <TouchableOpacity onPress = {() => this._showModal(ref)}>
-                        <CardFourDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            businame={ref.item.businame}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
-                    </TouchableOpacity>
-                </Swipeable>
-            )
-            case 5:
-            return (
-                <Swipeable
-                    onRef={ref => this.swipeable[index] = ref}
-                    rightButtons={[
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._editItem(ref)}>
-                                    <Text style={styles.buttonText}>Edit Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this.openConnect()}>
-                                    <Text style={styles.buttonText}>Share Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.button}
-                                onPress={() => this._deleteItem(ref.index)}>
-                                    <Text style={styles.buttonText}>Delete Card</Text>
-                            </TouchableOpacity>
-                        </View>
-                    ]}
-                    rightButtonWidth={width*.4 + 30}>
-                    <TouchableOpacity onPress = {() => this._showModal(ref)}>
-                        <CardFiveDisplay
-                            navigation={navigation}
-                            cardnum={ref.item.cardnum}
-                            key={ref.index}
-                            logo={ref.item.logo}
-                            position={ref.item.position}
-                            color={ref.item.color}
-                            website={ref.item.website}
-                            businame={ref.item.businame}
-                            phonenum={ref.item.phonenum}
-                            name={ref.item.name}
-                            email={ref.item.email}
-                            address={ref.item.address}
-                            city={ref.item.city}
-                            stateabb={ref.item.stateabb}
-                            zip={ref.item.zip}
-                        />
-                    </TouchableOpacity>
-                </Swipeable>
-            )
-        }
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => this._deleteItem(item.index)}>
+                                <Text style={styles.buttonText}>Delete Card</Text>
+                        </TouchableOpacity>
+                    </View>
+                ]}
+                rightButtonWidth={width*.4 + 30}
+            >
+                <TouchableOpacity onPress = {() => this._showModal(item)}>
+                    <BusinessCard
+                        cardnum={item.item.cardnum}
+                        key={item.index}
+                        logo={item.item.logo}
+                        position={item.item.position}
+                        color={item.item.color}
+                        website={item.item.website}
+                        businame={item.item.businame}
+                        phonenum={item.item.phonenum}
+                        name={item.item.name}
+                        email={item.item.email}
+                        address={item.item.address}
+                        city={item.item.city}
+                        stateabb={item.item.stateabb}
+                        zip={item.item.zip}
+                    />
+                </TouchableOpacity>
+            </Swipeable>
+        )
     }
 
     _deleteItem(index) {
-        this.swipeable[index].recenter()
+        this["swipable" + index].recenter()
         arrayCopy = this.state.cards
-        arrayCopy.splice(index, 1)
+        arrayCopy = arrayCopy.filter((_, i) => i !== index)
         setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
         AsyncStorage.setItem('busicards', JSON.stringify(arrayCopy))
     }
 
     _editItem(ref) {
         this.props.navigation.navigate('Edit', { card: ref, cards: this.state.cards })
-        this.swipeable[ref.index].recenter()
+        this["swipable" + ref.index].recenter()
     }
 
     back() {
@@ -355,11 +157,12 @@
 
                 <FlatList
                     style={{marginTop: 6, marginBottom: 6}}
+                    ref={ref => this.list = ref}
                     refreshControl= { <RefreshControl refreshing={this.state.refreshing} onRefresh={this._onRefresh.bind(this)}/> }
                     data={this.state.cards}
+                    extraData={"poo"}
                     keyExtractor={this._keyExtractor}
-                    extraData={this.props.navigation}
-                    renderItem={(item) => this._renderItem(item, this.props.navigation)}
+                    renderItem={this._renderItem.bind(this)}
                 />
 
                 <Modal
@@ -369,120 +172,24 @@
                     animationType='slide'>
                     <View style={{ top: '35%', left: '2.5%', transform: [{ rotate: '90deg'}, {scaleX: 1.85}, {scaleY: 1.85}], alignContent:"center", justifyContent: "center" }}>
                         {this.state.landscapedCard.map((ref, key) =>
-                            {
-                                index = ref.index
-                                switch (ref.item.cardnum) {
-                                    case 1:
-                                    return (
-                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                            <CardOneDisplay
-                                                cardnum={ref.item.cardnum}
-                                                key={ref.index + 'landscaped'}
-                                                logo={ref.item.logo}
-                                                position={ref.item.position}
-                                                color={ref.item.color}
-                                                website={ref.item.website}
-                                                buisname={ref.item.buisname}
-                                                phonenum={ref.item.phonenum}
-                                                name={ref.item.name}
-                                                email={ref.item.email}
-                                                address={ref.item.address}
-                                                city={ref.item.city}
-                                                stateabb={ref.item.stateabb}
-                                                zip={ref.item.zip}
-
-                                            />
-                                        </TouchableOpacity>
-                                    )
-                                    case 2:
-                                    return (
-                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                            <CardTwoDisplay
-                                                cardnum={ref.item.cardnum}
-                                                key={ref.index + 'landscaped'}
-                                                logo={ref.item.logo}
-                                                position={ref.item.position}
-                                                color={ref.item.color}
-                                                website={ref.item.website}
-                                                buisname={ref.item.buisname}
-                                                phonenum={ref.item.phonenum}
-                                                name={ref.item.name}
-                                                email={ref.item.email}
-                                                address={ref.item.address}
-                                                city={ref.item.city}
-                                                stateabb={ref.item.stateabb}
-                                                zip={ref.item.zip}
-
-                                            />
-                                        </TouchableOpacity>
-                                    )
-                                    case 3:
-                                    return (
-                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                            <CardThreeDisplay
-                                                cardnum={ref.item.cardnum}
-                                                key={ref.index + 'landscaped'}
-                                                logo={ref.item.logo}
-                                                position={ref.item.position}
-                                                color={ref.item.color}
-                                                website={ref.item.website}
-                                                buisname={ref.item.buisname}
-                                                phonenum={ref.item.phonenum}
-                                                name={ref.item.name}
-                                                email={ref.item.email}
-                                                address={ref.item.address}
-                                                city={ref.item.city}
-                                                stateabb={ref.item.stateabb}
-                                                zip={ref.item.zip}
-
-                                            />
-                                        </TouchableOpacity>
-                                    )
-                                    case 4:
-                                    return (
-                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                            <CardFourDisplay
-                                                cardnum={ref.item.cardnum}
-                                                key={ref.index + 'landscaped'}
-                                                logo={ref.item.logo}
-                                                position={ref.item.position}
-                                                color={ref.item.color}
-                                                website={ref.item.website}
-                                                buisname={ref.item.buisname}
-                                                phonenum={ref.item.phonenum}
-                                                name={ref.item.name}
-                                                email={ref.item.email}
-                                                address={ref.item.address}
-                                                city={ref.item.city}
-                                                stateabb={ref.item.stateabb}
-                                                zip={ref.item.zip}
-
-                                            />
-                                        </TouchableOpacity>
-                                    )
-                                    case 5:
-                                    return (
-                                        <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                            <CardFiveDisplay
-                                                cardnum={ref.item.cardnum}
-                                                key={ref.index + 'landscaped'}
-                                                logo={ref.item.logo}
-                                                position={ref.item.position}
-                                                color={ref.item.color}
-                                                website={ref.item.website}
-                                                buisname={ref.item.buisname}
-                                                phonenum={ref.item.phonenum}
-                                                name={ref.item.name}
-                                                email={ref.item.email}
-                                                address={ref.item.address}
-                                                city={ref.item.city}
-                                                stateabb={ref.item.stateabb}
-                                                zip={ref.item.zip}
-                                            />
-                                        </TouchableOpacity>
-                                    )
-                                }
-                            }
+                            <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
+                                <BusinessCard
+                                    cardnum={ref.item.cardnum}
+                                    key={ref.index + 'landscaped'}
+                                    logo={ref.item.logo}
+                                    position={ref.item.position}
+                                    color={ref.item.color}
+                                    website={ref.item.website}
+                                    businame={ref.item.businame}
+                                    phonenum={ref.item.phonenum}
+                                    name={ref.item.name}
+                                    email={ref.item.email}
+                                    address={ref.item.address}
+                                    city={ref.item.city}
+                                    stateabb={ref.item.stateabb}
+                                    zip={ref.item.zip}
+                                />
+                            </TouchableOpacity>
                         )}
                     </View>
                 </Modal>
