@@ -31,6 +31,9 @@ class ProfileScreen extends Component {
             disabled: true
         }
 
+        this._handleCheck.bind(this)
+        this._renderItem.bind(this)
+
         this._getCards()
     }
 
@@ -56,17 +59,40 @@ class ProfileScreen extends Component {
     }
 
     openPopup() {
+        for (let index = 0; index < this.state.cards.length; index++) {
+            this["check" + index].uncheck()
+        }
         this.popupDialog.show()
     }
+
+    cardChecked = {}
 
     _keyExtractor = (item, index) => index;
 
     _handleCheck(val, ref) {
-        console.log(val, ref)
+        this.cardChecked[ref.index] = val
+        isCheck = false
+        for (let index = 0; index < this.state.cards.length; index++) {
+            if (this.cardChecked[index] != undefined && this.cardChecked[index]) {
+                isCheck = true
+                break
+            }
+        }
+        if (isCheck) {
+            this.setState({disabled : false})
+        }
+        else {
+            this.setState({disabled : true})
+        }
+    }
+
+
+    _handleShares() {
+        this.popupDialog.dismiss()
+        this.header.openConnect()
     }
 
     _renderItem(ref) {
-
         return (
             <Grid>
                 <Col size={75}>
@@ -100,10 +126,6 @@ class ProfileScreen extends Component {
                 </Col>
             </Grid>
         )
-    }
-
-    _handleShares() {
-
     }
 
     render() {
@@ -158,10 +180,10 @@ class ProfileScreen extends Component {
                     >
                     <View>
                         <FlatList
-                            height={'68%'}
+                            height={'80%'}
                             data={this.state.cards}
                             keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
+                            renderItem={this._renderItem.bind(this)}
                         />
                     </View>
                 </PopupDialog>

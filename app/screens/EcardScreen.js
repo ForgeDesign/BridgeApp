@@ -172,8 +172,8 @@ saveData = () => {
                     message="Bridge Card Saved!"
                     backgroundColor={$alertSuccess}
                     color="white"
+                    height={35}
                     onPress={() => this.props.navigation.navigate('Profile')}
-                    height={68}
                 />
 
                 <Header title={'Business Card'}/>

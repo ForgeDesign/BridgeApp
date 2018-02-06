@@ -256,9 +256,9 @@ export default class IsoScreen extends React.Component {
             <Container>
                 <StatusBarAlert
                     visible={this.state.alertVisible}
-                    backgroundColor={$primaryBlue}
+                    backgroundColor={$alertSuccess}
                     color="white"
-                    height={68}
+                    height={60}
                     >
                     <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
                 </StatusBarAlert>

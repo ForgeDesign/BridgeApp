@@ -1,39 +1,27 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Modal, Image } from 'react-native';
 import Hero from 'react-native-hero';
-
-const cardStyles = {
-    card1: {
-        style: require("../../data/CardTemplates/card1style"),
-        image: require('../../data/CardTemplates/card1.png')
-    },
-    card2: {
-        style: require("../../data/CardTemplates/card2style"),
-        image: require('../../data/CardTemplates/card2.png')
-    },
-    card3: {
-        style: require("../../data/CardTemplates/card3style"),
-        image: require('../../data/CardTemplates/card3.png')
-    },
-    card4: {
-        style: require("../../data/CardTemplates/card4style"),
-        image: require('../../data/CardTemplates/card4.png')
-    },
-    card5: {
-        style: require("../../data/CardTemplates/card5style"),
-        image: require('../../data/CardTemplates/card5.png')
-    }
-}
+import CardStyle from '../../data/CardTemplates/CardStyle'
 
 export default class BusinessCard extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = this.updateWith(props, true)
+    }
 
-        this.state = {
+    componentWillReceiveProps(nextProps) {
+        if(this.props != nextProps) {
+            this.updateWith(nextProps, false)
+        }
+    }
+
+    updateWith(props, constructor) {
+        var cardStyle = new CardStyle().getCardStyle(props.cardnum)
+        object = {
             hidden: false,
-            style : cardStyles["card" + props.cardnum].style.default,
-            image : cardStyles["card" + props.cardnum].image,
+            style : cardStyle.style,
+            image : cardStyle.image,
             color: props.color,
             logo: props.logo,
             email: props.email,
@@ -47,27 +35,9 @@ export default class BusinessCard extends React.Component {
             stateabb: props.stateabb,
             zip: props.zip
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(this.props != nextProps) {
-            this.setState({
-                style : cardStyles["card" + nextProps.cardnum].style.default,
-                image : cardStyles["card" + nextProps.cardnum].image,
-                color: nextProps.color,
-                logo: nextProps.logo,
-                email: nextProps.email,
-                address: nextProps.address,
-                website: nextProps.website,
-                phonenum: nextProps.phonenum,
-                city: nextProps.city,
-                name: nextProps.name,
-                businame: nextProps.businame,
-                position: nextProps.position,
-                stateabb: nextProps.stateabb,
-                zip: nextProps.zip
-            })
-        }
+        if (constructor)
+            return object
+        this.setState(object)
     }
 
     render() {

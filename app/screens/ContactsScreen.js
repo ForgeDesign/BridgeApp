@@ -185,7 +185,7 @@ export default class ContactsScreen extends React.Component {
                     message="Bridge Card Added!"
                     backgroundColor={$alertSuccess}
                     color="white"
-                    height={30}
+                    height={35}
                 />
         
                 <Header title={'Contacts'} />   
