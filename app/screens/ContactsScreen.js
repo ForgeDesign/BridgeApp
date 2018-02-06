@@ -9,6 +9,7 @@ import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
 import AtoZListView from 'react-native-atoz-listview';
 import Prompt from 'rn-prompt';
+import store from 'react-native-simple-store';
 import StatusBarAlert from 'react-native-statusbar-alert';
 const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
@@ -235,42 +236,49 @@ export default class ContactsScreen extends React.Component {
                 />
 
                 <Fab
-                  active={this.state.active}
-                  direction='up'
-                  style={styles.fab}
-                  position='bottomRight'
-                  onPress={() => this.setState({ promptVisible: true }) }>
-                  <Icon name="md-add"/>
+                active={this.state.active}
+                direction='up'
+                style={styles.fab}
+                position='bottomRight'
+                onPress={() => this.setState({ promptVisible: true }) }>
+                <Icon name="md-add"/>
                 </Fab>
                 <Prompt
-                  title="Type in the BridgeCard code. "
-                  placeholder="fox-hunter5"
-                  visible={this.state.promptVisible}
-                  onCancel={() => {
-
-                          this.setState({
-                              promptVisible: false
-                          });
-                      }
-                  }
-                  onSubmit={(value) => {
-                      if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
-                          this.setState({
-                              promptVisible: false,
-
-                          });
-
-                      }
-                      else {
-                          this.setState({
-                              promptVisible: false,
-                              contactName: value
-                          });
-                          {this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) }
-
-                      }
-                  }
-                  } />
+                title="Type in the BridgeCard code. "
+                placeholder="fox-hunter5"
+                visible={this.state.promptVisible}
+                onCancel={() => {
+                        this.setState({
+                            promptVisible: false
+                        });
+                    }
+                }
+                onSubmit={(value) => {
+                    if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                        this.setState({
+                            promptVisible: false,
+                        });
+                    }
+                    else {
+                        this.setState({
+                            promptVisible: false,
+                            contactName: value
+                        });
+                        {
+                            var d = new Date();
+                            obj = {
+                                connector: "You",
+                                text: "bridged with",
+                                connectee: "Anew Person",
+                                image: "jamessmith",
+                                time: d.toString()
+                            }
+                            store.push('activity', obj)
+                            this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                        }
+                    }
+                }
+                } />
             </Container>
         )
     }

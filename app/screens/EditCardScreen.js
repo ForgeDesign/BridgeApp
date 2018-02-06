@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import store from 'react-native-simple-store';
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
 import { CardInputSmall } from '../components/CardInputSmall';
@@ -76,6 +76,15 @@ export default class EditCardScreen extends React.Component {
         cards = this.props.navigation.state.params.cards
         cards[this.props.navigation.state.params.card.index] = this.state
         AsyncStorage.setItem('busicards', JSON.stringify(cards))
+        var d = new Date();
+        obj = {
+            connector: "You",
+            text: "updated a",
+            connectee: "Bridge Card",
+            icon: "md-color-wand",
+            time: d.toString()
+        }
+        store.push('activity', obj)
         this.props.navigation.goBack()
     }
 

@@ -118,6 +118,16 @@ saveData = () => {
     }
     store.push('busicards', obj)
 
+    var d = new Date();
+    obj = {
+        connector: "You",
+        text: "created a new",
+        connectee: "Bridge Card",
+        icon: "md-card",
+        time: d.toString()
+    }
+    store.push('activity', obj)
+
     this.makeAlertAppear()
     setTimeout(() => {
         this.makeAlertDisappear()

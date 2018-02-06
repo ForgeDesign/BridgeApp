@@ -12,6 +12,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
+import store from 'react-native-simple-store';
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
 
 const slideAnimation = new SlideAnimation({
@@ -213,6 +214,17 @@ export default class IsoScreen extends React.Component {
         this.search.clearText();
         this.popupDialog.dismiss()
         this.makeAlertAppear("You recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a " + this[this.popupRelatedConnect].props.connectee + "!")
+        
+        var d = new Date();
+        obj = {
+            connector: "You",
+            text: "recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a",
+            connectee: this[this.popupRelatedConnect].props.connectee,
+            icon: "md-time",
+            time: d.toString()
+        }
+        store.push('activity', obj)
+        
         setTimeout(() => {
             this.makeAlertDisappear()
         }, 2000)

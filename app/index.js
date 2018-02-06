@@ -19,4 +19,13 @@ $inputText = '#797979'
 $darkText = '#343434'
 $offwhite = 'whitesmoke'
 
+$defaultAssets = {
+    jamessmith: require('./assets/images/jamessmith.jpg'),
+    brianamin: require('./assets/images/brianamin.jpg'),
+    markbrown: require('./assets/images/markbrown.jpg'),
+    frankbarnes: require('./assets/images/frankbarnes.jpg'),
+    marylewis: require('./assets/images/marylewis.jpg'),
+    davidrodriguez: require('./assets/images/davidrodriguez.jpg'),
+}
+
 export default () => <Navigator />

@@ -20,15 +20,18 @@ export default EStyleSheet.create({
 
     },
     piccontainer: {
-      flex: .75,
-  //    alignItems: 'center',
-      marginLeft: 10,
+        flex: 0.75,
+        alignItems: 'center',
+        // marginLeft: '7%',
     },
     image: {
       height: width*.125,
       width: width*.125,
       borderRadius: width*.0625
     },
+    icon: {
+        color: '#003E5B'
+      },
     textcontainer: {
       flex: 3,
       flexDirection: 'column',

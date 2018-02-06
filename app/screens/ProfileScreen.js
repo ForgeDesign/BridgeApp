@@ -24,58 +24,93 @@ var {height, width} = Dimensions.get('window');
 
 class ProfileScreen extends Component {
 
+    tick() {
+        this.forceUpdate()
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
 
     constructor(props) {
         super(props)
 
         this.state = {
             disabled: true,
-            activity:
-            [
-              {
-                connector: "Brian Amin",
-                connectee: "Frank Barnes",
-                connectorpath: require("../assets/images/brianamin.jpg"),
-                time: "21m"
-              },
-              {
-                connector: "Mark Brown",
-                connectee: "Brian Amin",
-                connectorpath: require("../assets/images/markbrown.jpg"),
-                time: "3h"
-              },
-              {
-                connector: "Frank Barnes",
-                connectee: "Mary Lewis",
-                connectorpath: require("../assets/images/frankbarnes.jpg"),
-                time: "4h"
-              },
-              {
-                connector: "Mary Lewis",
-                connectee: "David Rodriguez",
-                connectorpath: require("../assets/images/marylewis.jpg"),
-                time: "8h"
-              },
-              {
-                connector: "David Rodriguez",
-                connectee: "Mark Brown",
-                connectorpath: require("../assets/images/davidrodriguez.jpg"),
-                time: "11h"
-              }
-            ]
+            activity: [ ]
         }
 
         this._handleCheck.bind(this)
         this._renderItem.bind(this)
 
         this._getCards()
+        this._getActivity()
+        this.interval = setInterval(this.tick.bind(this), 1000)
+    }
+
+    _getActivity() {
+        store.get('activity').then((value) => {
+            if (value!==null){
+                this.setState({activity: value.reverse()});
+            } else {
+                var a = new Date();
+                a.setMinutes(a.getMinutes() - 21);
+                var b = new Date();
+                b.setHours(b.getHours() - 3);
+                var c = new Date();
+                c.setHours(c.getHours() - 4);
+                var d = new Date();
+                d.setHours(d.getHours() - 8);
+                var e = new Date();
+                e.setHours(e.getHours() - 11);
+                obj =  
+                [
+                    {
+                        connector: "You",
+                        connectee: "Frank Barnes",
+                        text: "bridged with",
+                        image: "brianamin",
+                        time: e.toString()
+                    },
+                    {
+                        connector: "You",
+                        connectee: "Brian Amin",
+                        text: "bridged with",
+                        image: "markbrown",
+                        time: d.toString()
+                    },
+                    {
+                        connector: "You",
+                        connectee: "Mary Lewis",
+                        text: "bridged with",
+                        image: "frankbarnes",
+                        time: c.toString()
+                    },
+                    {
+                        connector: "You",
+                        connectee: "David Rodriguez",
+                        text: "bridged with",
+                        image: "marylewis",
+                        time: b.toString()
+                    },
+                    {
+                        connector: "You",
+                        connectee: "Mark Brown",
+                        text: "bridged with",
+                        image: "davidrodriguez",
+                        time: a.toString()
+                    }
+                ]
+                this.setState({activity: obj.reverse()})
+                store.save('activity', obj)
+            }
+        });
     }
 
     _getCards() {
         store.get('busicards').then((value) => {
             if (value!==null){
                 this.setState({cards: value});
-                this.forceUpdate();
             }
         });
     }
@@ -84,11 +119,13 @@ class ProfileScreen extends Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
-            // this._onRefresh()
+            this._getActivity()
             this._getCards()
+            this.interval = setInterval(this.tick.bind(this), 1000)
         }
         if (this.props.isFocused && !nextProps.isFocused) {
             // NOT HERE
+            clearInterval(this.interval)
         }
     }
 
@@ -229,7 +266,9 @@ class ProfileScreen extends Component {
                           ref={(card) => {this[key] = card}}
                           connector={ref.connector}
                           connectee={ref.connectee}
-                          connectorpath={ref.connectorpath}
+                          text={ref.text}
+                          image={ref.image}
+                          icon={ref.icon}
                           time={ref.time}/>
                     )}
                 </ScrollView>
