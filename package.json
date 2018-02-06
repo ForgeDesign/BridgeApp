@@ -34,7 +34,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0-alpha.12",
     "react-native": "0.50.3",
-    "react-native-atoz-listview": "0.0.7",
+    "react-native-atoz-listview": "github:agates4/react-native-atoz-listview",
     "react-native-color": "0.0.10",
     "react-native-dropdownalert": "^3.2.0",
     "react-native-easy-grid": "^0.1.17",

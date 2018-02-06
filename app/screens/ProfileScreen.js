@@ -94,7 +94,7 @@ class ProfileScreen extends Component {
 
     _renderItem(ref) {
         return (
-            <Grid>
+            <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>
                     <BusinessCard
                         cardnum={ref.item.cardnum}
@@ -115,7 +115,7 @@ class ProfileScreen extends Component {
                 </Col>
                 <Col size={25}>
                     <Checkbox
-                        style={{left: '45%', flex: 1, top: '15%'}}
+                        style={{left: '45%', flex: 1, top: '-12%'}}
                         onChange={(val) => this._handleCheck(val, ref)}
                         checked={false}
                         ref={(check) => {this["check" + ref.index] = check}}

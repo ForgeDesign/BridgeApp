@@ -1,13 +1,13 @@
 ## Based on sunnylqm's [react-native-alphabetlistview](https://github.com/sunnylqm/react-native-alphabetlistview)
-I just improve some api functions
+fixed the stupid proptypes error
 
 You can find this component on npm:   
 ```
-npm install --save react-native-atoz-listview
+npm install --save agates4/react-native-atoz-listview
 
 or
 
-yarn add react-native-atoz-listview
+yarn add agates4/react-native-atoz-listview
 ```
 
 # Demo
