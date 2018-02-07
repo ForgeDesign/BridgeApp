@@ -3,7 +3,7 @@ import { View, Text, AppRegistry, ScrollView, FlatList } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
-import { ActivityCard } from '../components/ActivityCard'
+import { ProfileActivity } from '../components/ProfileActivity'
 import { createFilter } from 'react-native-search-filter';
 import { PersonCard } from '../components/PersonCard';
 import { Col, Row, Grid } from "react-native-easy-grid";
@@ -12,6 +12,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
+import { Fab, Icon } from 'native-base';
 import store from 'react-native-simple-store';
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
 
@@ -21,113 +22,128 @@ const slideAnimation = new SlideAnimation({
 
 export default class IsoScreen extends React.Component {
 
-    state = {
-        checked: false,
-        disabled: true,
-        alertMessage: "",
-        alertVisible: false,
-        promptVisible: false,
-        searchTerm: '',
-        contactName: 'fox-hunter5',   
-        people:
-        [
-            {
-                "name": "Mark Brown",
-                "location": "71 Pilgrim Ave. Chevy Chase, MD",
-                "imagepath": require("../assets/images/markbrown.jpg"),
-                "card":{
-                    "position":"Chief Operating Officer",
-                    "website":"gsb.com",
-                    "businame":"Global Secure Bank",
-                    "phonenum":"(213)6129713",
-                    "name":"Mark Brown",
-                    "email":"brownmark@gsb.com",
-                    "address":"71 Pilgrim Ave. Chevy Chase, MD",
-                    "cardnum": 1
+    constructor(props) {
+        super(props)
+        var a = new Date();
+        a.setMinutes(a.getMinutes() - 43);
+        var b = new Date();
+        b.setHours(b.getHours() - 2);
+        var c = new Date();
+        c.setHours(c.getHours() - 5);
+        this.state = {
+            checked: false,
+            disabled: true,
+            alertMessage: "",
+            alertVisible: false,
+            promptVisible: false,
+            searchTerm: '',
+            contactName: 'fox-hunter5',   
+            people:
+            [
+                {
+                    "name": "Mark Brown",
+                    "location": "71 Pilgrim Ave. Chevy Chase, MD",
+                    "imagepath": require("../assets/images/markbrown.jpg"),
+                    "card":{
+                        "position":"Chief Operating Officer",
+                        "website":"gsb.com",
+                        "businame":"Global Secure Bank",
+                        "phonenum":"(213)6129713",
+                        "name":"Mark Brown",
+                        "email":"brownmark@gsb.com",
+                        "address":"71 Pilgrim Ave. Chevy Chase, MD",
+                        "cardnum": 1
+                    }
+                },
+                {
+                    "name": "Brian Amin",
+                    "location": "3052 Parker Dr. Akron, OH",
+                    "imagepath": require("../assets/images/brianamin.jpg"),
+                    "card":{
+                        "position":"Project Manager",
+                        "website":"polyend.com",
+                        "businame":"Polyend Deseign",
+                        "phonenum":"(330)6510981",
+                        "name":"Brian Amin",
+                        "email":"brian.amin@gmail.com",
+                        "address":"3052 Parker Dr. Akron, OH",
+                        "cardnum": 2
+                    }
+                },
+                {
+                    "name": "Mary Lewis",
+                    "location": "4 Goldfield Rd. Honolulu, HI",
+                    "imagepath": require("../assets/images/marylewis.jpg"),
+                    "card":{
+                        "position":"VP of Engineering",
+                        "website":"arkp.net",
+                        "businame":"Ark Petrol",
+                        "phonenum":"(541)9241536",
+                        "name":"Mary Lewis",
+                        "email":"mlewis1@arkp.net",
+                        "address":"4 Goldfield Rd. Honolulu, HI",
+                        "cardnum": 3
+                    }
+                },
+                {
+                    "name": "David Rodriguez",
+                    "location": "44 Shirley Ave. West Chicago, IL",
+                    "imagepath": require("../assets/images/davidrodriguez.jpg"),
+                    "card":{
+                        "position":"Head of Product Development",
+                        "website":"zatri.net",
+                        "businame":"Zatri Co.",
+                        "phonenum":"(338)1459857",
+                        "name":"David Rodriguez",
+                        "email":"djrodriguez@zatri.net",
+                        "address":"44 Shirley Ave. West Chicago, IL",
+                        "cardnum": 4
+                    }
+                },
+                {
+                    "name": "Frank Barnes",
+                    "location": "530 Winding Way Reynoldsburg, OH",
+                    "imagepath": require("../assets/images/frankbarnes.jpg"),
+                    "card":{
+                        "position":"Sales Director",
+                        "website":"shop.vindu.com",
+                        "businame":"Vindu",
+                        "phonenum":"(330)2523647",
+                        "name":"Frank Barnes",
+                        "email":"barnes2@gmail.com",
+                        "address":"530 Winding Way Reynoldsburg, OH",
+                        "cardnum": 5
+                    }
+                }            
+            ],
+            activity:
+            [
+                {
+                    connector: "Brian Amin",
+                    text: "is looking for a",
+                    connectee: "Software Developer",
+                    icon: "",
+                    image: "brianamin",
+                    time: a.toString()
+                },
+                {
+                    connector: "Mark Brown",
+                    text: "is looking for a",
+                    connectee: "Marketing Supervisor",
+                    icon: "",
+                    image: "markbrown",
+                    time: b.toString()
+                },
+                {
+                    connector: "Frank Barnes",
+                    text: "is looking for a",
+                    connectee: "Social Media Manager",
+                    icon: "",
+                    image: "frankbarnes",
+                    time: c.toString()
                 }
-            },
-            {
-                "name": "Brian Amin",
-                "location": "3052 Parker Dr. Akron, OH",
-                "imagepath": require("../assets/images/brianamin.jpg"),
-                "card":{
-                    "position":"Project Manager",
-                    "website":"polyend.com",
-                    "businame":"Polyend Deseign",
-                    "phonenum":"(330)6510981",
-                    "name":"Brian Amin",
-                    "email":"brian.amin@gmail.com",
-                    "address":"3052 Parker Dr. Akron, OH",
-                    "cardnum": 2
-                }
-            },
-            {
-                "name": "Mary Lewis",
-                "location": "4 Goldfield Rd. Honolulu, HI",
-                "imagepath": require("../assets/images/marylewis.jpg"),
-                "card":{
-                    "position":"VP of Engineering",
-                    "website":"arkp.net",
-                    "businame":"Ark Petrol",
-                    "phonenum":"(541)9241536",
-                    "name":"Mary Lewis",
-                    "email":"mlewis1@arkp.net",
-                    "address":"4 Goldfield Rd. Honolulu, HI",
-                    "cardnum": 3
-                }
-            },
-            {
-                "name": "David Rodriguez",
-                "location": "44 Shirley Ave. West Chicago, IL",
-                "imagepath": require("../assets/images/davidrodriguez.jpg"),
-                "card":{
-                    "position":"Head of Product Development",
-                    "website":"zatri.net",
-                    "businame":"Zatri Co.",
-                    "phonenum":"(338)1459857",
-                    "name":"David Rodriguez",
-                    "email":"djrodriguez@zatri.net",
-                    "address":"44 Shirley Ave. West Chicago, IL",
-                    "cardnum": 4
-                }
-            },
-            {
-                "name": "Frank Barnes",
-                "location": "530 Winding Way Reynoldsburg, OH",
-                "imagepath": require("../assets/images/frankbarnes.jpg"),
-                "card":{
-                    "position":"Sales Director",
-                    "website":"shop.vindu.com",
-                    "businame":"Vindu",
-                    "phonenum":"(330)2523647",
-                    "name":"Frank Barnes",
-                    "email":"barnes2@gmail.com",
-                    "address":"530 Winding Way Reynoldsburg, OH",
-                    "cardnum": 5
-                }
-            }            
-        ],
-        activity:
-        [
-            {
-                connector: "Brian Amin",
-                connectee: "Software Developer",
-                connectorpath: require("../assets/images/brianamin.jpg"),
-                time: "21m"
-            },
-            {
-                connector: "Mark Brown",
-                connectee: "Marketing Supervisor",
-                connectorpath: require("../assets/images/markbrown.jpg"),
-                time: "3h"
-            },
-            {
-                connector: "Frank Barnes",
-                connectee: "Social Media Manager",
-                connectorpath: require("../assets/images/frankbarnes.jpg"),
-                time: "8h"
-            }
-        ]
+            ]
+        }
     }
 
     searchUpdated(term) {
@@ -221,6 +237,7 @@ export default class IsoScreen extends React.Component {
             text: "recommended " + numberOfRecs + descriptor + " to " + this[this.popupRelatedConnect].props.connector + " for a",
             connectee: this[this.popupRelatedConnect].props.connectee,
             icon: "md-time",
+            image: "",
             time: d.toString()
         }
         store.push('activity', obj)
@@ -284,16 +301,85 @@ export default class IsoScreen extends React.Component {
                     elevation: 1}}/>
                 <ScrollView style={{ flex: 1, marginTop: 6 }}>
                     {this.state.activity.map((ref, key) =>
-                        <ActivityCard
+                        <ProfileActivity
                         key={key}
                         ref={(card) => {this[key] = card}}
                         connector={ref.connector}
+                        text={ref.text}
                         connectee={ref.connectee}
-                        connectorpath={ref.connectorpath}
+                        image={ref.image}
+                        recommend={true}
                         time={ref.time}
                         navigate={this.onPressHandle.bind(this, key)}/>
                     )}
                 </ScrollView>
+
+                <Fab
+                active={this.state.active}
+                direction='up'
+                style={{backgroundColor: $primaryBlue}}
+                position='bottomRight'
+                onPress={() => this.setState({ promptVisible: true }) }>
+                <Icon name="md-add"/>
+                </Fab>
+                <Prompt
+                title="What are you looking for?"
+                placeholder="a marketing director"
+                visible={this.state.promptVisible}
+                onCancel={() => {
+                        this.setState({
+                            promptVisible: false
+                        });
+                    }
+                }
+                onSubmit={(value) => {
+                    if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                        this.setState({
+                            promptVisible: false,
+                        });
+                    }
+                    else {
+                        this.setState({
+                            promptVisible: false,
+                            contactName: value
+                        });
+                        {
+                            store.get('profileImage').then((imageSrc) => {
+                                if (imageSrc!==null){
+                                    var d = new Date();
+                                    obj = {
+                                        connector: "You",
+                                        text: "are looking for",
+                                        connectee: value.toLowerCase(),
+                                        icon: "",
+                                        image: imageSrc.profilePic,
+                                        time: d.toString()
+                                    }
+                                    console.log(imageSrc.profilePic)
+                                    store.push('activity', obj)
+                                    this.state.activity.unshift(obj)
+                                    this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                                }
+                                else {
+                                    var d = new Date();
+                                    obj = {
+                                        connector: "You",
+                                        text: "are looking for",
+                                        connectee: value.toLowerCase(),
+                                        icon: "md-person",
+                                        image: "",
+                                        time: d.toString()
+                                    }
+                                    store.push('activity', obj)
+                                    this.state.activity.unshift(obj)
+                                    this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                                }
+                            });
+                        }
+                    }
+                }
+                } />
+
                 <PopupDialog
                     dialogTitle={<DialogTitle title="Recommend a Contact" />}
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}

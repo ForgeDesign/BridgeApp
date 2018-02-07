@@ -124,6 +124,7 @@ saveData = () => {
         text: "created a new",
         connectee: "Bridge Card",
         icon: "md-card",
+        image: "",
         time: d.toString()
     }
     store.push('activity', obj)

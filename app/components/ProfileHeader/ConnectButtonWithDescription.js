@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import store from 'react-native-simple-store';
 import { Icon } from 'native-base';
 import { 
     View, 
@@ -47,15 +47,35 @@ export default class ConnectButtonWithDescription extends React.Component {
         
     }
 
-    openConnect() {
+    _share(value, cardNum = undefined) {
+        cardNumStr = "a Bridge Card"
+        if (cardNum != undefined && cardNum > 1)
+            cardNumStr = cardNum + " Bridge Cards"
+        Share.open(value).then(result => {
+            console.log(result, cardNum)
+            var d = new Date();
+            obj = {
+                connector: "You",
+                text: "shared",
+                connectee: cardNumStr,
+                icon: "md-share",
+                image: "",
+                time: d.toString()
+            }
+            store.push('activity', obj)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    openConnect(cardNum = undefined) {
         let shareOptions = {
             title: "Bridge Card",
             message: "Add me on Bridge Card! ",
             url: "http://share.bridgecard.io/test-share5/",
             subject: "Let's Connect on Bridge Card!" //  for email
         };
-        
-        Share.open(shareOptions)
+        this._share(shareOptions, cardNum)
     }
 
     render() {
@@ -124,7 +144,7 @@ export default class ConnectButtonWithDescription extends React.Component {
                         onPress={()=>{
                         this.onCancel();
                         setTimeout(() => {
-                            Share.open(shareOptions)
+                            this._share(shareOptions)
                         },300);
                         }}>More
                     </Button>

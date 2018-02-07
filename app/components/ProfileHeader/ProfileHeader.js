@@ -32,8 +32,8 @@ export default class ProfileHeader extends React.Component {
         });
     }
 
-    openConnect() {
-        this.connect.openConnect()
+    openConnect(cardNum = undefined) {
+        this.connect.openConnect(cardNum)
     }
 
     render() {

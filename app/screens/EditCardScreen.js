@@ -82,6 +82,7 @@ export default class EditCardScreen extends React.Component {
             text: "updated a",
             connectee: "Bridge Card",
             icon: "md-color-wand",
+            image: "",
             time: d.toString()
         }
         store.push('activity', obj)

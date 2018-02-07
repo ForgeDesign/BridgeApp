@@ -7,15 +7,33 @@ class ProfileActivity extends React.Component {
 
     state = {
         heart: false,
+        activity: ""
     }
     
+    addActivity(activity) {
+        this.setState({activity: activity})
+    }
+
     heart = () => { this.setState({heart: true})}
     unheart = () => { this.setState({heart: false})}
     
     render() {
+        style = styles.container
+        addButton = <TouchableOpacity
+                        style={{alignSelf: 'flex-end', marginRight: 15, justifyContent: 'center', alignItems: 'center'}}
+                        onPress={() => this.props.navigate()}>
+                        <Icon name="md-add" style={{fontSize: 24, color: $primaryBlue}}/>
+                    </TouchableOpacity>;
+        if(!this.props.recommend || this.props.recommend == undefined) {
+            addButton = undefined
+            style = styles.container2
+        }
         const heart = this.state.heart;
+        iconColor = '#003E5B'
+        if (this.props.text == "are looking for") {
+            iconColor = $alertSuccess
+        }
         time = this.props.time
-        console.log(time)
         var now = new Date();
         var then = new Date(time)
         nowStr = ''
@@ -38,8 +56,21 @@ class ProfileActivity extends React.Component {
         if(diffDays == '' && diffHrs == '' && diffMins == '')
             nowStr = 'Just now'
         isIcon = true
-        if (this.props.icon == undefined) {
+        if (this.props.icon == undefined || this.props.icon == "") {
             isIcon = false
+        }
+        imageSrc = $defaultAssets[this.props.image]
+        if (this.props.text == "are looking for" && this.props.recommend) {
+            iconColor = $alertSuccess
+            style = styles.container3
+            addButton = undefined
+            if (this.props.image != undefined && this.props.image != "") {
+                isIcon = false
+                imageSrc = {uri:this.props.image}
+            }
+        }
+        if (this.props.image.indexOf("react-native-image-crop-pick" != -1) && this.props.text != "bridged with" && this.props.text != "is looking for a") {
+            imageSrc = {uri:this.props.image}
         }
         let button = null;
         if (heart) {
@@ -58,24 +89,25 @@ class ProfileActivity extends React.Component {
             </TouchableOpacity>;
         }
         return(
-            <View style={styles.container}>
+            <View style={style}>
                 <View style={styles.piccontainer}>
                     {isIcon ? (
                         <Icon
                         name={this.props.icon}
-                        style={styles.icon}
+                        style={{color: iconColor}}
                         />
                     ) : (
                         <Image
-                        source={$defaultAssets[this.props.image]}
+                        source={imageSrc}
                         style={styles.image}/>
                     )}
                 </View>
                 <View style={styles.textcontainer}>
                     <Text style={styles.name}>{this.props.connector} {this.props.text} {this.props.connectee}!</Text>
+                    <Text style={styles.location}>{this.state.activity}</Text>
                     <Text style={styles.activity}>{nowStr}{diffDays}{diffHrs}{diffMins}</Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-                        {button}
+                        {addButton}{button}
                     </View>
                 </View>
             </View>

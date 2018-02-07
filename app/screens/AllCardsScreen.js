@@ -118,6 +118,16 @@
         arrayCopy = arrayCopy.filter((_, i) => i !== index)
         setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
         AsyncStorage.setItem('busicards', JSON.stringify(arrayCopy))
+        var d = new Date();
+        obj = {
+            connector: "You",
+            text: "deleted a",
+            connectee: "Bridge Card",
+            icon: "md-trash",
+            image: "",
+            time: d.toString()
+        }
+        store.push('activity', obj)
     }
 
     _editItem(ref) {

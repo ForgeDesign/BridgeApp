@@ -25,7 +25,7 @@ var {height, width} = Dimensions.get('window');
 class ProfileScreen extends Component {
 
     tick() {
-        this.forceUpdate()
+        this._getActivity()
     }
 
     componentWillUnmount() {
@@ -48,11 +48,27 @@ class ProfileScreen extends Component {
         this.interval = setInterval(this.tick.bind(this), 1000)
     }
 
+    arraysEqual(arr1, arr2) {
+        if(arr1.length !== arr2.length)
+            return false;
+        for(var i = arr1.length; i--;) {
+            if(arr1[i].connector !== arr2[i].connector 
+                || arr1[i].text !== arr2[i].text
+                || arr1[i].connectee !== arr2[i].connectee
+                || arr1[i].icon !== arr2[i].icon
+                || arr1[i].image !== arr2[i].image
+                || arr1[i].time !== arr2[i].time)
+                return false;
+        }
+        return true;
+    }
+
     _getActivity() {
         store.get('activity').then((value) => {
-            if (value!==null){
-                this.setState({activity: value.reverse()});
-            } else {
+            if (value!== null && !this.arraysEqual(value.reverse(), this.state.activity)){
+                this.setState({activity: value});
+            } 
+            if (value === null) {
                 var a = new Date();
                 a.setMinutes(a.getMinutes() - 21);
                 var b = new Date();
@@ -67,36 +83,41 @@ class ProfileScreen extends Component {
                 [
                     {
                         connector: "You",
-                        connectee: "Frank Barnes",
                         text: "bridged with",
+                        connectee: "Frank Barnes",
+                        icon: "",
                         image: "brianamin",
                         time: e.toString()
                     },
                     {
                         connector: "You",
-                        connectee: "Brian Amin",
                         text: "bridged with",
+                        connectee: "Brian Amin",
+                        icon: "",
                         image: "markbrown",
                         time: d.toString()
                     },
                     {
                         connector: "You",
-                        connectee: "Mary Lewis",
                         text: "bridged with",
+                        connectee: "Mary Lewis",
+                        icon: "",
                         image: "frankbarnes",
                         time: c.toString()
                     },
                     {
                         connector: "You",
-                        connectee: "David Rodriguez",
                         text: "bridged with",
+                        connectee: "David Rodriguez",
+                        icon: "",
                         image: "marylewis",
                         time: b.toString()
                     },
                     {
                         connector: "You",
-                        connectee: "Mark Brown",
                         text: "bridged with",
+                        connectee: "Mark Brown",
+                        icon: "",
                         image: "davidrodriguez",
                         time: a.toString()
                     }
@@ -157,10 +178,15 @@ class ProfileScreen extends Component {
         }
     }
 
-
     _handleShares() {
+        checks = 0
+        for (let index = 0; index < this.state.cards.length; index++) {
+            if (this.cardChecked[index] != undefined && this.cardChecked[index]) {
+                checks += 1
+            }
+        }
         this.popupDialog.dismiss()
-        this.header.openConnect()
+        this.header.openConnect(checks)
     }
 
     _renderItem(ref) {

@@ -270,6 +270,7 @@ export default class ContactsScreen extends React.Component {
                                 connector: "You",
                                 text: "bridged with",
                                 connectee: "Anew Person",
+                                icon: "",
                                 image: "jamessmith",
                                 time: d.toString()
                             }

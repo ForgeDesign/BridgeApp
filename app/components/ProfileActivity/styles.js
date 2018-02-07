@@ -4,9 +4,24 @@ import { Dimensions } from 'react-native';
 var {height, width} = Dimensions.get('window');
 
 export default EStyleSheet.create({
+    container2: {
+        width: (width-20),
+        height: ((width*.218)-10),
+        alignItems: 'center',
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        marginLeft: 10,
+        marginTop: 3,
+        marginBottom: 3,
+        borderRadius: 8,
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 6,
+  
+      },
     container: {
       width: (width-20),
-      height: ((width*.2)-10),
+      height: ((width*.25)-10),
       alignItems: 'center',
       backgroundColor: 'white',
       flexDirection: 'row',
@@ -17,8 +32,24 @@ export default EStyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 6,
-
     },
+    container3: {
+        overflow: 'hidden',
+        width: (width-20),
+        height: ((width*.25)-10),
+        alignItems: 'center',
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        marginLeft: 10,
+        marginTop: 3,
+        marginBottom: 3,
+        borderRadius: 8,
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 6,
+          borderWidth: 1,
+          borderColor: '$alertSuccess',
+      },
     piccontainer: {
         flex: 0.75,
         alignItems: 'center',
@@ -29,9 +60,6 @@ export default EStyleSheet.create({
       width: width*.125,
       borderRadius: width*.0625
     },
-    icon: {
-        color: '#003E5B'
-      },
     textcontainer: {
       flex: 3,
       flexDirection: 'column',
