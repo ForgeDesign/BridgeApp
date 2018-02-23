@@ -52,9 +52,21 @@ export default class BusinessCard extends React.Component {
         else {
             return(
                 <View style={this.state.style.top}>
+                    <Image
+                        style={this.state.style.logo}
+                        source={{uri: this.state.logo }}
+                    />
+                    <Text style={this.state.style.email}>{this.state.email}</Text>
+                    <Text style={this.state.style.address}>{this.state.address}</Text>
+                    <Text style={this.state.style.website}>{this.state.website}</Text>
+                    <Text style={this.state.style.phonenum}>{this.state.phonenum}</Text>
+                    <Text style={this.state.style.address2}>{this.state.city} {this.state.stateabb} {this.state.zip}</Text>
+                    <Text style={this.state.style.name}>{this.state.name}</Text>
+                    <Text style={this.state.style.businame}>{this.state.businame}</Text>
+                    <Text style={this.state.style.title}>{this.state.position}</Text>
                     <Surface style={{width: '100%', height: '100%'}}>
-                        <HueRotate style={this.state.style.image} hue={4}>
-                            <GLImage style={this.state.style.image} source={this.state.image} />
+                        <HueRotate hue={4}>
+                            <GLImage source={this.state.image} />
                         </HueRotate>
                     </Surface>
                 </View>

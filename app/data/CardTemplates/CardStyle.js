@@ -22,6 +22,7 @@ export default class CardStyle {
                     overflow: 'hidden',
                 },
                 logo: {
+                    zIndex: 100,
                     width: 50,
                     height: 50,
                     borderRadius: 50/2,
@@ -40,6 +41,7 @@ export default class CardStyle {
                     height: ((width-20)*.57),
                 },
                 businame: {
+                    zIndex: 100,
                     color: cardStyleDetails.businame.color,
                     fontSize: cardStyleDetails.businame.fontSize,
                     fontFamily: fontFamily,
@@ -47,9 +49,11 @@ export default class CardStyle {
                     top: cardStyleDetails.businame.top,
                     bottom: cardStyleDetails.businame.bottom,
                     right: cardStyleDetails.businame.right,
-                    left: cardStyleDetails.businame.left
+                    left: cardStyleDetails.businame.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 website: {
+                    zIndex: 100,
                     color: cardStyleDetails.website.color,
                     fontSize: cardStyleDetails.website.fontSize,
                     fontFamily: fontFamily,
@@ -57,9 +61,11 @@ export default class CardStyle {
                     top: cardStyleDetails.website.top,
                     bottom: cardStyleDetails.website.bottom,
                     right: cardStyleDetails.website.right,
-                    left: cardStyleDetails.website.left
+                    left: cardStyleDetails.website.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 title: {
+                    zIndex: 100,
                     color: cardStyleDetails.title.color,
                     fontSize: cardStyleDetails.title.fontSize,
                     fontFamily: fontFamily,
@@ -67,9 +73,11 @@ export default class CardStyle {
                     top: cardStyleDetails.title.top,
                     bottom: cardStyleDetails.title.bottom,
                     right: cardStyleDetails.title.right,
-                    left: cardStyleDetails.title.left
+                    left: cardStyleDetails.title.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 phonenum: {
+                    zIndex: 100,
                     color: cardStyleDetails.phonenum.color,
                     fontSize: cardStyleDetails.phonenum.fontSize,
                     fontFamily: fontFamily,
@@ -77,9 +85,11 @@ export default class CardStyle {
                     top: cardStyleDetails.phonenum.top,
                     bottom: cardStyleDetails.phonenum.bottom,
                     right: cardStyleDetails.phonenum.right,
-                    left: cardStyleDetails.phonenum.left
+                    left: cardStyleDetails.phonenum.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 name: {
+                    zIndex: 100,
                     color: cardStyleDetails.name.color,
                     fontSize: cardStyleDetails.name.fontSize,
                     fontFamily: fontFamily,
@@ -87,9 +97,11 @@ export default class CardStyle {
                     top: cardStyleDetails.name.top,
                     bottom: cardStyleDetails.name.bottom,
                     right: cardStyleDetails.name.right,
-                    left: cardStyleDetails.name.left
+                    left: cardStyleDetails.name.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 email: {
+                    zIndex: 100,
                     color: cardStyleDetails.email.color,
                     fontSize: cardStyleDetails.email.fontSize,
                     fontFamily: fontFamily,
@@ -97,9 +109,11 @@ export default class CardStyle {
                     top: cardStyleDetails.email.top,
                     bottom: cardStyleDetails.email.bottom,
                     right: cardStyleDetails.email.right,
-                    left: cardStyleDetails.email.left
+                    left: cardStyleDetails.email.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 address: {
+                    zIndex: 100,
                     color: cardStyleDetails.address.color,
                     fontSize: cardStyleDetails.address.fontSize,
                     fontFamily: fontFamily,
@@ -107,9 +121,11 @@ export default class CardStyle {
                     top: cardStyleDetails.address.top,
                     bottom: cardStyleDetails.address.bottom,
                     right: cardStyleDetails.address.right,
-                    left: cardStyleDetails.address.left
+                    left: cardStyleDetails.address.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
                 address2: {
+                    zIndex: 100,
                     color: cardStyleDetails.address2.color,
                     fontSize: cardStyleDetails.address2.fontSize,
                     fontFamily: fontFamily,
@@ -117,7 +133,8 @@ export default class CardStyle {
                     top: cardStyleDetails.address2.top,
                     bottom: cardStyleDetails.address2.bottom,
                     right: cardStyleDetails.address2.right,
-                    left: cardStyleDetails.address2.left
+                    left: cardStyleDetails.address2.left,
+                    backgroundColor: 'rgba(0,0,0,0)'
                 },
             }),
             image: cardStyleDetails.imageName
