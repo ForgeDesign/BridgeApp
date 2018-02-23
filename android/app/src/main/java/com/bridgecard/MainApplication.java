@@ -3,6 +3,7 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import fr.greweb.rnwebgl.RNWebGLPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import cl.json.RNSharePackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNWebGLPackage(),
             new VectorIconsPackage(),
             new SvgPackage(),
             new RNSharePackage(),

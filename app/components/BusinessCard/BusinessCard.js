@@ -3,6 +3,11 @@ import { View, TouchableOpacity, Text, Modal, Image } from 'react-native';
 import Hero from 'react-native-hero';
 import CardStyle from '../../data/CardTemplates/CardStyle'
 
+import { Shaders, Node, GLSL } from 'gl-react';
+import { Surface } from 'gl-react-native';
+import GLImage from "gl-react-image";
+import { HueRotate } from 'gl-react-hue-rotate'
+
 export default class BusinessCard extends React.Component {
 
     constructor(props) {
@@ -45,6 +50,15 @@ export default class BusinessCard extends React.Component {
             return null;
         }
         else {
+            return(
+                <View style={this.state.style.top}>
+                    <Surface style={{width: '100%', height: '100%'}}>
+                        <HueRotate style={this.state.style.image} hue={4}>
+                            <GLImage style={this.state.style.image} source={this.state.image} />
+                        </HueRotate>
+                    </Surface>
+                </View>
+            )
             return (
                 <View>
                     <View style={this.state.style.top}>

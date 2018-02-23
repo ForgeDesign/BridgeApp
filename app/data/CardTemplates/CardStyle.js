@@ -19,7 +19,6 @@ export default class CardStyle {
                     borderRadius: 10,
                     marginTop: 10,
                     marginLeft: 10,
-                    borderRadius: 10,
                     overflow: 'hidden',
                 },
                 logo: {

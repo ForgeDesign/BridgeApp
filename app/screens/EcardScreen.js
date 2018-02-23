@@ -13,10 +13,6 @@ import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 import StatusBarAlert from 'react-native-statusbar-alert';
 
-// import GL from 'gl-react'
-// import { Surface } from "gl-react-native";
-// import { HueRotate } from 'gl-react-hue-rotate'
-
 import {
     SlidersColorPicker,
     HueGradient,
@@ -173,13 +169,9 @@ saveData = () => {
 
         // testing the fucking color overlay shit
         // return (
-        //     <Surface width={300} height={200}>
-        //         <HueRotate hue={12}>
-        //             <View key="pooP">
-        //                 <Image
-        //                     style={{ width: 256, height: 244 }}
-        //                 />
-        //             </View>
+        //     <Surface style={{ height: 300, width: 300 }}>
+        //         <HueRotate hue={4}>
+        //             <GLImage source={require("../data/CardTemplates/card1.png")} resizeMode="cover" />
         //         </HueRotate>
         //     </Surface>
         // )
