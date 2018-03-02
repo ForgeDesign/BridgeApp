@@ -40,6 +40,15 @@ export default class CardStyle {
                     width: (width-20),
                     height: ((width-20)*.57),
                 },
+                businameInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.businame.align,
+                    color: cardStyleDetails.businame.color,
+                    fontSize: cardStyleDetails.businame.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
+                },
                 businame: {
                     zIndex: 100,
                     color: cardStyleDetails.businame.color,
@@ -51,6 +60,15 @@ export default class CardStyle {
                     right: cardStyleDetails.businame.right,
                     left: cardStyleDetails.businame.left,
                     backgroundColor: 'rgba(0,0,0,0)'
+                },
+                websiteInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.website.align,
+                    color: cardStyleDetails.website.color,
+                    fontSize: cardStyleDetails.website.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
                 },
                 website: {
                     zIndex: 100,
@@ -64,6 +82,15 @@ export default class CardStyle {
                     left: cardStyleDetails.website.left,
                     backgroundColor: 'rgba(0,0,0,0)'
                 },
+                titleInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.title.align,
+                    color: cardStyleDetails.title.color,
+                    fontSize: cardStyleDetails.title.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
+                },
                 title: {
                     zIndex: 100,
                     color: cardStyleDetails.title.color,
@@ -75,6 +102,15 @@ export default class CardStyle {
                     right: cardStyleDetails.title.right,
                     left: cardStyleDetails.title.left,
                     backgroundColor: 'rgba(0,0,0,0)'
+                },
+                phonenumInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.phonenum.align,
+                    color: cardStyleDetails.phonenum.color,
+                    fontSize: cardStyleDetails.phonenum.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
                 },
                 phonenum: {
                     zIndex: 100,
@@ -88,6 +124,15 @@ export default class CardStyle {
                     left: cardStyleDetails.phonenum.left,
                     backgroundColor: 'rgba(0,0,0,0)'
                 },
+                nameInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.name.align,
+                    color: cardStyleDetails.name.color,
+                    fontSize: cardStyleDetails.name.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
+                },
                 name: {
                     zIndex: 100,
                     color: cardStyleDetails.name.color,
@@ -99,6 +144,15 @@ export default class CardStyle {
                     right: cardStyleDetails.name.right,
                     left: cardStyleDetails.name.left,
                     backgroundColor: 'rgba(0,0,0,0)'
+                },
+                emailInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.email.align,
+                    color: cardStyleDetails.email.color,
+                    fontSize: cardStyleDetails.email.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
                 },
                 email: {
                     zIndex: 100,
@@ -112,6 +166,15 @@ export default class CardStyle {
                     left: cardStyleDetails.email.left,
                     backgroundColor: 'rgba(0,0,0,0)'
                 },
+                addressInput: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.address.align,
+                    color: cardStyleDetails.address.color,
+                    fontSize: cardStyleDetails.address.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
+                },
                 address: {
                     zIndex: 100,
                     color: cardStyleDetails.address.color,
@@ -123,6 +186,15 @@ export default class CardStyle {
                     right: cardStyleDetails.address.right,
                     left: cardStyleDetails.address.left,
                     backgroundColor: 'rgba(0,0,0,0)'
+                },
+                address2Input: {
+                    zIndex: 100,
+                    textAlign: cardStyleDetails.address2.align,
+                    color: cardStyleDetails.address2.color,
+                    fontSize: cardStyleDetails.address2.fontSize,
+                    fontFamily: fontFamily,
+                    height: 15,
+                    width: 200
                 },
                 address2: {
                     zIndex: 100,
