@@ -130,13 +130,13 @@ export default class SimulateGetRequestForNow {
                 left: '8%'
             },
             businame: {
-                color: 'white',
+                color: 'black',
                 fontSize: 16,
                 position: 'absolute',
-                top: undefined,
-                bottom: '18%',
+                top: '12%',
+                bottom: undefined,
                 right: undefined,
-                left: '3%'
+                left: '80%'
             },
             website: {
                 position: 'absolute',

@@ -291,7 +291,7 @@ export default class IsoScreen extends React.Component {
                     >
                     <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
                 </StatusBarAlert>
-                <Header title={'Activity'}/>
+                <Header title={'Search Board'}/>
                 <View style={{
                     borderBottomColor: '#003E5B',
                     borderBottomWidth: 4,

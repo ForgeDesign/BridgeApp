@@ -11,10 +11,6 @@ import { BusinessCard } from '../components/BusinessCard';
 import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 
-// import GL from 'gl-react'
-// import { Surface } from "gl-react-native";
-// import { HueRotate } from 'gl-react-hue-rotate'
-
 import {
     SlidersColorPicker,
     HueGradient,
@@ -225,7 +221,16 @@ render() {
                 address={address}
             />
 
-
+            <Dropdown
+                onChangeText={(value) => this.setState({font: value})}
+                value={this.state.prefont}
+                containerStyle={styles.container}
+                style={styles.containerInner}
+                label='Card Font'
+                data={this.state.fonts}
+                textColor={$primaryBlue}
+                selectedItemColor={$primaryBlue}
+            />
 
             <CardInput
                 name={'name'}
@@ -368,17 +373,6 @@ render() {
                     isEnabled={!isLoading}/>
 
                 </View>
-
-                <Dropdown
-                    onChangeText={(value) => this.setState({font: value})}
-                    value={this.state.prefont}
-                    containerStyle={styles.container}
-                    style={styles.containerInner}
-                    label='Card Font'
-                    data={this.state.fonts}
-                    textColor={$primaryBlue}
-                    selectedItemColor={$primaryBlue}
-                />
 
             <View style={styles.buttonRow}>
 

@@ -1,4 +1,4 @@
-import { TabNavigator, TabBarTop } from 'react-navigation';
+import { TabNavigator, TabBarTop, NavigationActions } from 'react-navigation';
 import { Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 import React from 'react';
@@ -88,6 +88,26 @@ export default TabNavigator(
             indicatorStyle: {
                 height: 0,
             }
-        }
+        },
+        navigationOptions: ({ navigation }) => ({
+            tabBarOnPress: (scene) => {
+                console.log(scene);
+                console.log(navigation)
+                const resetAction = NavigationActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
+                });
+                if(scene.scene.route.key == "Profile") {
+                    if (scene.scene.route.routes.length > 1) {
+                        navigation.dispatch(resetAction);
+                    }
+                    else {
+                        scene.jumpToIndex(scene.scene.index)
+                    }
+                }
+                else
+                    scene.jumpToIndex(scene.scene.index)
+            },
+        }),
     }
 );

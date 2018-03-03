@@ -132,14 +132,6 @@ saveData = () => {
 
 }
 
-/*<View style={{
-    borderBottomColor: '#003E5B',
-    borderBottomWidth: 4,
-    shadowOffset: { width: 0, height:2.8 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1}}/>*/
-
     changeColor() {
         this.setState({ modalVisible: false })
     }
@@ -166,24 +158,6 @@ saveData = () => {
         const { position, website, businame, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
         const { preposition, prewebsite, prebusiname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
         const { isLoading } = this.props;
-
-        // testing the fucking color overlay shit
-        // return (
-        //     <Surface style={{ height: 300, width: 300 }}>
-        //         <HueRotate hue={4}>
-        //             <GLImage source={require("../data/CardTemplates/card1.png")} resizeMode="cover" />
-        //         </HueRotate>
-        //     </Surface>
-        // )
-        /*<CardInput
-        name={'title'}
-        placeholder={'Large Text'}
-        withRef={true}
-        ref={(ref) => this.TitleInputRef = ref}
-        editable={!isLoading}
-        value={this.state.title}
-        onChangeText={(value) => this.update(title, value)}
-        isEnabled={!isLoading}/>*/
 
         return (
             <Container>
@@ -316,6 +290,17 @@ saveData = () => {
                         name={this.state.prename} 
                         email={this.state.preemail} 
                         address={this.state.preaddress}
+                    />
+
+                    <Dropdown
+                        onChangeText={(value) => this.update("prefont", value)}
+                        value={this.state.prefont}
+                        containerStyle={styles.container}
+                        style={styles.containerInner}
+                        label='Card Font'
+                        data={this.state.fonts}
+                        textColor={$primaryBlue}
+                        selectedItemColor={$primaryBlue}
                     />
 
                     <CardInput
@@ -460,17 +445,6 @@ saveData = () => {
                         isEnabled={!isLoading}/>
 
                     </View>
-
-                    <Dropdown
-                        onChangeText={(value) => this.update("prefont", value)}
-                        value={this.state.prefont}
-                        containerStyle={styles.container}
-                        style={styles.containerInner}
-                        label='Card Font'
-                        data={this.state.fonts}
-                        textColor={$primaryBlue}
-                        selectedItemColor={$primaryBlue}
-                    />
 
                     <View style={styles.buttonRow}>
 
