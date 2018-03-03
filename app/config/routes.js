@@ -91,8 +91,6 @@ export default TabNavigator(
         },
         navigationOptions: ({ navigation }) => ({
             tabBarOnPress: (scene) => {
-                console.log(scene);
-                console.log(navigation)
                 const resetAction = NavigationActions.reset({
                     index: 0,
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
