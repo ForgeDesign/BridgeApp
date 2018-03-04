@@ -14,6 +14,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator \"iPhone X\"",
+    "device": "react-native run-ios --device",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "lint": "eslint app/",
     "lint:fix": "eslint app/ --fix"
