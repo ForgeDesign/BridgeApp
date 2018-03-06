@@ -136,7 +136,8 @@ export default class SimulateGetRequestForNow {
                 top: '12%',
                 bottom: undefined,
                 right: undefined,
-                left: '80%'
+                left: '35%',
+                align: 'right'
             },
             website: {
                 position: 'absolute',
@@ -225,7 +226,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 16,
                 position: 'absolute',
                 top: undefined,
-                bottom: '0.5%',
+                bottom: '1.5%',
                 right: undefined,
                 left: '3%'
             },

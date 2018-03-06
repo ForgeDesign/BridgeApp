@@ -58,7 +58,7 @@ class PersonCard extends React.Component {
             <BusinessCard 
                 font={this.props.card.font}
                 cardnum={this.props.card.cardnum}
-                logo={this.props.card.avatarSource} 
+                logo={this.props.card.avatarSource}
                 color={this.props.card.color} 
                 position={this.props.card.position} 
                 website={this.props.card.website} 
@@ -67,6 +67,13 @@ class PersonCard extends React.Component {
                 name={this.props.card.name} 
                 email={this.props.card.email} 
                 address={this.props.card.address}
+                stateabb={this.props.card.stateabb}
+                city={this.props.card.city}
+                zip={this.props.card.zip}
+                socialMedia={this.props.card.socialMedia}
+                section={this.props.section}
+                index={this.props.index}
+                contact={true}
             />
             <TouchableOpacity
               style={styles.button}

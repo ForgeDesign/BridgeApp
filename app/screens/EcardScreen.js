@@ -90,12 +90,20 @@ confirmChanges = () => {
         email: this.state.preemail,
         website: this.state.prewebsite,
         phonenum: this.state.prephonenum,
+        instagram: this.state.preinstagram,
+        linkedin: this.state.prelinkedin,
         logo: this.state.logo 
     });
     this._hideModal();
 }
 
 saveData = () => {
+    instagram = "thisisafakeprofiledonotusethisinprod"
+    if (this.state.instagram != undefined && this.state.instagram != "")
+        instagram = this.state.instagram
+    linkedin = "thisisafakeprofiledonotusethisinprod"
+        if (this.state.linkedin != undefined && this.state.linkedin != "")
+            linkedin = this.state.linkedin
     let obj = {
         font: this.state.font,
         city: this.state.city,
@@ -110,6 +118,11 @@ saveData = () => {
         name: this.state.name,
         address: this.state.address,
         color: this.state.color,
+        notes: "",
+        socialMedia: {
+            instagram: instagram,
+            linkedin: linkedin
+        },
         logo: this.state.logo,
     }
     store.push('busicards', obj)
@@ -155,8 +168,8 @@ saveData = () => {
 
     render() {
         const { navigate } = this.props.navigation;
-        const { position, website, businame, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
-        const { preposition, prewebsite, prebusiname, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
+        const { position, website, businame, instagram, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
+        const { preposition, prewebsite, prebusiname, preinstagram, prelinkedin, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
         const { isLoading } = this.props;
 
         return (
@@ -195,6 +208,7 @@ saveData = () => {
                     name={this.state.prename} 
                     email={this.state.preemail} 
                     address={this.state.preaddress}
+                    socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin}}
                 />
 
                 <View style={styles.pickWrapper}>
@@ -290,6 +304,7 @@ saveData = () => {
                         name={this.state.prename} 
                         email={this.state.preemail} 
                         address={this.state.preaddress}
+                        socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin}}
                     />
 
                     <Dropdown
@@ -382,9 +397,37 @@ saveData = () => {
                         value={this.state.prewebsite}
                         returnKeyType = {"next"}
                         onSubmitEditing={(event) => { 
-                            this.AddressInputRef.focus(); 
+                            this.InstagramInputRef.focus(); 
                         }}
                         onChangeText={(value) => this.update("prewebsite", value)}
+                        isEnabled={!isLoading}/>
+
+                    <CardInput
+                        name={'instagram'}
+                        placeholder={'Instagram Username'}
+                        withRef={true}
+                        ref={(ref) => this.InstagramInputRef = ref}
+                        editable={!isLoading}
+                        value={this.state.preinstagram}
+                        returnKeyType = {"next"}
+                        onSubmitEditing={(event) => { 
+                            this.LinkedinInputRef.focus(); 
+                        }}
+                        onChangeText={(value) => this.update("preinstagram", value)}
+                        isEnabled={!isLoading}/>
+
+                    <CardInput
+                        name={'linkedin'}
+                        placeholder={'Linkedin Username'}
+                        withRef={true}
+                        ref={(ref) => this.LinkedinInputRef = ref}
+                        editable={!isLoading}
+                        value={this.state.prelinkedin}
+                        returnKeyType = {"next"}
+                        onSubmitEditing={(event) => { 
+                            this.AddressInputRef.focus(); 
+                        }}
+                        onChangeText={(value) => this.update("prelinkedin", value)}
                         isEnabled={!isLoading}/>
 
                     <CardInput

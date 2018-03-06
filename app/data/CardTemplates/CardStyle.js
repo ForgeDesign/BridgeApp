@@ -13,13 +13,43 @@ export default class CardStyle {
         let cardStyleDetails = new SimulateGetRequestForNow().card(cardnum)
         return {
             style: EStyleSheet.create({
-                top: {
+                wrapFront: {
+                    marginBottom: 10,
+                },
+                wrapBack: {
+                    top: '30%', 
+                    left: '2.75%', 
+                    transform: [
+                        { rotate: '90deg'}, 
+                        { scaleX: 1.85 }, 
+                        { scaleY: 1.85 }
+                    ], 
+                    alignContent: "center", 
+                    justifyContent: "center"
+                },
+                frontSide: {
                     width: (width - 20),
                     height: ((width - 20) * .57),
                     borderRadius: 10,
                     marginTop: 10,
                     marginLeft: 10,
                     overflow: 'hidden',
+                },
+                backSide: {
+                    width: (width - 20),
+                    height: ((width - 20) * .57),
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    borderColor: '#d6d7da',
+                    marginTop: 10,
+                    marginLeft: 10,
+                    overflow: 'hidden',
+                },
+                notes: {
+                    top: '-20%',
+                    right: '-20%',
+                    width: '70%',
+                    textAlign:'center'
                 },
                 logo: {
                     zIndex: 100,
@@ -46,7 +76,7 @@ export default class CardStyle {
                     color: cardStyleDetails.businame.color,
                     fontSize: cardStyleDetails.businame.fontSize,
                     fontFamily: fontFamily,
-                    height: 15,
+                    height: 18,
                     width: 200
                 },
                 businame: {

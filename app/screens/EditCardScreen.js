@@ -41,6 +41,7 @@ export default class EditCardScreen extends React.Component {
             city: this.props.navigation.state.params.card.item.city,
             stateabb: this.props.navigation.state.params.card.item.stateabb,
             zip: this.props.navigation.state.params.card.item.zip,
+            socialMedia: this.props.navigation.state.params.card.item.socialMedia,
             font: this.props.navigation.state.params.card.item.font,
             isModalVisible: false,
             color: this.props.navigation.state.params.card.item.color,
@@ -91,7 +92,7 @@ export default class EditCardScreen extends React.Component {
 
 render() {
     const { navigate } = this.props.navigation;
-    const { position, website, businame, phonenum, name, email, address, cardnum, city, stateabb, zip, font } = this.state;
+    const { position, socialMedia, website, businame, phonenum, name, email, address, cardnum, city, stateabb, zip, font } = this.state;
     const { isLoading } = this.props;
 
     return (
@@ -119,7 +120,8 @@ render() {
             businame={businame} 
             phonenum={phonenum} 
             name={name} 
-            email={email} 
+            email={email}
+            socialMedia={socialMedia}
             address={address}
         />
 
@@ -218,6 +220,7 @@ render() {
                 phonenum={phonenum} 
                 name={name} 
                 email={email} 
+                socialMedia={socialMedia}
                 address={address}
             />
 
@@ -311,10 +314,48 @@ render() {
                 value={this.state.website}
                 returnKeyType = {"next"}
                 onSubmitEditing={(event) => { 
-                    this.AddressInputRef.focus(); 
+                    this.InstagramInputRef.focus(); 
                 }}
                 onChangeText={(value) => this.setState({website: value })}
                 isEnabled={!isLoading}/>
+
+                <CardInput
+                    name={'instagram'}
+                    placeholder={'Instagram Username'}
+                    withRef={true}
+                    ref={(ref) => this.InstagramInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.instagram}
+                    returnKeyType = {"next"}
+                    onSubmitEditing={(event) => { 
+                        this.LinkedinInputRef.focus(); 
+                    }}
+                    onChangeText={(value) => this.setState(prevState => ({
+                        socialMedia: {
+                            ...prevState.socialMedia,
+                            instagram: value
+                        }
+                    }))}
+                    isEnabled={!isLoading}/>
+
+                <CardInput
+                    name={'linkedin'}
+                    placeholder={'Linkedin Username'}
+                    withRef={true}
+                    ref={(ref) => this.LinkedinInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.linkedin}
+                    returnKeyType = {"next"}
+                    onSubmitEditing={(event) => { 
+                        this.AddressInputRef.focus(); 
+                    }}
+                    onChangeText={(value) => this.setState(prevState => ({
+                        socialMedia: {
+                            ...prevState.socialMedia,
+                            linkedin: value
+                        }
+                    }))}
+                    isEnabled={!isLoading}/>
 
             <CardInput
                 name={'address'}

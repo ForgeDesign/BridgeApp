@@ -1,5 +1,5 @@
     import React, { Component } from 'react';
-    import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Dimensions, AsyncStorage, Modal } from 'react-native';
+    import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native';
     import store from 'react-native-simple-store';
     import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -21,7 +21,6 @@
         this.state = {
             refreshing: false,
             cards: [],
-            isModalVisible: false,
             landscapedCard: []
         };
     }
@@ -89,25 +88,25 @@
                 ]}
                 rightButtonWidth={width*.4 + 30}
             >
-                <TouchableOpacity onPress = {() => this._showModal(item)}>
-                    <BusinessCard
-                        font={item.item.font}
-                        cardnum={item.item.cardnum}
-                        key={item.index}
-                        logo={item.item.logo}
-                        position={item.item.position}
-                        color={item.item.color}
-                        website={item.item.website}
-                        businame={item.item.businame}
-                        phonenum={item.item.phonenum}
-                        name={item.item.name}
-                        email={item.item.email}
-                        address={item.item.address}
-                        city={item.item.city}
-                        stateabb={item.item.stateabb}
-                        zip={item.item.zip}
-                    />
-                </TouchableOpacity>
+                <BusinessCard
+                    font={item.item.font}
+                    cardnum={item.item.cardnum}
+                    key={item.index}
+                    id={item.index}
+                    logo={item.item.logo}
+                    position={item.item.position}
+                    color={item.item.color}
+                    website={item.item.website}
+                    businame={item.item.businame}
+                    phonenum={item.item.phonenum}
+                    name={item.item.name}
+                    email={item.item.email}
+                    address={item.item.address}
+                    city={item.item.city}
+                    stateabb={item.item.stateabb}
+                    socialMedia={item.item.socialMedia}
+                    zip={item.item.zip}
+                />
             </Swipeable>
         )
     }
@@ -138,11 +137,6 @@
     back() {
         this.props.navigation.goBack()
     }
-
-    _showModal(ref) {
-        this.setState({isModalVisible: true, landscapedCard: [ref]})
-    }
-    _hideModal = () => {this.setState({isModalVisible: false})}
 
     render() {
         const { navigate } = this.props.navigation;
@@ -176,35 +170,6 @@
                     renderItem={this._renderItem.bind(this)}
                 />
 
-                <Modal
-                    onRequestClose={this._hideModal}
-                    transparent={false}
-                    visible={this.state.isModalVisible}
-                    animationType='slide'>
-                    <View style={{ top: '35%', left: '2.5%', transform: [{ rotate: '90deg'}, {scaleX: 1.85}, {scaleY: 1.85}], alignContent:"center", justifyContent: "center" }}>
-                        {this.state.landscapedCard.map((ref, key) =>
-                            <TouchableOpacity key={ref.index + 'landscaped'} onPress = {this._hideModal}>
-                                <BusinessCard
-                                    font={ref.item.font}
-                                    cardnum={ref.item.cardnum}
-                                    key={ref.index + 'landscaped'}
-                                    logo={ref.item.logo}
-                                    position={ref.item.position}
-                                    color={ref.item.color}
-                                    website={ref.item.website}
-                                    businame={ref.item.businame}
-                                    phonenum={ref.item.phonenum}
-                                    name={ref.item.name}
-                                    email={ref.item.email}
-                                    address={ref.item.address}
-                                    city={ref.item.city}
-                                    stateabb={ref.item.stateabb}
-                                    zip={ref.item.zip}
-                                />
-                            </TouchableOpacity>
-                        )}
-                    </View>
-                </Modal>
             </Container>
         )
     }

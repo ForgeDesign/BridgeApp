@@ -27,86 +27,29 @@ export default class ContactsScreen extends React.Component {
         this.state = {
             people: 
             {
-                'A': [
+                'C': [
                     {
-                        "name": "Brian Amin",
-                        "location": "3052 Parker Dr. Akron, OH",
-                        "imagepath": require("../assets/images/brianamin.jpg"),
+                        "name": "Ryan Camardo",
+                        "location": "1001 Bridge Card Lane, OH",
+                        "imagepath": require("../assets/images/ryan.jpg"),
                         "card":{
-                            "position":"Project Manager",
-                            "website":"polyend.com",
-                            "businame":"Polyend Design",
-                            "phonenum":"(330)6510981",
-                            "name":"Brian Amin",
-                            "email":"brian.amin@gmail.com",
-                            "address":"3052 Parker Dr. Akron, OH",
-                            "cardnum": 2
-                        }
-                    }
-                ],
-                'B': [
-                    {
-                        "name": "Frank Barnes",
-                        "location": "530 Winding Way Reynoldsburg, OH",
-                        "imagepath": require("../assets/images/frankbarnes.jpg"),
-                        "card":{
-                            "position":"Sales Director",
-                            "website":"shop.vindu.com",
-                            "businame":"Vindu",
-                            "phonenum":"(330)2523647",
-                            "name":"Frank Barnes",
-                            "email":"barnes2@gmail.com",
-                            "address":"530 Winding Way Reynoldsburg, OH",
-                            "cardnum": 5
-                        }
-                    },
-                    {
-                        "name": "Mark Brown",
-                        "location": "71 Pilgrim Ave. Chevy Chase, MD",
-                        "imagepath": require("../assets/images/markbrown.jpg"),
-                        "card":{
-                            "position":"Chief Operating Officer",
-                            "website":"gsb.com",
-                            "businame":"Global Secure Bank",
-                            "phonenum":"(213)6129713",
-                            "name":"Mark Brown",
-                            "email":"brownmark@gsb.com",
-                            "address":"71 Pilgrim Ave. Chevy Chase, MD",
-                            "cardnum": 1
-                        }
-                    },
-                ],
-                'L': [
-                    {
-                        "name": "Mary Lewis",
-                        "location": "4 Goldfield Rd. Honolulu, HI",
-                        "imagepath": require("../assets/images/marylewis.jpg"),
-                        "card":{
-                            "position":"VP of Engineering",
-                            "website":"arkp.net",
-                            "businame":"Ark Petrol",
-                            "phonenum":"(541)9241536",
-                            "name":"Mary Lewis",
-                            "email":"mlewis1@arkp.net",
-                            "address":"4 Goldfield Rd. Honolulu, HI",
-                            "cardnum": 3
-                        }
-                    }
-                ],
-                'R': [
-                    {
-                        "name": "David Rodriguez",
-                        "location": "44 Shirley Ave. West Chicago, IL",
-                        "imagepath": require("../assets/images/davidrodriguez.jpg"),
-                        "card":{
-                            "position":"Head of Product Development",
-                            "website":"zatri.net",
-                            "businame":"Zatri Co.",
-                            "phonenum":"(338)1459857",
-                            "name":"David Rodriguez",
-                            "email":"djrodriguez@zatri.net",
-                            "address":"44 Shirley Ave. West Chicago, IL",
-                            "cardnum": 4
+                            "position":"Founder",
+                            "website":"bridgecardapp.com",
+                            "businame":"Bridge Card",
+                            "phonenum":"+1 (330) 423-5511",
+                            "name":"Ryan Camardo",
+                            "email":"ryan@bridgecardapp.com",
+                            "address":"1001 Bridge Card Lane",
+                            "city":"Bridge",
+                            "zip":"44408",
+                            "stateabb":"OH",
+                            "notes":"",
+                            "socialMedia": {
+                                linkedin: "rrcamardo",
+                                instagram: "bridge_card"
+                            },
+                            "cardnum": 3,
+                            "avatarSource": require('../assets/images/bridgelogo.jpg')
                         }
                     }
                 ],
@@ -116,8 +59,15 @@ export default class ContactsScreen extends React.Component {
             searchTerm: '',
             promptVisible: false,    
             alertVisible: false,
-            contactName: 'fox-hunter5',   
+            contactName: 'fox-hunter5',
         };
+        // store.save('people', this.state.people)
+        store.get('people').then(value => {
+            if (value !== null)
+                this.setState({people: value})
+            else
+                store.save('people', this.state.people)
+        })
     }
 
     makeAlertAppear() {
@@ -138,6 +88,8 @@ export default class ContactsScreen extends React.Component {
             <PersonCard
                 containerStyle={{width: 10}}
                 key={sectionId + '' + index}
+                section={sectionId}
+                index={index}
                 name={person.name}
                 card={person.card}
                 location={person.location}

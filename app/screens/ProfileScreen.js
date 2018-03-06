@@ -70,57 +70,17 @@ class ProfileScreen extends Component {
             } 
             if (value === null) {
                 var a = new Date();
-                a.setMinutes(a.getMinutes() - 21);
-                var b = new Date();
-                b.setHours(b.getHours() - 3);
-                var c = new Date();
-                c.setHours(c.getHours() - 4);
-                var d = new Date();
-                d.setHours(d.getHours() - 8);
-                var e = new Date();
-                e.setHours(e.getHours() - 11);
+                a.setMinutes(a.getMinutes() - 1);
                 obj =  
                 [
                     {
                         connector: "You",
                         text: "bridged with",
-                        connectee: "Frank Barnes",
-                        icon: "",
-                        image: "brianamin",
-                        time: e.toString()
-                    },
-                    {
-                        connector: "You",
-                        text: "bridged with",
-                        connectee: "Brian Amin",
-                        icon: "",
-                        image: "markbrown",
-                        time: d.toString()
-                    },
-                    {
-                        connector: "You",
-                        text: "bridged with",
-                        connectee: "Mary Lewis",
+                        connectee: "Ryan Camardo",
                         icon: "",
                         image: "frankbarnes",
-                        time: c.toString()
-                    },
-                    {
-                        connector: "You",
-                        text: "bridged with",
-                        connectee: "David Rodriguez",
-                        icon: "",
-                        image: "marylewis",
-                        time: b.toString()
-                    },
-                    {
-                        connector: "You",
-                        text: "bridged with",
-                        connectee: "Mark Brown",
-                        icon: "",
-                        image: "davidrodriguez",
                         time: a.toString()
-                    }
+                    },
                 ]
                 this.setState({activity: obj.reverse()})
                 store.save('activity', obj)
@@ -131,6 +91,7 @@ class ProfileScreen extends Component {
     _getCards() {
         store.get('busicards').then((value) => {
             if (value!==null){
+                console.log(value)
                 this.setState({cards: value});
             }
         });
@@ -196,6 +157,7 @@ class ProfileScreen extends Component {
                     <BusinessCard
                         font={ref.item.font}
                         cardnum={ref.item.cardnum}
+                        id={ref.index}
                         key={ref.index}
                         logo={ref.item.logo}
                         position={ref.item.position}
