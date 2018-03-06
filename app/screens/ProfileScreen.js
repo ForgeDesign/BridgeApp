@@ -78,7 +78,7 @@ class ProfileScreen extends Component {
                         text: "bridged with",
                         connectee: "Ryan Camardo",
                         icon: "",
-                        image: "frankbarnes",
+                        image: "ryan",
                         time: a.toString()
                     },
                 ]

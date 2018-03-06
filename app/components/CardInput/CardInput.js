@@ -29,7 +29,7 @@ class CardInput extends React.Component {
             style={styles.input}
             maxLength={32}
             underlineColorAndroid={'transparent'}
-            placeholderTextColor={'black'}
+            placeholderTextColor={'grey'}
             selectionColor={'black'}
             retunKeyType={'done'}
             onFocus={() => this.setState({ isFocused: true})}

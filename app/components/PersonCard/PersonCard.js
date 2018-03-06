@@ -73,6 +73,7 @@ class PersonCard extends React.Component {
                 socialMedia={this.props.card.socialMedia}
                 section={this.props.section}
                 index={this.props.index}
+                founder={this.props.card.founder}
                 contact={true}
             />
             <TouchableOpacity

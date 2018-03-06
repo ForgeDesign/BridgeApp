@@ -325,7 +325,7 @@ render() {
                     withRef={true}
                     ref={(ref) => this.InstagramInputRef = ref}
                     editable={!isLoading}
-                    value={this.state.instagram}
+                    value={this.state.socialMedia.instagram}
                     returnKeyType = {"next"}
                     onSubmitEditing={(event) => { 
                         this.LinkedinInputRef.focus(); 
@@ -344,7 +344,7 @@ render() {
                     withRef={true}
                     ref={(ref) => this.LinkedinInputRef = ref}
                     editable={!isLoading}
-                    value={this.state.linkedin}
+                    value={this.state.socialMedia.linkedin}
                     returnKeyType = {"next"}
                     onSubmitEditing={(event) => { 
                         this.AddressInputRef.focus(); 

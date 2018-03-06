@@ -55,7 +55,7 @@ export default class BusinessCard extends React.Component {
         if (props.contact === true)
             storeKey = "people"
         logo = {uri: props.logo}
-        if (props.name == "Ryan Camardo" && props.city == "Bridge")
+        if (props.founder == true)
             logo = props.logo
         var cardStyle = new CardStyle().getCardStyle(props.cardnum, props.font)
             object = {

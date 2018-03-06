@@ -28,7 +28,7 @@ class CardInputSmall extends React.Component {
             autoCorrect={false}
             style={styles.input}
             underlineColorAndroid={'transparent'}
-            placeholderTextColor={'black'}
+            placeholderTextColor={'grey'}
             selectionColor={'black'}
             retunKeyType={'done'}
             onFocus={() => this.setState({ isFocused: true})}

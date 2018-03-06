@@ -26,6 +26,7 @@ $defaultAssets = {
     frankbarnes: require('./assets/images/frankbarnes.jpg'),
     marylewis: require('./assets/images/marylewis.jpg'),
     davidrodriguez: require('./assets/images/davidrodriguez.jpg'),
+    ryan: require('./assets/images/ryan.jpg')
 }
 
 export default () => <Navigator />

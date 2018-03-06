@@ -41,6 +41,7 @@ export default class ContactsScreen extends React.Component {
                             "email":"ryan@bridgecardapp.com",
                             "address":"1001 Bridge Card Lane",
                             "city":"Bridge",
+                            "founder": true,
                             "zip":"44408",
                             "stateabb":"OH",
                             "notes":"",
