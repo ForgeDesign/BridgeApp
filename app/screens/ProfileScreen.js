@@ -112,9 +112,10 @@ class ProfileScreen extends Component {
     }
 
     openPopup() {
-        for (let index = 0; index < this.state.cards.length; index++) {
-            this["check" + index].uncheck()
-        }
+        if (this.state.cards != undefined)
+            for (let index = 0; index < this.state.cards.length; index++) {
+                this["check" + index].uncheck()
+            }
         this.popupDialog.show()
     }
 

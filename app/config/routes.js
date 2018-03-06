@@ -95,7 +95,7 @@ export default TabNavigator(
                     index: 0,
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
                 });
-                if(scene.scene.route.key == "Profile") {
+                if(scene.scene.route.key == "Profile" && scene.previousScene.key == "Profile") {
                     if (scene.scene.route.routes.length > 1) {
                         navigation.dispatch(resetAction);
                     }
