@@ -11,9 +11,16 @@ target 'BridgeCard' do
   target 'BridgeCard-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RNShare', :path => '../node_modules/react-native-share'
 
     pod 'react-native-webgl', :path => '../node_modules/react-native-webgl'
+
+    pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+    pod 'RNShare', :path => '../node_modules/react-native-share'
+
+    pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   end
 

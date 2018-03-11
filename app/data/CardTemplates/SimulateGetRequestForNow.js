@@ -48,28 +48,28 @@ export default class SimulateGetRequestForNow {
                 align: 'right'
             },
             website: {
-                position: 'absolute',
                 color: '$darkText',
                 fontSize: 10,
+                position: 'absolute',
                 top: undefined,
                 bottom: '10%',
                 right: '12%',
                 left: undefined,
                 align: 'right'
             },
-            title: {
-                position: 'absolute',
+            position: {
                 color: 'white',
                 fontSize: 14,
+                position: 'absolute',
                 top: '16.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
             },
             phonenum: {
-                position: 'absolute',
                 color: '$darkText',
                 fontSize: 10,
+                position: 'absolute',
                 top: undefined,
                 bottom: '17.5%',
                 right: '12%',
@@ -140,28 +140,28 @@ export default class SimulateGetRequestForNow {
                 align: 'right'
             },
             website: {
-                position: 'absolute',
                 color: 'black',
                 fontSize: 10,
+                position: 'absolute',
                 top: '45%',
                 bottom: undefined,
                 right: '16%',
                 left: undefined,
                 align: 'right'
             },
-            title: {
-                position: 'absolute',
+            position: {
                 color: 'white',
                 fontSize: 10,
+                position: 'absolute',
                 top: '16%',
                 bottom: undefined,
                 right: undefined,
                 left: '3%'
             },
             phonenum: {
-                position: 'absolute',
                 color: 'black',
                 fontSize: 10,
+                position: 'absolute',
                 top: '36.5%',
                 bottom: undefined,
                 right: '16%',
@@ -226,34 +226,34 @@ export default class SimulateGetRequestForNow {
                 fontSize: 16,
                 position: 'absolute',
                 top: undefined,
-                bottom: '1.5%',
+                bottom: '-15%',
                 right: undefined,
                 left: '3%'
             },
             website: {
-                position: 'absolute',
                 color: 'gray',
                 fontSize: 10,
-                top: '4.5%',
+                position: 'absolute',
+                top: '-19.5%',
                 bottom: undefined,
                 right: '5%',
                 left: undefined,
                 align: 'right'
             },
-            title: {
-                position: 'absolute',
+            position: {
                 color: 'black',
                 fontSize: 10,
-                top: '13%',
+                position: 'absolute',
+                top: '-11.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '3%'
             },
             phonenum: {
-                position: 'absolute',
                 color: 'black',
                 fontSize: 12,
-                top: '50%',
+                position: 'absolute',
+                top: '26.75%',
                 bottom: undefined,
                 right: undefined,
                 left: '58%'
@@ -262,7 +262,7 @@ export default class SimulateGetRequestForNow {
                 color: 'gray',
                 fontSize: 10,
                 position: 'absolute',
-                top: '5%',
+                top: '-19.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '3%'
@@ -271,7 +271,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 12,
                 position: 'absolute',
-                top: '60%',
+                top: '36.75%',
                 bottom: undefined,
                 right: undefined,
                 left: '58%'
@@ -280,7 +280,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 10,
                 position: 'absolute',
-                top: '21%',
+                top: '-3.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '3%'
@@ -289,7 +289,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 10,
                 position: 'absolute',
-                top: '29%',
+                top: '4.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '3%'
@@ -320,18 +320,18 @@ export default class SimulateGetRequestForNow {
                 left: '20%'
             },
             website: {
-                position: 'absolute',
                 color: 'gray',
                 fontSize: 11,
+                position: 'absolute',
                 top: '77.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '60%'
             },
-            title: {
-                position: 'absolute',
+            position: {
                 color: 'white',
                 fontSize: 12,
+                position: 'absolute',
                 top: '16.5%',
                 bottom: undefined,
                 right: '3%',
@@ -339,9 +339,9 @@ export default class SimulateGetRequestForNow {
                 align: 'right'
             },
             phonenum: {
-                position: 'absolute',
                 color: 'gray',
                 fontSize: 11,
+                position: 'absolute',
                 top: '67%',
                 bottom: undefined,
                 right: undefined,
@@ -412,27 +412,27 @@ export default class SimulateGetRequestForNow {
                 left: '5%'
             },
             website: {
-                position: 'absolute',
                 color: 'white',
                 fontSize: 11,
+                position: 'absolute',
                 top: undefined,
                 bottom: '2%',
                 right: undefined,
                 left: '13%'
             },
-            title: {
-                position: 'absolute',
+            position: {
                 color: 'black',
                 fontSize: 12,
+                position: 'absolute',
                 top: '15.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '63%'
             },
             phonenum: {
-                position: 'absolute',
                 color: 'white',
                 fontSize: 13,
+                position: 'absolute',
                 top: undefined,
                 bottom: '25.5%',
                 right: undefined,

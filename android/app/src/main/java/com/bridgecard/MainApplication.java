@@ -3,13 +3,11 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import fr.greweb.rnwebgl.RNWebGLPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import cl.json.RNSharePackage;
 import com.imagepicker.ImagePickerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
-import com.projectseptember.RNGL.RNGLPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -30,13 +28,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNWebGLPackage(),
             new VectorIconsPackage(),
             new SvgPackage(),
             new RNSharePackage(),
             new ImagePickerPackage(),
-            new PickerPackage(),
-            new RNGLPackage()
+            new PickerPackage()
       );
     }
 

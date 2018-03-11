@@ -1,12 +1,12 @@
 import React from 'react';
-import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking } from 'react-native';
+import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform } from 'react-native';
 import Hero from 'react-native-hero';
 import CardStyle from '../../data/CardTemplates/CardStyle'
 import store from 'react-native-simple-store';
-import { Shaders, Node, GLSL } from 'gl-react';
-import { Surface } from 'gl-react-native';
-import GLImage from "gl-react-image";
-import { HueRotate } from 'gl-react-hue-rotate'
+// import { Shaders, Node, GLSL } from 'gl-react';
+// import { Surface } from 'gl-react-native';
+// import GLImage from "gl-react-image";
+// import { HueRotate } from 'gl-react-hue-rotate'
 import { Icon } from 'native-base';
 var FlipView = require('react-native-citycheck-flip-view');
 import FlipCard from 'react-native-flip-card'
@@ -103,66 +103,74 @@ export default class BusinessCard extends React.Component {
         else {
             return (
                 <View>
-                    <TouchableOpacity
-                        onPress={this._flip}
-                        onLongPress={() => {
-                            this._landscape()
-                        }}
-                        style={this.state.style.wrapFront}
-                    >
-                        <View style={this.state.style.container}>
-                            <FlipView
-                                front={this._renderFront()}
-                                back={this._renderBack()}
-                                isFlipped={this.state.isFlipped}
-                                flipAxis="y"
-                                flipEasing={Easing.out(Easing.ease)}
-                                flipDuration={200}
-                                perspective={1000}
-                            />
-                        </View>                    
+                    {!this.state.isLandscaped ? (
+                    
+                    <View>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onLongPress={this._landscape}
+                            onPress={this._flip}
+                        >
+                            <View style={this.state.style.normalscaped} >
+                                <View style={this.state.style.container}>
+                                    <FlipCard 
+                                        flipHorizontal={true}
+                                        flipVertical={false}
+                                        perspective={1000}
+                                        flip={this.state.isFlipped}
+                                        clickable={false}
+                                        style={{borderWidth: 0, width: '100%', height: '100%'}}
+                                    >
+                                        {/* Face Side */}
+                                        {this.isLandscaped ? <View/> : this._renderFront()}
 
-                    </TouchableOpacity>
+                                        {/* Back Side */}
+                                        {this.isLandscaped ? <View/> : this._renderBack()}
+                                    </FlipCard>
+                                </View>                    
+                            </View>
+                        </TouchableOpacity>        
+                    </View>            
+                ) : (
+
                     <Modal
-                        transparent={true}
+                        transparent={false}
                         onSwipe={() => {
                             this._landscape()
                         }}
+                        style={{width:'100%', height:'100%', padding: 0}}
                         swipeDirection={"down"}
                         isVisible={this.state.isLandscaped}
                         animationType='slide'
                     >
-                            <FlipCard 
-                                flipHorizontal={true}
-                                flipVertical={false}
-                                perspective={1000}
-                                flip={this.state.isFlipped}
-                                clickable={false}
-                                style={{borderWidth: 0}}
-                            >
-                                {/* Face Side */}
-                                <TouchableOpacity
-                                    activeOpacity={0.9}
-                                    onLongPress={this._landscape}
-                                    onPress={this._flip}
-                                    style={this.state.style.wrapBack}
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onLongPress={this._landscape}
+                            onPress={this._flip}
+                            style={{width:'100%', height:'100%', padding: 0}}
+                        >
+                            <View style={this.state.style.container}>
+                                <FlipCard 
+                                    flipHorizontal={true}
+                                    flipVertical={false}
+                                    perspective={1000}
+                                    flip={this.state.isFlipped}
+                                    clickable={false}
+                                    style={Platform.OS == "ios" ? this.state.style.cardLandscapedIos : this.state.style.cardLandscapedAndroid}
                                 >
+                                    {/* Face Side */}
                                     {this._renderFront()}
-                                </TouchableOpacity>
 
-                                {/* Back Side */}
-                                <TouchableOpacity
-                                    activeOpacity={0.9}
-                                    onLongPress={this._landscape}
-                                    onPress={this._flip}
-                                    style={this.state.style.wrapBack}
-                                >
+                                    {/* Back Side */}
                                     {this._renderBack()}
-                                </TouchableOpacity>
-                            </FlipCard>
-                        
+                                </FlipCard>
+                            </View>
+                        </TouchableOpacity>
                     </Modal>
+                )}
+                    
                 </View>
+                
             )
         }
     }
@@ -175,146 +183,132 @@ export default class BusinessCard extends React.Component {
 
     _renderBack = () => {
         return (
-            <View>
-                <View style={this.state.style.backSide}>
-                    <Hero style={this.state.style.image}
-                        colorOverlay={this.state.color}
-                        fullWidth={false}
-                        source={require('../../data/CardTemplates/cardBack.png')}
-                        renderOverlay={() => (
-                            <View style={this.state.style.container}>
+            <View style={this.state.style.card}>
+                <View style={this.state.style.container}>
 
-                                <View style={{marginTop: 5}}/>
+                    <View style={{marginTop: 5, padding: 0}}/>
 
-                                {this.state.socialMedia != undefined ? this.mapObject(this.state.socialMedia, function (key, value) {
-                                    disabled = false
-                                    opacity = 1
-                                    if (value == undefined || value == "" || value == "thisisafakeprofiledonotusethisinprod") {
-                                        disabled = true
-                                        opacity = 0
+                    {this.state.socialMedia != undefined ? this.mapObject(this.state.socialMedia, function (key, value) {
+                        disabled = false
+                        opacity = 1
+                        if (value == undefined || value == "" || value == "thisisafakeprofiledonotusethisinprod") {
+                            disabled = true
+                            opacity = 0
+                        }
+                        if (key == "instagram")
+                            return (
+                                <View style={{opacity: opacity}} key={key} >
+                                    <TouchableOpacity disabled={disabled} style={{width: '8%'}} onPress={() => Linking.openURL("https://www.instagram.com/" + value)}>
+                                        <Icon name='logo-instagram' style={{top: 5, left: 10, fontSize: 36, color: '#bc2a8d'}} />
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                        else if (key == "linkedin")
+                            return (
+                                <View style={{opacity: opacity}} key={key} >
+                                    <TouchableOpacity disabled={disabled} style={{width: '8%'}} onPress={() => Linking.openURL("https://www.linkedin.com/in/" + value)}>
+                                        <Icon name='logo-linkedin' style={{top: 5, left: 10, fontSize: 36, color: '#0077B5'}} />
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                    }) : <View/>}
+
+                    <TextInput
+                        editable={true}
+                        placeholder={"Type all your notes here!"}
+                        multiline={true}
+                        maxHeight={150}
+                        numberOfLines={4}
+                        onChangeText={(text) => {
+                            this.setState({notes: text})
+                            store.get(this.state.storeKey).then((cards) => {
+                                if (cards!==null){
+                                    if(this.state.key !== undefined) {
+                                        cards[this.state.key]["notes"] = text
+                                        store.save(this.state.storeKey, cards)
                                     }
-                                    if (key == "instagram")
-                                        return (
-                                            <View style={{opacity: opacity}} key={key} >
-                                                <TouchableOpacity disabled={disabled} style={{width: '8%'}} onPress={() => Linking.openURL("https://www.instagram.com/" + value)}>
-                                                    <Icon name='logo-instagram' style={{top: 5, left: 10, fontSize: 36, color: '#bc2a8d'}} />
-                                                </TouchableOpacity>
-                                            </View>
-                                        )
-                                    else if (key == "linkedin")
-                                        return (
-                                            <View style={{opacity: opacity}} key={key} >
-                                                <TouchableOpacity disabled={disabled} style={{width: '8%'}} onPress={() => Linking.openURL("https://www.linkedin.com/in/" + value)}>
-                                                    <Icon name='logo-linkedin' style={{top: 5, left: 10, fontSize: 36, color: '#0077B5'}} />
-                                                </TouchableOpacity>
-                                            </View>
-                                        )
-                                }) : <View/>}
-                                
-                                <TextInput
-                                    editable={true}
-                                    placeholder={"Type all your notes here!"}
-                                    multiline={true}
-                                    maxHeight={150}
-                                    numberOfLines={4}
-                                    onChangeText={(text) => {
-                                        this.setState({notes: text})
-                                        store.get(this.state.storeKey).then((cards) => {
-                                            if (cards!==null){
-                                                if(this.state.key !== undefined) {
-                                                    cards[this.state.key]["notes"] = text
-                                                    store.save(this.state.storeKey, cards)
-                                                }
-                                                else if (this.state.storeKey == "people") {
-                                                    cards[this.state.section][this.state.index].card["notes"] = text
-                                                    store.save(this.state.storeKey, cards)
-                                                }
-                                            }
-                                        });
-                                    }}
-                                    value={this.state.notes}
-                                    style={this.state.style.notes}
-                                />
-                            </View>
-                        )}
+                                    else if (this.state.storeKey == "people") {
+                                        cards[this.state.section][this.state.index].card["notes"] = text
+                                        store.save(this.state.storeKey, cards)
+                                    }
+                                }
+                            });
+                        }}
+                        value={this.state.notes}
+                        style={this.state.style.notes}
                     />
                 </View>
+                <Image
+                    style={this.state.style.image}
+                    colorOverlay={this.state.color}
+                    fullWidth={false}
+                    source={require('../../data/CardTemplates/cardBack.png')}
+                />
             </View>
         )
     }
 
     _renderFront = () => {
         return (
-            <View>
-                <View style={this.state.style.frontSide}>
-                    <Hero style={this.state.style.image}
-                        colorOverlay={this.state.color}
-                        fullWidth={false}
-                        source={this.state.image}
-                        renderOverlay={() => (
-                            <View style={this.state.style.container}>
-                                <Image
-                                    style={this.state.style.logo}
-                                    source={this.state.logo}
-                                />
-                                <Text style={this.state.style.email}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.emailInput}
-                                        value={this.state.email}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.address}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.addressInput}
-                                        value={this.state.address}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.website}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.websiteInput}
-                                        value={this.state.website}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.phonenum}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.phonenumInput}
-                                        value={this.state.phonenum}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.address2}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.address2Input}
-                                        value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.name}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.nameInput}
-                                        value={this.state.name}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.businame}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.businameInput}
-                                        value={this.state.businame}
-                                    />
-                                </Text>
-                                <Text style={this.state.style.title}>
-                                    <TextInput
-                                        editable={this.state.editable}
-                                        style={this.state.style.titleInput}
-                                        value={this.state.position}
-                                    />
-                                </Text>
-                            </View>
-                        )}
+            <View style={this.state.style.card}>
+                <Image
+                    style={this.state.style.image}
+                    colorOverlay={this.state.color}
+                    source={this.state.image}
+                    resizeMode="stretch"
+                />
+                <Image
+                    style={this.state.style.logo}
+                    source={this.state.logo}
+                />
+                <View style={Platform.OS == "ios" ? this.state.style.iosInputs : this.state.style.androidInputs}>
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.addressInput}
+                        value={this.state.address}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.emailInput}
+                        value={this.state.email}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.websiteInput}
+                        value={this.state.website}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.phonenumInput}
+                        value={this.state.phonenum}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.address2Input}
+                        value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.nameInput}
+                        value={this.state.name}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.businameInput}
+                        value={this.state.businame}
+                        pointerEvents="none"
+                    />
+                    <TextInput
+                        editable={this.state.editable}
+                        style={this.state.style.positionInput}
+                        value={this.state.position}
+                        pointerEvents="none"
                     />
                 </View>
             </View>
@@ -376,7 +370,7 @@ export default class BusinessCard extends React.Component {
                 //     </Text>
                 //     <Text style={this.state.style.title}>
                 //         <TextInput
-                //             style={this.state.style.titleInput}
+                //             style={this.state.style.position}
                 //             value={this.state.position}
                 //         />
                 //     </Text>
