@@ -45,7 +45,7 @@ export default class CardStyle {
                     left: '-5%', 
                     top: '83%'
                 },
-                cardIos: {
+                card: {
                     width: '100%',
                     height: '100%',
                     borderRadius: 10,
@@ -53,13 +53,14 @@ export default class CardStyle {
                     borderColor: '#d6d7da',
                     overflow: 'hidden',
                 },
-                cardAndroid: {
+                cardBack: {
                     width: '100%',
                     height: '100%',
                     borderRadius: 10,
                     borderWidth: 1,
                     borderColor: '#d6d7da',
                     overflow: 'hidden',
+                    backgroundColor: '#FFFFFF'
                 },
                 notes: {
                     top: '-20%',
@@ -68,17 +69,11 @@ export default class CardStyle {
                     textAlign:'center',
                     zIndex: 100
                 },
-                iosInputs: {
+                inputs: {
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
                     zIndex: 100
-                },
-                androidInputs: {
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    zIndex: 100,
                 },
                 logo: {
                     zIndex: 100,
@@ -101,20 +96,6 @@ export default class CardStyle {
                     width: '100%',
                     height: '100%',
                     zIndex: 1
-                },
-                backImageIos: {
-                    width: '100%',
-                    height: '100%',
-                    top: '-58%',
-                    left: '-3%',
-                    zIndex: 1,
-                },
-                backImageAndroid: {
-                    width: '100%',
-                    height: '100%',
-                    top: '-53%',
-                    left: '-3%',
-                    zIndex: 1,
                 },
                 businameInput: {
                     zIndex: 100,

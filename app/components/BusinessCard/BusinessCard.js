@@ -191,7 +191,7 @@ export default class BusinessCard extends React.Component {
 
     _renderBack = () => {
         return (
-            <View style={Platform.OS == "ios" ? this.state.style.cardIos : this.state.style.cardAndroid}>
+            <View style={this.state.style.cardBack}>
                 <View style={this.state.style.container}>
                     <View style={{marginTop: 5, padding: 0}}/>
 
@@ -244,13 +244,6 @@ export default class BusinessCard extends React.Component {
                         value={this.state.notes}
                         style={this.state.style.notes}
                     />
-
-                    <Image
-                        style={Platform.OS == "ios" ? this.state.style.backImageIos : this.state.style.backImageAndroid}
-                        colorOverlay={this.state.color}
-                        fullWidth={false}
-                        source={require('../../data/CardTemplates/cardBack.png')}
-                    />
                 </View>
             </View>
         )
@@ -258,7 +251,7 @@ export default class BusinessCard extends React.Component {
 
     _renderFront = () => {
         return (
-            <View style={Platform.OS == "ios" ? this.state.style.cardIos : this.state.style.cardAndroid}>
+            <View style={this.state.style.card}>
                 <Image
                     style={this.state.style.image}
                     colorOverlay={this.state.color}
@@ -269,7 +262,7 @@ export default class BusinessCard extends React.Component {
                     style={this.state.style.logo}
                     source={this.state.logo}
                 />
-                <View style={Platform.OS == "ios" ? this.state.style.iosInputs : this.state.style.androidInputs}>
+                <View style={this.state.style.inputs}>
                     <TextInput
                         editable={this.state.editable}
                         style={this.state.style.addressInput}
