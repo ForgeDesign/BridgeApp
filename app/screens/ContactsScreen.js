@@ -64,6 +64,7 @@ export default class ContactsScreen extends React.Component {
         };
         // store.save('people', this.state.people)
         store.get('people').then(value => {
+            console.log(value)
             if (value !== null)
                 this.setState({people: value})
             else

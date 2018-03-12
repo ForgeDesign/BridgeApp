@@ -54,7 +54,8 @@ export default class CardStyle {
                     top: '-20%',
                     right: '-20%',
                     width: '70%',
-                    textAlign:'center'
+                    textAlign:'center',
+                    zIndex: 100
                 },
                 iosInputs: {
                     position: 'absolute',
@@ -89,6 +90,21 @@ export default class CardStyle {
                 image: {
                     width: '100%',
                     height: '100%',
+                    zIndex: 1
+                },
+                backImageIos: {
+                    width: '100%',
+                    height: '100%',
+                    top: '-58%',
+                    left: '-3%',
+                    zIndex: 1,
+                },
+                backImageAndroid: {
+                    width: '100%',
+                    height: '100%',
+                    top: '-80%',
+                    left: '-3%',
+                    zIndex: 1,
                 },
                 businameInput: {
                     zIndex: 100,

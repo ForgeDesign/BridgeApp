@@ -124,7 +124,7 @@ saveData = () => {
             linkedin: linkedin
         },
         logo: this.state.logo,
-    }
+    }    
     store.push('busicards', obj)
 
     var d = new Date();

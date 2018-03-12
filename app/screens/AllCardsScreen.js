@@ -28,6 +28,7 @@
     componentWillMount() {
         store.get('busicards').then((value) => {
             if (value!==null){
+                console.log(value)
                 this.setState({cards: value});
                 this.forceUpdate()
             }
