@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '01981A6D4E89B438F5821FF56A412347'
-               BlueprintName = 'Pods-BridgeCard'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-BridgeCard.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C1ABC9D6AE96F555281D501AE051D064"
+               BlueprintName = "Pods-BridgeCard"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libPods-BridgeCard.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

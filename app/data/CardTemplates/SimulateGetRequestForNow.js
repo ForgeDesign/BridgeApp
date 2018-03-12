@@ -41,7 +41,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 14,
                 position: 'absolute',
-                top: '6.5%',
+                top: '13.5%',
                 bottom: undefined,
                 right: '4%',
                 left: undefined,

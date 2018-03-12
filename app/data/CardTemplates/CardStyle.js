@@ -13,6 +13,9 @@ export default class CardStyle {
         let cardStyleDetails = new SimulateGetRequestForNow().card(cardnum)
         return {
             style: EStyleSheet.create({
+                androidAdjust: {
+                    left: '4.5%'
+                },
                 normalscaped: {
                     marginBottom: 10,
                     zIndex: 2000
@@ -31,8 +34,8 @@ export default class CardStyle {
                 },
                 cardLandscapedAndroid: {
                     padding: 0,
-                    width: (width-20),
-                    height: ((width-20)*.57),
+                    width: 355,
+                    height: 202.35,
                     transform: [
                         { rotate: '90deg'}, 
                         { scaleX: 1.55 }, 
@@ -42,7 +45,15 @@ export default class CardStyle {
                     left: '-5%', 
                     top: '83%'
                 },
-                card: {
+                cardIos: {
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    borderColor: '#d6d7da',
+                    overflow: 'hidden',
+                },
+                cardAndroid: {
                     width: '100%',
                     height: '100%',
                     borderRadius: 10,
@@ -68,7 +79,6 @@ export default class CardStyle {
                     width: '100%',
                     height: '100%',
                     zIndex: 100,
-                    top: 6
                 },
                 logo: {
                     zIndex: 100,
@@ -82,8 +92,8 @@ export default class CardStyle {
                     left: cardStyleDetails.logo.left
                 },
                 container: {
-                    width: (width-20),
-                    height: ((width-20)*.57),
+                    width: 355,
+                    height: 202.35,
                     left: 10,
                     marginTop: 10
                 },
@@ -102,7 +112,7 @@ export default class CardStyle {
                 backImageAndroid: {
                     width: '100%',
                     height: '100%',
-                    top: '-80%',
+                    top: '-53%',
                     left: '-3%',
                     zIndex: 1,
                 },

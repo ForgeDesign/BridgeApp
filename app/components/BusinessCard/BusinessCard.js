@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform } from 'react-native';
+import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform, Dimensions } from 'react-native';
 import Hero from 'react-native-hero';
 import CardStyle from '../../data/CardTemplates/CardStyle'
 import store from 'react-native-simple-store';
@@ -11,6 +11,8 @@ import { Icon } from 'native-base';
 var FlipView = require('react-native-citycheck-flip-view');
 import FlipCard from 'react-native-flip-card'
 import Modal from "react-native-modal";
+
+var {height, width} = Dimensions.get('window');
 
 const available_media = [
     "instagram",
@@ -25,6 +27,12 @@ export default class BusinessCard extends React.Component {
         this.getNotes(props.id).done(notes => {
             this.setState({notes: notes})
         })
+        let poo = {
+            width: (width-20),
+            height: ((width-20)*.57),
+        }
+        poo["pee"] = "poop"
+        console.log(poo)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -105,7 +113,7 @@ export default class BusinessCard extends React.Component {
                 <View>
                     {!this.state.isLandscaped ? (
                     
-                    <View>
+                    <View style={Platform.OS == "ios" ? {} : this.state.style.androidAdjust}>
                         <TouchableOpacity
                             activeOpacity={0.9}
                             onLongPress={this._landscape}
@@ -183,7 +191,7 @@ export default class BusinessCard extends React.Component {
 
     _renderBack = () => {
         return (
-            <View style={this.state.style.card}>
+            <View style={Platform.OS == "ios" ? this.state.style.cardIos : this.state.style.cardAndroid}>
                 <View style={this.state.style.container}>
                     <View style={{marginTop: 5, padding: 0}}/>
 
@@ -250,7 +258,7 @@ export default class BusinessCard extends React.Component {
 
     _renderFront = () => {
         return (
-            <View style={this.state.style.card}>
+            <View style={Platform.OS == "ios" ? this.state.style.cardIos : this.state.style.cardAndroid}>
                 <Image
                     style={this.state.style.image}
                     colorOverlay={this.state.color}
