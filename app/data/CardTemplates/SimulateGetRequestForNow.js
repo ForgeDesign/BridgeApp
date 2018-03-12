@@ -41,7 +41,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 14,
                 position: 'absolute',
-                top: '36.5%',
+                top: '6.5%',
                 bottom: undefined,
                 right: '4%',
                 left: undefined,
@@ -52,7 +52,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 10,
                 position: 'absolute',
                 top: undefined,
-                bottom: '10%',
+                bottom: '-9.5%',
                 right: '12%',
                 left: undefined,
                 align: 'right'
@@ -61,7 +61,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 14,
                 position: 'absolute',
-                top: '16.5%',
+                top: '-8%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
@@ -71,7 +71,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 10,
                 position: 'absolute',
                 top: undefined,
-                bottom: '17.5%',
+                bottom: '-2%',
                 right: '12%',
                 left: undefined,
                 align: 'right'
@@ -80,7 +80,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 14,
                 position: 'absolute',
-                top: '7.5%',
+                top: '-17%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
@@ -90,7 +90,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 10,
                 position: 'absolute',
                 top: undefined,
-                bottom: '2.5%',
+                bottom: '-17%',
                 right: '12%',
                 left: undefined,
                 align: 'right'
@@ -99,7 +99,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 10,
                 position: 'absolute',
-                top: '32.5%',
+                top: '8%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
@@ -108,7 +108,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 10,
                 position: 'absolute',
-                top: '39.5%',
+                top: '15%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
@@ -314,7 +314,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 12,
                 position: 'absolute',
-                top: '14.5%',
+                top: '-9%',
                 bottom: undefined,
                 right: undefined,
                 left: '20%'
@@ -323,7 +323,7 @@ export default class SimulateGetRequestForNow {
                 color: 'gray',
                 fontSize: 11,
                 position: 'absolute',
-                top: '77.5%',
+                top: '53.75%',
                 bottom: undefined,
                 right: undefined,
                 left: '60%'
@@ -332,7 +332,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 12,
                 position: 'absolute',
-                top: '16.5%',
+                top: '-6%',
                 bottom: undefined,
                 right: '3%',
                 left: undefined,
@@ -342,7 +342,7 @@ export default class SimulateGetRequestForNow {
                 color: 'gray',
                 fontSize: 11,
                 position: 'absolute',
-                top: '67%',
+                top: '43.5%',
                 bottom: undefined,
                 right: undefined,
                 left: '60%'
@@ -351,7 +351,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 12,
                 position: 'absolute',
-                top: '8.5%',
+                top: '-14%',
                 bottom: undefined,
                 right: '3%',
                 left: undefined,
@@ -361,7 +361,7 @@ export default class SimulateGetRequestForNow {
                 color: 'gray',
                 fontSize: 11,
                 position: 'absolute',
-                top: '88%',
+                top: '64.75%',
                 bottom: undefined,
                 right: undefined,
                 left: '60%'
@@ -370,7 +370,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 10,
                 position: 'absolute',
-                top: '37.5%',
+                top: '13%',
                 bottom: undefined,
                 right: '3%',
                 left: undefined,
@@ -380,7 +380,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 10,
                 position: 'absolute',
-                top: '44.5%',
+                top: '20%',
                 bottom: undefined,
                 right: '3%',
                 left: undefined,
@@ -406,7 +406,7 @@ export default class SimulateGetRequestForNow {
                 color: 'white',
                 fontSize: 14,
                 position: 'absolute',
-                top: '46.5%',
+                top: '23%',
                 bottom: undefined,
                 right: undefined,
                 left: '5%'
@@ -416,7 +416,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 11,
                 position: 'absolute',
                 top: undefined,
-                bottom: '2%',
+                bottom: '-16.5%',
                 right: undefined,
                 left: '13%'
             },
@@ -424,7 +424,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 12,
                 position: 'absolute',
-                top: '15.5%',
+                top: '-7%',
                 bottom: undefined,
                 right: undefined,
                 left: '63%'
@@ -434,7 +434,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 13,
                 position: 'absolute',
                 top: undefined,
-                bottom: '25.5%',
+                bottom: '7.5%',
                 right: undefined,
                 left: '13%'
             },
@@ -442,7 +442,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 12,
                 position: 'absolute',
-                top: '8.5%',
+                top: '-14%',
                 bottom: undefined,
                 right: undefined,
                 left: '63%'
@@ -452,7 +452,7 @@ export default class SimulateGetRequestForNow {
                 fontSize: 13,
                 position: 'absolute',
                 top: undefined,
-                bottom: '14%',
+                bottom: '-4%',
                 right: undefined,
                 left: '13%'
             },
@@ -460,7 +460,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 10,
                 position: 'absolute',
-                top: '30.5%',
+                top: '7%',
                 bottom: undefined,
                 right: undefined,
                 left: '63%'
@@ -469,7 +469,7 @@ export default class SimulateGetRequestForNow {
                 color: 'black',
                 fontSize: 10,
                 position: 'absolute',
-                top: '38.5%',
+                top: '15%',
                 bottom: undefined,
                 right: undefined,
                 left: '63%'
