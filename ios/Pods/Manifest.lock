@@ -1,4 +1,39 @@
 PODS:
+  - Firebase/Auth (4.10.1):
+    - Firebase/Core
+    - FirebaseAuth (= 4.4.4)
+  - Firebase/Core (4.10.1):
+    - FirebaseAnalytics (= 4.1.0)
+    - FirebaseCore (= 4.0.17)
+  - FirebaseAnalytics (4.1.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - nanopb (~> 0.3)
+  - FirebaseAuth (4.4.4):
+    - FirebaseAnalytics (~> 4.1)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (4.0.17):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (2.0.9):
+    - FirebaseCore (~> 4.0)
+  - GoogleToolboxForMac/DebugUtils (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.3)
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+  - GTMSessionFetcher/Core (1.1.14)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - QBImagePickerController (3.4.0)
   - React (0.50.3):
     - React/Core (= 0.50.3)
@@ -45,6 +80,8 @@ PODS:
   - yoga (0.50.3.React)
 
 DEPENDENCIES:
+  - Firebase/Auth
+  - Firebase/Core
   - QBImagePickerController
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - React/Core (from `../node_modules/react-native`)
@@ -82,6 +119,14 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
+  Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
+  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
+  FirebaseAuth: d040bb7a9db6dfc29d0e7ec82d48be51352b2581
+  FirebaseCore: 872307b001bbefda1dfa0dbfffa50a6919023d4a
+  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 541ba768b9855e10cdc76f55427a5cd0653ca806
   react-native-image-picker: 42cfe2c8435d893414f8714a81e480313cb1412b
@@ -92,6 +137,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: d9a1acbc0600bf8decc8f0d21895872c99a9e4cf
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: bd74dbdcdea90f9170992d65181edd091c2cc0ad
+PODFILE CHECKSUM: 3f1917440b3ea9fc5fe7846d2d1a5fe2317fb19d
 
 COCOAPODS: 1.4.0

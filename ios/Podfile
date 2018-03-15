@@ -21,7 +21,9 @@ target 'BridgeCard' do
         'RCTVibration',
         'RCTWebSocket'
     ]
-
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 
