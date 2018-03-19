@@ -60,7 +60,7 @@ export default class CardStyle {
                     borderWidth: 1,
                     borderColor: '#d6d7da',
                     overflow: 'hidden',
-                    backgroundColor: '#FFFFFF'
+                    backgroundColor: '#FFFFFF',
                 },
                 notes: {
                     top: '-20%',

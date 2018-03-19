@@ -41,15 +41,18 @@ export default class ProfilePictureAndLevel extends React.Component
     };
 
     componentWillMount() {
-        store.get('profileImage').then((value) => {
-          if (value!==null){
-          this.setState({profilePic: value.profilePic});
-          this.forceUpdate();
-          }
-          else{
-              this.setState({profilePic: undefined})
-          }
-        });
+        setTimeout(function(){
+            store.get('profileImage').then((value) => {
+                if (value!==null){
+                this.setState({profilePic: value.profilePic});
+                this.forceUpdate();
+                }
+                else{
+                    this.setState({profilePic: undefined})
+                }
+              });
+        }.bind(this), 500);
+        
       }
 
       /*_onRefresh() {

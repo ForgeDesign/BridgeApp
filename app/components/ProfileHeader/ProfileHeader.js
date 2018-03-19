@@ -21,15 +21,18 @@ export default class ProfileHeader extends React.Component {
         };
     }
     componentWillMount() {
-        store.get('profileName').then((value) => {
-            if (value !== null) {
-                this.setState({ profileName: value.profileName });
-                this.forceUpdate();
-            }
-            else {
-                this.setState({ profileName: 'Tap to add name' })
-            }
-        });
+        setTimeout(function(){
+            store.get('profileName').then((value) => {
+                console.log(value)
+                if (value !== null) {
+                    this.setState({ profileName: value.profileName });
+                    this.forceUpdate();
+                }
+                else {
+                    this.setState({ profileName: 'Tap to add name' })
+                }
+            });
+        }.bind(this), 500);
     }
 
     openConnect(cardNum = undefined) {

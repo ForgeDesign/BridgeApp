@@ -16,6 +16,7 @@ import Swipeable from 'react-native-swipeable';
 
 import { Col, Row, Grid } from "react-native-easy-grid";
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
+import firebase from 'react-native-firebase';
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
@@ -194,7 +195,7 @@ class ProfileScreen extends Component {
 
         return (
             <Container>
-                <Header title={'Profile'} />
+                <Header title={'Profile'} logout={() => firebase.auth().signOut()}/>
 
                 <ProfileHeader
                     ref={ref => this.header = ref}

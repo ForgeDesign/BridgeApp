@@ -489,12 +489,18 @@ saveData = () => {
 
                     </View>
 
+                    <TouchableOpacity
+                        style={styles.buttonCancel}
+                        onPress={this.addLogo}>
+                            <Text style={styles.buttonText}>Add Logo</Text>
+                        </TouchableOpacity>
+
                     <View style={styles.buttonRow}>
 
                         <TouchableOpacity
                         style={styles.button2}
-                        onPress={this.addLogo}>
-                            <Text style={styles.buttonText}>Add Logo</Text>
+                        onPress={this._hideModal}>
+                        <Text style={styles.buttonText}>Cancel</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -503,11 +509,7 @@ saveData = () => {
                         <Text style={styles.buttonText}>Confirm</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.buttonCancel}
-                        onPress={this._hideModal}>
-                        <Text style={styles.buttonText}>Cancel</Text>
-                    </TouchableOpacity>
+                    
                     </KeyboardAwareScrollView>
                 </Modal>
 
@@ -593,7 +595,7 @@ const styles = EStyleSheet.create({
         marginLeft: width*.3,
         marginRight: width*.3,
         marginTop: 10,
-        marginBottom: 30,
+        marginBottom: 10,
     },
     buttonRow: {
         flexDirection: 'row',
@@ -613,7 +615,7 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10,
+        marginBottom: 30,
     },
     buttonText: {
         fontSize: 16,

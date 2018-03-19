@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81247F6AE77D45C483CC7253DFF68E21"
+               BlueprintIdentifier = "4FB7A2B1CA12D1A1BE454820E572ACE2"
                BlueprintName = "RNVectorIcons"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libRNVectorIcons.a">

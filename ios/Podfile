@@ -22,8 +22,13 @@ target 'BridgeCard' do
         'RCTWebSocket'
     ]
     pod 'Firebase/Core'
+    pod 'Firebase/Database'
     pod 'Firebase/Auth'
     
+    pod 'FBSDKLoginKit'
+
+    pod 'Google/SignIn'
+
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 

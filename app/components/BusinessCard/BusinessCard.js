@@ -8,7 +8,6 @@ import store from 'react-native-simple-store';
 // import GLImage from "gl-react-image";
 // import { HueRotate } from 'gl-react-hue-rotate'
 import { Icon } from 'native-base';
-var FlipView = require('react-native-citycheck-flip-view');
 import FlipCard from 'react-native-flip-card'
 import Modal from "react-native-modal";
 
@@ -50,9 +49,13 @@ export default class BusinessCard extends React.Component {
         if (cards!==null){
             if (key !== undefined) {
                 notes = cards[key].notes
+                if (/^\s+$/.test(notes))
+                    notes = null
             }
             else if (this.state.storeKey == "people") {
                 notes = cards[this.state.section][this.state.index].card["notes"]
+                if (/^\s+$/.test(notes))
+                    notes = null
             }
         }
         return notes
@@ -170,7 +173,11 @@ export default class BusinessCard extends React.Component {
                                     {this._renderFront()}
 
                                     {/* Back Side */}
+                                    <View style={{transform: [
+                                                    { scaleX: -1 }
+                                                ]}}>
                                     {this._renderBack()}
+                                    </View>
                                 </FlipCard>
                             </View>
                         </TouchableOpacity>

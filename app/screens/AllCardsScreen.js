@@ -66,6 +66,7 @@
         return(
             <Swipeable
                 ref={ref => this["swipable" + item.index] = ref}
+                swipeStartMinLeftEdgeClearance={50}
                 rightButtons={[
                     <View style={styles.buttonRow}>
                         <TouchableOpacity
@@ -141,24 +142,13 @@
 
     render() {
         const { navigate } = this.props.navigation;
-
         return (
             <Container>
-                <Header title={'My Cards'} />
+                <Header title={'My Cards'} back={() => this.props.navigation.goBack()} />
 
                 {/* fun hack */}
                 <View style={{display: 'none'}}>
                     <ConnectButtonWithDescription ref={ref => this.connect = ref}/>
-                </View>
-
-                <View style={styles.buttonView}>
-
-                    <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => this.back()}>
-                        <Text style={styles.buttonText}>Return</Text>
-                    </TouchableOpacity>
-
                 </View>
 
                 <FlatList

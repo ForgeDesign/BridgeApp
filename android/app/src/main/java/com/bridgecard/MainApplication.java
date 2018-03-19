@@ -3,6 +3,9 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
+import io.amarcruz.rnmeasuretext.RNMeasureTextPackage;
+// import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
 
@@ -31,6 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGoogleSignInPackage(),
+            new RNMeasureTextPackage(),
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(), // <-- Add this line
             new PickerPackage(),

@@ -1,23 +1,84 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar, Alert, ActivityIndicator } from 'react-native';
 import { Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
-
+import GoogleSignIn from 'react-native-google-sign-in';
 import { EmailInput } from '../components/EmailInput';
 import { PasswordInput } from '../components/PasswordInput';
 
+import store from 'react-native-simple-store';
+
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
+
+import firebase from 'react-native-firebase';
+
 var {height, width} = Dimensions.get('window');
+
+const Facebook = {
+    login: (permissions) => {
+      return new Promise((resolve, reject) => {
+        FBLoginManager.loginWithPermissions(permissions || ['email'], (error, data) => {
+          if (!error) {
+            resolve(data.credentials.token);
+          } else {
+            reject(error);
+          }
+        });
+      });
+    },
+    logout: () => {
+      return new Promise((resolve, reject) => {
+        FBLoginManager.logout((error, data) => {
+          if (!error) {
+            resolve(true);
+          } else {
+            reject(error);
+          }
+        });
+      });
+    }
+  }
+
 
 export default class LoginScreen extends React.Component {
 
   state = {
     email: '',
     password: '',
+    register: false,
+    activity: false,
   }
 
-  render() {
+  onSubmit = async () => {
     
+    this.setState({activity: true})
+    if (this.state.register) {
+        user = await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
+        .then(value => {
+            this.setState({activity: false})
+            this.props.navigation.navigate('Main')
+        }).catch((error) => {
+            console.log(error)
+            this.setState({activity: false})
+            Alert.alert("Bad register!", "Sorry, something went wrong. Make sure your password has at least 6 characters!")
+        });;
+    }
+    else {
+        user = await firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
+        .then(value => {
+            this.setState({activity: false})
+            this.props.navigation.navigate('Main')
+        }).catch((error) => {
+            this.setState({activity: false})
+            Alert.alert("Bad login!", "Sorry, that was either a wrong username or a wrong password.")
+        });
+    }
+
+  }
+
+  render() {    
+
     const { email, password } = this.state
     const { navigate } = this.props.navigation
     const { isLoading, onLoginPress } = this.props
@@ -46,24 +107,123 @@ export default class LoginScreen extends React.Component {
           <View style={styles.miscView}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}>
-              <Text style={styles.buttonText}>Sign In</Text>
+              onPress={() => this.onSubmit()}>
+              <Text style={styles.buttonText}>{!this.state.activity ? (!this.state.register ? "Log in" : "Register") : (<ActivityIndicator style={{width: 5, height: 5}} size="small" color="#0000ff" />)}</Text>
             </TouchableOpacity>
             <Text style={styles.forgotText}>Forgot Password?</Text>
             <View style={styles.iconRow}>
+            <TouchableOpacity onPress={() => {
+                                                this.setState({activity: true})
+                                                Facebook.logout().then(poo => {
+                                                    Facebook.login().then(value => {
+                                                        firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.FacebookAuthProvider.credential(value)).then(loggedUser => {
+                                                            console.log(loggedUser)
+                                                            console.log(firebase.auth().currentUser)
+                                                            store.get('profileName').then((value) => {
+                                                                if (value !== null) {
+                                                                    // dont replace
+                                                                    store.save('profileName', {
+                                                                        profileName: loggedUser.user._user.displayName 
+                                                                    })
+                                                                }
+                                                                else {
+                                                                    store.save('profileName', {
+                                                                        profileName: loggedUser.user._user.displayName 
+                                                                    })
+                                                                }
+                                                                store.get('profileImage').then((value) => {
+                                                                    if (value!==null){
+                                                                        // dont replace
+                                                                        store.save('profileImage', {
+                                                                            profilePic: loggedUser.user._user.photoURL 
+                                                                        })
+                                                                    }
+                                                                    else {
+                                                                        store.save('profileImage', {
+                                                                            profilePic: loggedUser.user._user.photoURL 
+                                                                        })
+                                                                    }
+                                                                });
+                                                            });
+                                                            this.setState({activity: false})
+                                                            this.props.navigation.navigate('Main')
+                                                        }).catch((error2) => {
+                                                            this.setState({activity: false})
+                                                            console.log(JSON.stringify(error2))
+                                                            Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                        })
+                                                    }).catch((error) => {
+                                                        this.setState({activity: false})
+                                                        console.log(error.NSLocalizedDescription)
+                                                    })
+                                                })
+                                            }}>
               <View style={styles.icon}>
                 <Text style={styles.iconText}>f</Text>
               </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={async () => {
+                                                    this.setState({activity: true})                                                    
+                                                    GoogleSignIn.currentUser().then((user) => {
+                                                        if (user != undefined) {
+                                                            GoogleSignIn.signOut()
+                                                        }
+                                                        GoogleSignIn.signInPromise()
+                                                        .then((user) => {
+                                                            console.log(user)
+                                                            firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
+                                                                console.log(firebase.auth().currentUser)
+                                                                store.get('profileName').then((value) => {
+                                                                    if (value !== null) {
+                                                                        // dont replace
+                                                                        store.save('profileName', {
+                                                                            profileName: loggedUser.user._user.displayName 
+                                                                        })
+                                                                    }
+                                                                    else {
+                                                                        store.save('profileName', {
+                                                                            profileName: loggedUser.user._user.displayName 
+                                                                        })
+                                                                    }
+                                                                    store.get('profileImage').then((value) => {
+                                                                        if (value!==null){
+                                                                            // dont replace
+                                                                            store.save('profileImage', {
+                                                                                profilePic: loggedUser.user._user.photoURL 
+                                                                            })
+                                                                        }
+                                                                        else {
+                                                                            store.save('profileImage', {
+                                                                                profilePic: loggedUser.user._user.photoURL 
+                                                                            })
+                                                                        }
+                                                                    });
+                                                                })
+                                                                this.setState({activity: false})
+                                                                this.props.navigation.navigate('Main')
+                                                            }).catch((error2) => {
+                                                                this.setState({activity: false})
+                                                                console.log(JSON.stringify(error2))
+                                                                Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                            })
+                                                        }).catch((err) => {
+                                                            this.setState({activity: false})
+                                                            console.log(err)
+                                                        })
+                                                    })
+
+                                                  }}>
               <View style={styles.icon}>
-                <Text style={styles.iconText}>{'in'}</Text>
+                <Text style={styles.iconText}>{'g'}</Text>
               </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.footView}>
             <View style={styles.footNest}>
-              <Text style={styles.footerText}>{'Dont have an account yet?'}</Text>
-              <TouchableOpacity style={styles.registerButton}>
-                <Text style={styles.registerText}>Register</Text>
+              <Text style={styles.footerText}>{this.state.register ? "Already have an account?" : "Dont have an account yet?"}</Text>
+              <TouchableOpacity style={styles.registerButton} onPress={() => this.setState({register: !this.state.register})}>
+                <Text style={styles.registerText}>{this.state.register ? "Log in" : "Register"}</Text>
               </TouchableOpacity>
             </View>
           </View>

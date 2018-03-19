@@ -15,6 +15,7 @@
 		01F5A38522E748ADA33B5A54 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B1F7C7EA97D49F3AD8D59E9 /* Octicons.ttf */; };
 		065F8B5F5BBF437B8F033865 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 442781D953B84D729D0EDA83 /* MaterialIcons.ttf */; };
 		0A016266205B0DEC00133BA4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A016265205B0DEC00133BA4 /* GoogleService-Info.plist */; };
+		0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A033835205F6D51003FF310 /* libRCTFBLogin.a */; };
 		0A3F9FEE205624F200B970CB /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FBF205624F200B970CB /* Octicons.ttf */; };
 		0A3F9FEF205624F200B970CB /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC0205624F200B970CB /* Feather.ttf */; };
 		0A3F9FF0205624F200B970CB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC1205624F200B970CB /* Entypo.ttf */; };
@@ -26,16 +27,20 @@
 		0A3F9FF6205624F200B970CB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC7205624F200B970CB /* EvilIcons.ttf */; };
 		0A3F9FF7205624F200B970CB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */; };
 		0A3F9FF8205624F200B970CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */; };
-		0AC7085F204089B000E1A405 /* libRNWebGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC7085E204089A800E1A405 /* libRNWebGL.a */; };
+		0A76EA02205F903A002E488E /* RNGoogleSignInEventsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D7205F903A002E488E /* RNGoogleSignInEventsBridge.m */; };
+		0A76EA03205F903A002E488E /* RNGoogleSignInEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D8205F903A002E488E /* RNGoogleSignInEvents.swift */; };
+		0A76EA04205F903A002E488E /* RNGoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */; };
+		0A76EA05205F903A002E488E /* RNGoogleSignInBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */; };
+		0A76EA06205F91F0002E488E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		0AE8EB05205639C7005ECD5C /* libRSKImageCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1474F7AE44564A6BBCBD96FA /* libRNMeasureText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF7CC8EE36C4E8783FC1BB2 /* libRNMeasureText.a */; };
 		2F98D59143254C5C89E00AB7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9124BCB26504430B6012C21 /* Entypo.ttf */; };
 		3916501C448747D5B67D68E0 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3801AB2C150455BA952115E /* FontAwesome.ttf */; };
 		411F03E2DB8948BD8A318FBC /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDF17ACB95E44EBA814AFB82 /* Roboto.ttf */; };
@@ -97,6 +102,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
+		};
+		0A033834205F6D51003FF310 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F3A6B5B1ACFBCC500CA65F7;
+			remoteInfo = RCTFBLogin;
 		};
 		0A19A4BC1FF0F3A600A4D445 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -160,6 +172,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
+		};
+		0A810181205F44BD00FE26B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNMeasureText;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -318,6 +337,7 @@
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		078E02E11020449E94FBBB5D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		0A016265205B0DEC00133BA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "BridgeCard/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		0A3F9FBF205624F200B970CB /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		0A3F9FC0205624F200B970CB /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		0A3F9FC1205624F200B970CB /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -329,6 +349,15 @@
 		0A3F9FC7205624F200B970CB /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		0A76E9B7205F89D3002E488E /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A76E9B8205F8A30002E488E /* BridgeCard-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BridgeCard-Swift.h"; path = "BridgeCard/BridgeCard-Swift.h"; sourceTree = "<group>"; };
+		0A76E9C3205F8BD7002E488E /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Pods/GoogleSignIn/Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
+		0A76E9C5205F8BF8002E488E /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Pods/GoogleSignIn/Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
+		0A76E9D7205F903A002E488E /* RNGoogleSignInEventsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInEventsBridge.m; sourceTree = "<group>"; };
+		0A76E9D8205F903A002E488E /* RNGoogleSignInEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGoogleSignInEvents.swift; sourceTree = "<group>"; };
+		0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNGoogleSignIn.swift; sourceTree = "<group>"; };
+		0A76E9DA205F903A002E488E /* RNGoogleSignIn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNGoogleSignIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInBridge.m; sourceTree = "<group>"; };
 		0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRSKImageCropper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E3F2AE54A30DB37E8F39107 /* libPods-BridgeCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E6014D4B3A0F8FF1EE9FF35 /* Pods-BridgeCard-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard-tvOSTests/Pods-BridgeCard-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +373,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BridgeCard/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1759ED20BE3943479C9E06D8 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		2DF7CC8EE36C4E8783FC1BB2 /* libRNMeasureText.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNMeasureText.a; sourceTree = "<group>"; };
 		2E7F0BD0A0FFE3B6389853E0 /* Pods-BridgeCardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCardTests/Pods-BridgeCardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		430A58E41B4E4641AF18AB26 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		442781D953B84D729D0EDA83 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -352,6 +382,7 @@
 		5802CF6D86601C1FABE1E065 /* Pods-BridgeCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard/Pods-BridgeCard.release.xcconfig"; sourceTree = "<group>"; };
 		5CC2A0A0F460DC1201EDA6FC /* libPods-BridgeCard-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCard-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMeasureText.xcodeproj; path = "../node_modules/react-native-text-size/ios/RNMeasureText.xcodeproj"; sourceTree = "<group>"; };
 		6B1F7C7EA97D49F3AD8D59E9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		6BE29B4E813945E29D14B577 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		7264E023890A494E8A348F4B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -384,8 +415,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */,
 				0AE8EB05205639C7005ECD5C /* libRSKImageCropper.a in Frameworks */,
-				0AC7085F204089B000E1A405 /* libRNWebGL.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -401,6 +432,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				881EB86CD329ADD2D025B937 /* libPods-BridgeCard.a in Frameworks */,
 				CD0460B73D8B49CDA5736258 /* libRNFirebase.a in Frameworks */,
+				1474F7AE44564A6BBCBD96FA /* libRNMeasureText.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,11 +489,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0A03382C205F6D51003FF310 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A033835205F6D51003FF310 /* libRCTFBLogin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0A19A4B51FF0F3A000A4D445 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				0AC7085E204089A800E1A405 /* libRNWebGL.a */,
 				430A58E41B4E4641AF18AB26 /* libRNFirebase.a */,
+				2DF7CC8EE36C4E8783FC1BB2 /* libRNMeasureText.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -469,6 +510,9 @@
 		0A316FFA1FF0F5080050BE80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A76E9C5205F8BF8002E488E /* GoogleSignIn.bundle */,
+				0A76E9C3205F8BD7002E488E /* GoogleSignIn.framework */,
+				0A76E9B7205F89D3002E488E /* libGoogleToolboxForMac.a */,
 				0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */,
 				0E3F2AE54A30DB37E8F39107 /* libPods-BridgeCard.a */,
 				5CC2A0A0F460DC1201EDA6FC /* libPods-BridgeCard-tvOSTests.a */,
@@ -494,6 +538,27 @@
 			);
 			name = Fonts;
 			path = "../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
+		0A76E9D6205F903A002E488E /* RNGoogleSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				0A76E9D7205F903A002E488E /* RNGoogleSignInEventsBridge.m */,
+				0A76E9D8205F903A002E488E /* RNGoogleSignInEvents.swift */,
+				0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */,
+				0A76E9DA205F903A002E488E /* RNGoogleSignIn-Bridging-Header.h */,
+				0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */,
+			);
+			name = RNGoogleSignIn;
+			path = "../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn";
+			sourceTree = "<group>";
+		};
+		0A81017E205F44BC00FE26B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A810182205F44BD00FE26B2 /* libRNMeasureText.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0D900EFCE48C757F7AFA79A7 /* Pods */ = {
@@ -532,6 +597,7 @@
 		13B07FAE1A68108700A75B9A /* BridgeCard */ = {
 			isa = PBXGroup;
 			children = (
+				0A76E9D6205F903A002E488E /* RNGoogleSignIn */,
 				0A016265205B0DEC00133BA4 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -539,6 +605,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				0A76E9B8205F8A30002E488E /* BridgeCard-Swift.h */,
 			);
 			name = BridgeCard;
 			sourceTree = "<group>";
@@ -615,6 +682,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -628,6 +696,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				DEA0AC7A32F1436E909C976C /* RNFirebase.xcodeproj */,
+				669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -739,6 +808,10 @@
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
 				},
 				{
+					ProductGroup = 0A03382C205F6D51003FF310 /* Products */;
+					ProjectRef = 0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -777,6 +850,10 @@
 				{
 					ProductGroup = 0A01625B205B0D7F00133BA4 /* Products */;
 					ProjectRef = DEA0AC7A32F1436E909C976C /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = 0A81017E205F44BC00FE26B2 /* Products */;
+					ProjectRef = 669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -827,6 +904,13 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = 0A01625E205B0D7F00133BA4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A033835205F6D51003FF310 /* libRCTFBLogin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTFBLogin.a;
+			remoteRef = 0A033834205F6D51003FF310 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A19A4BD1FF0F3A600A4D445 /* libRCTBlob-tvOS.a */ = {
@@ -890,6 +974,13 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = 0A31702A1FF0F5080050BE80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A810182205F44BD00FE26B2 /* libRNMeasureText.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMeasureText.a;
+			remoteRef = 0A810181205F44BD00FE26B2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AC7085E204089A800E1A405 /* libRNWebGL.a */ = {
@@ -1107,6 +1198,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BridgeCard/Pods-BridgeCard-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -1123,6 +1217,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
@@ -1182,8 +1279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				0A76EA02205F903A002E488E /* RNGoogleSignInEventsBridge.m in Sources */,
+				0A76EA06205F91F0002E488E /* AppDelegate.m in Sources */,
+				0A76EA05205F903A002E488E /* RNGoogleSignInBridge.m in Sources */,
+				0A76EA04205F903A002E488E /* RNGoogleSignIn.swift in Sources */,
+				0A76EA03205F903A002E488E /* RNGoogleSignInEvents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,25 +1308,34 @@
 			baseConfigurationReference = DF247C98A462FDC47598E7CB /* Pods-BridgeCard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 463X4DVTMN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
+					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)..\node_modules\neact-native-image-crop-pickerios/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-vector-iconsRNVectorIconsManager",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-image-crop-pickerios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-text-size/ios",
+					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
 				);
 				INFOPLIST_FILE = BridgeCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/BridgeCard\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1235,6 +1345,8 @@
 				PRODUCT_NAME = BridgeCard;
 				PROVISIONING_PROFILE = "daeddd02-1430-4658-8503-8acc4060fe4b";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1244,24 +1356,33 @@
 			baseConfigurationReference = 5802CF6D86601C1FABE1E065 /* Pods-BridgeCard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 463X4DVTMN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
+					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)..\node_modules\neact-native-image-crop-pickerios/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-vector-iconsRNVectorIconsManager",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-image-crop-pickerios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-text-size/ios",
+					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
 				);
 				INFOPLIST_FILE = BridgeCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/BridgeCard\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1271,6 +1392,8 @@
 				PRODUCT_NAME = BridgeCard;
 				PROVISIONING_PROFILE = "daeddd02-1430-4658-8503-8acc4060fe4b";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

@@ -143,7 +143,7 @@ export default class ContactsScreen extends React.Component {
                     height={35}
                 />
         
-                <Header title={'Contacts'} />   
+                <Header title={'Bridges'} plus={() => this.setState({ promptVisible: true }) }/>   
 
                 <SearchBar
                     round
@@ -163,13 +163,13 @@ export default class ContactsScreen extends React.Component {
                         borderBottomWidth: 0,
                         padding: 0,
                         margin: 0,
-                        bottom: 30,
+                        bottom: 20,
                         backgroundColor: $primaryBlue}}
                     placeholder="Type anything to search"
                 />
 
                 <View style={{
-                bottom: 30,
+                bottom: 20,
                 borderBottomColor: '#003E5B',
                 borderBottomWidth: 4,
                 shadowOffset: { width: 0, height:2.8 },
@@ -178,7 +178,7 @@ export default class ContactsScreen extends React.Component {
                 elevation: 1}}/>
 
                 <AtoZListView
-                    style={{ marginTop: 6, bottom: 30 }}
+                    style={{ marginTop: 16, bottom: 30 }}
                     data={filteredPeople}       // required array|object
                     renderRow={this.renderRow}  // required func
                     rowHeight={150}              // required number
@@ -189,14 +189,6 @@ export default class ContactsScreen extends React.Component {
                     sectionListItem={this.sectionListItem}
                 />
 
-                <Fab
-                active={this.state.active}
-                direction='up'
-                style={styles.fab}
-                position='bottomRight'
-                onPress={() => this.setState({ promptVisible: true }) }>
-                <Icon name="md-add"/>
-                </Fab>
                 <Prompt
                 title="Type in the BridgeCard code. "
                 placeholder="fox-hunter5"

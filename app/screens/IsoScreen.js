@@ -38,84 +38,7 @@ export default class IsoScreen extends React.Component {
             promptVisible: false,
             searchTerm: '',
             contactName: 'fox-hunter5',   
-            people:
-            [
-                {
-                    "name": "Mark Brown",
-                    "location": "71 Pilgrim Ave. Chevy Chase, MD",
-                    "imagepath": require("../assets/images/markbrown.jpg"),
-                    "card":{
-                        "position":"Chief Operating Officer",
-                        "website":"gsb.com",
-                        "businame":"Global Secure Bank",
-                        "phonenum":"(213)6129713",
-                        "name":"Mark Brown",
-                        "email":"brownmark@gsb.com",
-                        "address":"71 Pilgrim Ave. Chevy Chase, MD",
-                        "cardnum": 1
-                    }
-                },
-                {
-                    "name": "Brian Amin",
-                    "location": "3052 Parker Dr. Akron, OH",
-                    "imagepath": require("../assets/images/brianamin.jpg"),
-                    "card":{
-                        "position":"Project Manager",
-                        "website":"polyend.com",
-                        "businame":"Polyend Deseign",
-                        "phonenum":"(330)6510981",
-                        "name":"Brian Amin",
-                        "email":"brian.amin@gmail.com",
-                        "address":"3052 Parker Dr. Akron, OH",
-                        "cardnum": 2
-                    }
-                },
-                {
-                    "name": "Mary Lewis",
-                    "location": "4 Goldfield Rd. Honolulu, HI",
-                    "imagepath": require("../assets/images/marylewis.jpg"),
-                    "card":{
-                        "position":"VP of Engineering",
-                        "website":"arkp.net",
-                        "businame":"Ark Petrol",
-                        "phonenum":"(541)9241536",
-                        "name":"Mary Lewis",
-                        "email":"mlewis1@arkp.net",
-                        "address":"4 Goldfield Rd. Honolulu, HI",
-                        "cardnum": 3
-                    }
-                },
-                {
-                    "name": "David Rodriguez",
-                    "location": "44 Shirley Ave. West Chicago, IL",
-                    "imagepath": require("../assets/images/davidrodriguez.jpg"),
-                    "card":{
-                        "position":"Head of Product Development",
-                        "website":"zatri.net",
-                        "businame":"Zatri Co.",
-                        "phonenum":"(338)1459857",
-                        "name":"David Rodriguez",
-                        "email":"djrodriguez@zatri.net",
-                        "address":"44 Shirley Ave. West Chicago, IL",
-                        "cardnum": 4
-                    }
-                },
-                {
-                    "name": "Frank Barnes",
-                    "location": "530 Winding Way Reynoldsburg, OH",
-                    "imagepath": require("../assets/images/frankbarnes.jpg"),
-                    "card":{
-                        "position":"Sales Director",
-                        "website":"shop.vindu.com",
-                        "businame":"Vindu",
-                        "phonenum":"(330)2523647",
-                        "name":"Frank Barnes",
-                        "email":"barnes2@gmail.com",
-                        "address":"530 Winding Way Reynoldsburg, OH",
-                        "cardnum": 5
-                    }
-                }            
-            ],
+            people: [ ],
             activity:
             [
                 {
@@ -144,6 +67,23 @@ export default class IsoScreen extends React.Component {
                 }
             ]
         }
+    }
+
+    componentWillMount() {
+        store.get('people').then(val => {
+            if(val != undefined) {
+
+                var orderedpeople = []
+                Object.keys(val).filter(key => 
+                    val[key].map((person, index) => {
+                        person["section"] = key
+                        person["index"] = index
+                        orderedpeople.push(person)
+                    })
+                )
+                this.setState({people: orderedpeople})
+            }
+        })
     }
 
     searchUpdated(term) {
@@ -255,6 +195,8 @@ export default class IsoScreen extends React.Component {
         <Grid>
             <Col size={75}>
                 <PersonCard
+                    section={item.item.section}
+                    index={item.item.index}
                     name={item.item.name}
                     card={item.item.card}
                     location={item.item.location}
@@ -291,7 +233,7 @@ export default class IsoScreen extends React.Component {
                     >
                     <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
                 </StatusBarAlert>
-                <Header title={'Search Board'}/>
+                <Header title={'Search Board'} plus={() => this.setState({ promptVisible: true })}/>
                 <View style={{
                     borderBottomColor: '#003E5B',
                     borderBottomWidth: 4,
@@ -314,14 +256,6 @@ export default class IsoScreen extends React.Component {
                     )}
                 </ScrollView>
 
-                <Fab
-                active={this.state.active}
-                direction='up'
-                style={{backgroundColor: $primaryBlue}}
-                position='bottomRight'
-                onPress={() => this.setState({ promptVisible: true }) }>
-                <Icon name="md-add"/>
-                </Fab>
                 <Prompt
                 title="What are you looking for?"
                 placeholder="a marketing director"
