@@ -69,7 +69,7 @@ class ProfileActivity extends React.Component {
                 imageSrc = {uri:this.props.image}
             }
         }
-        if (this.props.image.indexOf("react-native-image-crop-pick" != -1) && this.props.text != "bridged with" && this.props.text != "is looking for a") {
+        if (this.props.text != "bridged with" && this.props.text != "is looking for a") {
             imageSrc = {uri:this.props.image}
         }
         if (this.props.image == "ryan")

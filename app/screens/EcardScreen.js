@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import store from 'react-native-simple-store';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Header } from '../components/Header';

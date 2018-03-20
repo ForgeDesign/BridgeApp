@@ -7,10 +7,10 @@ import ImagePicker from 'react-native-image-picker';
 import ImageCropper from 'react-native-image-crop-picker';
 
 import styles from './styles';
-import store from 'react-native-simple-store';
 import { Dimensions } from 'react-native';
 
-
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
 
 const circleWidth = Dimensions.get('window').width / 6;
 
@@ -41,28 +41,14 @@ export default class ProfilePictureAndLevel extends React.Component
     };
 
     componentWillMount() {
-        setTimeout(function(){
-            store.get('profileImage').then((value) => {
-                if (value!==null){
-                this.setState({profilePic: value.profilePic});
-                this.forceUpdate();
-                }
-                else{
-                    this.setState({profilePic: undefined})
-                }
-              });
-        }.bind(this), 500);
-        
-      }
-
-      /*_onRefresh() {
-        store.get('profilePic').then((value) => {
-          if (value!==null){
-            this.setState({profilePic: value.profilePic});
-            this.forceUpdate();
-          }
-        });
-      }*/
+        value = firebase.auth().currentUser.photoURL
+        if (value !== null) {
+            this.setState({ profilePic: value });
+        }
+        else {
+            this.setState({ profilePic: undefined })
+        }
+    }
 
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -80,22 +66,17 @@ export default class ProfilePictureAndLevel extends React.Component
 
                 let source = response.uri;
                 ImageCropper.openCropper({
+                    compressImageQuality: 0.3,
+                    includeBase64: true,
                     path: source,
                     width: 300,
                     height: 400,
                     cropperCircleOverlay: true
                   }).then(image => {
-                    this.setState({profilePic: image.path});
-
-                    let obj = {
-                        profilePic: this.state.profilePic
-                    }
-                    store.update('profileImage', {
-                      profilePic: obj.profilePic });
-    
-                  });
-                  
-
+                      based64 = "data:" + image.mime + ";base64," + image.data
+                    this.setState({profilePic: based64});
+                    firebase.auth().currentUser.updateProfile({photoURL: based64})
+                });
             }
         })
     }

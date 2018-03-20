@@ -9,7 +9,9 @@ import ConnectButtonWithDescription from './ConnectButtonWithDescription';
 import ProfilePictureAndLevel from './ProfilePictureAndLevel';
 import BigTextAndLowerText from './BigTextAndLowerText';
 import Prompt from 'rn-prompt';
-import store from 'react-native-simple-store';
+
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
 
 export default class ProfileHeader extends React.Component {
 
@@ -21,18 +23,13 @@ export default class ProfileHeader extends React.Component {
         };
     }
     componentWillMount() {
-        setTimeout(function(){
-            store.get('profileName').then((value) => {
-                console.log(value)
-                if (value !== null) {
-                    this.setState({ profileName: value.profileName });
-                    this.forceUpdate();
-                }
-                else {
-                    this.setState({ profileName: 'Tap to add name' })
-                }
-            });
-        }.bind(this), 500);
+        value = firebase.auth().currentUser.displayName
+        if (value !== null) {
+            this.setState({ profileName: value });
+        }
+        else {
+            this.setState({ profileName: 'Tap to add name' })
+        }
     }
 
     openConnect(cardNum = undefined) {
@@ -84,12 +81,9 @@ export default class ProfileHeader extends React.Component {
                         }
                     }
                     onSubmit={(value) => {
-                        if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                        if (/^\s+$/.test(value)) {
                             this.setState({
                                 promptVisible: false,
-                                profileName: 'Tap to add name'
-                            });
-                            store.update('profileName', {
                                 profileName: 'Tap to add name'
                             });
                         }
@@ -98,13 +92,8 @@ export default class ProfileHeader extends React.Component {
                                 promptVisible: false,
                                 profileName: value
                             });
-                            store.update('profileName', {
-                                profileName: value
-                            });
-
+                            firebase.auth().currentUser.updateProfile({displayName: value})
                         }
-
-
                     }
 
                     } />

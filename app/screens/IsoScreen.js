@@ -13,7 +13,6 @@ import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
-import store from 'react-native-simple-store';
 
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
@@ -284,37 +283,42 @@ export default class IsoScreen extends React.Component {
                             contactName: value
                         });
                         {
-                            store.get('profileImage').then((imageSrc) => {
-                                if (imageSrc!==null){
-                                    var d = new Date();
-                                    obj = {
-                                        connector: "You",
-                                        text: "are looking for",
-                                        connectee: value.toLowerCase(),
-                                        icon: "",
-                                        image: imageSrc.profilePic,
-                                        time: d.toString()
-                                    }
-                                    console.log(imageSrc.profilePic)
-                                    store.push('activity', obj)
-                                    this.state.activity.unshift(obj)
-                                    this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                            imageSrc = firebase.auth().currentUser.photoURL
+                            var d = new Date();
+                            obj = {}
+                            if (imageSrc != null){
+                                obj = {
+                                    connector: "You",
+                                    text: "are looking for",
+                                    connectee: value.toLowerCase(),
+                                    icon: "",
+                                    image: imageSrc,
+                                    time: d.toString()
                                 }
-                                else {
-                                    var d = new Date();
-                                    obj = {
-                                        connector: "You",
-                                        text: "are looking for",
-                                        connectee: value.toLowerCase(),
-                                        icon: "md-person",
-                                        image: "",
-                                        time: d.toString()
-                                    }
-                                    store.push('activity', obj)
-                                    this.state.activity.unshift(obj)
-                                    this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                            }
+                            else {
+                                obj = {
+                                    connector: "You",
+                                    text: "are looking for",
+                                    connectee: value.toLowerCase(),
+                                    icon: "md-person",
+                                    image: "",
+                                    time: d.toString()
                                 }
-                            });
+                            }
+
+                            // MARK - HAVE TO INCLUDE LOGIC TO IMPLEMENT ISO IN DATABSE
+                            //
+                            //
+                            //
+                            //
+                            //
+                            //
+                            //
+                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+                            rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj)
+                            this.state.activity.unshift(obj)
+                            this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
                         }
                     }
                 }

@@ -16,7 +16,35 @@ import Swipeable from 'react-native-swipeable';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import firebase from 'react-native-firebase';
+import { Face } from 'react-native-flip-card';
 const rootRef = firebase.database().ref();
+var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
+import GoogleSignIn from 'react-native-google-sign-in';
+
+const Facebook = {
+    login: (permissions) => {
+      return new Promise((resolve, reject) => {
+        FBLoginManager.loginWithPermissions(permissions || ['email'], (error, data) => {
+          if (!error) {
+            resolve(data.credentials.token);
+          } else {
+            reject(error);
+          }
+        });
+      });
+    },
+    logout: () => {
+      return new Promise((resolve, reject) => {
+        FBLoginManager.logout((error, data) => {
+          if (!error) {
+            resolve(true);
+          } else {
+            reject(error);
+          }
+        });
+      });
+    }
+  }
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -201,7 +229,16 @@ class ProfileScreen extends Component {
 
         return (
             <Container>
-                <Header title={'Profile'} logout={() => firebase.auth().signOut()}/>
+                <Header title={'Profile'} logout={() => {
+                        GoogleSignIn.signOut()
+                        Facebook.logout().then(val => {
+                            firebase.auth().signOut()
+                        }).catch(err => {
+                            firebase.auth().signOut()
+                            console.log(err)
+                        })
+                    }
+                }/>
 
 {/* <Button
             onPress={() => Linking.openURL('bridgecard://test/23')}

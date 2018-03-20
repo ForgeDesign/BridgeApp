@@ -7,8 +7,6 @@ import GoogleSignIn from 'react-native-google-sign-in';
 import { EmailInput } from '../components/EmailInput';
 import { PasswordInput } from '../components/PasswordInput';
 
-import store from 'react-native-simple-store';
-
 var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 
 import firebase from 'react-native-firebase';
@@ -117,34 +115,6 @@ export default class LoginScreen extends React.Component {
                                                 Facebook.logout().then(poo => {
                                                     Facebook.login().then(value => {
                                                         firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.FacebookAuthProvider.credential(value)).then(loggedUser => {
-                                                            console.log(loggedUser)
-                                                            console.log(firebase.auth().currentUser)
-                                                            store.get('profileName').then((value) => {
-                                                                if (value !== null) {
-                                                                    // dont replace
-                                                                    store.save('profileName', {
-                                                                        profileName: loggedUser.user._user.displayName 
-                                                                    })
-                                                                }
-                                                                else {
-                                                                    store.save('profileName', {
-                                                                        profileName: loggedUser.user._user.displayName 
-                                                                    })
-                                                                }
-                                                                store.get('profileImage').then((value) => {
-                                                                    if (value!==null){
-                                                                        // dont replace
-                                                                        store.save('profileImage', {
-                                                                            profilePic: loggedUser.user._user.photoURL 
-                                                                        })
-                                                                    }
-                                                                    else {
-                                                                        store.save('profileImage', {
-                                                                            profilePic: loggedUser.user._user.photoURL 
-                                                                        })
-                                                                    }
-                                                                });
-                                                            });
                                                             this.setState({activity: false})
                                                             this.props.navigation.navigate('Main')
                                                         }).catch((error2) => {
@@ -170,35 +140,7 @@ export default class LoginScreen extends React.Component {
                                                         }
                                                         GoogleSignIn.signInPromise()
                                                         .then((user) => {
-                                                            console.log(user)
                                                             firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
-                                                                console.log(firebase.auth().currentUser)
-                                                                store.get('profileName').then((value) => {
-                                                                    if (value !== null) {
-                                                                        // dont replace
-                                                                        store.save('profileName', {
-                                                                            profileName: loggedUser.user._user.displayName 
-                                                                        })
-                                                                    }
-                                                                    else {
-                                                                        store.save('profileName', {
-                                                                            profileName: loggedUser.user._user.displayName 
-                                                                        })
-                                                                    }
-                                                                    store.get('profileImage').then((value) => {
-                                                                        if (value!==null){
-                                                                            // dont replace
-                                                                            store.save('profileImage', {
-                                                                                profilePic: loggedUser.user._user.photoURL 
-                                                                            })
-                                                                        }
-                                                                        else {
-                                                                            store.save('profileImage', {
-                                                                                profilePic: loggedUser.user._user.photoURL 
-                                                                            })
-                                                                        }
-                                                                    });
-                                                                })
                                                                 this.setState({activity: false})
                                                                 this.props.navigation.navigate('Main')
                                                             }).catch((error2) => {
