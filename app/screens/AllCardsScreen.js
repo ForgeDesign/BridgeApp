@@ -1,6 +1,5 @@
     import React, { Component } from 'react';
-    import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native';
-    import store from 'react-native-simple-store';
+    import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Dimensions } from 'react-native';
     import EStyleSheet from 'react-native-extended-stylesheet';
 
     import ConnectButtonWithDescription from '../components/ProfileHeader/ConnectButtonWithDescription';
@@ -11,6 +10,9 @@
 
     import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
     import Swipeable from 'react-native-swipeable';
+
+    import firebase from 'react-native-firebase';
+    const rootRef = firebase.database().ref();
 
     var {height, width} = Dimensions.get('window');
 
@@ -26,24 +28,24 @@
     }
 
     componentWillMount() {
-        store.get('busicards').then((value) => {
-            if (value!==null){
-                console.log(value)
-                this.setState({cards: value});
-                this.forceUpdate()
-            }
-        });
+        rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
+            var cardArray = []
+            val.forEach(child => {
+                cardArray.push(child.val())
+            })
+            this.setState({cards: cardArray});
+        })
     }
 
     _onRefresh() {
         this.setState({refreshing: true});
-        store.get('busicards').then((value) => {
-            if (value!==null){
-                this.setState({cards: value});
-                this.forceUpdate();
-            }
-            this.setState({refreshing: false});
-        });
+        rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
+            var cardArray = []
+            val.forEach(child => {
+                cardArray.push(child.val())
+            })
+            this.setState({cards: cardArray, refreshing: false});
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -116,9 +118,12 @@
     _deleteItem(index) {
         this["swipable" + index].recenter()
         arrayCopy = this.state.cards
+
+        rootRef.child(firebase.auth().currentUser.uid + "cards/" + arrayCopy[index].fireKey).remove()
+
         arrayCopy = arrayCopy.filter((_, i) => i !== index)
         setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
-        AsyncStorage.setItem('busicards', JSON.stringify(arrayCopy))
+
         var d = new Date();
         obj = {
             connector: "You",
@@ -128,7 +133,7 @@
             image: "",
             time: d.toString()
         }
-        store.push('activity', obj)
+        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
     }
 
     _editItem(ref) {

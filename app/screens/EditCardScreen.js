@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import store from 'react-native-simple-store';
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
 import { CardInputSmall } from '../components/CardInputSmall';
@@ -22,6 +21,9 @@ import {
 } from 'react-native-color';
 
 const {height, width} = Dimensions.get('window');
+
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
 
 export default class EditCardScreen extends React.Component {
 
@@ -44,6 +46,7 @@ export default class EditCardScreen extends React.Component {
             socialMedia: this.props.navigation.state.params.card.item.socialMedia,
             font: this.props.navigation.state.params.card.item.font,
             isModalVisible: false,
+            fireKey: this.props.navigation.state.params.card.item.fireKey,
             color: this.props.navigation.state.params.card.item.color,
             modalVisible: false,
             recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
@@ -72,7 +75,11 @@ export default class EditCardScreen extends React.Component {
     saveData = () => {
         cards = this.props.navigation.state.params.cards
         cards[this.props.navigation.state.params.card.index] = this.state
-        AsyncStorage.setItem('busicards', JSON.stringify(cards))
+
+        card = cards[this.props.navigation.state.params.card.index]
+        key = cards[this.props.navigation.state.params.card.index]["fireKey"]
+        rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(card)
+
         var d = new Date();
         obj = {
             connector: "You",
@@ -82,7 +89,7 @@ export default class EditCardScreen extends React.Component {
             image: "",
             time: d.toString()
         }
-        store.push('activity', obj)
+        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
         this.props.navigation.goBack()
     }
 

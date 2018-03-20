@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, AsyncStorage } from 'react-native';
-import store from 'react-native-simple-store';
+import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, Linking, Button } from 'react-native';
 
 import styles from './ProfileStyles'
 
@@ -17,6 +16,8 @@ import Swipeable from 'react-native-swipeable';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
+
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
@@ -65,37 +66,42 @@ class ProfileScreen extends Component {
     }
 
     _getActivity() {
-        store.get('activity').then((value) => {
-            if (value!== null && !this.arraysEqual(value.reverse(), this.state.activity)){
-                this.setState({activity: value});
-            } 
-            if (value === null) {
+        
+        rootRef.child(firebase.auth().currentUser.uid + "activity").once().then(val => {
+            var activityArray = []
+            val.forEach(child => {
+                activityArray.push(child.val())
+            })
+            if (activityArray.length == 0) {
                 var a = new Date();
                 a.setMinutes(a.getMinutes() - 1);
                 obj =  
-                [
-                    {
-                        connector: "You",
-                        text: "bridged with",
-                        connectee: "Ryan Camardo",
-                        icon: "",
-                        image: "ryan",
-                        time: a.toString()
-                    },
-                ]
-                this.setState({activity: obj.reverse()})
-                store.save('activity', obj)
+                {
+                    connector: "You",
+                    text: "bridged with",
+                    connectee: "Ryan Camardo",
+                    icon: "",
+                    image: "ryan",
+                    time: a.toString()
+                }
+                this.setState({activity: [obj]})
+                rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+                return
             }
-        });
+            if (!this.arraysEqual(activityArray.reverse(), this.state.activity)){
+                this.setState({activity: activityArray});
+            } 
+        })
     }
 
     _getCards() {
-        store.get('busicards').then((value) => {
-            if (value!==null){
-                console.log(value)
-                this.setState({cards: value});
-            }
-        });
+        rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
+            var cardArray = []
+            val.forEach(child => {
+                cardArray.push(child.val())
+            })
+            this.setState({cards: cardArray});
+        })
     }
 
     // this tells you if the profile screen is active
@@ -196,6 +202,11 @@ class ProfileScreen extends Component {
         return (
             <Container>
                 <Header title={'Profile'} logout={() => firebase.auth().signOut()}/>
+
+{/* <Button
+            onPress={() => Linking.openURL('bridgecard://test/23')}
+            title="Open bridgecard://test/23"
+          /> */}
 
                 <ProfileHeader
                     ref={ref => this.header = ref}

@@ -14,6 +14,10 @@ import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import store from 'react-native-simple-store';
+
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
+
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
 
 const slideAnimation = new SlideAnimation({
@@ -70,19 +74,21 @@ export default class IsoScreen extends React.Component {
     }
 
     componentWillMount() {
-        store.get('people').then(val => {
-            if(val != undefined) {
 
-                var orderedpeople = []
-                Object.keys(val).filter(key => 
-                    val[key].map((person, index) => {
-                        person["section"] = key
-                        person["index"] = index
-                        orderedpeople.push(person)
-                    })
-                )
-                this.setState({people: orderedpeople})
-            }
+        rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+            var peopleObj = {}
+            val.forEach(child => {
+                peopleObj[child.key] = child.val()
+            })
+            var orderedpeople = []
+            Object.keys(peopleObj).filter(key => 
+                peopleObj[key].map((person, index) => {
+                    person["section"] = key
+                    person["index"] = index
+                    orderedpeople.push(person)
+                })
+            )
+            this.setState({people: orderedpeople})
         })
     }
 
@@ -180,8 +186,8 @@ export default class IsoScreen extends React.Component {
             image: "",
             time: d.toString()
         }
-        store.push('activity', obj)
-        
+        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+
         setTimeout(() => {
             this.makeAlertDisappear()
         }, 2000)

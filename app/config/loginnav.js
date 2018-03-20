@@ -6,6 +6,8 @@ import LoginScreen from '../screens/LoginScreen'
 import { updateFocus } from 'react-navigation-is-focused-hoc'
 import { Linking } from 'react-native'
 
+import DeepLinking from 'react-native-deep-linking';
+
 import firebase from 'react-native-firebase';
 
 const AppNavigator = StackNavigator({
@@ -46,6 +48,15 @@ const AppNavigator2 = StackNavigator({
     initialRouteName: "Main"
 });
 
+const handleUrl = ({ url }) => {
+    console.log(url)
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        DeepLinking.evaluateUrl(url);
+      }
+    });
+  };
+
 export default class App extends React.Component {
 
     state = {
@@ -54,15 +65,41 @@ export default class App extends React.Component {
     };
 
     componentDidMount() {
-        Linking.addEventListener('url', this.handleOpenURL);
+        DeepLinking.addScheme('bridgecard://');
+        Linking.addEventListener('url', this.handleUrl);
+    
+        DeepLinking.addRoute('/test', (response) => {
+            // bridgecard://test
+            console.log(response)
+        });
+    
+        DeepLinking.addRoute('/test/:id', (response) => {
+            // bridgecard://test/23
+            console.log(response)
+        });
+    
+        DeepLinking.addRoute('/test/:id/details', (response) => {
+            // bridgecard://test/100/details
+            console.log(response)
+        });
+    
+        Linking.getInitialURL().then((url) => {
+            if (url) {
+                Linking.openURL(url);
+            }
+        }).catch(err => console.error('An error occurred', err));
     }
+    
     componentWillUnmount() {
-        Linking.removeEventListener('url', this.handleOpenURL);
+        Linking.removeEventListener('url', this.handleUrl);
     }
-    handleOpenURL(event) {
-        console.log(event)
-        console.log(event.url);
-        // do something with the url, in our case navigate(route)
+    
+    handleUrl = ({ url }) => {
+        Linking.canOpenURL(url).then((supported) => {
+            if (supported) {
+                DeepLinking.evaluateUrl(url);
+            }
+        });
     }
 
     componentWillMount() {

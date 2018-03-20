@@ -67,20 +67,19 @@
                      restorationHandler:restorationHandler];
 }
 
-
-
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
   // ADD THE FOLLOWING CODE
   if ([[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]) {
     return YES;
   }else if([[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]){
     return YES;
+  }else if([RCTLinkingManager application:application openURL:url options:options]) {
+    return YES;
   }
-  
+
   return NO;
   // ADD THE ABOVE CODE
 }
-
 
 - (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation
 {

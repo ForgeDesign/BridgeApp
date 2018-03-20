@@ -8,15 +8,18 @@ import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { PersonCard } from '../components/PersonCard';
 import AtoZListView from 'react-native-atoz-listview';
+import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 import Prompt from 'rn-prompt';
-import store from 'react-native-simple-store';
 import StatusBarAlert from 'react-native-statusbar-alert';
 const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
-export default class ContactsScreen extends React.Component {
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
+
+class ContactsScreen extends React.Component {
 
     _showModal = () => { this.setState({ isModalVisible: true }) }
     _hideModal = () => { this.setState({ isModalVisible: false }) }
@@ -62,13 +65,17 @@ export default class ContactsScreen extends React.Component {
             alertVisible: false,
             contactName: 'fox-hunter5',
         };
-        // store.save('people', this.state.people)
-        store.get('people').then(value => {
-            console.log(value)
-            if (value !== null)
-                this.setState({people: value})
-            else
-                store.save('people', this.state.people)
+
+        rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+            var peopleObj = {}
+            val.forEach(child => {
+                peopleObj[child.key] = child.val()
+            })
+            if(Object.keys(peopleObj).length == 0) {
+                rootRef.child(firebase.auth().currentUser.uid + "people").update(this.state.people)
+                return
+            }
+            this.setState({people: peopleObj});
         })
     }
 
@@ -107,12 +114,27 @@ export default class ContactsScreen extends React.Component {
     }
 
     sectionListItem(test) {
-        console.log(test)
         return (
             <Text style={{fontSize: 16, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3}}> 
                 {test.sectionId}
             </Text>
         )
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.isFocused && nextProps.isFocused) {
+            // here we are in screen
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                var peopleObj = {}
+                val.forEach(child => {
+                    peopleObj[child.key] = child.val()
+                })
+                this.setState({people: peopleObj});
+            })
+        }
+        if (this.props.isFocused && !nextProps.isFocused) {
+            // NOT HERE
+        }
     }
 
     render() {
@@ -220,7 +242,7 @@ export default class ContactsScreen extends React.Component {
                                 image: "jamessmith",
                                 time: d.toString()
                             }
-                            store.push('activity', obj)
+                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
                             this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
                         }
                     }
@@ -230,6 +252,8 @@ export default class ContactsScreen extends React.Component {
         )
     }
 }
+
+export default withNavigationFocus(ContactsScreen, 'Contacts')
 
 const styles = EStyleSheet.create({
     scroll: {

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import store from 'react-native-simple-store';
 import { Icon } from 'native-base';
 import { 
     View, 
@@ -62,7 +61,7 @@ export default class ConnectButtonWithDescription extends React.Component {
                 image: "",
                 time: d.toString()
             }
-            store.push('activity', obj)
+            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
         }).catch(err => {
             console.log(err)
         })

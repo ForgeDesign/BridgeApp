@@ -13,6 +13,9 @@ import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 import StatusBarAlert from 'react-native-statusbar-alert';
 
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
+
 import {
     SlidersColorPicker,
     HueGradient,
@@ -124,8 +127,11 @@ saveData = () => {
             linkedin: linkedin
         },
         logo: this.state.logo,
-    }    
-    store.push('busicards', obj)
+    }
+
+    key = rootRef.child(firebase.auth().currentUser.uid + "cards").push(obj).key
+    obj["fireKey"] = key
+    rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(obj)
 
     var d = new Date();
     obj = {
@@ -136,7 +142,7 @@ saveData = () => {
         image: "",
         time: d.toString()
     }
-    store.push('activity', obj)
+    rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
 
     this.makeAlertAppear()
     setTimeout(() => {
