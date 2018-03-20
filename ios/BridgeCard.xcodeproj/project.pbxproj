@@ -349,6 +349,7 @@
 		0A3F9FC7205624F200B970CB /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		0A67C7E12060EDE9005DDA46 /* BridgeCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BridgeCard.entitlements; path = BridgeCard/BridgeCard.entitlements; sourceTree = "<group>"; };
 		0A76E9B7205F89D3002E488E /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A76E9B8205F8A30002E488E /* BridgeCard-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BridgeCard-Swift.h"; path = "BridgeCard/BridgeCard-Swift.h"; sourceTree = "<group>"; };
 		0A76E9C3205F8BD7002E488E /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Pods/GoogleSignIn/Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -597,6 +598,7 @@
 		13B07FAE1A68108700A75B9A /* BridgeCard */ = {
 			isa = PBXGroup;
 			children = (
+				0A67C7E12060EDE9005DDA46 /* BridgeCard.entitlements */,
 				0A76E9D6205F903A002E488E /* RNGoogleSignIn */,
 				0A016265205B0DEC00133BA4 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -780,6 +782,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 463X4DVTMN;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1309,10 +1316,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BridgeCard/BridgeCard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 24;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 463X4DVTMN;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1343,8 +1351,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geczy.react.native.BridgeCard;
 				PRODUCT_NAME = BridgeCard;
-				PROVISIONING_PROFILE = "daeddd02-1430-4658-8503-8acc4060fe4b";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
+				PROVISIONING_PROFILE = "c1aa9176-57c4-4cba-8870-c46f2219c2b5";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.geczy.react.native.BridgeCard";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1357,10 +1365,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BridgeCard/BridgeCard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 463X4DVTMN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1390,8 +1399,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geczy.react.native.BridgeCard;
 				PRODUCT_NAME = BridgeCard;
-				PROVISIONING_PROFILE = "daeddd02-1430-4658-8503-8acc4060fe4b";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
+				PROVISIONING_PROFILE = "c1aa9176-57c4-4cba-8870-c46f2219c2b5";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.geczy.react.native.BridgeCard";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
