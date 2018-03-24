@@ -48,6 +48,24 @@ export default class ProfilePictureAndLevel extends React.Component
         else {
             this.setState({ profilePic: undefined })
         }
+
+        var pathPerson = firebase.auth().currentUser.uid + "person"
+        rootRef.child(pathPerson).once().then(val => {
+            var person = val._value
+            if (person == null) {
+                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                delete obj.refreshToken
+                delete obj.providerId
+                delete obj.providerData
+                delete obj.uid
+                delete obj.metadata
+                delete obj.phoneNumber
+                delete obj.isAnonymous
+                delete obj.emailVerified
+                delete obj.email
+                rootRef.child(pathPerson).set(obj)
+            }
+        })
     }
 
     async addProfilePic() {
@@ -76,6 +94,8 @@ export default class ProfilePictureAndLevel extends React.Component
                       based64 = "data:" + image.mime + ";base64," + image.data
                     this.setState({profilePic: based64});
                     firebase.auth().currentUser.updateProfile({photoURL: based64})
+                    var pathPerson = firebase.auth().currentUser.uid + "person/photoURL"
+                    rootRef.child(pathPerson).set(based64)
                 });
             }
         })

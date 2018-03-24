@@ -30,6 +30,24 @@ export default class ProfileHeader extends React.Component {
         else {
             this.setState({ profileName: 'Tap to add name' })
         }
+
+        var pathPerson = firebase.auth().currentUser.uid + "person"
+        rootRef.child(pathPerson).once().then(val => {
+            var person = val._value
+            if (person == null) {
+                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                delete obj.refreshToken
+                delete obj.providerId
+                delete obj.providerData
+                delete obj.uid
+                delete obj.metadata
+                delete obj.phoneNumber
+                delete obj.isAnonymous
+                delete obj.emailVerified
+                delete obj.email
+                rootRef.child(pathPerson).set(obj)
+            }
+        })
     }
 
     openConnect(cardNum = undefined) {
@@ -93,6 +111,8 @@ export default class ProfileHeader extends React.Component {
                                 profileName: value
                             });
                             firebase.auth().currentUser.updateProfile({displayName: value})
+                            var pathPerson = firebase.auth().currentUser.uid + "person/displayName"
+                            rootRef.child(pathPerson).set(value)
                         }
                     }
 

@@ -9,6 +9,7 @@ import { Linking } from 'react-native'
 import DeepLinking from 'react-native-deep-linking';
 
 import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
 
 const AppNavigator = StackNavigator({
     Login: {
@@ -67,20 +68,19 @@ export default class App extends React.Component {
     componentDidMount() {
         DeepLinking.addScheme('bridgecard://');
         Linking.addEventListener('url', this.handleUrl);
-    
-        DeepLinking.addRoute('/test', (response) => {
-            // bridgecard://test
-            console.log(response)
-        });
-    
-        DeepLinking.addRoute('/test/:id', (response) => {
-            // bridgecard://test/23
-            console.log(response)
-        });
-    
-        DeepLinking.addRoute('/test/:id/details', (response) => {
-            // bridgecard://test/100/details
-            console.log(response)
+
+        DeepLinking.addRoute('/connectRemote/:uid/card/:id', (response) => {
+            var uid = response.uid
+            var cardid = response.id
+            var pathPerson = uid + "person/"
+            var pathCard = uid + "cards/" + cardid
+            rootRef.child(pathCard).once().then(val => {
+                var card = val._value
+                rootRef.child(pathPerson).once().then(val => {
+                    var person = val._value
+                    console.log(person, card)
+                })
+            })
         });
     
         Linking.getInitialURL().then((url) => {

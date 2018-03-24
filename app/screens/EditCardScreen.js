@@ -445,12 +445,8 @@ render() {
 
     options = {
         title: 'Select Logo',
-        noData: true,
-        storageOptions: {
-            skipBackup: true,
-            path: 'images',
-            waitUntilSaved: true
-        }
+        noData: false,
+        includeBase64: true,
     };
 
     async addLogo() {
@@ -468,10 +464,11 @@ render() {
             else {
 
                 // You can also display the image using data:
-                let source = response.uri;
+                let mime = "image/jpg"
+                based64 = "data:" + mime + ";base64," + response.data
 
                 this.setState({
-                    logo: source
+                    logo: based64
                 });
 
             }

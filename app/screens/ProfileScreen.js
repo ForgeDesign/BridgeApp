@@ -240,10 +240,10 @@ class ProfileScreen extends Component {
                     }
                 }/>
 
-{/* <Button
-            onPress={() => Linking.openURL('bridgecard://test/23')}
-            title="Open bridgecard://test/23"
-          /> */}
+                <Button
+                    onPress={() => Linking.openURL("bridgecard://connectRemote/2dj5Le0d94Sf9fGiOEAzc0ywlhw2/card/-L81L7QhYF_7aaqH5hDY")}
+                    title="Open bridgecard://connectRemote/uid/card/id"
+                />
 
                 <ProfileHeader
                     ref={ref => this.header = ref}
