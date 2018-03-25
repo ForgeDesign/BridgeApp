@@ -70,17 +70,16 @@ export default class App extends React.Component {
         Linking.addEventListener('url', this.handleUrl);
 
         DeepLinking.addRoute('/connectRemote/:uid/card/:id', (response) => {
-            var uid = response.uid
             var cardid = response.id
-            var pathPerson = uid + "person/"
-            var pathCard = uid + "cards/" + cardid
-            rootRef.child(pathCard).once().then(val => {
-                var card = val._value
-                rootRef.child(pathPerson).once().then(val => {
-                    var person = val._value
-                    console.log(person, card)
-                })
-            })
+            var location = "Remote connection"
+            var uid = response.uid
+            var person = {
+                card: cardid,
+                location: location,
+                person: uid,
+                notes: ""
+            }
+            rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
         });
     
         Linking.getInitialURL().then((url) => {

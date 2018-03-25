@@ -29,15 +29,14 @@ class ContactsScreen extends React.Component {
 
         this.state = {
             people: 
-            {
-                'C': [
-                    {
-                        "person": "uFMPJdt0hidaQN458StwnKx3NP32",
-                        "location": "1001 Bridge Card Lane, OH",
-                        "card":"-L82ptyd00cxneD_vabR",                        
-                    }
-                ],
-            },
+            [
+                {
+                    "person": "uFMPJdt0hidaQN458StwnKx3NP32",
+                    "location": "1001 Bridge Card Lane, OH",
+                    "card":"-L82ptyd00cxneD_vabR",
+                    "notes": ""
+                }
+            ],
             active: true,
             isModalVisible:false,
             searchTerm: '',
@@ -45,111 +44,82 @@ class ContactsScreen extends React.Component {
             alertVisible: false,
             contactName: 'fox-hunter5',
             ready: false,
-            peopleFound: {
-                'A': [],
-                'B': [],
-                'C': [],
-                'D': [],
-                'E': [],
-                'F': [],
-                'G': [],
-                'H': [],
-                'I': [],
-                'J': [],
-                'K': [],
-                'L': [],
-                'M': [],
-                'N': [],
-                'O': [],
-                'P': [],
-                'Q': [],
-                'R': [],
-                'S': [],
-                'T': [],
-                'U': [],
-                'V': [],
-                'W': [],
-                'X': [],
-                'Y': [],
-                'Z': [],
+            peopleFound: { 'A': [], 'B': [], 'C': [], 'D': [], 'E': [],
+                'F': [], 'G': [], 'H': [], 'I': [], 'J': [], 'K': [], 'L': [],
+                'M': [], 'N': [], 'O': [], 'P': [], 'Q': [], 'R': [], 'S': [],
+                'T': [], 'U': [], 'V': [], 'W': [], 'X': [], 'Y': [], 'Z': [],
             }
         };
     }
 
     componentDidMount() {
-        foundPeople = {
-            'A': [],
-            'B': [],
-            'C': [],
-            'D': [],
-            'E': [],
-            'F': [],
-            'G': [],
-            'H': [],
-            'I': [],
-            'J': [],
-            'K': [],
-            'L': [],
-            'M': [],
-            'N': [],
-            'O': [],
-            'P': [],
-            'Q': [],
-            'R': [],
-            'S': [],
-            'T': [],
-            'U': [],
-            'V': [],
-            'W': [],
-            'X': [],
-            'Y': [],
-            'Z': [],
-        }
-        var peopleObj = {}
-        rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
-            val.forEach(child => {
-                peopleObj[child.key] = child.val()
+        this.getPeople().then(peopleObj => {
+            this.getCards(peopleObj).then(foundPeople => {
+                this.setState({people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true})
             })
-            if(Object.keys(peopleObj).length == 0) {
-                rootRef.child(firebase.auth().currentUser.uid + "people").update(this.state.peopleFound)
-                return
-            }
-
-            for (let index = 0; index < Object.keys(peopleObj).length; index++) {
-                const sectionKey = Object.keys(peopleObj)[index]
-                const section = peopleObj[Object.keys(peopleObj)[index]];
-                for (let index2 = 0; index2 < section.length; index2++) {
-                    const person = section[index2];
-                    var pathPerson = person.person + "person/"
-                    var pathCard = person.person + "cards/" + person.card
-                    rootRef.child(pathCard).once().then(val => {
-                        var card = val._value
-                        rootRef.child(pathPerson).once().then(val => {
-                            var personFound = val._value
-                            obj = {
-                                card: card,
-                                name: personFound.displayName,
-                                location: person.location,
-                                imagepath: personFound.photoURL
-                            }
-                            foundPeople[sectionKey].push(obj)
-                        })
-                    })
-                }
-            }
-
-           
-        }).then(() => {
-            this.setState({people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true}, () => {
-                setTimeout(function(){
-
-                    //Put All Your Code Here, Which You Want To Execute After Some Delay Time.
-                    this.forceUpdate()
-            
-                }.bind(this), 400);
-                   
-            });
         })
+    }
+
+    getCards(peopleObj) {
+        return new Promise((resolve, reject) => {
+            foundPeople = { 'A': [], 'B': [], 'C': [], 'D': [], 'E': [],
+                'F': [], 'G': [], 'H': [], 'I': [], 'J': [], 'K': [], 'L': [],
+                'M': [], 'N': [], 'O': [], 'P': [], 'Q': [], 'R': [], 'S': [],
+                'T': [], 'U': [], 'V': [], 'W': [], 'X': [], 'Y': [], 'Z': [],
+            }
+            promises = []
+            for (let index = 0; index < peopleObj.length; index++) {
+                const person = peopleObj[index];
+                var pathPerson = person.person + "person/"
+                var pathCard = person.person + "cards/" + person.card
+                promises.push(this.getSingleCard(pathPerson, pathCard, person))
+            }
+            Promise.all(promises).then(data => {
+                for (let index = 0; index < data.length; index++) {
+                    const element = data[index];
+                    foundPeople[element.sectionKey].push(element)
+                }
+                resolve(foundPeople)
+            });
+        });
+    }
+
+    getSingleCard(pathPerson, pathCard, person) {
+        return new Promise((resolve, reject) => {
+            rootRef.child(pathCard).once().then(val => {
+                var card = val._value
+                rootRef.child(pathPerson).once().then(val => {
+                    var personFound = val._value
+                    var firstLast = personFound.displayName.split(" ")
+                    var sectionKey = firstLast[firstLast.length - 1][0]
+                    obj = {
+                        card: card,
+                        name: personFound.displayName,
+                        location: person.location,
+                        imagepath: personFound.photoURL,
+                        sectionKey: sectionKey
+                    }
+                    resolve(obj)
+                })
+            })
+        });
+    }
+
+    getPeople() {
+        return new Promise((resolve, reject) => {
+            peopleObj = []
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                val.forEach(child => {
+                    peopleObj.push(child.val())
+                })
+                if(peopleObj.length == 0) {
+                    rootRef.child(firebase.auth().currentUser.uid + "people").set(this.state.people)
+                    peopleObj = JSON.parse(JSON.stringify(this.state.people))
+                }
+            }).then(() => {
+                resolve(peopleObj)
+            })
+        });
     }
 
     makeAlertAppear() {
@@ -184,7 +154,7 @@ class ContactsScreen extends React.Component {
     }
 
     renderRow = (person, sectionId, index) => {
-        console.log(person, sectionId, index)
+
         if (person == undefined)
             return(<View/>)
 
@@ -192,7 +162,7 @@ class ContactsScreen extends React.Component {
             <PersonCard
                 containerStyle={{width: 10}}
                 key={sectionId + '' + index}
-                section={sectionId}
+                section={person.card.fireKey}
                 index={index}
                 name={person.name}
                 card={person.card}
@@ -219,13 +189,11 @@ class ContactsScreen extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
-            // rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
-            //     var peopleObj = {}
-            //     val.forEach(child => {
-            //         peopleObj[child.key] = child.val()
-            //     })
-            //     this.setState({people: peopleObj});
-            // })
+            this.getPeople().then(peopleObj => {
+                this.getCards(peopleObj).then(foundPeople => {
+                    this.setState({people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true})
+                })
+            })
         }
         if (this.props.isFocused && !nextProps.isFocused) {
             // NOT HERE
@@ -282,8 +250,6 @@ class ContactsScreen extends React.Component {
                 </Container>
             )
         }
-
-        console.log(this.state.filteredPeople)
 
         return (
             <Container>

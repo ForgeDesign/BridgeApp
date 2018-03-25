@@ -28,12 +28,6 @@ export default class BusinessCard extends React.Component {
         this.getNotes(props.id).done(notes => {
             this.setState({notes: notes})
         })
-        let poo = {
-            width: (width-20),
-            height: ((width-20)*.57),
-        }
-        poo["pee"] = "poop"
-        console.log(poo)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,7 +48,15 @@ export default class BusinessCard extends React.Component {
                     peopleObj[child.key] = child.val()
                 })
                 if(Object.keys(peopleObj).length > 0) {
-                    notes = peopleObj[this.state.section][this.state.index].card["notes"]
+                    var foundPerson
+                    for (let index = 0; index < Object.keys(peopleObj).length; index++) {
+                        const element = peopleObj[Object.keys(peopleObj)[index]];
+                        if (element.card == this.state.section) {
+                            foundPerson = element
+                            break
+                        }
+                    }
+                    notes = foundPerson.notes
                     if (/^\s+$/.test(notes))
                         notes = null
                 }
@@ -253,8 +255,18 @@ export default class BusinessCard extends React.Component {
                                     val.forEach(child => {
                                         peopleObj[child.key] = child.val()
                                     })
-                                    peopleObj[this.state.section][this.state.index].card["notes"] = text
-                                    rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
+                                    if(Object.keys(peopleObj).length > 0) {
+                                        var foundPerson
+                                        for (let index = 0; index < Object.keys(peopleObj).length; index++) {
+                                            const element = peopleObj[Object.keys(peopleObj)[index]];
+                                            if (element.card == this.state.section) {
+                                                foundPerson = Object.keys(peopleObj)[index]
+                                                break
+                                            }
+                                        }
+                                        peopleObj[foundPerson].notes = text
+                                        rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
+                                    }
                                 } else {
                                     var cardArray = []
                                     val.forEach(child => {
