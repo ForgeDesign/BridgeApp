@@ -33,8 +33,7 @@ class ContactsScreen extends React.Component {
                 {
                     "person": "uFMPJdt0hidaQN458StwnKx3NP32",
                     "location": "1001 Bridge Card Lane, OH",
-                    "card":"-L82ptyd00cxneD_vabR",
-                    "notes": ""
+                    "card":[{id: "-L82ptyd00cxneD_vabR", notes: ""}],
                 }
             ],
             active: true,
@@ -44,11 +43,7 @@ class ContactsScreen extends React.Component {
             alertVisible: false,
             contactName: 'fox-hunter5',
             ready: false,
-            peopleFound: { 'A': [], 'B': [], 'C': [], 'D': [], 'E': [],
-                'F': [], 'G': [], 'H': [], 'I': [], 'J': [], 'K': [], 'L': [],
-                'M': [], 'N': [], 'O': [], 'P': [], 'Q': [], 'R': [], 'S': [],
-                'T': [], 'U': [], 'V': [], 'W': [], 'X': [], 'Y': [], 'Z': [],
-            }
+            peopleFound: { }
         };
     }
 
@@ -62,45 +57,65 @@ class ContactsScreen extends React.Component {
 
     getCards(peopleObj) {
         return new Promise((resolve, reject) => {
-            foundPeople = { 'A': [], 'B': [], 'C': [], 'D': [], 'E': [],
-                'F': [], 'G': [], 'H': [], 'I': [], 'J': [], 'K': [], 'L': [],
-                'M': [], 'N': [], 'O': [], 'P': [], 'Q': [], 'R': [], 'S': [],
-                'T': [], 'U': [], 'V': [], 'W': [], 'X': [], 'Y': [], 'Z': [],
-            }
+            foundPeople = { }
             promises = []
             for (let index = 0; index < peopleObj.length; index++) {
                 const person = peopleObj[index];
                 var pathPerson = person.person + "person/"
-                var pathCard = person.person + "cards/" + person.card
-                promises.push(this.getSingleCard(pathPerson, pathCard, person))
+                promises.push(this.getSinglePerson(pathPerson, person))
             }
             Promise.all(promises).then(data => {
+                var allPeople = data
+                for (let index = 0; index < data.length; index++) {
+                    const person = data[index];
+                    for (let index2 = 0; index2 < person.card.length; index2++) {
+                        const card = person.card[index2];
+                        Promise.resolve(card).then(val => {
+                            allPeople[index].card[index2] = val
+                        })
+                    }
+                }
                 for (let index = 0; index < data.length; index++) {
                     const element = data[index];
+                    if (foundPeople[element.sectionKey] == undefined)
+                        foundPeople[element.sectionKey] = Array()
                     foundPeople[element.sectionKey].push(element)
                 }
                 resolve(foundPeople)
-            });
+            }).catch(test => {
+                console.log(test)
+            })
         });
     }
 
-    getSingleCard(pathPerson, pathCard, person) {
+    getSinglePerson(pathPerson, person) {
+        return new Promise((resolve, reject) => {
+            rootRef.child(pathPerson).once().then(val => {
+                var personFound = val._value
+                var firstLast = personFound.displayName.split(" ")
+                var sectionKey = firstLast[firstLast.length - 1][0]
+                obj = {
+                    name: personFound.displayName,
+                    location: person.location,
+                    imagepath: personFound.photoURL,
+                    sectionKey: sectionKey,
+                    card: []
+                }
+                for (let index = 0; index < person.card.length; index++) {
+                    const element = person.card[index];
+                    var pathCard = person.person + "cards/" + element.id
+                    obj.card.push(this.getSingleCard(pathCard))
+                }
+                resolve(obj)
+            })
+        });
+    }
+
+    getSingleCard(pathCard) {
         return new Promise((resolve, reject) => {
             rootRef.child(pathCard).once().then(val => {
                 var card = val._value
-                rootRef.child(pathPerson).once().then(val => {
-                    var personFound = val._value
-                    var firstLast = personFound.displayName.split(" ")
-                    var sectionKey = firstLast[firstLast.length - 1][0]
-                    obj = {
-                        card: card,
-                        name: personFound.displayName,
-                        location: person.location,
-                        imagepath: personFound.photoURL,
-                        sectionKey: sectionKey
-                    }
-                    resolve(obj)
-                })
+                resolve(card)
             })
         });
     }
@@ -157,6 +172,8 @@ class ContactsScreen extends React.Component {
 
         if (person == undefined)
             return(<View/>)
+
+        console.log(person)
 
         return (
             <PersonCard
@@ -305,6 +322,7 @@ class ContactsScreen extends React.Component {
                     removeClippedSubviews={false}
                     sectionListStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
                     sectionListItem={this.sectionListItem}
+                    enableEmptySections={true}
                 />
 
                 <Prompt

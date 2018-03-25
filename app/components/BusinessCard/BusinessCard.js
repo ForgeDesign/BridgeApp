@@ -49,14 +49,21 @@ export default class BusinessCard extends React.Component {
                 })
                 if(Object.keys(peopleObj).length > 0) {
                     var foundPerson
+                    var cardIndex
                     for (let index = 0; index < Object.keys(peopleObj).length; index++) {
                         const element = peopleObj[Object.keys(peopleObj)[index]];
-                        if (element.card == this.state.section) {
-                            foundPerson = element
-                            break
+                        for (let index2 = 0; index2 < element.card.length; index2++) {
+                            const card = element.card[index2];
+                            if (card.id == this.state.section) {
+                                foundPerson = element
+                                cardIndex = index2
+                                break
+                            }
                         }
+                        if(foundPerson)
+                            break
                     }
-                    notes = foundPerson.notes
+                    notes = foundPerson.card[cardIndex].notes
                     if (/^\s+$/.test(notes))
                         notes = null
                 }
@@ -257,14 +264,22 @@ export default class BusinessCard extends React.Component {
                                     })
                                     if(Object.keys(peopleObj).length > 0) {
                                         var foundPerson
+                                        var foundCard
                                         for (let index = 0; index < Object.keys(peopleObj).length; index++) {
                                             const element = peopleObj[Object.keys(peopleObj)[index]];
-                                            if (element.card == this.state.section) {
-                                                foundPerson = Object.keys(peopleObj)[index]
-                                                break
+                                            for (let index2 = 0; index2 < element.card.length; index2++) {
+                                                const card = element.card[index2];
+                                                if (card.id == this.state.section) {
+                                                    foundPerson = Object.keys(peopleObj)[index]
+                                                    foundCard = index2
+                                                    break
+                                                }
                                             }
+                                            if(foundPerson)
+                                                break
+                                            
                                         }
-                                        peopleObj[foundPerson].notes = text
+                                        peopleObj[foundPerson].card[foundCard].notes = text
                                         rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
                                     }
                                 } else {

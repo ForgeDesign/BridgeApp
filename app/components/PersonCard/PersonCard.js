@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View, Text, Image, TouchableOpacity, Modal, KeyboardAvoidingView } from 'react-native';
 import styles from './styles';
-import { BusinessCard } from '../BusinessCard';
+import { CardSwiper } from '../CardSwiper';
 
 class PersonCard extends React.Component {
 
@@ -57,25 +57,8 @@ class PersonCard extends React.Component {
           <View
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
-            <BusinessCard 
-                font={this.props.card.font}
-                cardnum={this.props.card.cardnum}
-                logo={this.props.card.logo}
-                color={this.props.card.color} 
-                position={this.props.card.position} 
-                website={this.props.card.website} 
-                businame={this.props.card.businame} 
-                phonenum={this.props.card.phonenum} 
-                name={this.props.card.name} 
-                email={this.props.card.email} 
-                address={this.props.card.address}
-                stateabb={this.props.card.stateabb}
-                city={this.props.card.city}
-                zip={this.props.card.zip}
-                socialMedia={this.props.card.socialMedia}
-                section={this.props.section}
-                index={this.props.index}
-                contact={true}
+            <CardSwiper 
+                card={this.props.card}
             />
             <TouchableOpacity
               style={styles.button}

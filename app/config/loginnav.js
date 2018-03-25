@@ -65,6 +65,31 @@ export default class App extends React.Component {
         authenticated: false,
     };
 
+    getPeople() {
+        return new Promise((resolve, reject) => {
+            peopleObj = []
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                val.forEach(child => {
+                    boo = child.val()
+                    boo.key = child.key
+                    peopleObj.push(boo)
+                })
+                if(peopleObj.length == 0) {
+                    peopleObj = [
+                        {
+                            "person": "uFMPJdt0hidaQN458StwnKx3NP32",
+                            "location": "1001 Bridge Card Lane, OH",
+                            "card":[{id: "-L82ptyd00cxneD_vabR", notes: ""}],
+                        }
+                    ]
+                    rootRef.child(firebase.auth().currentUser.uid + "people").set(peopleObj)
+                }
+            }).then(() => {
+                resolve(peopleObj)
+            })
+        });
+    }
+
     componentDidMount() {
         DeepLinking.addScheme('bridgecard://');
         Linking.addEventListener('url', this.handleUrl);
@@ -74,12 +99,30 @@ export default class App extends React.Component {
             var location = "Remote connection"
             var uid = response.uid
             var person = {
-                card: cardid,
+                card: [{id: cardid, notes: ""}],
                 location: location,
                 person: uid,
                 notes: ""
             }
-            rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
+            this.getPeople().then(people => {
+                var found = false
+                for (let index = 0; index < people.length; index++) {
+                    const contact = people[index];
+                    if (contact.person == person.person) {
+                        for (let index2 = 0; index2 < contact.card.length; index2++) {
+                            const card = contact.card[index2]
+                            if (card.id != person.card[0].id) {
+                                person.card.push(contact.card[index2])
+                            }
+                        }
+                        rootRef.child(firebase.auth().currentUser.uid + "people/" + contact.key).update(person)
+                        found = true
+                        break
+                    }
+                }
+                if (!found)
+                    rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
+            })
         });
     
         Linking.getInitialURL().then((url) => {
