@@ -52,7 +52,7 @@ export default EStyleSheet.create({
       marginLeft: width*.3,
       marginRight: width*.3,
       marginTop: 15,
-      bottom: "10%"
+      bottom: "5%"
     },
     buttonText: {
       fontSize: 16,

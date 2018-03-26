@@ -67,7 +67,10 @@ class ProfileScreen extends Component {
 
         this.state = {
             disabled: true,
-            activity: [ ]
+            activity: [ ],
+            capturedCards: 0,
+            cardCount: 0,
+            cards: []
         }
 
         this._handleCheck.bind(this)
@@ -76,6 +79,14 @@ class ProfileScreen extends Component {
         this._getCards()
         this._getActivity()
         this.interval = setInterval(this.tick.bind(this), 1000)
+
+        this.getPeople().then(people => {
+            capturedCards = 0
+            for (let index = 0; index < people.length; index++) {
+                capturedCards += people[index].card.length
+            }
+            this.setState({capturedCards: capturedCards})
+        })
     }
 
     arraysEqual(arr1, arr2) {
@@ -93,7 +104,32 @@ class ProfileScreen extends Component {
         return true;
     }
 
-    _getActivity() {
+    getPeople() {
+        return new Promise((resolve, reject) => {
+            peopleObj = []
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                val.forEach(child => {
+                    boo = child.val()
+                    boo.key = child.key
+                    peopleObj.push(boo)
+                })
+                if(peopleObj.length == 0) {
+                    peopleObj = [
+                        {
+                            "person": "uFMPJdt0hidaQN458StwnKx3NP32",
+                            "location": "1001 Bridge Card Lane, OH",
+                            "card":[{id: "-L82ptyd00cxneD_vabR", notes: ""}],
+                        }
+                    ]
+                    rootRef.child(firebase.auth().currentUser.uid + "people").set(peopleObj)
+                }
+            }).then(() => {
+                resolve(peopleObj)
+            })
+        });
+    }
+
+    _getActivity() {        
         
         rootRef.child(firebase.auth().currentUser.uid + "activity").once().then(val => {
             var activityArray = []
@@ -128,7 +164,7 @@ class ProfileScreen extends Component {
             val.forEach(child => {
                 cardArray.push(child.val())
             })
-            this.setState({cards: cardArray});
+            this.setState({cards: cardArray, cardCount: cardArray.length});
         })
     }
 
@@ -138,6 +174,13 @@ class ProfileScreen extends Component {
             // here we are in screen
             this._getActivity()
             this._getCards()
+            this.getPeople().then(people => {
+                capturedCards = 0
+                for (let index = 0; index < people.length; index++) {
+                    capturedCards += people[index].card.length
+                }
+                this.setState({capturedCards: capturedCards})
+            })
             this.interval = setInterval(this.tick.bind(this), 1000)
         }
         if (this.props.isFocused && !nextProps.isFocused) {
@@ -151,6 +194,7 @@ class ProfileScreen extends Component {
             for (let index = 0; index < this.state.cards.length; index++) {
                 this["check" + index].uncheck()
             }
+            this.cardChecked = {}
         this.popupDialog.show()
     }
 
@@ -176,17 +220,18 @@ class ProfileScreen extends Component {
     }
 
     _handleShares() {
-        checks = 0
-        for (let index = 0; index < this.state.cards.length; index++) {
-            if (this.cardChecked[index] != undefined && this.cardChecked[index]) {
-                checks += 1
-            }
-        }
+        checks = this.cardChecked
+        cards = []
         this.popupDialog.dismiss()
-        this.header.openConnect(checks)
+        for (let index = 0; index < Object.keys(checks).length; index++) {
+            cardKey = Object.keys(checks)[index]
+            cards.push(this.state.cards[cardKey])
+        }
+        this.header.openConnect(cards)
     }
 
     _renderItem(ref) {
+        console.log(ref)
         return (
             <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>
@@ -207,6 +252,8 @@ class ProfileScreen extends Component {
                         city={ref.item.city}
                         stateabb={ref.item.stateabb}
                         zip={ref.item.zip}
+                        socialMedia={ref.item.socialMedia}
+                        section={ref.item.fireKey}
                     />
                 </Col>
                 <Col size={25}>
@@ -240,15 +287,17 @@ class ProfileScreen extends Component {
                     }
                 }/>
 
-                <Button
+                {/* <Button
                     onPress={() => Linking.openURL("bridgecard://connectRemote/2dj5Le0d94Sf9fGiOEAzc0ywlhw2/card/-L8U06gQFXGHerQg_Yse")}
                     title="Open bridgecard://connectRemote/uid/card/id"
-                />
+                /> */}
 
                 <ProfileHeader
                     ref={ref => this.header = ref}
                     navigation={this.props.navigation}
                     showPopup={this.openPopup.bind(this)}
+                    numberOfCards={this.state.cardCount}
+                    capturedCards={this.state.capturedCards}
                 />
 
                 <View style={{

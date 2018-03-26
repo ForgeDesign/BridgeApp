@@ -13,14 +13,23 @@ import Prompt from 'rn-prompt';
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
+import Moment from 'moment';
+
 export default class ProfileHeader extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             profileName: 'Tap to add name',
-            promptVisible: false
+            promptVisible: false,
+            cardCount: 0,
+            cardConnectCount: 0,
+            time: ""
         };
+        timestamp = firebase.auth().currentUser.metadata.creationTime
+        Moment.locale('en');
+        formatted = Moment(timestamp).format('MM / D / YY')
+        this.state.time = formatted
     }
     componentWillMount() {
         value = firebase.auth().currentUser.displayName
@@ -54,6 +63,14 @@ export default class ProfileHeader extends React.Component {
         this.connect.openConnect(cardNum)
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.props = nextProps
+        this.setState({
+            cardCount: nextProps.numberOfCards,
+            cardConnectCount: nextProps.capturedCards
+        })
+    }
+
     render() {
         return (
             <View style={styles.background}>
@@ -81,11 +98,11 @@ export default class ProfileHeader extends React.Component {
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '2%' }}>
-                    <BigTextAndLowerText bigText='5' lowerText='Captured Cards' />
+                    <BigTextAndLowerText bigText={this.state.cardConnectCount} lowerText='Captured Cards' />
                     <View style={{ borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
-                    <BigTextAndLowerText bigText='3' lowerText='Business Cards' />
+                    <BigTextAndLowerText bigText={this.state.cardCount} lowerText='Business Cards' />
                     <View style={{ borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
-                    <BigTextAndLowerText bigText='11/17' lowerText='Member Since' />
+                    <BigTextAndLowerText bigText={this.state.time} lowerText='Member Since' />
                 </View>
                 <Prompt
                     title="What is your name? "

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
+import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView, ActivityIndicator} from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
@@ -57,7 +57,10 @@ class ContactsScreen extends React.Component {
 
     getCards(peopleObj) {
         return new Promise((resolve, reject) => {
-            foundPeople = { }
+            foundPeople = { "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [], 
+                            'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [], 
+                            'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [], 
+                            'X': [], 'Y': [], 'Z': []}
             promises = []
             for (let index = 0; index < peopleObj.length; index++) {
                 const person = peopleObj[index];
@@ -173,8 +176,6 @@ class ContactsScreen extends React.Component {
         if (person == undefined)
             return(<View/>)
 
-        console.log(person)
-
         return (
             <PersonCard
                 containerStyle={{width: 10}}
@@ -190,6 +191,10 @@ class ContactsScreen extends React.Component {
     }
 
     sectionHeader(test) {
+        
+        if (this.state.peopleFound[test.title].length == 0) {
+            return <View/>
+        }
         return (
             <Text containerStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}} style={{textAlign: "center", color: $inputText}}> {test.title} </Text>
         )
@@ -264,6 +269,8 @@ class ContactsScreen extends React.Component {
                     shadowOpacity: 0.8,
                     shadowRadius: 2,
                     elevation: 1}}/>
+
+                    <ActivityIndicator size="small" color="#00ff00" />
                 </Container>
             )
         }
@@ -318,7 +325,7 @@ class ContactsScreen extends React.Component {
                     renderRow={this.renderRow}  // required func
                     rowHeight={150}              // required number
                     sectionHeaderHeight={5}    // required number
-                    sectionHeader={this.sectionHeader}
+                    sectionHeader={this.sectionHeader.bind(this)}
                     removeClippedSubviews={false}
                     sectionListStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
                     sectionListItem={this.sectionListItem}

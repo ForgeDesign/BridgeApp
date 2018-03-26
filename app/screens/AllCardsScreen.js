@@ -60,8 +60,8 @@
 
     _keyExtractor = (item, index) => index;
 
-    openConnect() {
-        this.connect.openConnect()
+    openConnect(item) {
+        this.connect.openConnect([item.item])
     }
 
     _renderItem(item) {
@@ -79,7 +79,7 @@
 
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => this.openConnect()}>
+                            onPress={() => this.openConnect(item)}>
                                 <Text style={styles.buttonText}>Share Card</Text>
                         </TouchableOpacity>
 

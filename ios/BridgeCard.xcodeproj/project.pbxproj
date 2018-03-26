@@ -1318,7 +1318,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BridgeCard/BridgeCard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = NO;
@@ -1351,8 +1351,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geczy.react.native.BridgeCard;
 				PRODUCT_NAME = BridgeCard;
-				PROVISIONING_PROFILE = "c1aa9176-57c4-4cba-8870-c46f2219c2b5";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.geczy.react.native.BridgeCard";
+				PROVISIONING_PROFILE = "e89bcbf6-8005-420f-a06f-90db5e82d710";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1367,7 +1367,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BridgeCard/BridgeCard.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 463X4DVTMN;
@@ -1399,8 +1399,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.geczy.react.native.BridgeCard;
 				PRODUCT_NAME = BridgeCard;
-				PROVISIONING_PROFILE = "c1aa9176-57c4-4cba-8870-c46f2219c2b5";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.geczy.react.native.BridgeCard";
+				PROVISIONING_PROFILE = "e89bcbf6-8005-420f-a06f-90db5e82d710";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.geczy.react.native.BridgeCard";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 3.2;
 				VERSIONING_SYSTEM = "apple-generic";
