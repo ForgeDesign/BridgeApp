@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Navigator from './config/loginnav';
+import CameraScreen from './screens/CameraScreen';
 EStyleSheet.build({
   $primaryBlue: '#003E5B',
   $lightGray: '#E6E6E6',

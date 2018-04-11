@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView, ActivityIndicator} from 'react-native';
+import { View, Text, AppRegistry, ScrollView, Dimensions, TouchableOpacity, Modal, KeyboardAvoidingView, ActivityIndicator, TouchableHighlight } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
@@ -11,6 +11,9 @@ import AtoZListView from 'react-native-atoz-listview';
 import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
+import ImagePicker from 'react-native-image-picker';
+import ImageCropper from 'react-native-image-crop-picker';
+
 const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -24,43 +27,97 @@ class ContactsScreen extends React.Component {
     _showModal = () => { this.setState({ isModalVisible: true }) }
     _hideModal = () => { this.setState({ isModalVisible: false }) }
 
-    constructor(){
+    constructor() {
         super();
 
         this.state = {
-            people: 
+            people:
             [
                 {
                     "person": "uFMPJdt0hidaQN458StwnKx3NP32",
                     "location": "1001 Bridge Card Lane, OH",
-                    "card":[{id: "-L82ptyd00cxneD_vabR", notes: ""}],
+                    "card": [{ id: "-L82ptyd00cxneD_vabR", notes: "" }],
                 }
             ],
             active: true,
-            isModalVisible:false,
+            isModalVisible: false,
             searchTerm: '',
-            promptVisible: false,    
+            modalVisible: false,
             alertVisible: false,
             contactName: 'fox-hunter5',
             ready: false,
-            peopleFound: { }
+            peopleFound: {},
+            profilePic: undefined
+
         };
+        // this.addProfilePic = this.addProfilePic.bind(this);
+
     }
+    options =
+    {
+        title: 'Select Profile Picture',
+        noData: true,
+        storageOptions:
+        {
+            skipBackup: true,
+            path: 'images',
+            waitUntilSaved: true
+        }
+    };
+
+    async addProfilePic() {
+        console.log("accessing profile pic function")
+        await ImagePicker.showImagePicker(this.options, (response) => {
+            console.log('in image picker');
+
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+
+                let source = response.uri;
+                ImageCropper.openCropper({
+                    compressImageQuality: 0.3,
+                    includeBase64: true,
+                    path: source,
+                    width: 300,
+                    height: 400,
+                    cropperCircleOverlay: false
+                }).then(image => {
+                    based64 = "data:" + image.mime + ";base64," + image.data
+                    this.setState({ profilePic: based64 });
+                    // firebase.auth().currentUser.updateProfile({photoURL: based64})
+                    // var pathPerson = firebase.auth().currentUser.uid + "person/photoURL"
+                    // rootRef.child(pathPerson).set(based64)
+                });
+            }
+        })
+    }
+
 
     componentDidMount() {
         this.getPeople().then(peopleObj => {
             this.getCards(peopleObj).then(foundPeople => {
-                this.setState({people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true})
+                this.setState({ people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true })
             })
         })
     }
 
     getCards(peopleObj) {
         return new Promise((resolve, reject) => {
-            foundPeople = { "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [], 
-                            'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [], 
-                            'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [], 
-                            'X': [], 'Y': [], 'Z': []}
+            foundPeople = {
+                "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [],
+                'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [],
+                'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
+                'X': [], 'Y': [], 'Z': []
+            }
             promises = []
             for (let index = 0; index < peopleObj.length; index++) {
                 const person = peopleObj[index];
@@ -130,7 +187,7 @@ class ContactsScreen extends React.Component {
                 val.forEach(child => {
                     peopleObj.push(child.val())
                 })
-                if(peopleObj.length == 0) {
+                if (peopleObj.length == 0) {
                     rootRef.child(firebase.auth().currentUser.uid + "people").set(this.state.people)
                     peopleObj = JSON.parse(JSON.stringify(this.state.people))
                 }
@@ -141,11 +198,15 @@ class ContactsScreen extends React.Component {
     }
 
     makeAlertAppear() {
-        this.setState({alertVisible: true})
+        this.setState({ alertVisible: true })
     }
     makeAlertDisappear() {
-        this.setState({alertVisible: false})
+        this.setState({ alertVisible: false })
     }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
 
     searchUpdated(term) {
         const filteredPeople = JSON.parse(JSON.stringify(this.state.peopleFound))
@@ -154,7 +215,7 @@ class ContactsScreen extends React.Component {
             for (let index = 0; index < peopleFound[key].length; index++) {
                 peopleFound[key].map((person, index) => {
                     if (
-                        person.name.toLowerCase().indexOf(term.toLowerCase()) == -1 
+                        person.name.toLowerCase().indexOf(term.toLowerCase()) == -1
                         && person.location.toLowerCase().indexOf(term.toLowerCase()) == -1
                         && person.card.position.toLowerCase().indexOf(term.toLowerCase()) == -1
                         && person.card.website.toLowerCase().indexOf(term.toLowerCase()) == -1
@@ -174,11 +235,11 @@ class ContactsScreen extends React.Component {
     renderRow = (person, sectionId, index) => {
 
         if (person == undefined)
-            return(<View/>)
+            return (<View />)
 
         return (
             <PersonCard
-                containerStyle={{width: 10}}
+                containerStyle={{ width: 10 }}
                 key={sectionId + '' + index}
                 section={person.card.fireKey}
                 index={index}
@@ -191,18 +252,18 @@ class ContactsScreen extends React.Component {
     }
 
     sectionHeader(test) {
-        
+
         if (this.state.peopleFound[test.title].length == 0) {
-            return <View/>
+            return <View />
         }
         return (
-            <Text containerStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}} style={{textAlign: "center", color: $inputText}}> {test.title} </Text>
+            <Text containerStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.0)' }} style={{ textAlign: "center", color: $inputText }}> {test.title} </Text>
         )
     }
 
     sectionListItem(test) {
         return (
-            <Text style={{fontSize: 16, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3}}> 
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3 }}>
                 {test.sectionId}
             </Text>
         )
@@ -213,7 +274,7 @@ class ContactsScreen extends React.Component {
             // here we are in screen
             this.getPeople().then(peopleObj => {
                 this.getCards(peopleObj).then(foundPeople => {
-                    this.setState({people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true})
+                    this.setState({ people: peopleObj, peopleFound: foundPeople, filteredPeople: foundPeople, ready: true })
                 })
             })
         }
@@ -235,17 +296,17 @@ class ContactsScreen extends React.Component {
                         color="white"
                         height={35}
                     />
-            
-                    <Header title={'Bridges'} plus={() => this.setState({ promptVisible: true }) }/>   
-    
+
+                    <Header title={'Bridges'} plus={() => this.addProfilePic()} />
+
                     <SearchBar
                         round
                         showLoading
                         clearIcon
                         cancelButtonTitle="Cancel"
                         icon={{ type: 'font-awesome', name: 'search' }}
-                        onChangeText={(term) => { this.searchUpdated(term) }} 
-                        onClearText={() => this.setState({searchTerm:''})}
+                        onChangeText={(term) => { this.searchUpdated(term) }}
+                        onClearText={() => this.setState({ searchTerm: '' })}
                         inputStyle={{
                             backgroundColor: $offwhite
                         }}
@@ -257,18 +318,20 @@ class ContactsScreen extends React.Component {
                             padding: 0,
                             margin: 0,
                             bottom: 20,
-                            backgroundColor: $primaryBlue}}
+                            backgroundColor: $primaryBlue
+                        }}
                         placeholder="Type anything to search"
                     />
-    
+
                     <View style={{
-                    bottom: 20,
-                    borderBottomColor: '#003E5B',
-                    borderBottomWidth: 4,
-                    shadowOffset: { width: 0, height:2.8 },
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    elevation: 1}}/>
+                        bottom: 20,
+                        borderBottomColor: '#003E5B',
+                        borderBottomWidth: 4,
+                        shadowOffset: { width: 0, height: 2.8 },
+                        shadowOpacity: 0.8,
+                        shadowRadius: 2,
+                        elevation: 1
+                    }} />
 
                     <ActivityIndicator size="small" color="#00ff00" />
                 </Container>
@@ -284,8 +347,8 @@ class ContactsScreen extends React.Component {
                     color="white"
                     height={35}
                 />
-        
-                <Header title={'Bridges'} plus={() => this.setState({ promptVisible: true }) }/>   
+
+                <Header title={'Bridges'} plus={() => this.addProfilePic()} />
 
                 <SearchBar
                     round
@@ -293,8 +356,8 @@ class ContactsScreen extends React.Component {
                     clearIcon
                     cancelButtonTitle="Cancel"
                     icon={{ type: 'font-awesome', name: 'search' }}
-                    onChangeText={(term) => { this.searchUpdated(term) }} 
-                    onClearText={() => this.searchUpdated("") }
+                    onChangeText={(term) => { this.searchUpdated(term) }}
+                    onClearText={() => this.searchUpdated("")}
                     inputStyle={{
                         backgroundColor: $offwhite
                     }}
@@ -306,18 +369,20 @@ class ContactsScreen extends React.Component {
                         padding: 0,
                         margin: 0,
                         bottom: 20,
-                        backgroundColor: $primaryBlue}}
+                        backgroundColor: $primaryBlue
+                    }}
                     placeholder="Type anything to search"
                 />
 
                 <View style={{
-                bottom: 20,
-                borderBottomColor: '#003E5B',
-                borderBottomWidth: 4,
-                shadowOffset: { width: 0, height:2.8 },
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-                elevation: 1}}/>
+                    bottom: 20,
+                    borderBottomColor: '#003E5B',
+                    borderBottomWidth: 4,
+                    shadowOffset: { width: 0, height: 2.8 },
+                    shadowOpacity: 0.8,
+                    shadowRadius: 2,
+                    elevation: 1
+                }} />
 
                 <AtoZListView
                     style={{ marginTop: 16, bottom: 30 }}
@@ -327,48 +392,125 @@ class ContactsScreen extends React.Component {
                     sectionHeaderHeight={5}    // required number
                     sectionHeader={this.sectionHeader.bind(this)}
                     removeClippedSubviews={false}
-                    sectionListStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
+                    sectionListStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.0)' }}
                     sectionListItem={this.sectionListItem}
                     enableEmptySections={true}
                 />
 
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+
+                    }}>
+                    <View style={{ marginTop: 22, alignContent: 'center' }}>
+                        <View style={{ marginTop: 50 }}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.setModalVisible(!this.state.modalVisible);
+                                    this.setState({
+                                        promptVisible: true,
+                                    });
+
+                                }}
+                                style={{
+                                    marginRight: 40,
+                                    marginLeft: 40,
+                                    marginTop: 10,
+                                    paddingTop: 20,
+                                    paddingBottom: 20,
+                                    backgroundColor: $primaryBlue,
+                                    borderRadius: 10,
+                                    borderWidth: 1,
+                                    borderColor: '#fff',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={{ color: 'white' }}>Add by BridgeCode</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    {/* this.setModalVisible(!this.state.modalVisible); */ }
+
+
+                                }} style={{
+                                    marginRight: 40,
+                                    marginLeft: 40,
+                                    marginTop: 10,
+                                    paddingTop: 20,
+                                    paddingBottom: 20,
+                                    backgroundColor: $primaryBlue,
+                                    borderRadius: 10,
+                                    borderWidth: 1,
+                                    borderColor: '#fff',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={{ color: 'white' }}>Add by Business Card</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.setModalVisible(!this.state.modalVisible);
+                                }}
+                                style={{
+                                    marginRight: 40,
+                                    marginLeft: 40,
+                                    marginTop: 10,
+                                    paddingTop: 20,
+                                    paddingBottom: 20,
+                                    backgroundColor: $primaryBlue,
+                                    borderRadius: 10,
+                                    borderWidth: 1,
+                                    borderColor: '#fff',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={{ color: 'white' }}>Return</Text>
+
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+
                 <Prompt
-                title="Type in the BridgeCard code. "
-                placeholder="fox-hunter5"
-                visible={this.state.promptVisible}
-                onCancel={() => {
+                    title="Type in the BridgeCard code. "
+                    placeholder="fox-hunter5"
+                    visible={this.state.promptVisible}
+                    onCancel={() => {
                         this.setState({
                             promptVisible: false
                         });
                     }
-                }
-                onSubmit={(value) => {
-                    if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
-                        this.setState({
-                            promptVisible: false,
-                        });
                     }
-                    else {
-                        this.setState({
-                            promptVisible: false,
-                            contactName: value
-                        });
-                        {
-                            var d = new Date();
-                            obj = {
-                                connector: "You",
-                                text: "bridged with",
-                                connectee: "Anew Person",
-                                icon: "",
-                                image: "jamessmith",
-                                time: d.toString()
+                    onSubmit={(value) => {
+                        if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                            this.setState({
+                                promptVisible: false,
+                            });
+                        }
+                        else {
+                            this.setState({
+                                promptVisible: false,
+                                contactName: value
+                            });
+                            {
+                                var d = new Date();
+                                obj = {
+                                    connector: "You",
+                                    text: "bridged with",
+                                    connectee: "Anew Person",
+                                    icon: "",
+                                    image: "jamessmith",
+                                    time: d.toString()
+                                }
+                                rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+                                this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000)
                             }
-                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
-                            this.makeAlertAppear(); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
                         }
                     }
-                }
-                } />
+                    } />
             </Container>
         )
     }
