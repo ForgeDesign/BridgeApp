@@ -37,6 +37,12 @@
         })
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this._onRefresh()
+        },300)
+    }
+
     _onRefresh() {
         this.setState({refreshing: true});
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
@@ -98,6 +104,7 @@
                     key={item.index}
                     id={item.index}
                     logo={item.item.logo}
+                    section={item.item.fireKey}
                     position={item.item.position}
                     color={item.item.color}
                     website={item.item.website}

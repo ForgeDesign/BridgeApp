@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE25E816F6250442EA570D7698C106DB"
+               BlueprintIdentifier = "DC803F1DCE5B6FC515F5022CAC0F8C55"
                BlueprintName = "Pods-BridgeCard"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-BridgeCard.a">
