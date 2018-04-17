@@ -98,6 +98,7 @@
                     key={item.index}
                     id={item.index}
                     logo={item.item.logo}
+                    section={item.item.fireKey}
                     position={item.item.position}
                     color={item.item.color}
                     website={item.item.website}

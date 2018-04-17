@@ -3,6 +3,9 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.beefe.picker.PickerViewPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.magus.fblogin.FacebookLoginPackage;
 import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
 import io.amarcruz.rnmeasuretext.RNMeasureTextPackage;
 // import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -34,6 +37,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PickerViewPackage(),
+            new FBSDKPackage(),
+            new FacebookLoginPackage(),
             new RNGoogleSignInPackage(),
             new RNMeasureTextPackage(),
             new RNFirebasePackage(),

@@ -156,13 +156,25 @@ class ContactsScreen extends React.Component {
                     if (
                         person.name.toLowerCase().indexOf(term.toLowerCase()) == -1 
                         && person.location.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.card.position.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.card.website.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.card.businame.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.card.phonenum.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.card.email.toLowerCase().indexOf(term.toLowerCase()) == -1
                     ) {
-                        filteredPeople[key][index] = undefined
+                        notFound = false
+                        for (let cardIndex = 0; cardIndex < person.card.length; cardIndex++) {
+                            const card = person.card[cardIndex]
+                            if (card.position.toLowerCase().indexOf(term.toLowerCase()) == -1
+                            && card.website.toLowerCase().indexOf(term.toLowerCase()) == -1
+                            && card.businame.toLowerCase().indexOf(term.toLowerCase()) == -1
+                            && card.phonenum.toLowerCase().indexOf(term.toLowerCase()) == -1
+                            && card.email.toLowerCase().indexOf(term.toLowerCase()) == -1)
+                            {
+                                notFound = true
+                            }
+                            else {
+                                notFound = false
+                                break
+                            }
+                        }
+                        if (notFound)
+                            filteredPeople[key][index] = undefined
                     }
                 }, this)
             }
@@ -321,10 +333,10 @@ class ContactsScreen extends React.Component {
 
                 <AtoZListView
                     style={{ marginTop: 16, bottom: 30 }}
-                    data={this.state.filteredPeople}       // required array|object
-                    renderRow={this.renderRow}  // required func
-                    rowHeight={150}              // required number
-                    sectionHeaderHeight={5}    // required number
+                    data={this.state.filteredPeople}        // required array|object
+                    renderRow={this.renderRow}              // required func
+                    rowHeight={150}                         // required number
+                    sectionHeaderHeight={5}                 // required number
                     sectionHeader={this.sectionHeader.bind(this)}
                     removeClippedSubviews={false}
                     sectionListStyle={{backgroundColor: 'rgba(255, 255, 255, 0.0)'}}

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3768D84DB792601BF52F93A2138211D2"
+               BlueprintIdentifier = "82F7D0BB6B970FC8298E210CF6B41773"
                BlueprintName = "RNSVG"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libRNSVG.a">

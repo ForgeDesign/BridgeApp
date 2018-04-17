@@ -231,7 +231,6 @@ class ProfileScreen extends Component {
     }
 
     _renderItem(ref) {
-        console.log(ref)
         return (
             <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>

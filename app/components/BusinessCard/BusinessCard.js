@@ -9,7 +9,7 @@ import CardStyle from '../../data/CardTemplates/CardStyle'
 import { Icon } from 'native-base';
 import FlipCard from 'react-native-flip-card'
 import Modal from "react-native-modal";
-
+import QRCode from 'react-native-qrcode';
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
@@ -22,9 +22,36 @@ const available_media = [
 
 export default class BusinessCard extends React.Component {
 
+    state = {
+        hidden: false,
+        style : "",
+        image : "",
+        color: "",
+        logo: "",
+        email: "",
+        address:  "",
+        website:  "",
+        phonenum:  "",
+        city:  "",
+        name:  "",
+        businame:  "",
+        position:  "",
+        stateabb:  "",
+        socialMedia:  "",
+        zip:  "",
+        storeKey:  "",
+        section:  "",
+        index:  "",
+        key:  "",
+        editable: false,
+        isFlipped: false,
+        isLandscaped: false,
+        qr: "qr"
+    }
+
     constructor(props) {
         super(props)
-        this.state = this.updateWith(props, true)
+        this.updateWith(props, true)
         this.getNotes(props.id).done(notes => {
             this.setState({notes: notes})
         })
@@ -32,7 +59,11 @@ export default class BusinessCard extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(this.props != nextProps) {
-            this.updateWith(nextProps, false)
+            if (this.props.cardnum != nextProps.cardnum)
+                this.updateWith(nextProps, false)
+            else {
+                this.updateNoStyle(nextProps, false)
+            }
             this.getNotes(nextProps.id).done(notes => {
                 this.setState({notes: notes})
             })
@@ -84,13 +115,55 @@ export default class BusinessCard extends React.Component {
         return notes
     }
 
+    updateNoStyle(props, constructor) {
+        storeKey = "cards"
+        if (props.contact === true)
+            storeKey = "people"
+        qr = false
+        if(storeKey == "cards")
+            qr = true
+        logo = {uri: props.logo}
+        object = {
+            cardnum: props.cardnum,
+            hidden: false,
+            style : this.state.style,
+            image : this.state.image,
+            color: props.color,
+            logo: logo,
+            email: props.email,
+            address: props.address,
+            website: props.website,
+            phonenum: props.phonenum,
+            city: props.city,
+            name: props.name,
+            businame: props.businame,
+            position: props.position,
+            stateabb: props.stateabb,
+            socialMedia: props.socialMedia,
+            zip: props.zip,
+            storeKey: storeKey,
+            section: props.section,
+            index: props.index,
+            key: props.id,
+            editable: false,
+            isFlipped: false,
+            isLandscaped: false,
+            qr: qr
+        }
+        this.setState(object)
+    }
+
     updateWith(props, constructor) {
         storeKey = "cards"
         if (props.contact === true)
             storeKey = "people"
+        qr = false
+        if(storeKey == "cards")
+            qr = true
         logo = {uri: props.logo}
-        var cardStyle = new CardStyle().getCardStyle(props.cardnum, props.font)
+        new CardStyle().getCardStyle(props.cardnum, props.font).then(cardStyle => {
             object = {
+                cardnum: props.cardnum,
                 hidden: false,
                 style : cardStyle.style,
                 image : cardStyle.image,
@@ -114,10 +187,11 @@ export default class BusinessCard extends React.Component {
                 editable: false,
                 isFlipped: false,
                 isLandscaped: false,
+                qr: qr
             }
-        if (constructor)
-            return object
-        this.setState(object)
+            console.log(object)
+            this.setState(object)
+        })
     }
 
     _flip = () => {
@@ -248,6 +322,26 @@ export default class BusinessCard extends React.Component {
                             )
                     }) : <View/>}
 
+                    <View
+                    style={{
+                        bottom: 80,
+                        left: 235
+                    }}>
+                        {
+                            this.state.qr ? (
+                                <QRCode
+                                value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
+                                size={100}
+                                bgColor={$primaryBlue}
+                                fgColor='white'/>
+                            ) :
+                            (
+                                <View/>
+                            )
+                        }
+                        
+                    </View>
+
                     <TextInput
                         editable={true}
                         placeholder={"Type all your notes here!"}
@@ -306,7 +400,7 @@ export default class BusinessCard extends React.Component {
                 <Image
                     style={this.state.style.image}
                     colorOverlay={this.state.color}
-                    source={this.state.image}
+                    source={typeof this.state.image == "number" ? this.state.image : {uri : this.state.image}}
                     resizeMode="stretch"
                 />
                 <Image
@@ -320,12 +414,14 @@ export default class BusinessCard extends React.Component {
                         value={this.state.address}
                         pointerEvents="none"
                     />
+                    <TouchableOpacity>
                     <TextInput
                         editable={this.state.editable}
                         style={this.state.style.emailInput}
                         value={this.state.email}
                         pointerEvents="none"
                     />
+                    </TouchableOpacity>
                     <TextInput
                         editable={this.state.editable}
                         style={this.state.style.websiteInput}

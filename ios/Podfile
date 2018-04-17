@@ -25,6 +25,10 @@ target 'BridgeCard' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKShareKit'
+    pod 'FBSDKPlacesKit'
+    pod 'FBSDKMessengerShareKit'
     pod 'FBSDKLoginKit'
 
     pod 'Google/SignIn'
@@ -41,6 +45,7 @@ target 'BridgeCard' do
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
     pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+
 end
 
 # very important to have, unless you removed React dependencies for Libraries 

@@ -27,6 +27,8 @@
 		0A3F9FF6205624F200B970CB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC7205624F200B970CB /* EvilIcons.ttf */; };
 		0A3F9FF7205624F200B970CB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */; };
 		0A3F9FF8205624F200B970CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */; };
+		0A6C1A4620843F2C0096484E /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6C1A4520843F2C0096484E /* libFBSDKCoreKit.a */; };
+		0A6C1A4820843F2C0096484E /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6C1A4720843F2C0096484E /* libFBSDKLoginKit.a */; };
 		0A76EA02205F903A002E488E /* RNGoogleSignInEventsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D7205F903A002E488E /* RNGoogleSignInEventsBridge.m */; };
 		0A76EA03205F903A002E488E /* RNGoogleSignInEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D8205F903A002E488E /* RNGoogleSignInEvents.swift */; };
 		0A76EA04205F903A002E488E /* RNGoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */; };
@@ -58,6 +60,7 @@
 		E3AFEAE6DAC646DBB5135A6F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5F6543D9A6B492386705E96 /* Zocial.ttf */; };
 		F820B3FCCEDE4B35B711EEA5 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47F1C4FFB721438A98A88014 /* rubicon-icon-font.ttf */; };
 		F83123811D8D4DEA9E4AC6FC /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0D9A013436641E4821EBA05 /* Feather.ttf */; };
+		FD312F8789154D2ABE331ED8 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8DDDD6C7B5646E1988083D9 /* libRCTFBSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
 			remoteInfo = "privatedata-tvOS";
+		};
+		0A634F202082EE660001A0F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFD81168F2904B33B7277140 /* RCTFBSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
+			remoteInfo = RCTFBSDK;
 		};
 		0A810181205F44BD00FE26B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -350,6 +360,11 @@
 		0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		0A67C7E12060EDE9005DDA46 /* BridgeCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BridgeCard.entitlements; path = BridgeCard/BridgeCard.entitlements; sourceTree = "<group>"; };
+		0A6C1A4520843F2C0096484E /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A6C1A4720843F2C0096484E /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKLoginKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A6C1A80208446150096484E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		0A6C1AA8208446150096484E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		0A6C1AA9208446150096484E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../node_modules/react-native-facebook-login/FacebookSDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		0A76E9B7205F89D3002E488E /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A76E9B8205F8A30002E488E /* BridgeCard-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BridgeCard-Swift.h"; path = "BridgeCard/BridgeCard-Swift.h"; sourceTree = "<group>"; };
 		0A76E9C3205F8BD7002E488E /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Pods/GoogleSignIn/Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -361,7 +376,6 @@
 		0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInBridge.m; sourceTree = "<group>"; };
 		0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRSKImageCropper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E3F2AE54A30DB37E8F39107 /* libPods-BridgeCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E6014D4B3A0F8FF1EE9FF35 /* Pods-BridgeCard-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard-tvOSTests/Pods-BridgeCard-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1159CCBE204249ADA3DF0C9E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -375,13 +389,11 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1759ED20BE3943479C9E06D8 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		2DF7CC8EE36C4E8783FC1BB2 /* libRNMeasureText.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNMeasureText.a; sourceTree = "<group>"; };
-		2E7F0BD0A0FFE3B6389853E0 /* Pods-BridgeCardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCardTests/Pods-BridgeCardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		430A58E41B4E4641AF18AB26 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		442781D953B84D729D0EDA83 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		45576CC50A9049C7B6AFCD53 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		47F1C4FFB721438A98A88014 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		5802CF6D86601C1FABE1E065 /* Pods-BridgeCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard/Pods-BridgeCard.release.xcconfig"; sourceTree = "<group>"; };
-		5CC2A0A0F460DC1201EDA6FC /* libPods-BridgeCard-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCard-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMeasureText.xcodeproj; path = "../node_modules/react-native-text-size/ios/RNMeasureText.xcodeproj"; sourceTree = "<group>"; };
 		6B1F7C7EA97D49F3AD8D59E9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -393,21 +405,20 @@
 		87DC67B4B1A240D3894DD2ED /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		8CB31337DBF94222BE713C6E /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		AAAD2893F551423ABD172A7D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		AABBB9BD626F034A6C5AAD4D /* Pods-BridgeCard-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard-tvOSTests/Pods-BridgeCard-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AEC9F42006294EF2A85724C4 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		B0D9A013436641E4821EBA05 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		B3695BCE78FA42C78433EC35 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		B3801AB2C150455BA952115E /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B38FDA4CFDE142C290563D08 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		C1535883B03E42B0211BD619 /* Pods-BridgeCardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCardTests/Pods-BridgeCardTests.release.xcconfig"; sourceTree = "<group>"; };
+		C8DDDD6C7B5646E1988083D9 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		CDF17ACB95E44EBA814AFB82 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
+		CFD81168F2904B33B7277140 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		D7B112475CA749DE83F7852C /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		DEA0AC7A32F1436E909C976C /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		DF247C98A462FDC47598E7CB /* Pods-BridgeCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeCard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BridgeCard/Pods-BridgeCard.debug.xcconfig"; sourceTree = "<group>"; };
 		E5F6543D9A6B492386705E96 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E9F963FDFE0641839666C9D4 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		F6E4377F79971A834A688F95 /* libPods-BridgeCardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9124BCB26504430B6012C21 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -416,6 +427,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6C1A4620843F2C0096484E /* libFBSDKCoreKit.a in Frameworks */,
+				0A6C1A4820843F2C0096484E /* libFBSDKLoginKit.a in Frameworks */,
 				0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */,
 				0AE8EB05205639C7005ECD5C /* libRSKImageCropper.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -434,6 +447,7 @@
 				881EB86CD329ADD2D025B937 /* libPods-BridgeCard.a in Frameworks */,
 				CD0460B73D8B49CDA5736258 /* libRNFirebase.a in Frameworks */,
 				1474F7AE44564A6BBCBD96FA /* libRNMeasureText.a in Frameworks */,
+				FD312F8789154D2ABE331ED8 /* libRCTFBSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +518,7 @@
 				0AC7085E204089A800E1A405 /* libRNWebGL.a */,
 				430A58E41B4E4641AF18AB26 /* libRNFirebase.a */,
 				2DF7CC8EE36C4E8783FC1BB2 /* libRNMeasureText.a */,
+				C8DDDD6C7B5646E1988083D9 /* libRCTFBSDK.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -511,13 +526,16 @@
 		0A316FFA1FF0F5080050BE80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A6C1AA8208446150096484E /* FBSDKCoreKit.framework */,
+				0A6C1AA9208446150096484E /* FBSDKLoginKit.framework */,
+				0A6C1A80208446150096484E /* FBSDKShareKit.framework */,
+				0A6C1A4520843F2C0096484E /* libFBSDKCoreKit.a */,
+				0A6C1A4720843F2C0096484E /* libFBSDKLoginKit.a */,
 				0A76E9C5205F8BF8002E488E /* GoogleSignIn.bundle */,
 				0A76E9C3205F8BD7002E488E /* GoogleSignIn.framework */,
 				0A76E9B7205F89D3002E488E /* libGoogleToolboxForMac.a */,
 				0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */,
 				0E3F2AE54A30DB37E8F39107 /* libPods-BridgeCard.a */,
-				5CC2A0A0F460DC1201EDA6FC /* libPods-BridgeCard-tvOSTests.a */,
-				F6E4377F79971A834A688F95 /* libPods-BridgeCardTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -539,6 +557,14 @@
 			);
 			name = Fonts;
 			path = "../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
+		0A634F1D2082EE660001A0F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A634F212082EE660001A0F1 /* libRCTFBSDK.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		0A76E9D6205F903A002E488E /* RNGoogleSignIn */ = {
@@ -567,10 +593,6 @@
 			children = (
 				DF247C98A462FDC47598E7CB /* Pods-BridgeCard.debug.xcconfig */,
 				5802CF6D86601C1FABE1E065 /* Pods-BridgeCard.release.xcconfig */,
-				0E6014D4B3A0F8FF1EE9FF35 /* Pods-BridgeCard-tvOSTests.debug.xcconfig */,
-				AABBB9BD626F034A6C5AAD4D /* Pods-BridgeCard-tvOSTests.release.xcconfig */,
-				2E7F0BD0A0FFE3B6389853E0 /* Pods-BridgeCardTests.debug.xcconfig */,
-				C1535883B03E42B0211BD619 /* Pods-BridgeCardTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -699,6 +721,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				DEA0AC7A32F1436E909C976C /* RNFirebase.xcodeproj */,
 				669E9975D3254F6C884FE498 /* RNMeasureText.xcodeproj */,
+				CFD81168F2904B33B7277140 /* RCTFBSDK.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -817,6 +840,10 @@
 				{
 					ProductGroup = 0A03382C205F6D51003FF310 /* Products */;
 					ProjectRef = 0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */;
+				},
+				{
+					ProductGroup = 0A634F1D2082EE660001A0F1 /* Products */;
+					ProjectRef = CFD81168F2904B33B7277140 /* RCTFBSDK.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -981,6 +1008,13 @@
 			fileType = archive.ar;
 			path = "libprivatedata-tvOS.a";
 			remoteRef = 0A31702A1FF0F5080050BE80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A634F212082EE660001A0F1 /* libRCTFBSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTFBSDK.a;
+			remoteRef = 0A634F202082EE660001A0F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0A810182205F44BD00FE26B2 /* libRNMeasureText.a */ = {
@@ -1327,6 +1361,9 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
 					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1339,11 +1376,15 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-text-size/ios",
 					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
+					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 				);
 				INFOPLIST_FILE = BridgeCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/BridgeCard\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1375,6 +1416,9 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-facebook-login/FacebookSDK",
 					"$(PROJECT_DIR)/Pods/GoogleSignIn/Frameworks",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
+					"$(USER_LIBRARY_DIR)/Mobile\\ Documents/com~apple~CloudDocs/Workspace/BridgeApp/node_modules/react-native-facebook-login/FacebookSDK",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1387,11 +1431,15 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-text-size/ios",
 					"$(SRCROOT)/../node_modules/react-native-google-sign-in/ios/RNGoogleSignIn",
+					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 				);
 				INFOPLIST_FILE = BridgeCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/BridgeCard\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
