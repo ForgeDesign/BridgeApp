@@ -245,7 +245,8 @@ saveData = () => {
                         this.setState({ cardnum: itemValue })
                     }}>
                     {this.state.availableTemplates.map((item, index) => {
-                        return (<Picker.Item label={item} value={item} key={index}/>) 
+                        if (typeof item == "string")
+                            return (<Picker.Item label={item} value={item} key={index}/>) 
                     })}
                 </Picker>
                 </View>

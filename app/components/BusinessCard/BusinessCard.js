@@ -72,7 +72,10 @@ export default class BusinessCard extends React.Component {
 
     async getNotes(key) {
         notes = ""
-        await rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
+        storeKey = "cards"
+        if (this.props.contact)
+            storeKey = "people"
+        await rootRef.child(firebase.auth().currentUser.uid + storeKey).once().then(val => {
             if (this.state.storeKey == "people") {
                 var peopleObj = {}
                 val.forEach(child => {
@@ -189,7 +192,6 @@ export default class BusinessCard extends React.Component {
                 isLandscaped: false,
                 qr: qr
             }
-            console.log(object)
             this.setState(object)
         })
     }
@@ -400,64 +402,101 @@ export default class BusinessCard extends React.Component {
                 <Image
                     style={this.state.style.image}
                     colorOverlay={this.state.color}
-                    source={typeof this.state.image == "number" ? this.state.image : {uri : this.state.image}}
+                    source={typeof this.state.image == "number" ? this.state.image : this.state.image != "" ? {uri : this.state.image} : undefined}
                     resizeMode="stretch"
                 />
                 <Image
                     style={this.state.style.logo}
-                    source={this.state.logo}
+                    source={this.state.logo != "" ? this.state.logo : undefined}
                 />
                 <View style={this.state.style.inputs}>
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.addressInput}
-                        value={this.state.address}
-                        pointerEvents="none"
-                    />
-                    <TouchableOpacity>
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.emailInput}
-                        value={this.state.email}
-                        pointerEvents="none"
-                    />
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.addressTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.addressInput}
+                            value={this.state.address}
+                            pointerEvents="none"
+                        />
                     </TouchableOpacity>
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.websiteInput}
-                        value={this.state.website}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.phonenumInput}
-                        value={this.state.phonenum}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.address2Input}
-                        value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.nameInput}
-                        value={this.state.name}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.businameInput}
-                        value={this.state.businame}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.positionInput}
-                        value={this.state.position}
-                        pointerEvents="none"
-                    />
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                    style={this.state.style.emailTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.emailInput}
+                            value={this.state.email}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL(this.state.website)}
+                    style={this.state.style.websiteTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.websiteInput}
+                            value={this.state.website}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                    style={this.state.style.phonenumTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.phonenumInput}
+                            value={this.state.phonenum}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.address2Touch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.address2Input}
+                            value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.nameTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.nameInput}
+                            value={this.state.name}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.businameTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.businameInput}
+                            value={this.state.businame}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                     <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.positionTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.positionInput}
+                            value={this.state.position}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )

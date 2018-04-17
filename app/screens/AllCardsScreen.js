@@ -37,6 +37,12 @@
         })
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this._onRefresh()
+        },300)
+    }
+
     _onRefresh() {
         this.setState({refreshing: true});
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
