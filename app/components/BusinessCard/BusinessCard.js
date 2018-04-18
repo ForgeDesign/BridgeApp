@@ -75,6 +75,7 @@ export default class BusinessCard extends React.Component {
         storeKey = "cards"
         if (this.props.contact)
             storeKey = "people"
+        if(this.props.recommendation == false || this.props.recommendation == undefined)
         await rootRef.child(firebase.auth().currentUser.uid + storeKey).once().then(val => {
             if (this.state.storeKey == "people") {
                 var peopleObj = {}
@@ -294,6 +295,59 @@ export default class BusinessCard extends React.Component {
     }
 
     _renderBack = () => {
+        var notesInput
+
+        notesInput = <TextInput
+            editable={true}
+            placeholder={"Type all your notes here!"}
+            multiline={true}
+            maxHeight={150}
+            numberOfLines={4}
+            onChangeText={(text) => {
+                this.setState({notes: text})
+                rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
+                    if (this.state.storeKey == "people") {
+                        var peopleObj = {}
+                        val.forEach(child => {
+                            peopleObj[child.key] = child.val()
+                        })
+                        if(Object.keys(peopleObj).length > 0) {
+                            var foundPerson
+                            var foundCard
+                            for (let index = 0; index < Object.keys(peopleObj).length; index++) {
+                                const element = peopleObj[Object.keys(peopleObj)[index]];
+                                for (let index2 = 0; index2 < element.card.length; index2++) {
+                                    const card = element.card[index2];
+                                    if (card.id == this.state.section) {
+                                        foundPerson = Object.keys(peopleObj)[index]
+                                        foundCard = index2
+                                        break
+                                    }
+                                }
+                                if(foundPerson)
+                                    break
+                                
+                            }
+                            peopleObj[foundPerson].card[foundCard].notes = text
+                            rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
+                        }
+                    } else {
+                        var cardArray = []
+                        val.forEach(child => {
+                            cardArray.push(child.val())
+                        })
+                        cardArray[this.state.key]["notes"] = text
+                        rootRef.child(firebase.auth().currentUser.uid + "cards/" + cardArray[this.state.key]["fireKey"]).update(cardArray[this.state.key])
+                    }
+                })
+            }}
+            value={this.state.notes}
+            style={this.state.style.notes}
+        />
+
+        if(this.props.recommendation == true)
+            notesInput = null
+
         return (
             <View style={this.state.style.cardBack}>
                 <View style={this.state.style.container}>
@@ -344,53 +398,8 @@ export default class BusinessCard extends React.Component {
                         
                     </View>
 
-                    <TextInput
-                        editable={true}
-                        placeholder={"Type all your notes here!"}
-                        multiline={true}
-                        maxHeight={150}
-                        numberOfLines={4}
-                        onChangeText={(text) => {
-                            this.setState({notes: text})
-                            rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
-                                if (this.state.storeKey == "people") {
-                                    var peopleObj = {}
-                                    val.forEach(child => {
-                                        peopleObj[child.key] = child.val()
-                                    })
-                                    if(Object.keys(peopleObj).length > 0) {
-                                        var foundPerson
-                                        var foundCard
-                                        for (let index = 0; index < Object.keys(peopleObj).length; index++) {
-                                            const element = peopleObj[Object.keys(peopleObj)[index]];
-                                            for (let index2 = 0; index2 < element.card.length; index2++) {
-                                                const card = element.card[index2];
-                                                if (card.id == this.state.section) {
-                                                    foundPerson = Object.keys(peopleObj)[index]
-                                                    foundCard = index2
-                                                    break
-                                                }
-                                            }
-                                            if(foundPerson)
-                                                break
-                                            
-                                        }
-                                        peopleObj[foundPerson].card[foundCard].notes = text
-                                        rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
-                                    }
-                                } else {
-                                    var cardArray = []
-                                    val.forEach(child => {
-                                        cardArray.push(child.val())
-                                    })
-                                    cardArray[this.state.key]["notes"] = text
-                                    rootRef.child(firebase.auth().currentUser.uid + "cards/" + cardArray[this.state.key]["fireKey"]).update(cardArray[this.state.key])
-                                }
-                            })
-                        }}
-                        value={this.state.notes}
-                        style={this.state.style.notes}
-                    />
+                    {notesInput}
+                    
                 </View>
             </View>
         )

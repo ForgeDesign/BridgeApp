@@ -34,6 +34,7 @@ class PersonCard extends React.Component {
             </View>
         )
     }
+
     return(
       <TouchableOpacity
         style={styles.container}
@@ -58,6 +59,7 @@ class PersonCard extends React.Component {
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
             <CardSwiper 
+                recommendation={this.props.recommendation}
                 card={this.props.card}
             />
             <TouchableOpacity

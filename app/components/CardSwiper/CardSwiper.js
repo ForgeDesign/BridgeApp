@@ -9,14 +9,17 @@ import { BusinessCard } from '../BusinessCard';
 class CardSwiper extends React.Component {
 
     render() {
+        recommended = this.props.recommendation == undefined ? false : true
         return(
             <Swiper style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
 
                 {this.props.card.map(function(item, i){
+
                     if(item != null)
                     return (
                         <View style={styles.slide1} key={i + "view"}>
                             <BusinessCard
+                                recommendation={recommended}
                                 key={i}
                                 font={item.font}
                                 cardnum={item.cardnum}
