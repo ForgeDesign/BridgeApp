@@ -282,7 +282,7 @@ class ContactsScreen extends React.Component {
                     shadowRadius: 2,
                     elevation: 1}}/>
 
-                    <ActivityIndicator size="small" color="#00ff00" />
+                    <ActivityIndicator size="small" color="#003E5B" />
                 </Container>
             )
         }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, FlatList } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, FlatList, RefreshControl } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
@@ -40,55 +40,70 @@ export default class IsoScreen extends React.Component {
             alertVisible: false,
             promptVisible: false,
             searchTerm: '',
+            refreshing: false,
             contactName: 'fox-hunter5',   
             people: [ ],
+            foundISO: [],
+            yourISO: [],
             activity:
             [
-                {
-                    connector: "Brian Amin",
-                    text: "is looking for a",
-                    connectee: "Software Developer",
-                    icon: "",
-                    image: "brianamin",
-                    time: a.toString()
-                },
-                {
-                    connector: "Mark Brown",
-                    text: "is looking for a",
-                    connectee: "Marketing Supervisor",
-                    icon: "",
-                    image: "markbrown",
-                    time: b.toString()
-                },
-                {
-                    connector: "Frank Barnes",
-                    text: "is looking for a",
-                    connectee: "Social Media Manager",
-                    icon: "",
-                    image: "frankbarnes",
-                    time: c.toString()
-                }
             ]
         }
     }
 
     componentWillMount() {
 
-        rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
-            var peopleObj = {}
+        foundISO = []
+        rootRef.child(firebase.auth().currentUser.uid + "iso").once().then(val => {
+            var iso = []
             val.forEach(child => {
-                peopleObj[child.key] = child.val()
+                iso.push(child.val())
             })
-            var orderedpeople = []
-            Object.keys(peopleObj).filter(key => 
-                peopleObj[key].map((person, index) => {
-                    person["section"] = key
-                    person["index"] = index
-                    orderedpeople.push(person)
+
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                var people = []
+                val.forEach(child => {
+                    if(child.val().person != firebase.auth().currentUser.uid)
+                        people.push(child.val())
                 })
-            )
-            this.setState({people: orderedpeople})
+
+                var promises = []
+                for (let index = 0; index < people.length; index++) {
+                    const element = people[index];
+                    promises.push(
+                        rootRef.child(element.person + "iso").once()
+                    )
+                }
+                Promise.all(promises).then( (val) => {
+                    val.forEach((child) => {
+                        if(child.val() != null) {
+                            const personUID = child.key.substring(0, child.key.length - 3)
+                            
+                            rootRef.child(personUID + "person").once().then(person => {
+                                for (let pIndex = 0; pIndex < Object.keys(child.val()).length; pIndex++) {
+                                    var personISO = child.val()[Object.keys(child.val())[pIndex]]
+                                    personISO.connector = person.val().displayName
+                                    personISO.text = "is looking for"
+                                    personISO.image = person.val().photoURL
+                                    foundISO.push(personISO)
+                                }
+                                this.setState({activity: iso.concat(foundISO), yourISO: iso, foundISO: foundISO})
+                                this._onRefresh()
+                            })
+                        }
+                    })
+                })
+
+            })
         })
+    }
+
+    getPersonFromArray(array, uid) {
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            if(element.person == uid)
+                return index
+        }
     }
 
     searchUpdated(term) {
@@ -112,8 +127,6 @@ export default class IsoScreen extends React.Component {
 
     onPressHandle(key) {
         this.popupRelatedConnect = key
-        console.log(key)
-        console.log(this.trackContactChecks[key])
         if (this.trackContactChecks[key] == undefined) {
             this.trackContactChecks[key] = {}
             for (let index = 0; index < this.state.people.length; index++) {
@@ -224,6 +237,31 @@ export default class IsoScreen extends React.Component {
 
     _keyExtractor = (item, index) => index;
 
+    activityExtractor = (item, index) => index;
+
+    activityRendererererer(ref, key) {
+        return(
+            <ProfileActivity
+            key={ref.index}
+            ref={(card) => {this[ref.index] = card}}
+            connector={ref.item.connector}
+            text={ref.item.text}
+            connectee={ref.item.connectee}
+            image={ref.item.image}
+            iso={true}
+            recommend={true}
+            time={ref.item.time}
+            navigate={this.onPressHandle.bind(this, ref.index)}/>
+        )
+    }
+
+    _onRefresh() {
+        this.setState({refreshing: true});
+        setTimeout(() => {
+            this.setState({refreshing: false});
+        },300);
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const filteredPeople = this.state.people.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
@@ -246,20 +284,19 @@ export default class IsoScreen extends React.Component {
                     shadowOpacity: 0.8,
                     shadowRadius: 2,
                     elevation: 1}}/>
-                <ScrollView style={{ flex: 1, marginTop: 6 }}>
-                    {this.state.activity.map((ref, key) =>
-                        <ProfileActivity
-                        key={key}
-                        ref={(card) => {this[key] = card}}
-                        connector={ref.connector}
-                        text={ref.text}
-                        connectee={ref.connectee}
-                        image={ref.image}
-                        recommend={true}
-                        time={ref.time}
-                        navigate={this.onPressHandle.bind(this, key)}/>
-                    )}
-                </ScrollView>
+
+                <FlatList
+                style={{ flex: 1, marginTop: 6 }}
+                data={this.state.activity}
+                keyExtractor={this.activityExtractor}
+                renderItem={this.activityRendererererer.bind(this)}
+                refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.refreshing}
+                      onRefresh={this._onRefresh.bind(this)}
+                    />
+                  }
+                />
 
                 <Prompt
                 title="What are you looking for?"
