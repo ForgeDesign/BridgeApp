@@ -93,6 +93,15 @@ class ProfileActivity extends React.Component {
                 <Icon name="ios-heart-outline" style={{fontSize: 24}}/>
             </TouchableOpacity>;
         }
+        recommendedButton = null
+        if (this.props.recommended) {
+            recommendedButton =
+            <TouchableOpacity
+                style={{alignSelf: 'flex-end', marginRight: 15, justifyContent: 'center', alignItems: 'center'}}
+                onPress={() => this.props.recommendFunc(this.props.recommended)}>
+                <Icon name="ios-card-outline" style={{fontSize: 24, color: $primaryBlue}}/>
+            </TouchableOpacity>;
+        }
         return(
             <View style={style}>
                 <View style={styles.piccontainer}>
@@ -112,7 +121,7 @@ class ProfileActivity extends React.Component {
                     <Text style={styles.location}>{this.state.activity}</Text>
                     <Text style={styles.activity}>{nowStr}{diffDays}{diffHrs}{diffMins}</Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-                        {addButton}{button}
+                        {recommendedButton}{addButton}{button}
                     </View>
                 </View>
             </View>

@@ -43,12 +43,108 @@ export default class IsoScreen extends React.Component {
             refreshing: false,
             contactName: 'fox-hunter5',   
             people: [ ],
+            abstractPeople: [],
             foundISO: [],
             yourISO: [],
             activity:
             [
-            ]
+            ],
+            recommendedPeopleStuff: []
         }
+    }
+
+    componentDidMount() {
+        this.getPeople().then(peopleObj => {
+            this.getCards(peopleObj).then(foundPeople => {
+                this.setState({people: foundPeople, filteredPeople: foundPeople, ready: true, abstractPeople: peopleObj})
+            })
+        })
+    }
+
+    getCards(peopleObj) {
+        return new Promise((resolve, reject) => {
+            foundPeople = { "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [], 
+                            'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [], 
+                            'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [], 
+                            'X': [], 'Y': [], 'Z': []}
+            promises = []
+            for (let index = 0; index < peopleObj.length; index++) {
+                const person = peopleObj[index];
+                var pathPerson = person.person + "person/"
+                promises.push(this.getSinglePerson(pathPerson, person))
+            }
+            Promise.all(promises).then(data => {
+                var allPeople = data
+                for (let index = 0; index < data.length; index++) {
+                    const person = data[index];
+                    for (let index2 = 0; index2 < person.card.length; index2++) {
+                        const card = person.card[index2];
+                        Promise.resolve(card).then(val => {
+                            allPeople[index].card[index2] = val
+                        })
+                    }
+                }
+                resolve(allPeople)
+            }).catch(test => {
+                console.log(test)
+            })
+        });
+    }
+
+    displayRecommendations(people) {
+        this.getCards(people).then(foundPeople => {
+            this.setState({recommendedPeopleStuff: foundPeople})
+            this.popupDialogRecommendations.show()
+        })
+    }
+
+    getSinglePerson(pathPerson, person) {
+        return new Promise((resolve, reject) => {
+            rootRef.child(pathPerson).once().then(val => {
+                var personFound = val._value
+                var firstLast = personFound.displayName.split(" ")
+                var sectionKey = firstLast[firstLast.length - 1][0]
+                obj = {
+                    name: personFound.displayName,
+                    location: person.location,
+                    imagepath: personFound.photoURL,
+                    sectionKey: sectionKey,
+                    card: []
+                }
+                for (let index = 0; index < person.card.length; index++) {
+                    const element = person.card[index];
+                    var pathCard = person.person + "cards/" + element.id
+                    obj.card.push(this.getSingleCard(pathCard))
+                }
+                resolve(obj)
+            })
+        });
+    }
+
+    getSingleCard(pathCard) {
+        return new Promise((resolve, reject) => {
+            rootRef.child(pathCard).once().then(val => {
+                var card = val._value
+                resolve(card)
+            })
+        });
+    }
+
+    getPeople() {
+        return new Promise((resolve, reject) => {
+            peopleObj = []
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                val.forEach(child => {
+                    peopleObj.push(child.val())
+                })
+                if(peopleObj.length == 0) {
+                    rootRef.child(firebase.auth().currentUser.uid + "people").set(this.state.people)
+                    peopleObj = JSON.parse(JSON.stringify(this.state.people))
+                }
+            }).then(() => {
+                resolve(peopleObj)
+            })
+        });
     }
 
     componentWillMount() {
@@ -85,9 +181,11 @@ export default class IsoScreen extends React.Component {
                                     personISO.connector = person.val().displayName
                                     personISO.text = "is looking for"
                                     personISO.image = person.val().photoURL
+                                    personISO.fireUID = personUID
+                                    personISO.fireKey = Object.keys(child.val())[pIndex]
                                     foundISO.push(personISO)
                                 }
-                                this.setState({activity: iso.concat(foundISO), yourISO: iso, foundISO: foundISO})
+                                this.setState({activity: iso.concat(foundISO.reverse()), yourISO: iso, foundISO: foundISO})
                                 this._onRefresh()
                             })
                         }
@@ -169,9 +267,15 @@ export default class IsoScreen extends React.Component {
 
     _handleRecommendation() {
         numberOfRecs = 0
+        var peopleRecommended = []
+        var fireUID = this[this.popupRelatedConnect].props.fireUID
+        var fireISOKey = this[this.popupRelatedConnect].props.fireKey
         for (let index = 0; index < this.state.people.length; index++) {
-            if (this.trackContactChecks[this.popupRelatedConnect][index])
+            if (this.trackContactChecks[this.popupRelatedConnect][index]) {
+                peopleRecommended.push(this.state.abstractPeople[index])
                 numberOfRecs += 1
+            }
+                
         }
         descriptor = " people"
         if (numberOfRecs == 1) {
@@ -198,7 +302,19 @@ export default class IsoScreen extends React.Component {
             image: "",
             time: d.toString()
         }
-        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+        // rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+
+        rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
+            obj = val.val()
+            console.log(peopleRecommended, peopleRecommended.length)
+            if(obj.recommended != undefined) {
+                obj.recommended = obj.recommended.concat(peopleRecommended)
+            }
+            else {
+                obj.recommended = peopleRecommended
+            }
+            rootRef.child(fireUID + "iso/" + fireISOKey).update(obj)
+        })
 
         setTimeout(() => {
             this.makeAlertDisappear()
@@ -237,19 +353,39 @@ export default class IsoScreen extends React.Component {
 
     _keyExtractor = (item, index) => index;
 
+    recommendedKeyExtractor = (item, index) => index
+
     activityExtractor = (item, index) => index;
+
+    renderRecommended(item, key) {
+        return(
+            <PersonCard
+                recommendation={true}
+                section={item.item.section}
+                index={item.item.index}
+                name={item.item.name}
+                card={item.item.card}
+                location={item.item.location}
+                imagepath={item.item.imagepath}
+            />
+        )
+    }
 
     activityRendererererer(ref, key) {
         return(
             <ProfileActivity
+            recommended={ref.item.recommended}
             key={ref.index}
             ref={(card) => {this[ref.index] = card}}
+            recommendFunc={this.displayRecommendations.bind(this)}
             connector={ref.item.connector}
             text={ref.item.text}
             connectee={ref.item.connectee}
             image={ref.item.image}
             iso={true}
             recommend={true}
+            fireKey={ref.item.fireKey}
+            fireUID={ref.item.fireUID}
             time={ref.item.time}
             navigate={this.onPressHandle.bind(this, ref.index)}/>
         )
@@ -360,6 +496,35 @@ export default class IsoScreen extends React.Component {
                     }
                 }
                 } />
+
+                <PopupDialog
+                    dialogTitle={<DialogTitle title="Recommendations!" />}
+                    ref={(popupDialog) => { this.popupDialogRecommendations = popupDialog; }}
+                    dialogAnimation={slideAnimation}
+                    height={0.70}
+                    actions={[
+                        <Grid key="grid">
+                            <Row style={{justifyContent: 'center'}}>
+                                <DialogButton
+                                    text="Done"
+                                    onPress={() => {
+                                        this.popupDialogRecommendations.dismiss();
+                                    }}
+                                    key="buttonDone-1"
+                                />
+                            </Row>
+                        </Grid>]
+                    }
+                    >
+                    <View>
+                        <FlatList
+                            height={'68%'}
+                            data={this.state.recommendedPeopleStuff}
+                            keyExtractor={this.recommendedKeyExtractor}
+                            renderItem={this.renderRecommended}
+                        />
+                    </View>
+                </PopupDialog>
 
                 <PopupDialog
                     dialogTitle={<DialogTitle title="Recommend a Contact" />}
