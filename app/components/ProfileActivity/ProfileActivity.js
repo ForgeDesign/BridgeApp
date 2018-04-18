@@ -94,7 +94,7 @@ class ProfileActivity extends React.Component {
             </TouchableOpacity>;
         }
         recommendedButton = null
-        if (this.props.recommended) {
+        if (this.props.recommended && this.props.connector == "You") {
             recommendedButton =
             <TouchableOpacity
                 style={{alignSelf: 'flex-end', marginRight: 15, justifyContent: 'center', alignItems: 'center'}}
