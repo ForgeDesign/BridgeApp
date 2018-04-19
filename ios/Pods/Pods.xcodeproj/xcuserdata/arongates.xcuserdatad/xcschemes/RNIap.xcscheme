@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3BB291BD0AF7DDFCDEF38116E9F8E27"
-               BlueprintName = "QBImagePickerController-QBImagePicker"
+               BlueprintIdentifier = "6D3A5C504B0D0234352D189034A95BDB"
+               BlueprintName = "RNIap"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "QBImagePickerController-QBImagePicker.bundle">
+               BuildableName = "libRNIap.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -32,7 +32,7 @@ target 'BridgeCard' do
     pod 'FBSDKLoginKit'
 
     pod 'Google/SignIn'
-    pod 'RNIap', :path => '../node_modules/react-native-iap'
+
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 
