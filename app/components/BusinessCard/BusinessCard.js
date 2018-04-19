@@ -9,7 +9,7 @@ import CardStyle from '../../data/CardTemplates/CardStyle'
 import { Icon } from 'native-base';
 import FlipCard from 'react-native-flip-card'
 import Modal from "react-native-modal";
-
+import QRCode from 'react-native-qrcode';
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
@@ -22,9 +22,36 @@ const available_media = [
 
 export default class BusinessCard extends React.Component {
 
+    state = {
+        hidden: false,
+        style : "",
+        image : "",
+        color: "",
+        logo: "",
+        email: "",
+        address:  "",
+        website:  "",
+        phonenum:  "",
+        city:  "",
+        name:  "",
+        businame:  "",
+        position:  "",
+        stateabb:  "",
+        socialMedia:  "",
+        zip:  "",
+        storeKey:  "",
+        section:  "",
+        index:  "",
+        key:  "",
+        editable: false,
+        isFlipped: false,
+        isLandscaped: false,
+        qr: "qr"
+    }
+
     constructor(props) {
         super(props)
-        this.state = this.updateWith(props, true)
+        this.updateWith(props, true)
         this.getNotes(props.id).done(notes => {
             this.setState({notes: notes})
         })
@@ -32,7 +59,11 @@ export default class BusinessCard extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(this.props != nextProps) {
-            this.updateWith(nextProps, false)
+            if (this.props.cardnum != nextProps.cardnum)
+                this.updateWith(nextProps, false)
+            else {
+                this.updateNoStyle(nextProps, false)
+            }
             this.getNotes(nextProps.id).done(notes => {
                 this.setState({notes: notes})
             })
@@ -41,7 +72,11 @@ export default class BusinessCard extends React.Component {
 
     async getNotes(key) {
         notes = ""
-        await rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
+        storeKey = "cards"
+        if (this.props.contact)
+            storeKey = "people"
+        if(this.props.recommendation == false || this.props.recommendation == undefined)
+        await rootRef.child(firebase.auth().currentUser.uid + storeKey).once().then(val => {
             if (this.state.storeKey == "people") {
                 var peopleObj = {}
                 val.forEach(child => {
@@ -84,13 +119,55 @@ export default class BusinessCard extends React.Component {
         return notes
     }
 
+    updateNoStyle(props, constructor) {
+        storeKey = "cards"
+        if (props.contact === true)
+            storeKey = "people"
+        qr = false
+        if(storeKey == "cards")
+            qr = true
+        logo = {uri: props.logo}
+        object = {
+            cardnum: props.cardnum,
+            hidden: false,
+            style : this.state.style,
+            image : this.state.image,
+            color: props.color,
+            logo: logo,
+            email: props.email,
+            address: props.address,
+            website: props.website,
+            phonenum: props.phonenum,
+            city: props.city,
+            name: props.name,
+            businame: props.businame,
+            position: props.position,
+            stateabb: props.stateabb,
+            socialMedia: props.socialMedia,
+            zip: props.zip,
+            storeKey: storeKey,
+            section: props.section,
+            index: props.index,
+            key: props.id,
+            editable: false,
+            isFlipped: false,
+            isLandscaped: false,
+            qr: qr
+        }
+        this.setState(object)
+    }
+
     updateWith(props, constructor) {
         storeKey = "cards"
         if (props.contact === true)
             storeKey = "people"
+        qr = false
+        if(storeKey == "cards")
+            qr = true
         logo = {uri: props.logo}
-        var cardStyle = new CardStyle().getCardStyle(props.cardnum, props.font)
+        new CardStyle().getCardStyle(props.cardnum, props.font).then(cardStyle => {
             object = {
+                cardnum: props.cardnum,
                 hidden: false,
                 style : cardStyle.style,
                 image : cardStyle.image,
@@ -114,10 +191,10 @@ export default class BusinessCard extends React.Component {
                 editable: false,
                 isFlipped: false,
                 isLandscaped: false,
+                qr: qr
             }
-        if (constructor)
-            return object
-        this.setState(object)
+            this.setState(object)
+        })
     }
 
     _flip = () => {
@@ -218,6 +295,59 @@ export default class BusinessCard extends React.Component {
     }
 
     _renderBack = () => {
+        var notesInput
+
+        notesInput = <TextInput
+            editable={true}
+            placeholder={"Type all your notes here!"}
+            multiline={true}
+            maxHeight={150}
+            numberOfLines={4}
+            onChangeText={(text) => {
+                this.setState({notes: text})
+                rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
+                    if (this.state.storeKey == "people") {
+                        var peopleObj = {}
+                        val.forEach(child => {
+                            peopleObj[child.key] = child.val()
+                        })
+                        if(Object.keys(peopleObj).length > 0) {
+                            var foundPerson
+                            var foundCard
+                            for (let index = 0; index < Object.keys(peopleObj).length; index++) {
+                                const element = peopleObj[Object.keys(peopleObj)[index]];
+                                for (let index2 = 0; index2 < element.card.length; index2++) {
+                                    const card = element.card[index2];
+                                    if (card.id == this.state.section) {
+                                        foundPerson = Object.keys(peopleObj)[index]
+                                        foundCard = index2
+                                        break
+                                    }
+                                }
+                                if(foundPerson)
+                                    break
+                                
+                            }
+                            peopleObj[foundPerson].card[foundCard].notes = text
+                            rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
+                        }
+                    } else {
+                        var cardArray = []
+                        val.forEach(child => {
+                            cardArray.push(child.val())
+                        })
+                        cardArray[this.state.key]["notes"] = text
+                        rootRef.child(firebase.auth().currentUser.uid + "cards/" + cardArray[this.state.key]["fireKey"]).update(cardArray[this.state.key])
+                    }
+                })
+            }}
+            value={this.state.notes}
+            style={this.state.style.notes}
+        />
+
+        if(this.props.recommendation == true)
+            notesInput = null
+
         return (
             <View style={this.state.style.cardBack}>
                 <View style={this.state.style.container}>
@@ -248,53 +378,28 @@ export default class BusinessCard extends React.Component {
                             )
                     }) : <View/>}
 
-                    <TextInput
-                        editable={true}
-                        placeholder={"Type all your notes here!"}
-                        multiline={true}
-                        maxHeight={150}
-                        numberOfLines={4}
-                        onChangeText={(text) => {
-                            this.setState({notes: text})
-                            rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
-                                if (this.state.storeKey == "people") {
-                                    var peopleObj = {}
-                                    val.forEach(child => {
-                                        peopleObj[child.key] = child.val()
-                                    })
-                                    if(Object.keys(peopleObj).length > 0) {
-                                        var foundPerson
-                                        var foundCard
-                                        for (let index = 0; index < Object.keys(peopleObj).length; index++) {
-                                            const element = peopleObj[Object.keys(peopleObj)[index]];
-                                            for (let index2 = 0; index2 < element.card.length; index2++) {
-                                                const card = element.card[index2];
-                                                if (card.id == this.state.section) {
-                                                    foundPerson = Object.keys(peopleObj)[index]
-                                                    foundCard = index2
-                                                    break
-                                                }
-                                            }
-                                            if(foundPerson)
-                                                break
-                                            
-                                        }
-                                        peopleObj[foundPerson].card[foundCard].notes = text
-                                        rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).update(peopleObj)
-                                    }
-                                } else {
-                                    var cardArray = []
-                                    val.forEach(child => {
-                                        cardArray.push(child.val())
-                                    })
-                                    cardArray[this.state.key]["notes"] = text
-                                    rootRef.child(firebase.auth().currentUser.uid + "cards/" + cardArray[this.state.key]["fireKey"]).update(cardArray[this.state.key])
-                                }
-                            })
-                        }}
-                        value={this.state.notes}
-                        style={this.state.style.notes}
-                    />
+                    <View
+                    style={{
+                        bottom: 80,
+                        left: 235
+                    }}>
+                        {
+                            this.state.qr ? (
+                                <QRCode
+                                value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
+                                size={100}
+                                bgColor={$primaryBlue}
+                                fgColor='white'/>
+                            ) :
+                            (
+                                <View/>
+                            )
+                        }
+                        
+                    </View>
+
+                    {notesInput}
+                    
                 </View>
             </View>
         )
@@ -306,62 +411,101 @@ export default class BusinessCard extends React.Component {
                 <Image
                     style={this.state.style.image}
                     colorOverlay={this.state.color}
-                    source={this.state.image}
+                    source={typeof this.state.image == "number" ? this.state.image : this.state.image != "" ? {uri : this.state.image} : undefined}
                     resizeMode="stretch"
                 />
                 <Image
                     style={this.state.style.logo}
-                    source={this.state.logo}
+                    source={this.state.logo != "" ? this.state.logo : undefined}
                 />
                 <View style={this.state.style.inputs}>
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.addressInput}
-                        value={this.state.address}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.emailInput}
-                        value={this.state.email}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.websiteInput}
-                        value={this.state.website}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.phonenumInput}
-                        value={this.state.phonenum}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.address2Input}
-                        value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.nameInput}
-                        value={this.state.name}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.businameInput}
-                        value={this.state.businame}
-                        pointerEvents="none"
-                    />
-                    <TextInput
-                        editable={this.state.editable}
-                        style={this.state.style.positionInput}
-                        value={this.state.position}
-                        pointerEvents="none"
-                    />
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.addressTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.addressInput}
+                            value={this.state.address}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                    style={this.state.style.emailTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.emailInput}
+                            value={this.state.email}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL(this.state.website)}
+                    style={this.state.style.websiteTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.websiteInput}
+                            value={this.state.website}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                    style={this.state.style.phonenumTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.phonenumInput}
+                            value={this.state.phonenum}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.address2Touch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.address2Input}
+                            value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.nameTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.nameInput}
+                            value={this.state.name}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.businameTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.businameInput}
+                            value={this.state.businame}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
+
+                     <TouchableOpacity 
+                    activeOpacity={1}
+                    style={this.state.style.positionTouch}>
+                        <TextInput
+                            editable={this.state.editable}
+                            style={this.state.style.positionInput}
+                            value={this.state.position}
+                            pointerEvents="none"
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         )

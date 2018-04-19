@@ -19,6 +19,7 @@ $border = '#979797'
 $inputText = '#797979'
 $darkText = '#343434'
 $offwhite = 'whitesmoke'
+console.ignoredYellowBox = ['Remote debugger'];
 
 $defaultAssets = {
     jamessmith: require('./assets/images/jamessmith.jpg'),

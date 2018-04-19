@@ -29,7 +29,26 @@ const {height, width} = Dimensions.get('window');
 
 export default class EcardScreen extends React.Component {
 
+    async getTemplateNames() {
+        templates = Array()
+        await rootRef.child("templateCards").once().then(val => {
+            val.forEach(child => {
+                templates.push(child.val().template_name)
+            })
+        })
+        return templates
+    }
+
+    componentWillMount() {
+        this.getTemplateNames().then(templates => {
+            this.setState({availableTemplates : templates})
+        })
+    }
+
 state = {
+    availableTemplates : [
+        ""
+    ],
     fonts : [
         {
             value: 'Arial'
@@ -225,11 +244,10 @@ saveData = () => {
                     onValueChange={(itemValue, itemIndex) => {
                         this.setState({ cardnum: itemValue })
                     }}>
-                    <Picker.Item label={"Black and Yellow"} value={1} />
-                    <Picker.Item label={"Blue and White"} value={2} />
-                    <Picker.Item label={"Minimalistic"} value={3} />
-                    <Picker.Item label={"Carbon"} value={4} />
-                    <Picker.Item label={"Red and White"} value={5} />
+                    {this.state.availableTemplates.map((item, index) => {
+                        if (typeof item == "string")
+                            return (<Picker.Item label={item} value={item} key={index}/>) 
+                    })}
                 </Picker>
                 </View>
 
