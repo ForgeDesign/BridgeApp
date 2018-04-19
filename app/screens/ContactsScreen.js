@@ -13,6 +13,7 @@ import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 import ImagePicker from 'react-native-image-picker';
 import ImageCropper from 'react-native-image-crop-picker';
+import { CardInput } from '../components/CardInput';
 
 const myWidth = Dimensions.get('window').width;
 const slideAnimation = new SlideAnimation({
@@ -47,7 +48,10 @@ class ContactsScreen extends React.Component {
             contactName: 'fox-hunter5',
             ready: false,
             peopleFound: {},
-            profilePic: undefined
+            profilePic: undefined,
+            createContact_Name: "John Doe",
+            createContact_Address: "2120 Example Road",
+            createContact_Location: "Remote Connection"
 
         };
         // this.addProfilePic = this.addProfilePic.bind(this);
@@ -93,6 +97,8 @@ class ContactsScreen extends React.Component {
                 }).then(image => {
                     based64 = "data:" + image.mime + ";base64," + image.data
                     this.setState({ profilePic: based64 });
+                    this.setState({ modalVisible: true });
+
                     // firebase.auth().currentUser.updateProfile({photoURL: based64})
                     // var pathPerson = firebase.auth().currentUser.uid + "person/photoURL"
                     // rootRef.child(pathPerson).set(based64)
@@ -406,52 +412,50 @@ class ContactsScreen extends React.Component {
                     }}>
                     <View style={{ marginTop: 22, alignContent: 'center' }}>
                         <View style={{ marginTop: 50 }}>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                    this.setState({
-                                        promptVisible: true,
-                                    });
-
+                            <CardInput
+                                name={'name'}
+                                placeholder={'Name'}
+                                withRef={true}
+                                ref={(ref) => this.NameInputRef = ref}
+                                editable={true}
+                                value={this.state.createContact_Name}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
+                                    this.createContact_Address.focus();
                                 }}
-                                style={{
-                                    marginRight: 40,
-                                    marginLeft: 40,
-                                    marginTop: 10,
-                                    paddingTop: 20,
-                                    paddingBottom: 20,
-                                    backgroundColor: $primaryBlue,
-                                    borderRadius: 10,
-                                    borderWidth: 1,
-                                    borderColor: '#fff',
-                                    alignItems: 'center'
+                                onChangeText={(value) => this.setState({ createContact_Name: value })}
+                                isEnabled={true} />
+                                <CardInput
+                                name={'name'}
+                                placeholder={'Name'}
+                                withRef={true}
+                                ref={(ref) => this.createContact_Address = ref}
+                                editable={true}
+                                value={this.state.createContact_Address}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
                                 }}
-                            >
-                                <Text style={{ color: 'white' }}>Add by BridgeCode</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    {/* this.setModalVisible(!this.state.modalVisible); */ }
-
-
-                                }} style={{
-                                    marginRight: 40,
-                                    marginLeft: 40,
-                                    marginTop: 10,
-                                    paddingTop: 20,
-                                    paddingBottom: 20,
-                                    backgroundColor: $primaryBlue,
-                                    borderRadius: 10,
-                                    borderWidth: 1,
-                                    borderColor: '#fff',
-                                    alignItems: 'center'
+                                onChangeText={(value) => this.setState({ createContact_Address: value })}
+                                isEnabled={true} />
+                                {/* <CardInput
+                                name={'name'}
+                                placeholder={'Name'}
+                                withRef={true}
+                                ref={(ref) => this.NameInputRef = ref}
+                                editable={true}
+                                value={this.state.createContact_Name}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
+                                    this.PositionInputRef.focus();
                                 }}
-                            >
-                                <Text style={{ color: 'white' }}>Add by Business Card</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
+                                onChangeText={(value) => this.setState({ createContact_Name: value })}
+                                isEnabled={true} /> */}
+                                <TouchableOpacity
                                 onPress={() => {
+                                    console.log(this.state.profilePic);
+                                    console.log(this.state.createContact_Address);
+                                    console.log(this.state.createContact_Name);
+                                    {/* console.log(this.state.profilePic); */}
                                     this.setModalVisible(!this.state.modalVisible);
                                 }}
                                 style={{
@@ -467,7 +471,28 @@ class ContactsScreen extends React.Component {
                                     alignItems: 'center'
                                 }}
                             >
-                                <Text style={{ color: 'white' }}>Return</Text>
+                                <Text style={{ color: 'white' }}>Submit</Text>
+
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.setModalVisible(!this.state.modalVisible);
+                                }}
+                                style={{
+                                    marginRight: 40,
+                                    marginLeft: 40,
+                                    marginTop: 10,
+                                    paddingTop: 20,
+                                    paddingBottom: 20,
+                                    backgroundColor: $primaryBlue,
+                                    borderRadius: 10,
+                                    borderWidth: 1,
+                                    borderColor: '#fff',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <Text style={{ color: 'white' }}>Exit</Text>
 
                             </TouchableOpacity>
                         </View>
