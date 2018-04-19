@@ -21,14 +21,14 @@ PODS:
   - FirebaseAnalytics (4.1.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseAuth (4.4.4):
     - FirebaseAnalytics (~> 4.1)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.17):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseDatabase (4.1.5):
     - FirebaseAnalytics (~> 4.1)
     - FirebaseCore (~> 4.0)
@@ -61,13 +61,13 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.3)
     - GoogleToolboxForMac/Defines (= 2.1.3)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.3)"
   - GoogleUtilities (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GTMSessionFetcher/Core (1.1.14)
@@ -110,6 +110,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNIap (0.3.13):
+    - React
   - RNImageCropPicker (0.20.0):
     - QBImagePickerController
     - RSKImageCropper
@@ -141,6 +143,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNIap (from `../node_modules/react-native-iap`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -148,21 +151,49 @@ DEPENDENCIES:
   - RSKImageCropper
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseInstanceID
+    - Google
+    - GoogleAppUtilities
+    - GoogleAuthUtilities
+    - GoogleInterchangeUtilities
+    - GoogleNetworkingUtilities
+    - GoogleSignIn
+    - GoogleSymbolUtilities
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - leveldb-library
+    - nanopb
+    - QBImagePickerController
+    - RSKImageCropper
+
 EXTERNAL SOURCES:
   React:
-    :path: ../node_modules/react-native
+    :path: "../node_modules/react-native"
   react-native-image-picker:
-    :path: ../node_modules/react-native-image-picker
+    :path: "../node_modules/react-native-image-picker"
+  RNIap:
+    :path: "../node_modules/react-native-iap"
   RNImageCropPicker:
-    :path: ../node_modules/react-native-image-crop-picker
+    :path: "../node_modules/react-native-image-crop-picker"
   RNShare:
-    :path: ../node_modules/react-native-share
+    :path: "../node_modules/react-native-share"
   RNSVG:
-    :path: ../node_modules/react-native-svg
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
-    :path: ../node_modules/react-native-vector-icons
+    :path: "../node_modules/react-native-vector-icons"
   yoga:
-    :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
+    :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -189,6 +220,7 @@ SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 541ba768b9855e10cdc76f55427a5cd0653ca806
   react-native-image-picker: 42cfe2c8435d893414f8714a81e480313cb1412b
+  RNIap: 04fbe6c8f9c7b3ad96f7fa4e7b893ab85b38cce8
   RNImageCropPicker: a637beb8f4c76bf9fe8a89d404ad65a33c4215ac
   RNShare: 40c92dc26432c51019b94dee6e5eb5097d75c794
   RNSVG: 6de4fb571bf91b9c67910a8d641532349bddf90a
@@ -196,6 +228,6 @@ SPEC CHECKSUMS:
   RSKImageCropper: d9a1acbc0600bf8decc8f0d21895872c99a9e4cf
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: 065d7ae0ea55a8fddd16904c0c47674125db5105
+PODFILE CHECKSUM: 0038f57c1b77774401b14227a60d7d25ce41e56f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

@@ -31,6 +31,8 @@ target 'BridgeCard' do
 
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
+    pod 'RNIap', :path => '../node_modules/react-native-iap'
+
 
     pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
@@ -41,6 +43,7 @@ target 'BridgeCard' do
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
     pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+
 end
 
 # very important to have, unless you removed React dependencies for Libraries 
