@@ -49,6 +49,7 @@ export default class CardStyle {
                     cardnum = "Red and White"
                     break;
                 default:
+                    cardnum = "IMAGE"
                     break;
             }
             obj = await this.getStylingOf(cardnum, fontFamily)
@@ -57,8 +58,89 @@ export default class CardStyle {
     }
 
     async getStylingOf(cardnum, fontFamily) {
+        
         templates = await this.getTemplates()
         var obj
+        if(cardnum == "IMAGE") {
+            obj = {
+                style: EStyleSheet.create({
+                    androidAdjust: {
+                        left: '4.5%'
+                    },
+                    normalscaped: {
+                        marginBottom: 10,
+                        zIndex: 2000
+                    },
+                    cardLandscapedIos: {
+                        width: '100%',
+                        height: '100%',
+                        transform: [
+                            { rotate: '90deg'}, 
+                            { scaleX: 1.85 }, 
+                            { scaleY: 1.85 }
+                        ], 
+                        borderWidth: 0,
+                        top: '135%',
+                        left: '-5%', 
+                    },
+                    cardLandscapedAndroid: {
+                        padding: 0,
+                        width: 355,
+                        height: 202.35,
+                        transform: [
+                            { rotate: '90deg'}, 
+                            { scaleX: 1.55 }, 
+                            { scaleY: 1.55 }
+                        ], 
+                        borderWidth: 0,
+                        left: '-5%', 
+                        top: '83%'
+                    },
+                    card: {
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: '#d6d7da',
+                        overflow: 'hidden',
+                    },
+                    cardBack: {
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 10,
+                        borderWidth: 1,
+                        borderColor: '#d6d7da',
+                        overflow: 'hidden',
+                        backgroundColor: '#FFFFFF',
+                    },
+                    notes: {
+                        position: 'absolute',
+                        top: '5%',
+                        right: '25%',
+                        width: '70%',
+                        textAlign:'center',
+                        zIndex: 100
+                    },
+                    inputs: {
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 100
+                    },
+                    container: {
+                        width: 355,
+                        height: 202.35,
+                        left: 10,
+                        marginTop: 10
+                    },
+                    image: {
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1
+                    },
+                }),
+            }
+        }
         for (let index = 0; index < templates.length; index++) {
             const element = templates[index];
             if(element.template_name != cardnum)

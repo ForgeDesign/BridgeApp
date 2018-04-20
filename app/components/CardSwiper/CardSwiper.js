@@ -14,11 +14,12 @@ class CardSwiper extends React.Component {
             <Swiper style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
 
                 {this.props.card.map(function(item, i){
-
                     if(item != null)
                     return (
                         <View style={styles.slide1} key={i + "view"}>
                             <BusinessCard
+                                justImage={item.id == "IMAGE" ? item.id : undefined}
+                                justImageImage={item.image}
                                 recommendation={recommended}
                                 key={i}
                                 font={item.font}

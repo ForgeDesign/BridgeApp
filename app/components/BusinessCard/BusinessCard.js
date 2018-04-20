@@ -76,8 +76,13 @@ export default class BusinessCard extends React.Component {
         if (this.props.contact)
             storeKey = "people"
         if(this.props.recommendation == false || this.props.recommendation == undefined)
-        await rootRef.child(firebase.auth().currentUser.uid + storeKey).once().then(val => {
-            if (this.state.storeKey == "people") {
+        await rootRef.child(this.props.justImage == "IMAGE" ? firebase.auth().currentUser.uid + storeKey + "/" + this.props.section : firebase.auth().currentUser.uid + storeKey).once().then(val => {
+            if (this.props.justImage == "IMAGE") {
+                notes = val.val().notes
+                if (/^\s+$/.test(notes))
+                    notes = null
+            }
+            else if (this.state.storeKey == "people") {
                 var peopleObj = {}
                 val.forEach(child => {
                     peopleObj[child.key] = child.val()
@@ -127,6 +132,23 @@ export default class BusinessCard extends React.Component {
         if(storeKey == "cards")
             qr = true
         logo = {uri: props.logo}
+        var object
+        if(props.justImage == "IMAGE") {
+            object = {
+                image : this.state.image,
+                style : this.state.style,
+                hidden: false,
+                image : props.justImageImage,
+                storeKey: storeKey,
+                section: props.section,
+                index: props.index,
+                key: props.id,
+                editable: false,
+                isFlipped: false,
+                isLandscaped: false,
+            }
+        }
+        else
         object = {
             cardnum: props.cardnum,
             hidden: false,
@@ -170,20 +192,20 @@ export default class BusinessCard extends React.Component {
                 cardnum: props.cardnum,
                 hidden: false,
                 style : cardStyle.style,
-                image : cardStyle.image,
+                image : props.justImage ? props.justImageImage : cardStyle.image,
                 color: props.color,
                 logo: logo,
-                email: props.email,
-                address: props.address,
-                website: props.website,
-                phonenum: props.phonenum,
-                city: props.city,
-                name: props.name,
-                businame: props.businame,
-                position: props.position,
-                stateabb: props.stateabb,
+                email: props.justImage ? "" : props.email,
+                address: props.justImage ? "" : props.address,
+                website: props.justImage ? "" : props.website,
+                phonenum: props.justImage ? "" : props.phonenum,
+                city: props.justImage ? "" : props.city,
+                name: props.justImage ? "" : props.name,
+                businame: props.justImage ? "" : props.businame,
+                position: props.justImage ? "" : props.position,
+                stateabb: props.justImage ? "" : props.stateabb,
                 socialMedia: props.socialMedia,
-                zip: props.zip,
+                zip: props.justImage ? "" : props.zip,
                 storeKey: storeKey,
                 section: props.section,
                 index: props.index,
@@ -305,8 +327,13 @@ export default class BusinessCard extends React.Component {
             numberOfLines={4}
             onChangeText={(text) => {
                 this.setState({notes: text})
-                rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
-                    if (this.state.storeKey == "people") {
+                rootRef.child(this.props.justImage == "IMAGE" ? firebase.auth().currentUser.uid + this.state.storeKey + "/" + this.props.section : firebase.auth().currentUser.uid + this.state.storeKey).once().then(val => {
+                    if (this.props.justImage == "IMAGE") {
+                        obj = val.val()
+                        obj.notes = text
+                        rootRef.child(firebase.auth().currentUser.uid + this.state.storeKey + "/" + this.props.section).update(obj)
+                    }
+                    else if (this.state.storeKey == "people") {
                         var peopleObj = {}
                         val.forEach(child => {
                             peopleObj[child.key] = child.val()
@@ -419,93 +446,99 @@ export default class BusinessCard extends React.Component {
                     source={this.state.logo != "" ? this.state.logo : undefined}
                 />
                 <View style={this.state.style.inputs}>
-                    <TouchableOpacity 
-                    activeOpacity={1}
-                    style={this.state.style.addressTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.addressInput}
-                            value={this.state.address}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                    {this.props.justImage == "IMAGE" ? (
+                        <View/>
+                    ) : (
+                        <View>
+                            <TouchableOpacity 
+                            activeOpacity={1}
+                            style={this.state.style.addressTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.addressInput}
+                                    value={this.state.address}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    onPress={() => Linking.openURL("mailto:" + this.state.email)}
-                    style={this.state.style.emailTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.emailInput}
-                            value={this.state.email}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                            style={this.state.style.emailTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.emailInput}
+                                    value={this.state.email}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    onPress={() => Linking.openURL(this.state.website)}
-                    style={this.state.style.websiteTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.websiteInput}
-                            value={this.state.website}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            onPress={() => Linking.openURL(this.state.website)}
+                            style={this.state.style.websiteTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.websiteInput}
+                                    value={this.state.website}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
-                    style={this.state.style.phonenumTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.phonenumInput}
-                            value={this.state.phonenum}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                            style={this.state.style.phonenumTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.phonenumInput}
+                                    value={this.state.phonenum}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    activeOpacity={1}
-                    style={this.state.style.address2Touch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.address2Input}
-                            value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            activeOpacity={1}
+                            style={this.state.style.address2Touch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.address2Input}
+                                    value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    activeOpacity={1}
-                    style={this.state.style.nameTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.nameInput}
-                            value={this.state.name}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            activeOpacity={1}
+                            style={this.state.style.nameTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.nameInput}
+                                    value={this.state.name}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                    <TouchableOpacity 
-                    activeOpacity={1}
-                    style={this.state.style.businameTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.businameInput}
-                            value={this.state.businame}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            activeOpacity={1}
+                            style={this.state.style.businameTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.businameInput}
+                                    value={this.state.businame}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
 
-                     <TouchableOpacity 
-                    activeOpacity={1}
-                    style={this.state.style.positionTouch}>
-                        <TextInput
-                            editable={this.state.editable}
-                            style={this.state.style.positionInput}
-                            value={this.state.position}
-                            pointerEvents="none"
-                        />
-                    </TouchableOpacity>
+                            <TouchableOpacity 
+                            activeOpacity={1}
+                            style={this.state.style.positionTouch}>
+                                <TextInput
+                                    editable={this.state.editable}
+                                    style={this.state.style.positionInput}
+                                    value={this.state.position}
+                                    pointerEvents="none"
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    )}
                 </View>
             </View>
         )
