@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>641928333306-dpg19s5msnese8uj597gli035mua3kj7.apps.googleusercontent.com</string>
+	<string>641928333306-t3a73ilslcn5h7qf3m2ak8i14r33kr30.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.641928333306-dpg19s5msnese8uj597gli035mua3kj7</string>
+	<string>com.googleusercontent.apps.641928333306-t3a73ilslcn5h7qf3m2ak8i14r33kr30</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDf9NEL8JnVAHMurxn17L8CKSwecUa4lis</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.geczy.react.native.BridgeCard</string>
+	<string>card.bridge.app</string>
 	<key>PROJECT_ID</key>
 	<string>bridge-card</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:641928333306:ios:2185830676d949d4</string>
+	<string>1:641928333306:ios:7acef84e7513da77</string>
 	<key>DATABASE_URL</key>
 	<string>https://bridge-card.firebaseio.com</string>
 </dict>
