@@ -113,7 +113,7 @@ export default class BusinessCard extends React.Component {
                     cardArray.push(child.val())
                 })
                 if (cardArray.length > 0) {
-                    if(this.state.key !== undefined && cardArray[this.state.key]["notes"] != undefined) {
+                    if(this.state.key !== undefined && cardArray != undefined && cardArray[this.state.key] != undefined && cardArray[this.state.key]["notes"] != undefined) {
                         notes = cardArray[this.state.key]["notes"]
                         if (/^\s+$/.test(notes))
                             notes = null
