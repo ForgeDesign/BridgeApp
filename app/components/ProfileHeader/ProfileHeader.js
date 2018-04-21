@@ -45,6 +45,7 @@ export default class ProfileHeader extends React.Component {
             var person = val._value
             if (person == null) {
                 obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                obj.level = "Lite"
                 delete obj.refreshToken
                 delete obj.providerId
                 delete obj.providerData

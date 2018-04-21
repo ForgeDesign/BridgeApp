@@ -145,6 +145,7 @@ saveData = () => {
             linkedin: linkedin
         },
         logo: this.state.logo,
+        chosenImage: this.chosenImage
     }
 
     key = rootRef.child(firebase.auth().currentUser.uid + "cards").push(obj).key
@@ -190,6 +191,10 @@ saveData = () => {
         this.setState({[key] : value})
     }
 
+    swipeableFunc(index) {
+        this.chosenImage = index
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { position, website, businame, instagram, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
@@ -218,6 +223,9 @@ saveData = () => {
                 elevation: 1}}/>
 
                 <BusinessCard
+                    swipeable={true}
+                    swipeableFunc={this.swipeableFunc.bind(this)}
+                    chosenImage={0}
                     font={this.state.prefont}
                     cardnum={this.state.cardnum}
                     logo={this.state.logo} 
@@ -313,6 +321,9 @@ saveData = () => {
                     <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke'}}>
 
                     <BusinessCard
+                        swipeable={true}
+                        swipeableFunc={this.swipeableFunc.bind(this)}
+                        chosenImage={0}
                         font={this.state.prefont}
                         cardnum={this.state.cardnum}
                         logo={this.state.logo} 

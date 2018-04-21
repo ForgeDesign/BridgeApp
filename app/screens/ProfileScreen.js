@@ -235,6 +235,7 @@ class ProfileScreen extends Component {
             <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>
                     <BusinessCard
+                        chosenImage={ref.item.chosenImage}
                         font={ref.item.font}
                         cardnum={ref.item.cardnum}
                         id={ref.index}
@@ -275,7 +276,9 @@ class ProfileScreen extends Component {
 
         return (
             <Container>
-                <Header title={'Profile'} logout={() => {
+                <Header 
+                    title={'Profile'} 
+                    logout={() => {
                         GoogleSignIn.signOut()
                         Facebook.logout().then(val => {
                             firebase.auth().signOut()
@@ -283,8 +286,17 @@ class ProfileScreen extends Component {
                             firebase.auth().signOut()
                             console.log(err)
                         })
-                    }
-                }/>
+                    }}
+                    upgrade={() => {
+                        // GoogleSignIn.signOut()
+                        // Facebook.logout().then(val => {
+                        //     firebase.auth().signOut()
+                        // }).catch(err => {
+                        //     firebase.auth().signOut()
+                        //     console.log(err)
+                        // })
+                    }}
+                />
 
                 {/* <Button
                     onPress={() => Linking.openURL("bridgecard://connectRemote/2dj5Le0d94Sf9fGiOEAzc0ywlhw2/card/-L8U06gQFXGHerQg_Yse")}

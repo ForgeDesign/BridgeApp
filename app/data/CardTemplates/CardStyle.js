@@ -393,7 +393,7 @@ export default class CardStyle {
                         width: 1.4 * address2.width / widthRatio,
                     },
                 }),
-                image: element.card_schemes[0]
+                image: element.card_schemes
             }
             break
         }

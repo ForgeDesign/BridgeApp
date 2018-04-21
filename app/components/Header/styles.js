@@ -16,10 +16,20 @@ export default EStyleSheet.create({
       textAlign: 'center'
     },
     logout: {
+        position: "absolute",
         fontSize: 12,
         color: 'white',
         textAlign: 'center',
-        paddingRight: '12%',
+        right: 15,
+        bottom: '5%'
+    },
+    upgrade: {
+        position: "absolute",
+        fontSize: 12,
+        color: 'white',
+        textAlign: 'center',
+        paddingLeft: '12%',
+        right: 315,
         bottom: '5%'
     },
     grid: {

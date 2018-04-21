@@ -23,6 +23,7 @@ class CardSwiper extends React.Component {
                                 recommendation={recommended}
                                 key={i}
                                 font={item.font}
+                                chosenImage={item.chosenImage}
                                 cardnum={item.cardnum}
                                 logo={item.logo}
                                 color={item.color} 

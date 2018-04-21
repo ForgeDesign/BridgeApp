@@ -47,6 +47,7 @@ export default class EditCardScreen extends React.Component {
         super(props)
 
         this.addLogo = this.addLogo.bind(this);
+        this.chosenImage = this.props.navigation.state.params.card.item.chosenImage
         this.state = {
             position: this.props.navigation.state.params.card.item.position,
             name: this.props.navigation.state.params.card.item.name,
@@ -97,6 +98,7 @@ export default class EditCardScreen extends React.Component {
 
         card = cards[this.props.navigation.state.params.card.index]
         key = cards[this.props.navigation.state.params.card.index]["fireKey"]
+        card.chosenImage = this.chosenImage
         rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(card)
 
         var d = new Date();
@@ -114,6 +116,10 @@ export default class EditCardScreen extends React.Component {
 
     changeColor() {
         this.setState({ modalVisible: false })
+    }
+
+    swipeableFunc(index) {
+        this.chosenImage = index
     }
 
 render() {
@@ -134,6 +140,9 @@ render() {
         elevation: 1}}/>
 
         <BusinessCard
+            swipeable={true}
+            swipeableFunc={this.swipeableFunc.bind(this)}
+            chosenImage={this.props.navigation.state.params.card.item.chosenImage}
             font={this.state.font}
             cardnum={this.state.cardnum}
             logo={this.state.logo} 
@@ -234,6 +243,9 @@ render() {
             <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
             <BusinessCard
+                swipeable={true}
+                swipeableFunc={this.swipeableFunc.bind(this)}
+                chosenImage={this.props.navigation.state.params.card.item.chosenImage}
                 font={this.state.font}
                 cardnum={this.state.cardnum}
                 logo={this.state.logo} 

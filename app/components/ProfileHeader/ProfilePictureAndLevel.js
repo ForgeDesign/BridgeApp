@@ -23,7 +23,8 @@ export default class ProfilePictureAndLevel extends React.Component
 
         this.state =
         {
-            profilePic: undefined
+            profilePic: undefined,
+            level: ""
         };
         this.addProfilePic = this.addProfilePic.bind(this);
     }
@@ -42,6 +43,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
     componentWillMount() {
         value = firebase.auth().currentUser.photoURL
+        console.log(firebase.auth().currentUser)
         if (value !== null) {
             this.setState({ profilePic: value });
         }
@@ -49,11 +51,16 @@ export default class ProfilePictureAndLevel extends React.Component
             this.setState({ profilePic: undefined })
         }
 
+        rootRef.child(firebase.auth().currentUser.uid + "person").once().then((val) => {
+            this.setState({ profilePic: val.val().photoURL, level: val.val().level })
+        })
+
         var pathPerson = firebase.auth().currentUser.uid + "person"
         rootRef.child(pathPerson).once().then(val => {
             var person = val._value
             if (person == null) {
                 obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                obj.level = "Lite"
                 delete obj.refreshToken
                 delete obj.providerId
                 delete obj.providerData
@@ -93,7 +100,9 @@ export default class ProfilePictureAndLevel extends React.Component
                   }).then(image => {
                       based64 = "data:" + image.mime + ";base64," + image.data
                     this.setState({profilePic: based64});
-                    firebase.auth().currentUser.updateProfile({photoURL: based64})
+                    // firebase.auth().currentUser.updateProfile({photoURL: based64})
+                    // firebase.auth().currentUser.reload()
+
                     var pathPerson = firebase.auth().currentUser.uid + "person/photoURL"
                     rootRef.child(pathPerson).set(based64)
                 });
@@ -116,7 +125,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
                         </View>
                         <View style={styles.oval}>
-                            <Text style={{fontSize:10}}>Level Here</Text>
+                            <Text style={{fontSize:10}}>{this.state.level}</Text>
                         </View>
 
 

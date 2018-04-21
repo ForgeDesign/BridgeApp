@@ -99,6 +99,7 @@
                 rightButtonWidth={width*.4 + 30}
             >
                 <BusinessCard
+                    chosenImage={item.item.chosenImage}
                     font={item.item.font}
                     cardnum={item.item.cardnum}
                     key={item.index}

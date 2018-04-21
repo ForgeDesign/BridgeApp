@@ -37,6 +37,12 @@ class Header extends React.Component {
             logout = <TouchableOpacity onPress={() => this.state.props.logout()}> 
                         <Text style={styles.logout}>Log out</Text>
                     </TouchableOpacity>
+
+        upgrade = <View/>
+        if (this.state.props.upgrade)
+        upgrade = <TouchableOpacity onPress={() => this.state.props.upgrade()}> 
+                    <Text style={styles.upgrade}>Upgrade</Text>
+                </TouchableOpacity>
         
         plus = <View/>
         if (this.state.props.plus)
@@ -59,7 +65,7 @@ class Header extends React.Component {
                             <Text style={styles.title}>{this.state.props.title}</Text>
                         </Col>
                         <Col size={25}>
-                            {logout}{plus}
+                            {upgrade}{logout}{plus}
                         </Col>
                     </Grid>
                 </View>
