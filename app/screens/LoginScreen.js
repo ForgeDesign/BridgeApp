@@ -84,6 +84,8 @@ export default class LoginScreen extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.main}>
+            <Text style={{top: 30, fontSize: 20, color: "white"}}>BridgeCard</Text>
+            <Text style={{top: 38, fontSize: 12, color: "white"}}>Create. Exchange. Organize.</Text>
           <View style={styles.imageView}>
           <StatusBar translucent={false} barStyle="light-content" />
             <Image

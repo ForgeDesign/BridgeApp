@@ -35,7 +35,7 @@ class PasswordInput extends React.Component {
             maxLength={32}
             underlineColorAndroid={'transparent'}
             placeholderTextColor={'steelblue'}
-            selectionColor={'#797979'}
+            selectionColor={'white'}
             name={'password'}
             placeholder={'Password'}
             retunKeyType={'done'}

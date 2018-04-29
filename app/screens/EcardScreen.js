@@ -571,12 +571,19 @@ saveData = () => {
             }
             else {
 
-                // You can also display the image using data:
-                let mime = "image/jpg"
-                based64 = "data:" + mime + ";base64," + response.data
-
-                this.setState({
-                    logo: based64
+                let source = response.uri;
+                ImageCropper.openCropper({
+                    compressImageQuality: 1.0,
+                    includeBase64: true,
+                    path: source,
+                    width: 400,
+                    height: 400,
+                    cropperCircleOverlay: true
+                  }).then(image => {
+                        based64 = "data:" + image.mime + ";base64," + image.data
+                        this.setState({
+                            logo: based64
+                        });
                 });
 
             }

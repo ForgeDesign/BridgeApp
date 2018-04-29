@@ -48,7 +48,8 @@ export default class BusinessCard extends React.Component {
         editable: false,
         isFlipped: false,
         isLandscaped: false,
-        qr: "qr"
+        qr: "qr",
+        qrCode: false
     }
 
     constructor(props) {
@@ -411,16 +412,43 @@ export default class BusinessCard extends React.Component {
 
                     <View
                     style={{
-                        bottom: 80,
-                        left: 235
+                        zIndex: 2000
                     }}>
                         {
                             this.state.qr ? (
-                                <QRCode
-                                value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
-                                size={100}
-                                bgColor={$primaryBlue}
-                                fgColor='white'/>
+                                <TouchableOpacity disabled={false} style={{zIndex: 1999, width: '100%', height: '100%'}} onPress={() => this.setState({qrCode: true})}>
+                                    <Modal
+                                    transparent={false}
+                                    style={{width:'100%', height:'100%', padding: 0, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}
+                                    swipeDirection={"down"}
+                                    isVisible={this.state.qrCode}
+                                    animationType='slide'
+                                    >
+                                        <View style={{right: 19}}>
+                                            <QRCode
+                                            value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
+                                            size={300}
+                                            bgColor={$primaryBlue}
+                                            fgColor='white'/>
+
+                                            <TouchableOpacity onPress={() => this.setState({qrCode: false})}>
+                                                <TextInput
+                                                style={{color: "white", bottom: "2%", fontSize: 40, textAlign: 'center'}}
+                                                editable={this.state.editable}
+                                                value={"Hide QR"}
+                                                pointerEvents="none"
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </Modal>
+                                    <TextInput
+                                    // style={{color: "#003E5B", bottom: 80, left: 235,}}
+                                    editable={this.state.editable}
+                                    value={"Show QR"}
+                                    pointerEvents="none"
+                                    />
+                                </TouchableOpacity>
+                                
                             ) :
                             (
                                 <View/>
@@ -464,6 +492,7 @@ export default class BusinessCard extends React.Component {
                                 <View>
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.addressTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -474,7 +503,8 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                                    onPress={ () => Linking.openURL("mailto:" + this.state.email)}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.emailTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -485,7 +515,8 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={() => Linking.openURL(this.state.website)}
+                                    onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http" + this.state.website)}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.websiteTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -496,7 +527,8 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                                    onPress={ () => Linking.openURL("tel:" + this.state.phonenum)}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.phonenumTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -508,6 +540,7 @@ export default class BusinessCard extends React.Component {
 
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.address2Touch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -519,6 +552,7 @@ export default class BusinessCard extends React.Component {
 
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.nameTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -530,6 +564,7 @@ export default class BusinessCard extends React.Component {
 
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.businameTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -541,6 +576,7 @@ export default class BusinessCard extends React.Component {
 
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    disabled={ !this.state.isLandscaped }
                                     style={this.state.style.positionTouch}>
                                         <TextInput
                                             editable={this.state.editable}
@@ -574,7 +610,8 @@ export default class BusinessCard extends React.Component {
                         ) : (
                             <View>
                                 <TouchableOpacity 
-                                activeOpacity={1}
+                                onPress={() => Linking.openURL("maps:" + this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip)}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.addressTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -586,6 +623,7 @@ export default class BusinessCard extends React.Component {
 
                                 <TouchableOpacity 
                                 onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.emailTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -596,7 +634,8 @@ export default class BusinessCard extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL(this.state.website)}
+                                onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http" + this.state.website)}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.websiteTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -608,6 +647,7 @@ export default class BusinessCard extends React.Component {
 
                                 <TouchableOpacity 
                                 onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.phonenumTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -618,7 +658,8 @@ export default class BusinessCard extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                activeOpacity={1}
+                                onPress={() => Linking.openURL("maps:" + this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip)}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.address2Touch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -630,6 +671,7 @@ export default class BusinessCard extends React.Component {
 
                                 <TouchableOpacity 
                                 activeOpacity={1}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.nameTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -641,6 +683,7 @@ export default class BusinessCard extends React.Component {
 
                                 <TouchableOpacity 
                                 activeOpacity={1}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.businameTouch}>
                                     <TextInput
                                         editable={this.state.editable}
@@ -652,6 +695,7 @@ export default class BusinessCard extends React.Component {
 
                                 <TouchableOpacity 
                                 activeOpacity={1}
+                                disabled={ !this.state.isLandscaped }
                                 style={this.state.style.positionTouch}>
                                     <TextInput
                                         editable={this.state.editable}

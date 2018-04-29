@@ -223,7 +223,7 @@ export default class CardStyle {
                     notes: {
                         position: 'absolute',
                         top: '5%',
-                        right: '25%',
+                        right: '8%',
                         width: '70%',
                         textAlign:'center',
                         zIndex: 100

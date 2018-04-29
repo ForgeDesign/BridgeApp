@@ -35,7 +35,7 @@ class EmailInput extends React.Component {
             maxLength={32}
             underlineColorAndroid={'transparent'}
             placeholderTextColor={'steelblue'}
-            selectionColor={'#797979'}
+            selectionColor={'white'}
             name={'email'}
             placeholder={'Email'}
             keyboardType={'email-address'}
