@@ -346,7 +346,7 @@ export default class IsoScreen extends React.Component {
             image: "",
             time: d.toString()
         }
-        // rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
 
         rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
             obj = val.val()
@@ -458,7 +458,7 @@ export default class IsoScreen extends React.Component {
                     >
                     <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
                 </StatusBarAlert>
-                <Header title={'Search Board'} plus={() => this.setState({ promptVisible: true })}/>
+                <Header title={'Search Board'} search={() => this.setState({ promptVisible: true })}/>
                 <View style={{
                     borderBottomColor: '#003E5B',
                     borderBottomWidth: 4,
@@ -534,7 +534,6 @@ export default class IsoScreen extends React.Component {
                             //
                             //
                             //
-                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
                             rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj)
                             this.state.activity.unshift(obj)
                             this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 

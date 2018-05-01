@@ -47,9 +47,9 @@ export default class ConnectButtonWithDescription extends React.Component {
     }
 
     _share(value, cardNum = undefined) {
-        cardNumStr = "a Bridge Card"
+        cardNumStr = "a BridgeCard"
         if (cardNum != undefined && cardNum > 1)
-            cardNumStr = cardNum + " Bridge Cards"
+            cardNumStr = cardNum + " BridgeCards"
         Share.open(value).then(result => {
             console.log(result, cardNum)
             var d = new Date();
@@ -81,26 +81,26 @@ export default class ConnectButtonWithDescription extends React.Component {
             linker = cardNum + " of my business cards.\n"
         }
         let shareOptions = {
-            title: "Bridge Card",
-            message: "Add me on Bridge Card! Here's a link to " + linker + url,
-            subject: "Let's Connect on Bridge Card!" //  for email
+            title: "BridgeCard",
+            message: "Add me on BridgeCard! Here's a link to " + linker + url,
+            subject: "Let's Connect on BridgeCard!" //  for email
         };
         this._share(shareOptions, cardNum)
     }
 
     render() {
         let shareOptions = {
-            title: "Bridge Card",
-            message: "Add me on Bridge Card! ",
+            title: "BridgeCard",
+            message: "Add me on BridgeCard! ",
             url: "http://share.bridgecard.io/test-share5/",
-            subject: "Let's Connect on Bridge Card!" //  for email
+            subject: "Let's Connect on BridgeCard!" //  for email
         };
 
         let shareImageBase64 = {
-            title: "Bridge Card",
-            message: "Add me on Bridge Card!",
+            title: "BridgeCard",
+            message: "Add me on BridgeCard!",
             url: REACT_ICON,
-            subject: "Let's Connect on Bridge Card!" //  for email
+            subject: "Let's Connect on BridgeCard!" //  for email
         };
 
 

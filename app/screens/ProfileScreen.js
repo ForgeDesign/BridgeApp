@@ -235,6 +235,7 @@ class ProfileScreen extends Component {
             <Grid style={{marginTop: '12%'}}>
                 <Col size={75}>
                     <BusinessCard
+                        logoFrame={ref.item.logoFrame}
                         chosenImage={ref.item.chosenImage}
                         font={ref.item.font}
                         cardnum={ref.item.cardnum}

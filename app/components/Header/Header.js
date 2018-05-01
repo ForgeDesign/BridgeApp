@@ -52,6 +52,24 @@ class Header extends React.Component {
                             style={styles.plus}
                         />
                     </TouchableOpacity>
+
+        search = <View/>
+        if (this.state.props.search)
+            search = <TouchableOpacity onPress={() => this.state.props.search()}> 
+                        <Icon
+                            name={'ios-search'}
+                            style={styles.plus}
+                        />
+                    </TouchableOpacity>
+
+        info = <View/>
+        if (this.state.props.info)
+            info = <TouchableOpacity onPress={() => this.state.props.info()}> 
+                        <Icon
+                            name={'ios-information-circle-outline'}
+                            style={styles.plus}
+                        />
+                    </TouchableOpacity>
         
         return(
             <View style={styles.container}>
@@ -65,7 +83,7 @@ class Header extends React.Component {
                             <Text style={styles.title}>{this.state.props.title}</Text>
                         </Col>
                         <Col size={25}>
-                            {upgrade}{logout}{plus}
+                            {upgrade}{logout}{plus}{info}{search}
                         </Col>
                     </Grid>
                 </View>

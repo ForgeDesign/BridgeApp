@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, Switch, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Header } from '../components/Header';
@@ -40,7 +40,7 @@ export default class EditCardScreen extends React.Component {
 
     componentWillMount() {
         this.getTemplateNames().then(templates => {
-            this.setState({availableTemplates : templates})
+            this.setState({availableTemplates : templates.sort()})
         })
     }
 
@@ -48,8 +48,10 @@ export default class EditCardScreen extends React.Component {
         super(props)
 
         this.addLogo = this.addLogo.bind(this);
+        this.removeLogo = this.removeLogo.bind(this)
         this.chosenImage = this.props.navigation.state.params.card.item.chosenImage
         this.state = {
+            logoFrame: this.props.navigation.state.params.card.item.logoFrame,
             position: this.props.navigation.state.params.card.item.position,
             name: this.props.navigation.state.params.card.item.name,
             businame: this.props.navigation.state.params.card.item.businame,
@@ -102,16 +104,6 @@ export default class EditCardScreen extends React.Component {
         card.chosenImage = this.chosenImage
         rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(card)
 
-        var d = new Date();
-        obj = {
-            connector: "You",
-            text: "updated a",
-            connectee: "Bridge Card",
-            icon: "md-color-wand",
-            image: "",
-            time: d.toString()
-        }
-        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
         this.props.navigation.goBack()
     }
 
@@ -141,6 +133,8 @@ render() {
         elevation: 1}}/>
 
         <BusinessCard
+            logoFrame={this.state.logoFrame}
+            createOrEdit={true}
             swipeable={true}
             swipeableFunc={this.swipeableFunc.bind(this)}
             chosenImage={this.props.navigation.state.params.card.item.chosenImage}
@@ -206,11 +200,6 @@ render() {
             onPress={this._showModal}>
             <Text style={styles.buttonText}>Edit Content</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.button2}
-            onPress={this._showColorModal}>
-            <Text style={styles.buttonText}>Choose Color</Text>
-        </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow }>
@@ -232,7 +221,7 @@ render() {
         visible={this.state.isModalVisible}
         animationType='fade'>
 
-            <Header title={'Business Card'}/>
+            <Header title={'Business Card'} back={() => this._hideModal()}/>
             <View style={{
                 borderBottomColor: '#003E5B',
                 borderBottomWidth: 4,
@@ -244,6 +233,8 @@ render() {
             <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke' }}>
 
             <BusinessCard
+                logoFrame={this.state.logoFrame}
+                createOrEdit={true}
                 swipeable={true}
                 swipeableFunc={this.swipeableFunc.bind(this)}
                 chosenImage={this.props.navigation.state.params.card.item.chosenImage}
@@ -354,10 +345,29 @@ render() {
                 value={this.state.website}
                 returnKeyType = {"next"}
                 onSubmitEditing={(event) => { 
-                    this.InstagramInputRef.focus(); 
+                    this.TwitterInputRef.focus(); 
                 }}
                 onChangeText={(value) => this.setState({website: value })}
                 isEnabled={!isLoading}/>
+
+                <CardInput
+                    name={'twitter'}
+                    placeholder={'Twitter Username'}
+                    withRef={true}
+                    ref={(ref) => this.TwitterInputRef = ref}
+                    editable={!isLoading}
+                    value={this.state.socialMedia.twitter}
+                    returnKeyType = {"next"}
+                    onSubmitEditing={(event) => { 
+                        this.InstagramInputRef.focus(); 
+                    }}
+                    onChangeText={(value) => this.setState(prevState => ({
+                        socialMedia: {
+                            ...prevState.socialMedia,
+                            twitter: value
+                        }
+                    }))}
+                    isEnabled={!isLoading}/>
 
                 <CardInput
                     name={'instagram'}
@@ -455,16 +465,39 @@ render() {
 
                 </View>
 
+                <View
+                    style={{width:'100%', padding: 0, marginTop: 10, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection:'row',}}>
+                        <Text style={{flexDirection:'column', marginRight: 10}}>Circle Logo</Text>
+                        <Switch
+                        style={{flexDirection:'column'}}
+                        onTintColor={"#003E5B"}
+                        onValueChange={() => {
+                            this.setState({logoFrame: !this.state.logoFrame})
+                        }}
+                        value={this.state.logoFrame}
+                        />
+                        <Text style={{flexDirection:'column', marginLeft: 10}}>Square Logo</Text>
+                    </View>
+
+                <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                        style={styles.button4}
+                        onPress={this.addLogo}>
+                        <Text style={styles.buttonText}>Add Logo</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                        style={this.state.logo == undefined ? styles.button5 : styles.button4}
+                        disabled={this.state.logo == undefined ? true : false}
+                        onPress={this.removeLogo}>
+                        <Text style={styles.buttonText}>Remove Logo</Text>
+                        </TouchableOpacity>
+                    </View>
+
             <View style={styles.buttonRow}>
 
                 <TouchableOpacity
-                style={styles.button3}
-                onPress={this.addLogo}>
-                    <Text style={styles.buttonText}>Add Logo</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                style={styles.button3}
+                style={styles.button123}
                 onPress={this._hideModal}>
                 <Text style={styles.buttonText}>Done</Text>
                 </TouchableOpacity>
@@ -481,6 +514,10 @@ render() {
         noData: false,
         includeBase64: true,
     };
+
+    removeLogo() {
+        this.setState({logo: undefined})
+    }
 
     async addLogo() {
         await ImagePicker.showImagePicker(this.options, (response) => {
@@ -555,6 +592,18 @@ const styles = EStyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center'
     },
+    button123: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 5,
+        marginBottom: 10
+    },
     button2: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -577,6 +626,31 @@ const styles = EStyleSheet.create({
         marginRight: 5,
         marginTop: 10,
         marginBottom: 30,
+    },
+    button4: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    button5: {
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: 16,

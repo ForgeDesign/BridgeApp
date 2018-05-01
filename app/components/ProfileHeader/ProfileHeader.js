@@ -99,11 +99,23 @@ export default class ProfileHeader extends React.Component {
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '2%' }}>
-                    <BigTextAndLowerText bigText={this.state.cardConnectCount} lowerText='Captured Cards' />
-                    <View style={{ borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
-                    <BigTextAndLowerText bigText={this.state.cardCount} lowerText='Business Cards' />
-                    <View style={{ borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
-                    <BigTextAndLowerText bigText={this.state.time} lowerText='Member Since' />
+
+                    <View style={{left: 10, }}>
+                        <BigTextAndLowerText bigText={this.state.cardConnectCount} lowerText='Bridges' />
+                    </View>
+                    
+                    <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
+
+                    <View style={{left: 20, }}>
+                        <BigTextAndLowerText bigText={this.state.cardCount} lowerText='BridgeCards' />
+                    </View>
+                    
+                    <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
+
+                    <View style={{}}>
+                        <BigTextAndLowerText bigText={this.state.time} lowerText='MemberSince' />
+                    </View>
+
                 </View>
                 <Prompt
                     title="What is your name? "

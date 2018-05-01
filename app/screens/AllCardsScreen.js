@@ -74,7 +74,26 @@
         return(
             <Swipeable
                 ref={ref => this["swipable" + item.index] = ref}
-                swipeStartMinLeftEdgeClearance={50}
+                // swipeStartMinLeftEdgeClearance={50}
+                leftButtons={
+                    [
+                        <View style={styles.leftRow}>
+                            <TouchableOpacity
+                                style={styles.button2}
+                                onPress={() => this[item.index]._landscape()}>
+                                    <Text style={styles.buttonText}>Landscape Card</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={styles.button2}
+                                onPress={() => this[item.index]._flip()}>
+                                    <Text style={styles.buttonText}>Flip Card</Text>
+                            </TouchableOpacity>
+
+                        </View>
+                    ]
+                }
+                leftButtonWidth={width*.4 + 30}
                 rightButtons={[
                     <View style={styles.buttonRow}>
                         <TouchableOpacity
@@ -99,6 +118,8 @@
                 rightButtonWidth={width*.4 + 30}
             >
                 <BusinessCard
+                    logoFrame={item.item.logoFrame}
+                    ref={(ref) => this[item.index] = ref}
                     chosenImage={item.item.chosenImage}
                     font={item.item.font}
                     cardnum={item.item.cardnum}
@@ -131,17 +152,6 @@
 
         arrayCopy = arrayCopy.filter((_, i) => i !== index)
         setTimeout(() => {this.setState({cards: arrayCopy})}, 215)
-
-        var d = new Date();
-        obj = {
-            connector: "You",
-            text: "deleted a",
-            connectee: "Bridge Card",
-            icon: "md-trash",
-            image: "",
-            time: d.toString()
-        }
-        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
     }
 
     _editItem(ref) {
@@ -157,7 +167,11 @@
         const { navigate } = this.props.navigation;
         return (
             <Container>
-                <Header title={'My Cards'} back={() => this.props.navigation.goBack()} />
+                <Header 
+                title={'My Cards'} 
+                back={() => this.props.navigation.goBack()} 
+                info={() => alert("Quick tap to flip your BridgeCard\n\nLong Tap to landscape your BridgeCard\n\nBridgeCard contact information are hyperlinked for quick & easy contact")}
+                />
 
                 {/* fun hack */}
                 <View style={{display: 'none'}}>
@@ -183,28 +197,42 @@ export default withNavigationFocus(AllCardsScreen, 'AllCards')
 
 const styles = EStyleSheet.create({
     button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width*.4,
-    height: width*.12,
-    backgroundColor: '$primaryBlue',
-    borderRadius: 5,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 15,
+    },
+    button2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 15,
+    },
+    leftRow: {
+        left: width*.55,
     },
     buttonText: {
-    fontSize: 16,
-    color: 'white',
+        fontSize: 16,
+        color: 'white',
     },
     buttonView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     inputRow: {
-    flexDirection: 'row',
-    justifyContent: 'center'
+        flexDirection: 'row',
+        justifyContent: 'center'
     },
     button2: {
         justifyContent: 'center',

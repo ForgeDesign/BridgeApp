@@ -11,6 +11,21 @@ class PersonCard extends React.Component {
     hidden: false
   }
 
+  constructor(props) {
+      super(props)
+    //   this.state.location = props.location
+      if(props.card[0] && props.card[0].businame != undefined && props.card[0].position != undefined) {
+        this.state.location = JSON.parse(JSON.stringify(props.card[0].businame)) + " : " + JSON.parse(JSON.stringify(props.card[0].position))
+      }
+  }
+
+  componentWillReceiveProps(nextProps) {
+      if(nextProps.location != "" && nextProps.location != undefined)
+        this.setState({location: nextProps.location})
+    else
+        return
+  }
+
   _showModal = () => { this.setState({ isModalVisible: true })}
 
   _hideModal = () => { this.setState({ isModalVisible: false })}
@@ -29,7 +44,7 @@ class PersonCard extends React.Component {
                 </View>
                 <View style={styles.textcontainer}>
                     <Text style={styles.name}>{this.props.name}</Text>
-                    <Text style={styles.location}>{this.props.location}</Text>
+                    <Text style={styles.location}>{this.state.location}</Text>
                 </View>
             </View>
         )

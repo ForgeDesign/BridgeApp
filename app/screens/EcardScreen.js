@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, AsyncStorage, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
+import { 
+    View, 
+    Text, 
+    AppRegistry, 
+    TouchableOpacity, 
+    Modal, 
+    KeyboardAvoidingView, 
+    AsyncStorage, 
+    Dimensions, 
+    Picker, 
+    Image, 
+    ScrollView, 
+    StyleSheet,
+    Switch
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -10,6 +24,7 @@ import { Container } from '../components/Container';
 import { BusinessCard } from '../components/BusinessCard';
 import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
+import ImageCropper from 'react-native-image-crop-picker'
 import StatusBarAlert from 'react-native-statusbar-alert';
 
 import firebase from 'react-native-firebase';
@@ -41,11 +56,13 @@ export default class EcardScreen extends React.Component {
 
     componentWillMount() {
         this.getTemplateNames().then(templates => {
-            this.setState({availableTemplates : templates})
+            this.setState({availableTemplates : templates.sort()})
         })
     }
 
 state = {
+    logoFrame: false,
+    cardnum: 1,
     availableTemplates : [
         ""
     ],
@@ -112,6 +129,7 @@ confirmChanges = () => {
         website: this.state.prewebsite,
         phonenum: this.state.prephonenum,
         instagram: this.state.preinstagram,
+        twitter: this.state.pretwitter,
         linkedin: this.state.prelinkedin,
         logo: this.state.logo 
     });
@@ -125,6 +143,9 @@ saveData = () => {
     linkedin = "thisisafakeprofiledonotusethisinprod"
         if (this.state.linkedin != undefined && this.state.linkedin != "")
             linkedin = this.state.linkedin
+    twitter = "thisisafakeprofiledonotusethisinprod"
+        if (this.state.twitter != undefined && this.state.twitter != "")
+            twitter = this.state.twitter
     let obj = {
         font: this.state.font,
         city: this.state.city,
@@ -142,9 +163,11 @@ saveData = () => {
         notes: "",
         socialMedia: {
             instagram: instagram,
-            linkedin: linkedin
+            linkedin: linkedin,
+            twitter: twitter
         },
         logo: this.state.logo,
+        logoFrame: this.state.logoFrame,
         chosenImage: this.chosenImage
     }
 
@@ -156,7 +179,7 @@ saveData = () => {
     obj = {
         connector: "You",
         text: "created a new",
-        connectee: "Bridge Card",
+        connectee: "BridgeCard",
         icon: "md-card",
         image: "",
         time: d.toString()
@@ -176,7 +199,8 @@ saveData = () => {
 
     constructor(props) {
         super(props)
-
+        ecardScreen = this
+        this.removeLogo = this.removeLogo.bind(this)
         this.addLogo = this.addLogo.bind(this);
     }
 
@@ -197,8 +221,8 @@ saveData = () => {
 
     render() {
         const { navigate } = this.props.navigation;
-        const { position, website, businame, instagram, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
-        const { preposition, prewebsite, prebusiname, preinstagram, prelinkedin, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
+        const { position, website, businame, instagram, twitter, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
+        const { preposition, prewebsite, prebusiname, preinstagram, pretwitter, prelinkedin, prephonenum, prename, preemail, preaddress, precity, prestateabb, prezip, prefont } = this.state;
         const { isLoading } = this.props;
 
         return (
@@ -206,7 +230,7 @@ saveData = () => {
 
                 <StatusBarAlert
                     visible={this.state.alertVisible}
-                    message="Bridge Card Saved!"
+                    message="BridgeCard Saved!"
                     backgroundColor={$alertSuccess}
                     color="white"
                     height={35}
@@ -223,9 +247,13 @@ saveData = () => {
                 elevation: 1}}/>
 
                 <BusinessCard
+                    logoFrame={this.state.logoFrame}
+                    createOrEdit={true}
+                    ref={(ref) => this.businessCard1 = ref}
                     swipeable={true}
                     swipeableFunc={this.swipeableFunc.bind(this)}
                     chosenImage={0}
+                    loadAfter={true}
                     font={this.state.prefont}
                     cardnum={this.state.cardnum}
                     logo={this.state.logo} 
@@ -240,11 +268,12 @@ saveData = () => {
                     name={this.state.prename} 
                     email={this.state.preemail} 
                     address={this.state.preaddress}
-                    socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin}}
+                    socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin, twitter: this.state.pretwitter}}
                 />
 
                 <View style={styles.pickWrapper}>
                 <Picker
+                    ref={(ref) => this.picker = ref}
                     style={styles.picker}
                     mode="dialog"
                     placeholder="Select One"
@@ -288,20 +317,13 @@ saveData = () => {
                     onPress={this._showModal}>
                     <Text style={styles.buttonText}>Edit Content</Text>
                 </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button2}
-                        onPress={this._showColorModal}>
-                        <Text style={styles.buttonText}>Choose Color</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.buttonRow }>
-                    <TouchableOpacity
+                <TouchableOpacity
                         style={styles.button2}
                         onPress={this.saveData}>
                         <Text style={styles.buttonText}>Save Card</Text>
                     </TouchableOpacity>
                 </View>
+
 
                 <Modal
                 onRequestClose={this._hideModal}
@@ -309,7 +331,7 @@ saveData = () => {
                 visible={this.state.isModalVisible}
                 animationType='fade'>
 
-                    <Header title={'Business Card'}/>
+                    <Header title={'Business Card'} back={() => this._hideModal()}/>
                     <View style={{
                         borderBottomColor: '#003E5B',
                         borderBottomWidth: 4,
@@ -321,6 +343,8 @@ saveData = () => {
                     <KeyboardAwareScrollView extraHeight={150} style={{backgroundColor: 'whitesmoke'}}>
 
                     <BusinessCard
+                        logoFrame={this.state.logoFrame}
+                        createOrEdit={true}
                         swipeable={true}
                         swipeableFunc={this.swipeableFunc.bind(this)}
                         chosenImage={0}
@@ -338,7 +362,7 @@ saveData = () => {
                         name={this.state.prename} 
                         email={this.state.preemail} 
                         address={this.state.preaddress}
-                        socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin}}
+                        socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin, twitter: this.state.pretwitter}}
                     />
 
                     <Dropdown
@@ -445,9 +469,23 @@ saveData = () => {
                         value={this.state.preinstagram}
                         returnKeyType = {"next"}
                         onSubmitEditing={(event) => { 
-                            this.LinkedinInputRef.focus(); 
+                            this.TwitterInputRef.focus(); 
                         }}
                         onChangeText={(value) => this.update("preinstagram", value)}
+                        isEnabled={!isLoading}/>
+
+                    <CardInput
+                        name={'twitter'}
+                        placeholder={'Twitter Username'}
+                        withRef={true}
+                        ref={(ref) => this.TwitterInputRef = ref}
+                        editable={!isLoading}
+                        value={this.state.pretwitter}
+                        returnKeyType = {"next"}
+                        onSubmitEditing={(event) => { 
+                            this.LinkedinInputRef.focus(); 
+                        }}
+                        onChangeText={(value) => this.update("pretwitter", value)}
                         isEnabled={!isLoading}/>
 
                     <CardInput
@@ -523,14 +561,36 @@ saveData = () => {
 
                     </View>
 
-                    <TouchableOpacity
-                        style={styles.buttonCancel}
-                        onPress={this.addLogo}>
-                            <Text style={styles.buttonText}>Add Logo</Text>
-                        </TouchableOpacity>
+                    <View
+                    style={{width:'100%', padding: 0, marginTop: 10, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection:'row',}}>
+                        <Text style={{flexDirection:'column', marginRight: 10}}>Circle Logo</Text>
+                        <Switch
+                        style={{flexDirection:'column'}}
+                        onTintColor={"#003E5B"}
+                        onValueChange={() => {
+                            this.setState({logoFrame: !this.state.logoFrame})
+                        }}
+                        value={this.state.logoFrame}
+                        />
+                        <Text style={{flexDirection:'column', marginLeft: 10}}>Square Logo</Text>
+                    </View>
 
                     <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                        style={styles.button3}
+                        onPress={this.addLogo}>
+                        <Text style={styles.buttonText}>Add Logo</Text>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity
+                        style={this.state.logo == undefined ? styles.button4 : styles.button3}
+                        disabled={this.state.logo == undefined ? true : false}
+                        onPress={this.removeLogo}>
+                        <Text style={styles.buttonText}>Remove Logo</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.buttonRow}>
                         <TouchableOpacity
                         style={styles.button2}
                         onPress={this._hideModal}>
@@ -557,6 +617,10 @@ saveData = () => {
         includeBase64: true,
     };
 
+    removeLogo() {
+        this.setState({logo: undefined})
+    }
+
     async addLogo() {
         await ImagePicker.showImagePicker(this.options, (response) => {
 
@@ -578,7 +642,7 @@ saveData = () => {
                     path: source,
                     width: 400,
                     height: 400,
-                    cropperCircleOverlay: true
+                    cropperCircleOverlay: !this.state.logoFrame
                   }).then(image => {
                         based64 = "data:" + image.mime + ";base64," + image.data
                         this.setState({
@@ -654,6 +718,32 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginBottom: 30,
+    },
+    
+    button3: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    button4: {
+        opacity: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: 16,

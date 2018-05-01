@@ -245,6 +245,16 @@ export default class CardStyle {
                         right: logo.right / widthRatio,
                         left: logo.left / widthRatio
                     },
+                    logo1: {
+                        zIndex: 100,
+                        width: 50,
+                        height: 50,
+                        position: 'absolute',
+                        top: logo.top / heightRatio,
+                        bottom: logo.bottom / heightRatio,
+                        right: logo.right / widthRatio,
+                        left: logo.left / widthRatio
+                    },
                     container: {
                         width: 355,
                         height: 202.35,

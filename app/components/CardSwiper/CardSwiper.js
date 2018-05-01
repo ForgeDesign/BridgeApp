@@ -18,6 +18,7 @@ class CardSwiper extends React.Component {
                     return (
                         <View style={styles.slide1} key={i + "view"}>
                             <BusinessCard
+                                logoFrame={item.logoFrame}
                                 justImage={item.id == "IMAGE" ? item.id : undefined}
                                 justImageImage={item.image}
                                 recommendation={recommended}
