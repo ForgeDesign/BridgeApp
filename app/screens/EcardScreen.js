@@ -199,7 +199,6 @@ saveData = () => {
 
     constructor(props) {
         super(props)
-        ecardScreen = this
         this.removeLogo = this.removeLogo.bind(this)
         this.addLogo = this.addLogo.bind(this);
     }

@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # ios build files
+ios/BridgeCard.app.dSYM.zip
+ios/BridgeCard.ipa
 ios/build/*
 
 # android build files
