@@ -11,8 +11,6 @@ import ContactsScreen from '../screens/ContactsScreen';
 
 var {height, width} = Dimensions.get('window');
 
-ecardScreen = undefined
-
 export default TabNavigator(
     {
         Profile: {
@@ -94,12 +92,6 @@ export default TabNavigator(
         },
         navigationOptions: ({ navigation }) => ({
             tabBarOnPress: (scene) => {
-
-                console.log(ecardScreen.picker)
-
-                // setTimeout(() => {
-                //     ecardScreen.businessCard1.unsetAutoplay()
-                // }, 200)
                 const resetAction = NavigationActions.reset({
                     index: 0,
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
