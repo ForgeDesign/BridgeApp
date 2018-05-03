@@ -791,7 +791,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		61A5CA68D6964072339F9ED4F5EEB135 /* PBXContainerItemProxy */ = {
@@ -868,7 +868,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		A1C401A1ADF76E0C7D988CDEAE8423AE /* PBXContainerItemProxy */ = {
@@ -896,14 +896,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		B339B1AE116CCB99111C834DC4B2822D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		B3D07EE11E1BA2B58A1F5B483302C2D8 /* PBXContainerItemProxy */ = {
@@ -917,7 +917,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		C1406C8AF15CFA697D7339FBC7CADE61 /* PBXContainerItemProxy */ = {
@@ -945,7 +945,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 30B3C7D219A4FA1C26AB0E39;
+			remoteGlobalIDString = 6D4A03277C6DB360203BDF8A;
 			remoteInfo = React;
 		};
 		DB5D214B44BCEC46AD73D4F91D7683EA /* PBXContainerItemProxy */ = {
