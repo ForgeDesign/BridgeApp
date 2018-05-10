@@ -8,15 +8,36 @@ class PersonCard extends React.Component {
 
   state = {
     isModalVisible: false,
-    hidden: false
+    hidden: false,
+    bigstuff: ""
   }
+
+  // abortions are not okay
 
   constructor(props) {
       super(props)
+      Promise.all(props.card).then((val) => {
+          console.log(val[0])
+          
+      })
     //   this.state.location = props.location
       if(props.card[0] && props.card[0].businame != undefined && props.card[0].position != undefined) {
         this.state.location = JSON.parse(JSON.stringify(props.card[0].businame)) + " : " + JSON.parse(JSON.stringify(props.card[0].position))
       }
+  }
+
+  componentWillMount() {
+      this.updateName()
+  }
+
+  async updateName() {
+    await Promise.all(this.props.card).then((val) => {
+        stuff = val[0].businame + " : " + val[0].position
+        this.setState({
+            bigstuff: stuff
+        })
+      }
+     )
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +65,7 @@ class PersonCard extends React.Component {
                 </View>
                 <View style={styles.textcontainer}>
                     <Text style={styles.name}>{this.props.name}</Text>
-                    <Text style={styles.location}>{this.state.location}</Text>
+                    <Text style={styles.location}>{this.state.bigstuff}</Text>
                 </View>
             </View>
         )
@@ -61,7 +82,7 @@ class PersonCard extends React.Component {
         </View>
         <View style={styles.textcontainer}>
           <Text style={styles.name}>{this.props.name}</Text>
-          <Text style={styles.location}>{this.props.location}</Text>
+          <Text style={styles.location}>{this.state.bigstuff}</Text>
         </View>
 
         <Modal

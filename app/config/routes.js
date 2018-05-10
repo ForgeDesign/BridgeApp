@@ -58,7 +58,7 @@ export default TabNavigator(
                 tabBarLabel: 'ISO',
                 tabBarIcon: ({ tintColor }) => (
                     <Icon
-                        name={'md-time'}
+                        name={'ios-search'}
                         size={26}
                         style={{ color: tintColor }}
                     />

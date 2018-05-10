@@ -73,16 +73,40 @@ export default class EditCardScreen extends React.Component {
             logo: this.props.navigation.state.params.card.item.logo,
             fonts : [
                 {
+                    value: 'American Typewriter'
+                },
+                {
                     value: 'Arial'
                 },
                 {
                     value: 'Avenir'
                 },
                 {
+                    value: 'Bradley Hand'
+                },
+                {
                     value: 'Helvetica'
                 },  
                 {
+                    value: 'Kailasa'
+                },
+                {
+                    value: 'Palatino'
+                },
+                {
+                    value: 'Papyrus'
+                },
+                {
+                    value: 'Roboto'
+                },
+                {
                     value: 'System Font'
+                },
+                {
+                    value: 'Trebuchet MS'
+                },
+                {
+                    value: 'Verdana'
                 },
             ],
             availableTemplates : [
@@ -256,7 +280,9 @@ render() {
             />
 
             <Dropdown
-                onChangeText={(value) => this.setState({font: value})}
+                onChangeText={(value) => {
+                    this.setState({font: value})
+                }}
                 value={this.state.prefont}
                 containerStyle={styles.container}
                 style={styles.containerInner}

@@ -20,11 +20,20 @@ export default EStyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    oval2: {
+        width: circleWidth,
+        height: circleWidth / 4,
+        borderRadius: circleWidth / 2,
+        backgroundColor: '$offwhite',
+        flexDirection: 'column',
+        alignItems: 'center',
+  
+      },
     oval: {
       width: circleWidth,
       height: circleWidth / 4,
       borderRadius: circleWidth / 2,
-      backgroundColor: '$offwhite',
+      backgroundColor: 'black',
       flexDirection: 'column',
       alignItems: 'center',
 

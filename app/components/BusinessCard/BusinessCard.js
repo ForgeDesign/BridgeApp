@@ -13,7 +13,10 @@ import QRCode from 'react-native-qrcode';
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
+import Geocoder from 'react-native-geocoder';
 import Swiper from 'react-native-swiper';
+import openMap from 'react-native-open-maps';
+import Orientation from 'react-native-orientation';
 
 var {height, width} = Dimensions.get('window');
 
@@ -140,6 +143,7 @@ export default class BusinessCard extends React.Component {
             qr = true
         logo = {uri: props.logo}
         var object
+        var skip = false
         if(props.justImage == "IMAGE") {
             object = {
                 image : this.state.image,
@@ -155,7 +159,7 @@ export default class BusinessCard extends React.Component {
                 isLandscaped: false,
             }
         }
-        else
+        else if(this.props.font == props.font)
         object = {
             cardnum: props.cardnum,
             hidden: false,
@@ -184,6 +188,11 @@ export default class BusinessCard extends React.Component {
             isLandscaped: false,
             qr: qr
         }
+        else {
+            skip = true
+            this.updateWith(props, false)
+        }
+        if(!skip)
         this.setState(object, () => {
             setTimeout(() => {
                 this.setState({loaded : true})
@@ -242,6 +251,12 @@ export default class BusinessCard extends React.Component {
 
     _landscape = () => {
         this.setState({ isLandscaped: !this.state.isLandscaped })
+        // Orientation.getOrientation((err, orientation) => {
+        //     if(orientation == "PORTRAIT")
+        //         Orientation.lockToLandscape();
+        //     else
+        //         Orientation.lockToPortrait();
+        // })
     }
 
     render() {
@@ -533,9 +548,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.addressTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Address" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.addressInput}
+                                            style={this.props.createOrEdit && this.state.address == "" ? this.state.style.addressInputPlaceholder : this.state.style.addressInput}
                                             value={this.state.address}
                                             pointerEvents="none"
                                         />
@@ -546,22 +562,24 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.emailTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Email" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.emailInput}
+                                            style={this.props.createOrEdit && this.state.email == "" ? this.state.style.emailInputPlaceholder : this.state.style.emailInput}
                                             value={this.state.email}
                                             pointerEvents="none"
                                         />
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http" + this.state.website)}
+                                    onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website)}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.websiteTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Website" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.websiteInput}
+                                            style={this.props.createOrEdit && this.state.website == "" ? this.state.style.websiteInputPlaceholder : this.state.style.websiteInput}
                                             value={this.state.website}
                                             pointerEvents="none"
                                         />
@@ -572,9 +590,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.phonenumTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Telephone" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.phonenumInput}
+                                            style={this.props.createOrEdit && this.state.phonenum == "" ? this.state.style.phonenumInputPlaceholder : this.state.style.phonenumInput}
                                             value={this.state.phonenum}
                                             pointerEvents="none"
                                         />
@@ -585,9 +604,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.address2Touch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "City, State, Zipcode" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.address2Input}
+                                            style={this.props.createOrEdit && this.state.city + this.state.stateabb + this.state.zip == "" ? this.state.style.address2InputPlaceholder : this.state.style.address2Input}
                                             value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
                                             pointerEvents="none"
                                         />
@@ -598,9 +618,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.nameTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Name" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.nameInput}
+                                            style={this.props.createOrEdit && this.state.name == "" ? this.state.style.nameInputPlaceholder : this.state.style.nameInput}
                                             value={this.state.name}
                                             pointerEvents="none"
                                         />
@@ -611,9 +632,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.businameTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Business" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.businameInput}
+                                            style={this.props.createOrEdit && this.state.businame == "" ? this.state.style.businameInputPlaceholder : this.state.style.businameInput}
                                             value={this.state.businame}
                                             pointerEvents="none"
                                         />
@@ -624,9 +646,10 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.positionTouch}>
                                         <TextInput
+                                            placeholderTextColor={"white"}
                                             placeholder={this.props.createOrEdit ? "Position" : ""}
                                             editable={this.state.editable}
-                                            style={this.state.style.positionInput}
+                                            style={this.props.createOrEdit && this.state.position == "" ? this.state.style.positionInputPlaceholder : this.state.style.positionInput}
                                             value={this.state.position}
                                             pointerEvents="none"
                                         />
@@ -656,13 +679,23 @@ export default class BusinessCard extends React.Component {
                         ) : (
                             <View>
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL("maps:" + this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip)}
+                                onPress={() => {
+                                    var combined = this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip
+                                    Geocoder.geocodeAddress(combined).then(res => {
+                                        var latitude = res[0].position.lat
+                                        var longitude = res[0].position.lng
+                                        openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
+                                        Orientation.lockToLandscape();
+                                    })
+                                    .catch(err => console.log(err))
+                                }}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.addressTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Address" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.addressInput}
+                                        style={this.props.createOrEdit && this.state.address == "" ? this.state.style.addressInputPlaceholder : this.state.style.addressInput}
                                         value={this.state.address}
                                         pointerEvents="none"
                                     />
@@ -673,22 +706,24 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.emailTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Email" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.emailInput}
+                                        style={this.props.createOrEdit && this.state.email == "" ? this.state.style.emailInputPlaceholder : this.state.style.emailInput}
                                         value={this.state.email}
                                         pointerEvents="none"
                                     />
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http" + this.state.website)}
+                                onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website)}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.websiteTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Website" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.websiteInput}
+                                        style={this.props.createOrEdit && this.state.website == "" ? this.state.style.websiteInputPlaceholder : this.state.style.websiteInput}
                                         value={this.state.website}
                                         pointerEvents="none"
                                     />
@@ -699,22 +734,33 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.phonenumTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Telephone" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.phonenumInput}
+                                        style={this.props.createOrEdit && this.state.phonenum == "" ? this.state.style.phonenumInputPlaceholder : this.state.style.phonenumInput}
                                         value={this.state.phonenum}
                                         pointerEvents="none"
                                     />
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL("maps:" + this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip)}
+                                onPress={() => {
+                                    var combined = this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip
+                                    Geocoder.geocodeAddress(combined).then(res => {
+                                        var latitude = res[0].position.lat
+                                        var longitude = res[0].position.lng
+                                        openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
+                                        Orientation.lockToLandscape();
+                                    })
+                                    .catch(err => console.log(err))
+                                }}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.address2Touch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "City, State, Zipcode" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.address2Input}
+                                        style={this.props.createOrEdit && this.state.city + this.state.stateabb + this.state.zip == "" ? this.state.style.address2InputPlaceholder : this.state.style.address2Input}
                                         value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
                                         pointerEvents="none"
                                     />
@@ -725,9 +771,10 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.nameTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Name" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.nameInput}
+                                        style={this.props.createOrEdit && this.state.name == "" ? this.state.style.nameInputPlaceholder : this.state.style.nameInput}
                                         value={this.state.name}
                                         pointerEvents="none"
                                     />
@@ -738,9 +785,10 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.businameTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Business" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.businameInput}
+                                        style={this.props.createOrEdit && this.state.businame == "" ? this.state.style.businameInputPlaceholder : this.state.style.businameInput}
                                         value={this.state.businame}
                                         pointerEvents="none"
                                     />
@@ -751,9 +799,10 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.positionTouch}>
                                     <TextInput
+                                        placeholderTextColor={"white"}
                                         placeholder={this.props.createOrEdit ? "Position" : ""}
                                         editable={this.state.editable}
-                                        style={this.state.style.positionInput}
+                                        style={this.props.createOrEdit && this.state.position == "" ? this.state.style.positionInputPlaceholder : this.state.style.positionInput}
                                         value={this.state.position}
                                         pointerEvents="none"
                                     />
@@ -767,69 +816,3 @@ export default class BusinessCard extends React.Component {
         )
     }
 }
-
-
-
-
-
-            // return(
-                // <View style={this.state.style.top}>
-                //     <Image
-                //         style={this.state.style.logo}
-                //         source={{uri: this.state.logo }}
-                //     />
-                //     <Text style={this.state.style.email}>
-                //         <TextInput
-                //             style={this.state.style.emailInput}
-                //             value={this.state.email}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.address}>
-                //         <TextInput
-                //             style={this.state.style.addressInput}
-                //             value={this.state.address}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.website}>
-                //         <TextInput
-                //             style={this.state.style.websiteInput}
-                //             value={this.state.website}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.phonenum}>
-                //         <TextInput
-                //             style={this.state.style.phonenumInput}
-                //             value={this.state.phonenum}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.address2}>
-                //         <TextInput
-                //             style={this.state.style.address2Input}
-                //             value={this.state.city + " " + this.state.stateabb + " " + this.state.zip}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.name}>
-                //         <TextInput
-                //             style={this.state.style.nameInput}
-                //             value={this.state.name}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.businame}>
-                //         <TextInput
-                //             style={this.state.style.businameInput}
-                //             value={this.state.businame}
-                //         />
-                //     </Text>
-                //     <Text style={this.state.style.title}>
-                //         <TextInput
-                //             style={this.state.style.position}
-                //             value={this.state.position}
-                //         />
-                //     </Text>
-                //     <Surface style={{width: '100%', height: '100%'}}>
-                //         <HueRotate hue={9}>
-                //             <GLImage source={this.state.image} />
-                //         </HueRotate>
-                //     </Surface>
-                // </View>
-            // )

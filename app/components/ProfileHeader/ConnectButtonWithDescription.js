@@ -50,6 +50,7 @@ export default class ConnectButtonWithDescription extends React.Component {
         cardNumStr = "a BridgeCard"
         if (cardNum != undefined && cardNum > 1)
             cardNumStr = cardNum + " BridgeCards"
+        console.log(value)
         Share.open(value).then(result => {
             console.log(result, cardNum)
             var d = new Date();
@@ -76,13 +77,14 @@ export default class ConnectButtonWithDescription extends React.Component {
                 url += "bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + cardKey + "\n\n"
             }
         }
-        linker = "my business card.\n"
+        linker = "their business card.\n"
         if (cardNum > 1) {
-            linker = cardNum + " of my business cards.\n"
+            linker = cardNum + " of their business cards.\n"
         }
         let shareOptions = {
             title: "BridgeCard",
-            message: "Add me on BridgeCard! Here's a link to " + linker + url,
+            url: url,
+            message: firebase.auth().currentUser.displayName + " wants to add you on BridgeCard! Here's a link to " + linker,
             subject: "Let's Connect on BridgeCard!" //  for email
         };
         this._share(shareOptions, cardNum)

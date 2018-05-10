@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, FlatList, RefreshControl } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, FlatList, RefreshControl, Dimensions, TouchableOpacity } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
@@ -13,11 +13,16 @@ import Prompt from 'rn-prompt';
 import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
+import Swipeable from 'react-native-swipeable';
 
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
+
+
+var {height, width} = Dimensions.get('window');
+const myWidth = Dimensions.get('window').width;
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -197,7 +202,9 @@ export default class IsoScreen extends React.Component {
         rootRef.child(firebase.auth().currentUser.uid + "iso").once().then(val => {
             var iso = []
             val.forEach(child => {
-                iso.push(child.val())
+                shit = child.val()
+                shit.key = child.key
+                iso.push(shit)
             })
 
             rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
@@ -229,7 +236,7 @@ export default class IsoScreen extends React.Component {
                                     personISO.fireKey = Object.keys(child.val())[pIndex]
                                     foundISO.push(personISO)
                                 }
-                                this.setState({activity: iso.concat(foundISO.reverse()), yourISO: iso, foundISO: foundISO})
+                                this.setState({activity: iso.reverse().concat(foundISO), yourISO: iso.reverse(), foundISO: foundISO})
                                 this._onRefresh()
                             })
                         }
@@ -417,7 +424,67 @@ export default class IsoScreen extends React.Component {
         )
     }
 
+    _deleteReccomendation(item) {
+        copy1 = JSON.parse(JSON.stringify(this.state.activity))
+        copy2 = JSON.parse(JSON.stringify(this.state.yourISO))
+        index1 = undefined
+        index2 = undefined
+        for (let index = 0; index < copy1.length; index++) {
+            const element = copy1[index];
+            if(element.key == item.item.key)
+            {
+                index1 = index
+                break
+            }
+        }
+        for (let index = 0; index < copy2.length; index++) {
+            const element = copy2[index];
+            if(element.key == item.item.key)
+            {
+                index2 = index
+                break
+            }
+        }
+        copy1.splice(index1, 1)
+        copy2.splice(index2, 1)
+        this.setState({activity: copy1, yourISO: copy2}, () => {
+            rootRef.child(firebase.auth().currentUser.uid + "iso/" + item.item.key).remove()
+        })
+    }
+
     activityRendererererer(ref, key) {
+        if(ref.item.key != undefined)
+        return(
+            <Swipeable
+                // swipeStartMinLeftEdgeClearance={50}
+                rightButtons={[
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                            style={styles.button2}
+                            onPress={() => this._deleteReccomendation(ref)}>
+                                <Text style={styles.buttonText}>Delete Post</Text>
+                        </TouchableOpacity>
+                    </View>
+                ]}
+                rightButtonWidth={width*.4 + 30}
+            >
+            <ProfileActivity
+            recommended={ref.item.recommended}
+            key={ref.index}
+            ref={(card) => {this[ref.index] = card}}
+            recommendFunc={this.displayRecommendations.bind(this)}
+            connector={ref.item.connector}
+            text={ref.item.text}
+            connectee={ref.item.connectee}
+            image={ref.item.image}
+            iso={true}
+            recommend={true}
+            fireKey={ref.item.fireKey}
+            fireUID={ref.item.fireUID}
+            time={ref.item.time}
+            navigate={this.onPressHandle.bind(this, ref.index)}/>
+            </Swipeable>
+        )
         return(
             <ProfileActivity
             recommended={ref.item.recommended}
@@ -458,7 +525,7 @@ export default class IsoScreen extends React.Component {
                     >
                     <Text style={{color: $offwhite, marginBottom: 10, marginLeft: 10, marginRight: 10, textAlign: 'center'}}> {this.state.alertMessage} </Text>
                 </StatusBarAlert>
-                <Header title={'Search Board'} search={() => this.setState({ promptVisible: true })}/>
+                <Header title={'Search Board'} plus={() => this.setState({ promptVisible: true })}/>
                 <View style={{
                     borderBottomColor: '#003E5B',
                     borderBottomWidth: 4,
@@ -481,7 +548,7 @@ export default class IsoScreen extends React.Component {
                 />
 
                 <Prompt
-                title="What are you looking for?"
+                title={firebase.auth().currentUser.displayName + " is looking for:"}
                 placeholder="a marketing director"
                 visible={this.state.promptVisible}
                 onCancel={() => {
@@ -643,3 +710,54 @@ export default class IsoScreen extends React.Component {
         )
     }
 }
+
+const styles = EStyleSheet.create({
+    scroll: {
+        flex: 1,
+        backgroundColor: '$offwhite',
+    },
+    fab: {
+        backgroundColor: '$primaryBlue',
+    },
+    button2: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+    },
+    button3: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width*.4,
+        height: width*.12,
+        backgroundColor: '$primaryBlue',
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 15,
+    },
+    leftRow: {
+        left: width*.55,
+    },
+    buttonText: {
+        fontSize: 16,
+        color: 'white',
+    },
+});

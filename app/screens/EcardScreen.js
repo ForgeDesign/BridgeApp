@@ -68,16 +68,40 @@ state = {
     ],
     fonts : [
         {
+            value: 'American Typewriter'
+        },
+        {
             value: 'Arial'
         },
         {
             value: 'Avenir'
         },
         {
+            value: 'Bradley Hand'
+        },
+        {
             value: 'Helvetica'
         },  
         {
+            value: 'Kailasa'
+        },
+        {
+            value: 'Palatino'
+        },
+        {
+            value: 'Papyrus'
+        },
+        {
+            value: 'Roboto'
+        },
+        {
             value: 'System Font'
+        },
+        {
+            value: 'Trebuchet MS'
+        },
+        {
+            value: 'Verdana'
         },
     ],
     precity: '',

@@ -3,6 +3,8 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.github.yamill.orientation.OrientationPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.dooboolab.RNIap.RNIapPackage;
 import com.beefe.picker.PickerViewPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -38,6 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new OrientationPackage(),
+            new RNGeocoderPackage(),
             new RNIapPackage(),
             new PickerViewPackage(),
             new FBSDKPackage(),
