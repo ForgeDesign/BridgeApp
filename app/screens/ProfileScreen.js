@@ -158,12 +158,30 @@ class ProfileScreen extends Component {
         })
     }
 
+    filter_array(test_array) {
+        var index = -1,
+            arr_length = test_array ? test_array.length : 0,
+            resIndex = -1,
+            result = [];
+    
+        while (++index < arr_length) {
+            var value = test_array[index];
+    
+            if (value) {
+                result[++resIndex] = value;
+            }
+        }
+    
+        return result;
+    }
+
     _getCards() {
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
             var cardArray = []
             val.forEach(child => {
                 cardArray.push(child.val())
             })
+            cardArray = this.filter_array(cardArray)
             this.setState({cards: cardArray, cardCount: cardArray.length});
         })
     }

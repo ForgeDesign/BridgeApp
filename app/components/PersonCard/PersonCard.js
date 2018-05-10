@@ -16,10 +16,6 @@ class PersonCard extends React.Component {
 
   constructor(props) {
       super(props)
-      Promise.all(props.card).then((val) => {
-          console.log(val[0])
-          
-      })
     //   this.state.location = props.location
       if(props.card[0] && props.card[0].businame != undefined && props.card[0].position != undefined) {
         this.state.location = JSON.parse(JSON.stringify(props.card[0].businame)) + " : " + JSON.parse(JSON.stringify(props.card[0].position))
@@ -30,8 +26,26 @@ class PersonCard extends React.Component {
       this.updateName()
   }
 
+  filter_array(test_array) {
+    var index = -1,
+        arr_length = test_array ? test_array.length : 0,
+        resIndex = -1,
+        result = [];
+
+    while (++index < arr_length) {
+        var value = test_array[index];
+
+        if (value) {
+            result[++resIndex] = value;
+        }
+    }
+
+    return result;
+}
+
   async updateName() {
     await Promise.all(this.props.card).then((val) => {
+        val = this.filter_array(val)
         stuff = val[0].businame + " : " + val[0].position
         this.setState({
             bigstuff: stuff

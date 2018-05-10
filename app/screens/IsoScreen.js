@@ -206,6 +206,7 @@ export default class IsoScreen extends React.Component {
                 shit.key = child.key
                 iso.push(shit)
             })
+            // console.log(iso)
 
             rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
                 var people = []
@@ -222,6 +223,10 @@ export default class IsoScreen extends React.Component {
                     )
                 }
                 Promise.all(promises).then( (val) => {
+                    if(val.length == 0) {
+                        this.setState({activity: iso.reverse(), yourISO: iso.reverse(), foundISO: []})
+                        this._onRefresh()
+                    }
                     val.forEach((child) => {
                         if(child.val() != null) {
                             const personUID = child.key.substring(0, child.key.length - 3)
@@ -351,6 +356,7 @@ export default class IsoScreen extends React.Component {
             connectee: this[this.popupRelatedConnect].props.connectee,
             icon: "md-time",
             image: "",
+            origin: firebase.auth().currentUser.uid,
             time: d.toString()
         }
         rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
@@ -601,8 +607,11 @@ export default class IsoScreen extends React.Component {
                             //
                             //
                             //
-                            rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj)
+                            var boop = rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj).key
+                            obj.key = boop
+                            this.state.yourISO.unshift(obj)
                             this.state.activity.unshift(obj)
+                            this.forceUpdate()
                             this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
                         }
                     }

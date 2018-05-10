@@ -54,9 +54,10 @@ export default class EcardScreen extends React.Component {
         return templates
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getTemplateNames().then(templates => {
-            this.setState({availableTemplates : templates.sort()})
+            templates.sort()
+            this.setState({availableTemplates : templates})
         })
     }
 
@@ -126,7 +127,7 @@ state = {
     address: '',
     prewebsite: '',
     website: '',
-    cardnum: 1,
+    cardnum: "Carbon",
     isModalVisible: false,
     color: "rgba(255,255,255,0.3)",
     modalVisible: false,
@@ -300,7 +301,7 @@ saveData = () => {
                     style={styles.picker}
                     mode="dialog"
                     placeholder="Select One"
-                    selectedValue={cardnum}
+                    selectedValue={this.state.cardnum}
                     onValueChange={(itemValue, itemIndex) => {
                         this.setState({ cardnum: itemValue })
                     }}>

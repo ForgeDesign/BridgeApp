@@ -55,7 +55,8 @@ export default class BusinessCard extends React.Component {
         isLandscaped: false,
         qr: "qr",
         autoplay: true,
-        qrCode: false
+        qrCode: false,
+        swipeable: false,
     }
 
     constructor(props) {
@@ -192,6 +193,11 @@ export default class BusinessCard extends React.Component {
             skip = true
             this.updateWith(props, false)
         }
+        if(Array.isArray(object.image)) {
+            console.log("GOT HERE 1")
+            if(object.image.length > 1 && props.createOrEdit)
+                object.swipeable = true
+        }
         if(!skip)
         this.setState(object, () => {
             setTimeout(() => {
@@ -236,6 +242,11 @@ export default class BusinessCard extends React.Component {
                 isFlipped: false,
                 isLandscaped: false,
                 qr: qr
+            }
+            if(Array.isArray(object.image)) {
+                console.log("GOT HERE 2")
+                if(object.image.length > 1 && props.createOrEdit)
+                    object.swipeable = true
             }
             this.setState(object, () => {
                 setTimeout(() => {
@@ -511,10 +522,10 @@ export default class BusinessCard extends React.Component {
             return(<View/>)
         else
         return (
-            this.props.swipeable ? (
+            this.state.swipeable ? (
                 <Swiper
                 loop={true}
-                autoplay={this.props.loadAfter ? this.state.autoplay : false}
+                // autoplay={this.props.loadAfter ? this.state.autoplay : false}
                 ref={(ref) => this.swiper = ref}
                 onIndexChanged={(index) => {
                     this.props.swipeableFunc(index)
@@ -527,7 +538,7 @@ export default class BusinessCard extends React.Component {
                 {this.state.image.map(function(item, i){
                     if(item != null)
                     return (
-                    <View style={this.state.style.card}>
+                    <View style={this.state.style.card} key={i}>
                         <Image
                             style={this.state.style.image}
                             colorOverlay={this.state.color}
