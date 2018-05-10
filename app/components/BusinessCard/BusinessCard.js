@@ -194,7 +194,6 @@ export default class BusinessCard extends React.Component {
             this.updateWith(props, false)
         }
         if(Array.isArray(object.image)) {
-            console.log("GOT HERE 1")
             if(object.image.length > 1 && props.createOrEdit)
                 object.swipeable = true
         }
@@ -244,7 +243,6 @@ export default class BusinessCard extends React.Component {
                 qr: qr
             }
             if(Array.isArray(object.image)) {
-                console.log("GOT HERE 2")
                 if(object.image.length > 1 && props.createOrEdit)
                     object.swipeable = true
             }
