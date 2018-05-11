@@ -16,10 +16,26 @@ class ProfileActivity extends React.Component {
         this.setState({activity: activity})
     }
 
+    componentWillReceiveProps(nextprops) {
+        // console.log(nextprops.activityGrover)
+
+        this.props = nextprops
+    }
+
+    constructor(props) {
+        super(props)
+
+        // console.log(props.activityGrover)
+        if(props.activityGrover) {
+            this.state.activity = props.activityGrover
+        }
+    }
+
     heart = () => { this.setState({heart: true})}
     unheart = () => { this.setState({heart: false})}
     
     render() {
+
         style = styles.container
         addButton = <TouchableOpacity
                         style={{alignSelf: 'flex-end', marginRight: 15, justifyContent: 'center', alignItems: 'center'}}

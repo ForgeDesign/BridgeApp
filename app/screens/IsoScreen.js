@@ -15,7 +15,7 @@ import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import Swipeable from 'react-native-swipeable';
 
-import firebase from 'react-native-firebase';
+import firebase, { Firebase } from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 const KEYS_TO_FILTERS = ['name', 'location', 'card.position', 'card.website', 'card.businame', 'card.phonenum', 'card.email', 'card.cardnum'];
@@ -184,7 +184,19 @@ export default class IsoScreen extends React.Component {
                     peopleObj = JSON.parse(JSON.stringify(this.state.people))
                 }
             }).then(() => {
-                resolve(peopleObj)
+                lookupArray = []
+                for (let index = 0; index < peopleObj.length; index++) {
+                    const element = peopleObj[index];
+                    goodToGo = true
+                    for (let index2 = 0; index2 < lookupArray.length; index2++) {
+                        const element2 = lookupArray[index2];
+                        if(element2.person == element.person)
+                            goodToGo = false
+                    }
+                    if(goodToGo)
+                        lookupArray.push(element)
+                }
+                resolve(lookupArray)
             })
         });
     }
@@ -329,15 +341,33 @@ export default class IsoScreen extends React.Component {
         for (let index = 0; index < this.state.people.length; index++) {
             if (this.trackContactChecks[this.popupRelatedConnect][index]) {
                 peopleRecommended.push(this.state.abstractPeople[index])
-                numberOfRecs += 1
+                peopleRecommended[index].recommendedBy = firebase.auth().currentUser.uid
             }
                 
         }
+        spliceTheseOnes = []
+        if(this[this.popupRelatedConnect].props.recommended != undefined) {
+            for (let index = 0; index < this[this.popupRelatedConnect].props.recommended.length; index++) {
+                const alreadyRecommend = this[this.popupRelatedConnect].props.recommended[index];
+                for (let index2 = 0; index2 < peopleRecommended.length; index2++) {
+                    const yourRecommend = peopleRecommended[index2];
+                    if(yourRecommend.person == alreadyRecommend.person) {
+                        spliceTheseOnes.push(index2)
+                    }
+                }
+            }
+        }
+        for (let index = 0; index < spliceTheseOnes.length; index++) {
+            const element = spliceTheseOnes[index];
+            peopleRecommended.splice(element, 1)
+        }
+        numberOfRecs += this[this.popupRelatedConnect].props.youRecommended += peopleRecommended.length
         descriptor = " people"
         if (numberOfRecs == 1) {
             descriptor = " person"
         }
-        this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
+        if(peopleRecommended.length > 0)
+            this[this.popupRelatedConnect].addActivity("You recommended " + numberOfRecs + descriptor + "!")
         
         for (let index = 0; index < this.state.people.length; index++) {
             if(this["check" + index] != null)
@@ -359,19 +389,49 @@ export default class IsoScreen extends React.Component {
             origin: firebase.auth().currentUser.uid,
             time: d.toString()
         }
-        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+        if(peopleRecommended.length > 0)
+            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
 
-        rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
-            obj = val.val()
-            console.log(peopleRecommended, peopleRecommended.length)
-            if(obj.recommended != undefined) {
-                obj.recommended = obj.recommended.concat(peopleRecommended)
+        if(peopleRecommended.length > 0) {
+            if(this[this.popupRelatedConnect].props.recommended != undefined) {
+                copy1 = JSON.parse(JSON.stringify(this.state.activity))
+                copy2 = JSON.parse(JSON.stringify(this.state.foundISO))
+                for (let index = 0; index < copy1.length; index++) {
+                    const element = copy1[index];
+                    if(element.fireKey == fireISOKey) {
+                        if(element.recommended == undefined)
+                            copy1[index].recommended = peopleRecommended
+                        else if(element.recommended.length == 0)
+                            copy1[index].recommended = peopleRecommended
+                        else
+                            copy1[index].recommended.concat(peopleRecommended)
+                    }
+                }
+                for (let index = 0; index < copy2.length; index++) {
+                    const element = copy2[index];
+                    if(element.fireKey == fireISOKey) {
+                        if(element.recommended == undefined)
+                            copy2[index].recommended = peopleRecommended
+                        else if(element.recommended.length == 0)
+                            copy2[index].recommended = peopleRecommended
+                        else
+                            copy2[index].recommended.concat(peopleRecommended)
+                    }
+                }
+                
+                this.setState({activity: copy1, foundISO: copy2})
             }
-            else {
-                obj.recommended = peopleRecommended
-            }
-            rootRef.child(fireUID + "iso/" + fireISOKey).update(obj)
-        })
+            rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
+                obj = val.val()
+                if(obj.recommended != undefined) {
+                    obj.recommended = obj.recommended.concat(peopleRecommended)
+                }
+                else {
+                    obj.recommended = peopleRecommended
+                }
+                rootRef.child(fireUID + "iso/" + fireISOKey).update(obj)
+            })
+        }
 
         setTimeout(() => {
             this.makeAlertDisappear()
@@ -458,8 +518,68 @@ export default class IsoScreen extends React.Component {
         })
     }
 
+    _removeReccomendations(item) {
+        copy1 = JSON.parse(JSON.stringify(this.state.activity))
+        copy2 = JSON.parse(JSON.stringify(this.state.foundISO))
+        index1 = undefined
+        index2 = undefined
+        splice1 = []
+        splice2 = []
+        for (let index = 0; index < copy1.length; index++) {
+            const element = copy1[index];
+            if(element.key == item.item.key)
+            {
+                index1 = index
+                if(element.recommended) {
+                    for (let index2 = 0; index2 < element.recommended.length; index2++) {
+                        const element2 = element.recommended[index2];
+                        if(element2.recommendedBy != firebase.auth().currentUser.uid)
+                            splice1.push(element2)
+                    }
+                }
+            }
+        }
+        for (let index = 0; index < copy2.length; index++) {
+            const element = copy2[index];
+            if(element.key == item.item.key)
+            {
+                index2 = index
+                if(element.recommended) {
+                    for (let index2 = 0; index2 < element.recommended.length; index2++) {
+                        const element2 = element.recommended[index2];
+                        if(element2.recommendedBy != firebase.auth().currentUser.uid)
+                            splice2.push(element2)
+                    }
+                }
+            }
+        }
+        copy1[index1].recommended = splice1
+        copy2[index2].recommended = splice2
+        this.setState({activity: copy1, foundISO: copy2}, () => {
+            rootRef.child(copy1[index1].fireUID + "iso/" + copy1[index1].fireKey).update(copy1[index1])
+        })
+    }
+
     activityRendererererer(ref, key) {
-        if(ref.item.key != undefined)
+        youRecommended = 0
+        if(ref.item.recommended != undefined) {
+            for (let index = 0; index < ref.item.recommended.length; index++) {
+                const element = ref.item.recommended[index];
+                if(element.recommendedBy == firebase.auth().currentUser.uid) {
+                    youRecommended += 1
+                }
+            }
+        }
+
+        descriptor = " people"
+        if (youRecommended == 1) {
+            descriptor = " person"
+        }
+        thetextthing = undefined
+        if(youRecommended != 0)
+            thetextthing = "You recommended " + youRecommended + descriptor + "!"
+
+        if(ref.item.connector == "You")
         return(
             <Swipeable
                 // swipeStartMinLeftEdgeClearance={50}
@@ -475,7 +595,44 @@ export default class IsoScreen extends React.Component {
                 rightButtonWidth={width*.4 + 30}
             >
             <ProfileActivity
-            recommended={ref.item.recommended}
+            youRecommended={youRecommended}
+            activityGrover={thetextthing}
+            recommended={ref.item.recommended ? ref.item.recommended : []}
+            key={ref.index}
+            ref={(card) => {this[ref.index] = card}}
+            recommendFunc={this.displayRecommendations.bind(this)}
+            connector={ref.item.connector}
+            text={ref.item.text}
+            connectee={ref.item.connectee}
+            image={ref.item.image}
+            iso={true}
+            recommend={true}
+            fireKey={ref.item.fireKey}
+            fireUID={ref.item.fireUID}
+            time={ref.item.time}
+            navigate={this.onPressHandle.bind(this, ref.index)}/>
+            </Swipeable>
+        )
+
+        if(youRecommended > 0)
+        return(
+            <Swipeable
+                // swipeStartMinLeftEdgeClearance={50}
+                rightButtons={[
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                            style={styles.button2}
+                            onPress={() => this._removeReccomendations(ref)}>
+                                <Text style={styles.buttonText}>Remove Recommendations</Text>
+                        </TouchableOpacity>
+                    </View>
+                ]}
+                rightButtonWidth={width*.4 + 30}
+            >
+            <ProfileActivity
+            youRecommended={youRecommended}
+            activityGrover={thetextthing}
+            recommended={ref.item.recommended ? ref.item.recommended : []}
             key={ref.index}
             ref={(card) => {this[ref.index] = card}}
             recommendFunc={this.displayRecommendations.bind(this)}
@@ -493,7 +650,9 @@ export default class IsoScreen extends React.Component {
         )
         return(
             <ProfileActivity
-            recommended={ref.item.recommended}
+            youRecommended={youRecommended}
+            activityGrover={thetextthing}
+            recommended={ref.item.recommended ? ref.item.recommended : []}
             key={ref.index}
             ref={(card) => {this[ref.index] = card}}
             recommendFunc={this.displayRecommendations.bind(this)}
@@ -666,9 +825,9 @@ export default class IsoScreen extends React.Component {
                                                 break
                                             }
                                         }
-                                        if (!isRecommendations) {
-                                            this[this.popupRelatedConnect].addActivity("")
-                                        }
+                                        // if (!isRecommendations) {
+                                        //     this[this.popupRelatedConnect].addActivity("")
+                                        // }
                                     }}
                                     key="button-1"
                                 />
