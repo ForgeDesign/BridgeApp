@@ -90,6 +90,23 @@ export default class App extends React.Component {
         });
     }
 
+    filter_array(test_array) {
+        var index = -1,
+            arr_length = test_array ? test_array.length : 0,
+            resIndex = -1,
+            result = [];
+    
+        while (++index < arr_length) {
+            var value = test_array[index];
+    
+            if (value) {
+                result[++resIndex] = value;
+            }
+        }
+    
+        return result;
+    }
+
     componentDidMount() {
         DeepLinking.addScheme('bridgecard://');
         Linking.addEventListener('url', this.handleUrl);
@@ -109,6 +126,7 @@ export default class App extends React.Component {
                 for (let index = 0; index < people.length; index++) {
                     const contact = people[index];
                     if (contact.person == person.person) {
+                        contact.card = this.filter_array(contact.card)
                         for (let index2 = 0; index2 < contact.card.length; index2++) {
                             const card = contact.card[index2]
                             if (card.id != person.card[0].id) {
@@ -120,8 +138,9 @@ export default class App extends React.Component {
                         break
                     }
                 }
-                if (!found)
+                if (!found) {
                     rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
+                }
             })
         });
     

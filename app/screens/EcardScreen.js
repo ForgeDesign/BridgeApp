@@ -193,7 +193,7 @@ saveData = () => {
         },
         logo: this.state.logo,
         logoFrame: this.state.logoFrame,
-        chosenImage: this.chosenImage
+        chosenImage: this.chosenImage ? this.chosenImage : 0
     }
 
     key = rootRef.child(firebase.auth().currentUser.uid + "cards").push(obj).key
@@ -243,6 +243,38 @@ saveData = () => {
         this.chosenImage = index
     }
 
+    reset() {
+        this.setState({
+            city: "",
+            precity: "",
+            stateabb: "",
+            prestateabb: "",
+            zip: "",
+            prezip: "",
+            address: "",
+            preaddress: "",
+            position: "",
+            preposition: "",
+            name: "",
+            prename: "",
+            businame: "",
+            prebusiname: "",
+            email: "",
+            preemail: "",
+            website: "",
+            prewebsite: "",
+            phonenum: "",
+            prephonenum: "",
+            instagram: "",
+            preinstagram: "",
+            twitter: "",
+            pretwitter: "",
+            linkedin: "",
+            prelinkedin: "",
+            logo: undefined
+        });
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { position, website, businame, instagram, twitter, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
@@ -261,7 +293,7 @@ saveData = () => {
                     onPress={() => this.props.navigation.navigate('Profile')}
                 />
 
-                <Header title={'Business Card'}/>
+                <Header title={'Create'}/>
                 <View style={{
                 borderBottomColor: '#003E5B',
                 borderBottomWidth: 4,
@@ -343,10 +375,20 @@ saveData = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                         style={styles.button2}
+                        onPress={this.reset.bind(this)}>
+                        <Text style={styles.buttonText}>Reset Card</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.buttonRow }>
+                    <TouchableOpacity
+                        style={styles.button2}
                         onPress={this.saveData}>
                         <Text style={styles.buttonText}>Save Card</Text>
                     </TouchableOpacity>
                 </View>
+
+                
 
 
                 <Modal

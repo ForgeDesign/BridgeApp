@@ -21,7 +21,8 @@ export default EStyleSheet.create({
         color: 'white',
         textAlign: 'center',
         right: 15,
-        bottom: '5%'
+        bottom: -7,
+        // bottom: '2%'
     },
     upgrade: {
         position: "absolute",
@@ -30,7 +31,8 @@ export default EStyleSheet.create({
         textAlign: 'center',
         paddingLeft: '12%',
         right: 315,
-        bottom: '5%'
+        bottom: -7,
+        // bottom: '2%'
     },
     grid: {
         alignItems: 'center'

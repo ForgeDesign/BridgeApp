@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, Linking, Button } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, Linking, Button, Alert } from 'react-native';
 
 import styles from './ProfileStyles'
 
@@ -81,9 +81,25 @@ class ProfileScreen extends Component {
         this.interval = setInterval(this.tick.bind(this), 1000)
 
         this.getPeople().then(people => {
-            capturedCards = 0
+            removedDuplicates = []
             for (let index = 0; index < people.length; index++) {
-                capturedCards += people[index].card.length
+                person = people[index];
+                goodtogo = true
+                for (let index2 = 0; index2 < removedDuplicates.length; index2++) {
+                    const element = removedDuplicates[index2];
+                    if(element.person == person.person) {
+                        goodtogo = false
+                        break
+                    }
+                }
+                if(goodtogo) {
+                    person.card = this.filter_array(person.card)
+                    removedDuplicates.push(person)
+                }
+            }
+            capturedCards = 0
+            for (let index = 0; index < removedDuplicates.length; index++) {
+                capturedCards += removedDuplicates[index].card.length
             }
             this.setState({capturedCards: capturedCards})
         })
@@ -290,6 +306,23 @@ class ProfileScreen extends Component {
         )
     }
 
+    filter_array(test_array) {
+        var index = -1,
+            arr_length = test_array ? test_array.length : 0,
+            resIndex = -1,
+            result = [];
+    
+        while (++index < arr_length) {
+            var value = test_array[index];
+    
+            if (value) {
+                result[++resIndex] = value;
+            }
+        }
+    
+        return result;
+    }
+
     render() {
         const { navigate } = this.props.navigation;
 
@@ -307,6 +340,11 @@ class ProfileScreen extends Component {
                         })
                     }}
                     upgrade={() => {
+                        var pathPerson = firebase.auth().currentUser.uid + "person"
+                        rootRef.child(pathPerson).once().then(val => {
+                            if(val.val().level == "Pro")
+                                Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
+                        })
                         // GoogleSignIn.signOut()
                         // Facebook.logout().then(val => {
                         //     firebase.auth().signOut()

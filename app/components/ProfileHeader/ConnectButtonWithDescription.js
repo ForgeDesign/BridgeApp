@@ -74,7 +74,7 @@ export default class ConnectButtonWithDescription extends React.Component {
         if(cards != undefined) {
             for (let index = 0; index < cards.length; index++) {
                 cardKey = cards[index].fireKey
-                url += "bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + cardKey + "\n\n"
+                url = "bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + cardKey
             }
         }
         linker = "their business card.\n"

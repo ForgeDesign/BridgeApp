@@ -105,7 +105,7 @@ export default class BusinessCard extends React.Component {
                         const element = peopleObj[Object.keys(peopleObj)[index]];
                         for (let index2 = 0; index2 < element.card.length; index2++) {
                             const card = element.card[index2];
-                            if (card.id == this.state.section) {
+                            if (card && card.id == this.state.section) {
                                 foundPerson = element
                                 cardIndex = index2
                                 break
@@ -193,7 +193,7 @@ export default class BusinessCard extends React.Component {
             skip = true
             this.updateWith(props, false)
         }
-        if(Array.isArray(object.image)) {
+        if(object && object.image && Array.isArray(object.image)) {
             if(object.image.length > 1 && props.createOrEdit)
                 object.swipeable = true
         }
@@ -487,12 +487,19 @@ export default class BusinessCard extends React.Component {
                                             </TouchableOpacity>
                                         </View>
                                     </Modal>
-                                    <TextInput
+                                    <View style={{position: "absolute", top: 65, left: 300}}>
+                                        <QRCode
+                                        value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
+                                        size={30}
+                                        bgColor={$primaryBlue}
+                                        fgColor='white'/>
+                                    </View>
+                                    {/* <TextInput
                                     // style={{color: "#003E5B", bottom: 80, left: 235,}}
                                     editable={this.state.editable}
                                     value={"Show QR"}
                                     pointerEvents="none"
-                                    />
+                                    /> */}
                                 </TouchableOpacity>
                                 
                             ) :

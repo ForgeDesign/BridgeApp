@@ -10,6 +10,49 @@ class CardSwiper extends React.Component {
 
     render() {
         recommended = this.props.recommendation == undefined ? false : true
+
+        if(this.props.fromContactsPage) {
+            return(
+                <Swiper onIndexChanged={(index) => {
+                    this.props.updateVisible(index)
+                }} style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
+    
+                    {this.props.card.map(function(item, i){
+                        if(item != null)
+                        return (
+                            <View style={styles.slide1} key={i + "view"}>
+                                <BusinessCard
+                                    logoFrame={item.logoFrame}
+                                    justImage={item.id == "IMAGE" ? item.id : undefined}
+                                    justImageImage={item.image}
+                                    recommendation={recommended}
+                                    key={i}
+                                    font={item.font}
+                                    chosenImage={item.chosenImage}
+                                    cardnum={item.cardnum}
+                                    logo={item.logo}
+                                    color={item.color} 
+                                    position={item.position} 
+                                    website={item.website} 
+                                    businame={item.businame} 
+                                    phonenum={item.phonenum} 
+                                    name={item.name} 
+                                    email={item.email} 
+                                    address={item.address}
+                                    stateabb={item.stateabb}
+                                    city={item.city}
+                                    zip={item.zip}
+                                    socialMedia={item.socialMedia}
+                                    section={item.fireKey}
+                                    index={i}
+                                    contact={true}
+                                />
+                            </View>
+                        )
+                    })}
+                </Swiper>
+            )
+        }
         return(
             <Swiper style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
 

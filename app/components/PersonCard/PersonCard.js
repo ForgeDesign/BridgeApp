@@ -3,6 +3,8 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, Modal, KeyboardAvoidingView } from 'react-native';
 import styles from './styles';
 import { CardSwiper } from '../CardSwiper';
+import firebase from 'react-native-firebase';
+const rootRef = firebase.database().ref();
 
 class PersonCard extends React.Component {
 
@@ -54,6 +56,8 @@ class PersonCard extends React.Component {
      )
   }
 
+  visible = 0
+
   componentWillReceiveProps(nextProps) {
       if(nextProps.location != "" && nextProps.location != undefined)
         this.setState({location: nextProps.location})
@@ -65,9 +69,36 @@ class PersonCard extends React.Component {
 
   _hideModal = () => { this.setState({ isModalVisible: false })}
 
+  _deletecard() {
+      cardKey = this.props.card[this.visible].fireKey
+      path = firebase.auth().currentUser.uid + "people/" + this.props.imageFireKey + "/card/"
+      rootRef.child(path).once().then(val => {
+          val.forEach(child => {
+              if(child.val().id == cardKey) {
+                rootRef.child(path + child.key).remove()
+              }
+          })
+      })
+      this.props.card.splice(this.visible, 1)
+      this.forceUpdate()
+  }
+
+  updateVisible(num) {
+      this.visible = num
+  }
+
   render() {
 
     image = this.props.imagepath
+
+    deletebtn = <View/>
+    if(this.props.card.length > 1)
+    deletebtn = 
+        <TouchableOpacity
+        style={styles.button}
+        onPress={this._deletecard.bind(this)}>
+        <Text style={styles.buttonText}>Delete Card</Text>
+    </TouchableOpacity>
 
     if(this.props.action == "None") {
         return(
@@ -96,7 +127,7 @@ class PersonCard extends React.Component {
         </View>
         <View style={styles.textcontainer}>
           <Text style={styles.name}>{this.props.name}</Text>
-          <Text style={styles.location}>{this.state.bigstuff}</Text>
+          <Text style={styles.location}>{this.props.thisisfrom ? this.state.bigstuff + "\nRecommended by: " + this.props.thisisfrom : this.state.bigstuff}</Text>
         </View>
 
         <Modal
@@ -109,9 +140,12 @@ class PersonCard extends React.Component {
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
             <CardSwiper 
+                updateVisible={this.updateVisible.bind(this)}
+                fromContactsPage={this.props.fromContactsPage}
                 recommendation={this.props.recommendation}
                 card={this.props.card}
             />
+            {deletebtn}
             <TouchableOpacity
               style={styles.button}
               onPress={this._hideModal}>
