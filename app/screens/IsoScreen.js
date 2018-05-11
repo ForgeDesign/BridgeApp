@@ -143,6 +143,21 @@ export default class IsoScreen extends React.Component {
                     var firstLast = personFound.displayName.split(" ")
                     var sectionKey = firstLast[firstLast.length - 1][0]
                     rootRef.child(person.recommendedBy + "person").once().then(val => {
+                        if(val.val() == null) {
+                            obj = {
+                                name: personFound.displayName,
+                                location: person.location,
+                                imagepath: personFound.photoURL,
+                                sectionKey: sectionKey,
+                                card: []
+                            }
+                            for (let index = 0; index < person.card.length; index++) {
+                                const element = person.card[index];
+                                var pathCard = person.person + "cards/" + element.id
+                                obj.card.push(this.getSingleCard(pathCard))
+                            }
+                            resolve(obj)
+                        }
                         obj = {
                             name: personFound.displayName,
                             location: person.location,

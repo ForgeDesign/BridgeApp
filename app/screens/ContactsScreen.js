@@ -257,7 +257,21 @@ class ContactsScreen extends React.Component {
             Promise.all(promises).then(data => {
                 promises2 = []
                 crossReference = []
-                var allPeople = data
+                filterPeopleStuff = []
+                for (let index = 0; index < data.length; index++) {
+                    const element = data[index];
+                    goodtogo = true
+                    for (let index2 = 0; index2 < filterPeopleStuff.length; index2++) {
+                        const element2 = filterPeopleStuff[index2];
+                        if(element2.key == element.key) {
+                            goodtogo = false
+                            break
+                        }
+                    }
+                    if(goodtogo)
+                        filterPeopleStuff.push(element)
+                }
+                data = filterPeopleStuff
                 for (let index = 0; index < data.length; index++) {
                     const person = data[index];
                     if (person.person != "IMAGE")
@@ -265,9 +279,9 @@ class ContactsScreen extends React.Component {
                             const card = person.card[index2];
                             promises2.push(card)
                             crossReference.push({index1: index, index2: index2, index3: person.sectionKey})
-                            // Promise.resolve(card).then(val => {
-                            //     allPeople[index].card[index2] = val
-                            // })
+                            Promise.resolve(card).then(val => {
+                                data[index].card[index2] = val
+                            })
                         }
                 }
                 for (let index = 0; index < data.length; index++) {
@@ -276,16 +290,20 @@ class ContactsScreen extends React.Component {
                         foundPeople[element.sectionKey] = Array()
                     foundPeople[element.sectionKey].push(element)
                 }
-                Promise.all(promises2).then(datadata => {
-                    for (let indexindex = 0; indexindex < datadata.length; indexindex++) {
-                        const thingthing = datadata[indexindex];
-                        const keykey1 = crossReference[indexindex].index1
-                        const keykey2 = crossReference[indexindex].index2
-                        const keykey3 = crossReference[indexindex].index3
-                        foundPeople[keykey3][keykey1].card[keykey2] = thingthing
-                    }
-                    resolve(foundPeople)
-                })
+                resolve(foundPeople)
+                // Promise.all(promises2).then(datadata => {
+                //     // console.log(datadata, crossReference)
+                //     for (let indexindex = 0; indexindex < datadata.length; indexindex++) {
+                //         thingthing = JSON.parse(JSON.stringify(datadata[indexindex]))
+                //         keykey1 = crossReference[indexindex].index1
+                //         keykey2 = crossReference[indexindex].index2
+                //         keykey3 = crossReference[indexindex].index3
+                //         foundPeople[keykey3][keykey1].card = []
+                //         console.log(JSON.parse(JSON.stringify(foundPeople[keykey3][keykey1].card)))
+                //         foundPeople[keykey3][keykey1].card.push(thingthing)
+                //     }
+                //     resolve(foundPeople)
+                // })
             }).catch(test => {
                 console.log(test)
             })
@@ -311,7 +329,6 @@ class ContactsScreen extends React.Component {
 
     getSinglePerson(pathPerson, person) {
         return new Promise((resolve, reject) => {
-            
             if(pathPerson == "IMAGEperson/") {
                 var firstLast = person.displayName.split(" ")
                 var sectionKey = firstLast[firstLast.length - 1][0]
