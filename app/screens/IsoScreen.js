@@ -410,6 +410,17 @@ export default class IsoScreen extends React.Component {
             origin: firebase.auth().currentUser.uid,
             time: d.toString()
         }
+
+        objToPerson = {
+            connector: firebase.auth().currentUser.displayName,
+            text: "recommended " + numberOfRecs + descriptor + " for a",
+            connectee: this[this.popupRelatedConnect].props.connectee,
+            icon: "md-time",
+            image: "",
+            origin: firebase.auth().currentUser.uid,
+            time: d.toString()
+        }
+
         if(peopleRecommended.length > 0)
             rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
 
@@ -444,13 +455,16 @@ export default class IsoScreen extends React.Component {
             }
             rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
                 obj = val.val()
+                console.log(obj)
                 if(obj.recommended != undefined) {
                     obj.recommended = obj.recommended.concat(peopleRecommended)
                 }
                 else {
                     obj.recommended = peopleRecommended
                 }
+                
                 rootRef.child(fireUID + "iso/" + fireISOKey).update(obj)
+                rootRef.child(fireUID + "activity").push(objToPerson)
             })
         }
 
@@ -756,28 +770,14 @@ export default class IsoScreen extends React.Component {
                             contactName: value
                         });
                         {
-                            imageSrc = firebase.auth().currentUser.photoURL
                             var d = new Date();
-                            obj = {}
-                            if (imageSrc != null){
-                                obj = {
-                                    connector: "You",
-                                    text: "are looking for",
-                                    connectee: value.toLowerCase(),
-                                    icon: "",
-                                    image: imageSrc,
-                                    time: d.toString()
-                                }
-                            }
-                            else {
-                                obj = {
-                                    connector: "You",
-                                    text: "are looking for",
-                                    connectee: value.toLowerCase(),
-                                    icon: "md-person",
-                                    image: "",
-                                    time: d.toString()
-                                }
+                            obj = {
+                                connector: "You",
+                                text: "are looking for",
+                                connectee: value.toLowerCase(),
+                                icon: "ios-search",
+                                image: "",
+                                time: d.toString()
                             }
 
                             // MARK - HAVE TO INCLUDE LOGIC TO IMPLEMENT ISO IN DATABSE
@@ -788,6 +788,7 @@ export default class IsoScreen extends React.Component {
                             //
                             //
                             //
+                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
                             var boop = rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj).key
                             obj.key = boop
                             this.state.yourISO.unshift(obj)

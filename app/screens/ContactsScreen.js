@@ -139,8 +139,12 @@ class ContactsScreen extends React.Component {
                         'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
                         'X': [], 'Y': [], 'Z': []
                     }
+                    if(removeDuplicates[person.sectionKey] == undefined) {
+                        removeDuplicates[person.sectionKey] = []
+                    }
                     for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                         const section = foundPeople[Object.keys(foundPeople)[index]];
+                        console.log(section.length)
                         for (let index2 = 0; index2 < section.length; index2++) {
                             person = section[index2];
                             goodtogo = true
@@ -158,8 +162,18 @@ class ContactsScreen extends React.Component {
                         }
                     }
                     this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
-                })
-            })
+                }).catch(function(error) {
+                    console.log('There has been a problem with your fetch operation: ' + error.message);
+                    console.error(error)
+                    // ADD THIS THROW error
+                    throw error;
+                });
+            }).catch(function(error) {
+                console.log('There has been a problem with your fetch operation: ' + error.message);
+                console.error(error)
+                // ADD THIS THROW error
+                throw error;
+            });
         }
         if (this.props.isFocused && !nextProps.isFocused) {
             // NOT HERE
@@ -181,6 +195,9 @@ class ContactsScreen extends React.Component {
                     'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
                     'X': [], 'Y': [], 'Z': []
                 }
+                if(removeDuplicates[person.sectionKey] == undefined) {
+                    removeDuplicates[person.sectionKey] = []
+                }
                 for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                     const section = foundPeople[Object.keys(foundPeople)[index]];
                     for (let index2 = 0; index2 < section.length; index2++) {
@@ -200,13 +217,23 @@ class ContactsScreen extends React.Component {
                     }
                 }
                 this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
-            })
-        })
+            }).catch(function(error) {
+                console.log('There has been a problem with your fetch operation: ' + error.message);
+                console.error(error)
+                // ADD THIS THROW error
+                throw error;
+            });
+        }).catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ' + error.message);
+            console.error(error)
+            // ADD THIS THROW error
+            throw error;
+        });
         }
         this.setState({appState: nextAppState});
       }
 
-    componentDidMount() {
+    componentWillMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
         this.getPeople().then(peopleObj => {
             this.getCards(peopleObj).then(foundPeople => {
@@ -216,6 +243,9 @@ class ContactsScreen extends React.Component {
                     'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
                     'X': [], 'Y': [], 'Z': []
                 }
+                if(removeDuplicates[person.sectionKey] == undefined) {
+                    removeDuplicates[person.sectionKey] = []
+                }
                 for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                     const section = foundPeople[Object.keys(foundPeople)[index]];
                     for (let index2 = 0; index2 < section.length; index2++) {
@@ -235,8 +265,18 @@ class ContactsScreen extends React.Component {
                     }
                 }
                 this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
-            })
-        })
+            }).catch(function(error) {
+                console.log('There has been a problem with your fetch operation: ' + error.message);
+                console.error(error)
+                // ADD THIS THROW error
+                throw error;
+            });
+        }).catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ' + error.message);
+            console.error(error)
+            // ADD THIS THROW error
+            throw error;
+        });
     }
 
     getCards(peopleObj) {
@@ -333,6 +373,7 @@ class ContactsScreen extends React.Component {
                 var firstLast = person.displayName.split(" ")
                 var sectionKey = firstLast[firstLast.length - 1][0]
                 person.sectionKey = sectionKey
+                person.name = person.displayName
                 resolve(person)
             }
             else {
@@ -458,13 +499,13 @@ class ContactsScreen extends React.Component {
         if(this.state.peoplePositions[index] == undefined) {
             var thething = JSON.parse(JSON.stringify(this.state.peoplePositions))
             thething[index] = " "
-            this.setState({peoplePositions: thething})
+            // this.setState({peoplePositions: thething})
         }
         if(person.position != undefined) {
             stuff = person.business + " : " + person.position
             var thething = JSON.parse(JSON.stringify(this.state.peoplePositions))
             thething[index] = stuff
-            this.setState({peoplePositions: thething})
+            // this.setState({peoplePositions: thething})
         }
 
         if (person == undefined)
@@ -522,6 +563,7 @@ class ContactsScreen extends React.Component {
                 key={sectionId + '' + index}
                 section={person.card.fireKey}
                 index={index}
+                imageTypeStuff={person.business + " : " + person.position}
                 name={person.name ? person.name : person.displayName}
                 card={person.card.reverse()}
                 imageFireKey={person.key}

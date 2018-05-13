@@ -33,7 +33,7 @@ export default EStyleSheet.create({
       width: circleWidth,
       height: circleWidth / 4,
       borderRadius: circleWidth / 2,
-      backgroundColor: 'black',
+      backgroundColor: 'gold',
       flexDirection: 'column',
       alignItems: 'center',
 

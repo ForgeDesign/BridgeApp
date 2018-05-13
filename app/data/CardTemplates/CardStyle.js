@@ -278,7 +278,7 @@ export default class CardStyle {
                         color: businame.fill,
                         fontSize: businame.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     businameTouch: {
                         zIndex: 100,
@@ -302,7 +302,7 @@ export default class CardStyle {
                         color: website.fill,
                         fontSize: website.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     websiteTouch: {
                         zIndex: 100,
@@ -326,7 +326,7 @@ export default class CardStyle {
                         color: position.fill,
                         fontSize: position.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     positionTouch: {
                         zIndex: 100,
@@ -336,7 +336,7 @@ export default class CardStyle {
                         right: position.right / widthRatio,
                         left: position.left / widthRatio,
                         height: position.height / heightRatio,
-                        width: 2 * position.width / widthRatio,
+                        width: 3 * position.width / widthRatio,
                     },
                     phonenumInput: {
                         textAlign: phonenum.textAlign,
@@ -350,7 +350,7 @@ export default class CardStyle {
                         color: phonenum.fill,
                         fontSize: phonenum.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     phonenumTouch: {
                         zIndex: 100,
@@ -374,7 +374,7 @@ export default class CardStyle {
                         color: name.fill,
                         fontSize: name.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     nameTouch: {
                         zIndex: 100,
@@ -398,7 +398,7 @@ export default class CardStyle {
                         color: email.fill,
                         fontSize: email.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     emailTouch: {
                         zIndex: 100,
@@ -422,7 +422,7 @@ export default class CardStyle {
                         color: address.fill,
                         fontSize: address.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     addressTouch: {
                         zIndex: 100,
@@ -441,12 +441,12 @@ export default class CardStyle {
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
-                    address2Placeholder: {
+                    address2InputPlaceholder: {
                         textAlign: address2.textAlign,
                         color: address2.fill,
                         fontSize: address2.fontSize / 3.45,
                         fontFamily: fontFamily,
-                        backgroundColor: "black",
+                        backgroundColor: "transparent",
                     },
                     address2Touch: {
                         zIndex: 100,

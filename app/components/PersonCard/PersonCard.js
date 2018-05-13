@@ -45,16 +45,23 @@ class PersonCard extends React.Component {
     return result;
 }
 
-  async updateName() {
-    await Promise.all(this.props.card).then((val) => {
-        val = this.filter_array(val)
-        stuff = val[0].businame + " : " + val[0].position
-        this.setState({
-            bigstuff: stuff
+    async updateName() {
+        if(this.props.imageTypeStuff && this.props.imageTypeStuff != "undefined : undefined") {
+            console.log(JSON.parse(JSON.stringify(this.props.imageTypeStuff)))
+            this.setState({
+                bigstuff: this.props.imageTypeStuff
+            })
+            return
+        }
+            
+        await Promise.all(this.props.card).then((val) => {
+            val = this.filter_array(val)
+            stuff = val[0].businame + " : " + val[0].position
+            this.setState({
+                bigstuff: stuff
+            })
         })
-      }
-     )
-  }
+    }
 
   visible = 0
 
