@@ -569,7 +569,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.addressTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._addressInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._addressInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Address )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.address == "" ? this.state.style.addressInputPlaceholder : this.state.style.addressInput}
@@ -583,7 +583,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.emailTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._emailInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._emailInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Email )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.email == "" ? this.state.style.emailInputPlaceholder : this.state.style.emailInput}
@@ -597,7 +597,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.websiteTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._websiteInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._websiteInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Website )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.website == "" ? this.state.style.websiteInputPlaceholder : this.state.style.websiteInput}
@@ -611,7 +611,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.phonenumTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._phonenumInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._phonenumInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Telephone )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.phonenum == "" ? this.state.style.phonenumInputPlaceholder : this.state.style.phonenumInput}
@@ -625,7 +625,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.address2Touch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._address2InputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._address2InputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( City, State, Zipcode )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.city + this.state.stateabb + this.state.zip == "" ? this.state.style.address2InputPlaceholder : this.state.style.address2Input}
@@ -639,7 +639,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.nameTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._nameInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._nameInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Name )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.name == "" ? this.state.style.nameInputPlaceholder : this.state.style.nameInput}
@@ -653,7 +653,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.businameTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._businameInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._businameInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Business )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.businame == "" ? this.state.style.businameInputPlaceholder : this.state.style.businameInput}
@@ -667,7 +667,7 @@ export default class BusinessCard extends React.Component {
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.positionTouch}>
                                         <TextInput
-                                            placeholderTextColor={this.state.style._positionInputPlaceholder.color}
+                                            placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._positionInputPlaceholder.color : "black"}
                                             placeholder={this.props.createOrEdit ? "( Position )" : ""}
                                             editable={this.state.editable}
                                             style={this.props.createOrEdit && this.state.position == "" ? this.state.style.positionInputPlaceholder : this.state.style.positionInput}
@@ -713,7 +713,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.addressTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._addressInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._addressInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Address )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.address == "" ? this.state.style.addressInputPlaceholder : this.state.style.addressInput}
@@ -727,7 +727,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.emailTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._emailInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._emailInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Email )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.email == "" ? this.state.style.emailInputPlaceholder : this.state.style.emailInput}
@@ -741,7 +741,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.websiteTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._websiteInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._websiteInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Website )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.website == "" ? this.state.style.websiteInputPlaceholder : this.state.style.websiteInput}
@@ -755,7 +755,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.phonenumTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._phonenumInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._phonenumInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Telephone )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.phonenum == "" ? this.state.style.phonenumInputPlaceholder : this.state.style.phonenumInput}
@@ -778,7 +778,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.address2Touch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._address2InputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._address2InputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( City, State, Zipcode )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.city + this.state.stateabb + this.state.zip == "" ? this.state.style.address2InputPlaceholder : this.state.style.address2Input}
@@ -792,7 +792,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.nameTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._nameInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._nameInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Name )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.name == "" ? this.state.style.nameInputPlaceholder : this.state.style.nameInput}
@@ -806,7 +806,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.businameTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._businameInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._businameInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Business )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.businame == "" ? this.state.style.businameInputPlaceholder : this.state.style.businameInput}
@@ -820,7 +820,7 @@ export default class BusinessCard extends React.Component {
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.positionTouch}>
                                     <TextInput
-                                        placeholderTextColor={this.state.style._positionInputPlaceholder.color}
+                                        placeholderTextColor={this.state.style._addressInputPlaceholder ? this.state.style._positionInputPlaceholder.color : "black"}
                                         placeholder={this.props.createOrEdit ? "( Position )" : ""}
                                         editable={this.state.editable}
                                         style={this.props.createOrEdit && this.state.position == "" ? this.state.style.positionInputPlaceholder : this.state.style.positionInput}

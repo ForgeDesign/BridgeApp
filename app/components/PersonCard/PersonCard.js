@@ -47,7 +47,6 @@ class PersonCard extends React.Component {
 
     async updateName() {
         if(this.props.imageTypeStuff && this.props.imageTypeStuff != "undefined : undefined") {
-            console.log(JSON.parse(JSON.stringify(this.props.imageTypeStuff)))
             this.setState({
                 bigstuff: this.props.imageTypeStuff
             })
