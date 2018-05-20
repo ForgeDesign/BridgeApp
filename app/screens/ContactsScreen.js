@@ -123,8 +123,22 @@ class ContactsScreen extends React.Component {
     }
 
     async addProfilePic() {
-        console.log("accessing profile pic function")
-        this.openFromCamera()
+        var pathPerson = firebase.auth().currentUser.uid + "person"
+        rootRef.child(pathPerson).once().then(val => {
+            console.log(this.state)
+            peopleCount = 0
+            for (let index = 0; index < Object.keys(this.state.peopleFound).length; index++) {
+                const element = Object.keys(this.state.peopleFound)[index];
+                peopleCount += element.length
+            }
+            if(val.val().level == "Free" && peopleCount <= 10) {
+                Alert.alert("As a free user, you cannot have more than 10 contacts. \n\nUpgrade today!")
+            } else {
+                return
+                console.log("accessing profile pic function")
+                this.openFromCamera()
+            }
+        })
     }
 
 
@@ -140,13 +154,15 @@ class ContactsScreen extends React.Component {
                         'X': [], 'Y': [], 'Z': []
                     }
                     if(removeDuplicates[person.sectionKey] == undefined) {
-                        removeDuplicates[person.sectionKey] = []
+                        if(person.sectionKey != undefined)
+                            removeDuplicates[person.sectionKey] = []
                     }
                     for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                         const section = foundPeople[Object.keys(foundPeople)[index]];
                         console.log(section.length)
                         for (let index2 = 0; index2 < section.length; index2++) {
                             person = section[index2];
+                            person.card = this.filter_array(person.card)
                             goodtogo = true
                             for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
                                 const duplicate = removeDuplicates[person.sectionKey][index3];
@@ -156,7 +172,6 @@ class ContactsScreen extends React.Component {
                                 }
                             }
                             if(goodtogo) {
-                                person.card = this.filter_array(person.card)
                                 removeDuplicates[person.sectionKey].push(person)
                             }
                         }
@@ -196,7 +211,8 @@ class ContactsScreen extends React.Component {
                     'X': [], 'Y': [], 'Z': []
                 }
                 if(removeDuplicates[person.sectionKey] == undefined) {
-                    removeDuplicates[person.sectionKey] = []
+                    if(person.sectionKey != undefined)
+                        removeDuplicates[person.sectionKey] = []
                 }
                 for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                     const section = foundPeople[Object.keys(foundPeople)[index]];
@@ -244,7 +260,8 @@ class ContactsScreen extends React.Component {
                     'X': [], 'Y': [], 'Z': []
                 }
                 if(removeDuplicates[person.sectionKey] == undefined) {
-                    removeDuplicates[person.sectionKey] = []
+                    if(person.sectionKey != undefined)
+                        removeDuplicates[person.sectionKey] = []
                 }
                 for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                     const section = foundPeople[Object.keys(foundPeople)[index]];

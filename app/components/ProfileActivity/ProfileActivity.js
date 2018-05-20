@@ -20,6 +20,12 @@ class ProfileActivity extends React.Component {
         // console.log(nextprops.activityGrover)
 
         this.props = nextprops
+        if(nextprops.activityGrover) {
+            this.setState({activity: nextprops.activityGrover})
+        }
+        else {
+            this.setState({activity: ""})
+        }
     }
 
     constructor(props) {

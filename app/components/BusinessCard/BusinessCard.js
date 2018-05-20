@@ -114,7 +114,8 @@ export default class BusinessCard extends React.Component {
                         if(foundPerson)
                             break
                     }
-                    notes = foundPerson.card[cardIndex].notes
+                    if(foundPerson != undefined)
+                        notes = foundPerson.card[cardIndex].notes
                     if (/^\s+$/.test(notes))
                         notes = null
                 }
@@ -467,7 +468,13 @@ export default class BusinessCard extends React.Component {
                     }}>
                         {
                             this.state.qr ? (
-                                <TouchableOpacity disabled={false} style={{zIndex: 1999, width: '20%', position: "absolute"}} onPress={() => this.setState({qrCode: true})}>
+                                <TouchableOpacity disabled={false} style={{zIndex: 1999, position: "absolute", width: '20%', height: '100%', top: 150, left: 300}} 
+                                onPress={() => 
+                                    { 
+                                        console.log("YO") 
+                                        this.setState({qrCode: true})
+                                    }
+                                }>
                                     <Modal
                                     transparent={false}
                                     style={{width:'100%', height:'100%', padding: 0, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}
@@ -492,7 +499,7 @@ export default class BusinessCard extends React.Component {
                                             </TouchableOpacity>
                                         </View>
                                     </Modal>
-                                    <View style={{position: "absolute", width: '100%', height: '100%', top: 150, left: 300}}>
+                                    <View>
                                         <QRCode
                                         value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
                                         size={30}
@@ -545,7 +552,7 @@ export default class BusinessCard extends React.Component {
                 showsButtons={this.state.image.length > 1 ? true : false} 
                 showsPagination={true}
                 >
-                {this.state.image.map(function(item, i){
+                {this.state.image ? this.state.image.map(function(item, i){
                     if(item != null)
                     return (
                     <View style={this.state.style.card} key={i}>
@@ -566,6 +573,16 @@ export default class BusinessCard extends React.Component {
                                 <View>
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    onPress={() => {
+                                        var combined = this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip
+                                        Geocoder.geocodeAddress(combined).then(res => {
+                                            var latitude = res[0].position.lat
+                                            var longitude = res[0].position.lng
+                                            openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
+                                            Orientation.lockToLandscape();
+                                        })
+                                        .catch(err => console.log(err))
+                                    }}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.addressTouch}>
                                         <TextInput
@@ -680,14 +697,14 @@ export default class BusinessCard extends React.Component {
                         </View>
                     </View>
                     )
-                }.bind(this))}
+                }.bind(this)) : <View/>}
             </Swiper>
             ) : (
                 <View style={this.state.style.card}>
                     <Image
                         style={this.state.style.image}
                         colorOverlay={this.state.color}
-                        source={typeof this.state.image == "number" ? this.state.image : this.state.image != "" ? {uri : this.props.justImage == "IMAGE" ? this.state.image : this.state.image[this.state.chosenImage]} : undefined}
+                        source={typeof this.state.image == "number" ? this.state.image : this.state.image != "" ? {uri : this.props.justImage == "IMAGE" ? this.state.image : this.state.image[this.state.chosenImage]} : {uri: " "}}
                         resizeMode="stretch"
                     />
                     <Image

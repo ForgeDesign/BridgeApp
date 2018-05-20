@@ -68,7 +68,7 @@ class PersonCard extends React.Component {
       if(nextProps.location != "" && nextProps.location != undefined)
         this.setState({location: nextProps.location})
     else
-        return
+        this.setState({location: ""})
   }
 
   _showModal = () => { this.setState({ isModalVisible: true })}

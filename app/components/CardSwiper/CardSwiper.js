@@ -8,16 +8,34 @@ import { BusinessCard } from '../BusinessCard';
 
 class CardSwiper extends React.Component {
 
+    filter_array(test_array) {
+        var index = -1,
+            arr_length = test_array ? test_array.length : 0,
+            resIndex = -1,
+            result = [];
+    
+        while (++index < arr_length) {
+            var value = test_array[index];
+    
+            if (value) {
+                result[++resIndex] = value;
+            }
+        }
+    
+        return result;
+    }
+
     render() {
         recommended = this.props.recommendation == undefined ? false : true
+        allCards = this.filter_array(this.props.card)
 
         if(this.props.fromContactsPage) {
             return(
                 <Swiper onIndexChanged={(index) => {
                     this.props.updateVisible(index)
-                }} style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
+                }} style={styles.wrapper} showsButtons={allCards.length > 1 ? true : false} showsPagination={true}>
     
-                    {this.props.card.map(function(item, i){
+                    {allCards.map(function(item, i){
                         if(item != null)
                         return (
                             <View style={styles.slide1} key={i + "view"}>
@@ -54,9 +72,9 @@ class CardSwiper extends React.Component {
             )
         }
         return(
-            <Swiper style={styles.wrapper} showsButtons={this.props.card.length > 1 ? true : false} showsPagination={true}>
+            <Swiper style={styles.wrapper} showsButtons={allCards.length > 1 ? true : false} showsPagination={true}>
 
-                {this.props.card.map(function(item, i){
+                {allCards.map(function(item, i){
                     if(item != null)
                     return (
                         <View style={styles.slide1} key={i + "view"}>

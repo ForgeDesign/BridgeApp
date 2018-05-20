@@ -96,39 +96,6 @@ export default class IsoScreen extends React.Component {
         });
     }
 
-    // getCards(peopleObj) {
-    //     return new Promise((resolve, reject) => {
-    //         foundPeople = {
-    //             "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [],
-    //             'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [],
-    //             'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
-    //             'X': [], 'Y': [], 'Z': []
-    //         }
-    //         promises = []
-    //         for (let index = 0; index < peopleObj.length; index++) {
-    //             const person = peopleObj[index];
-    //             var pathPerson = person.person + "person/"
-    //             promises.push(this.getSinglePerson(pathPerson, person))
-    //         }
-    //         Promise.all(promises).then(data => {
-    //             var allPeople = data
-    //             for (let index = 0; index < data.length; index++) {
-    //                 const person = data[index];
-    //                 if (person.person != "IMAGE")
-    //                     for (let index2 = 0; index2 < person.card.length; index2++) {
-    //                         const card = person.card[index2];
-    //                         Promise.resolve(card).then(val => {
-    //                             allPeople[index].card[index2] = val
-    //                         })
-    //                     }
-    //             }
-    //             resolve(foundPeople)
-    //         }).catch(test => {
-    //             console.log(test)
-    //         })
-    //     });
-    // }
-
     getSinglePerson(pathPerson, person) {
         return new Promise((resolve, reject) => {
             if(pathPerson == "IMAGEperson/") {
@@ -308,6 +275,7 @@ export default class IsoScreen extends React.Component {
     makeAlertDisappear() {
         this.setState({searchTerm: ''})
         this.setState({alertVisible: false})
+        this.forceUpdate()
     }
 
     popupRelatedConnect = null
@@ -452,6 +420,7 @@ export default class IsoScreen extends React.Component {
                 }
                 
                 this.setState({activity: copy1, foundISO: copy2})
+                this.forceUpdate()
             }
             rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
                 obj = val.val()
@@ -598,7 +567,7 @@ export default class IsoScreen extends React.Component {
 
     activityRendererererer(ref, key) {
         youRecommended = 0
-        if(ref.item.recommended != undefined) {
+        if(ref.item.recommended) {
             for (let index = 0; index < ref.item.recommended.length; index++) {
                 const element = ref.item.recommended[index];
                 if(element.recommendedBy == firebase.auth().currentUser.uid) {
@@ -759,44 +728,52 @@ export default class IsoScreen extends React.Component {
                     }
                 }
                 onSubmit={(value) => {
-                    if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
-                        this.setState({
-                            promptVisible: false,
-                        });
-                    }
-                    else {
-                        this.setState({
-                            promptVisible: false,
-                            contactName: value
-                        });
-                        {
-                            var d = new Date();
-                            obj = {
-                                connector: "You",
-                                text: "are looking for",
-                                connectee: value.toLowerCase(),
-                                icon: "ios-search",
-                                image: "",
-                                time: d.toString()
+                    var pathPerson = firebase.auth().currentUser.uid + "person"
+                    rootRef.child(pathPerson).once().then(val => {
+                        if(val.val().level == "Free")
+                            Alert.alert("As a free user, you cannot post on the search board. \n\nUpgrade today!")
+                        else{
+                            if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {
+                                this.setState({
+                                    promptVisible: false,
+                                });
                             }
-
-                            // MARK - HAVE TO INCLUDE LOGIC TO IMPLEMENT ISO IN DATABSE
-                            //
-                            //
-                            //
-                            //
-                            //
-                            //
-                            //
-                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
-                            var boop = rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj).key
-                            obj.key = boop
-                            this.state.yourISO.unshift(obj)
-                            this.state.activity.unshift(obj)
-                            this.forceUpdate()
-                            this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                            else {
+                                this.setState({
+                                    promptVisible: false,
+                                    contactName: value
+                                });
+                                var d = new Date();
+                                obj = {
+                                    connector: "You",
+                                    text: "are looking for",
+                                    connectee: value.toLowerCase(),
+                                    icon: "ios-search",
+                                    image: "",
+                                    time: d.toString()
+                                }
+        
+                                // MARK - HAVE TO INCLUDE LOGIC TO IMPLEMENT ISO IN DATABSE
+                                //
+                                //
+                                //
+                                //
+                                //
+                                //
+                                //
+                                rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+                                var boop = rootRef.child(firebase.auth().currentUser.uid + "iso").push(obj).key
+                                obj.key = boop
+                                copyIDK1 = JSON.parse(JSON.stringify(this.state.yourISO))
+                                copyIDK2 = JSON.parse(JSON.stringify(this.state.activity))
+                                copyIDK1.unshift(obj)
+                                copyIDK2.unshift(obj)
+                                this.setState({yourISO: copyIDK1, activity: copyIDK2})
+                                
+                                this.makeAlertAppear("Successfully posted your search request!"); setTimeout(() => { this.makeAlertDisappear() }, 2000) 
+                            }
                         }
-                    }
+                    })
                 }
                 } />
 

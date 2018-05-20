@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
-//  [FIRDatabase database].persistenceEnabled = YES;
+  [FIRDatabase database].persistenceEnabled = YES;
   
   NSURL *jsCodeLocation;
   
