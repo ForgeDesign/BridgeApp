@@ -131,10 +131,9 @@ class ContactsScreen extends React.Component {
                 const element = Object.keys(this.state.peopleFound)[index];
                 peopleCount += element.length
             }
-            if(val.val().level == "Free" && peopleCount <= 10) {
+            if(val.val().level == "Lite" && peopleCount <= 10) {
                 Alert.alert("As a free user, you cannot have more than 10 contacts. \n\nUpgrade today!")
             } else {
-                return
                 console.log("accessing profile pic function")
                 this.openFromCamera()
             }
@@ -308,7 +307,7 @@ class ContactsScreen extends React.Component {
             for (let index = 0; index < peopleObj.length; index++) {
                 person = peopleObj[index];
                 var pathPerson = person.person + "person/"
-                person.card = this.filter_array(person.card)
+                // person.card = this.filter_array(person.card)
                 promises.push(this.getSinglePerson(pathPerson, person))
             }
             Promise.all(promises).then(data => {

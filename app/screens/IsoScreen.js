@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, FlatList, RefreshControl, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, AppRegistry, ScrollView, FlatList, RefreshControl, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
@@ -730,7 +730,7 @@ export default class IsoScreen extends React.Component {
                 onSubmit={(value) => {
                     var pathPerson = firebase.auth().currentUser.uid + "person"
                     rootRef.child(pathPerson).once().then(val => {
-                        if(val.val().level == "Free")
+                        if(val.val().level == "Lite")
                             Alert.alert("As a free user, you cannot post on the search board. \n\nUpgrade today!")
                         else{
                             if (value == ' ' || value == '    ' || value == '   ' || value == '  ' || value == '') {

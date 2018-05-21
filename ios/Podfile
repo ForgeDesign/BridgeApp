@@ -51,6 +51,8 @@ target 'BridgeCard' do
   pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
 
   pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+  
+  pod 'RNIap', :path => '../node_modules/react-native-iap'
 
 end
 

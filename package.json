@@ -55,7 +55,7 @@
     "react-native-geocoder": "^0.5.0",
     "react-native-google-sign-in": "^1.0.16",
     "react-native-hero": "^0.3.1",
-    "react-native-iap": "^0.3.15",
+    "react-native-iap": "^0.3.24",
     "react-native-image-crop-picker": "^0.20.0",
     "react-native-image-picker": "^0.26.7",
     "react-native-keyboard-aware-scroll-view": "^0.4.4",

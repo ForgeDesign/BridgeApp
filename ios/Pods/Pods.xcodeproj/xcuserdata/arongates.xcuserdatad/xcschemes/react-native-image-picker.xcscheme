@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F085466FDDAC422836D678B9038568E1"
+               BlueprintIdentifier = "C2658A49451CE0F89738CE64DEB908D5"
                BlueprintName = "react-native-image-picker"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libreact-native-image-picker.a">

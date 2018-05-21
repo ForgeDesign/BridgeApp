@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44DC1DA6352475471862A923294BC5A1"
+               BlueprintIdentifier = "DDF2F562FFFBFD6CE890C1DBDC5BE628"
                BlueprintName = "RNShare"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libRNShare.a">

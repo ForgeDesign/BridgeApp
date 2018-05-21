@@ -93,12 +93,29 @@ class PersonCard extends React.Component {
       this.visible = num
   }
 
+  filter_array(test_array) {
+    var index = -1,
+        arr_length = test_array ? test_array.length : 0,
+        resIndex = -1,
+        result = [];
+
+    while (++index < arr_length) {
+        var value = test_array[index];
+
+        if (value) {
+            result[++resIndex] = value;
+        }
+    }
+
+    return result;
+}
+
   render() {
 
     image = this.props.imagepath
 
     deletebtn = <View/>
-    if(this.props.card.length > 1)
+    if(this.filter_array(this.props.card).length > 1)
     deletebtn = 
         <TouchableOpacity
         style={styles.button}

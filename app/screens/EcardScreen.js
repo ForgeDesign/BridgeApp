@@ -12,6 +12,7 @@ import {
     Image, 
     ScrollView, 
     StyleSheet,
+    Alert,
     Switch
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -162,66 +163,69 @@ confirmChanges = () => {
 }
 
     saveData = () => {
-
         var pathPerson = firebase.auth().currentUser.uid + "person"
+        var pathCards = firebase.auth().currentUser.uid + "cards"
         rootRef.child(pathPerson).once().then(val => {
-            if(val.val().level == "Free")
-                Alert.alert("As a free user, you may only have 1 BridgeCard. \n\nUpgrade today!")
-            else {
-                instagram = "thisisafakeprofiledonotusethisinprod"
-                if (this.state.instagram != undefined && this.state.instagram != "")
-                    instagram = this.state.instagram
-                linkedin = "thisisafakeprofiledonotusethisinprod"
-                    if (this.state.linkedin != undefined && this.state.linkedin != "")
-                        linkedin = this.state.linkedin
-                twitter = "thisisafakeprofiledonotusethisinprod"
-                    if (this.state.twitter != undefined && this.state.twitter != "")
-                        twitter = this.state.twitter
-                let obj = {
-                    font: this.state.font,
-                    city: this.state.city,
-                    stateabb: this.state.stateabb,
-                    zip: this.state.zip,
-                    position: this.state.position,
-                    cardnum: this.state.cardnum,
-                    website: this.state.website,
-                    businame: this.state.businame,
-                    phonenum: this.state.phonenum,
-                    email: this.state.email,
-                    name: this.state.name,
-                    address: this.state.address,
-                    color: this.state.color,
-                    notes: "",
-                    socialMedia: {
-                        instagram: instagram,
-                        linkedin: linkedin,
-                        twitter: twitter
-                    },
-                    logo: this.state.logo,
-                    logoFrame: this.state.logoFrame,
-                    chosenImage: this.chosenImage ? this.chosenImage : 0
+            rootRef.child(pathCards).once().then(val2 => {
+                if(val2.val() != null) {
+                    if(val.val().level == "Lite" && Object.keys( val2.val() ).length > 0)
+                        Alert.alert("As a free user, you may only have 1 BridgeCard. \n\nUpgrade today!")
+                } else {
+                    instagram = "thisisafakeprofiledonotusethisinprod"
+                    if (this.state.instagram != undefined && this.state.instagram != "")
+                        instagram = this.state.instagram
+                    linkedin = "thisisafakeprofiledonotusethisinprod"
+                        if (this.state.linkedin != undefined && this.state.linkedin != "")
+                            linkedin = this.state.linkedin
+                    twitter = "thisisafakeprofiledonotusethisinprod"
+                        if (this.state.twitter != undefined && this.state.twitter != "")
+                            twitter = this.state.twitter
+                    let obj = {
+                        font: this.state.font,
+                        city: this.state.city,
+                        stateabb: this.state.stateabb,
+                        zip: this.state.zip,
+                        position: this.state.position,
+                        cardnum: this.state.cardnum,
+                        website: this.state.website,
+                        businame: this.state.businame,
+                        phonenum: this.state.phonenum,
+                        email: this.state.email,
+                        name: this.state.name,
+                        address: this.state.address,
+                        color: this.state.color,
+                        notes: "",
+                        socialMedia: {
+                            instagram: instagram,
+                            linkedin: linkedin,
+                            twitter: twitter
+                        },
+                        logo: this.state.logo,
+                        logoFrame: this.state.logoFrame,
+                        chosenImage: this.chosenImage ? this.chosenImage : 0
+                    }
+    
+                    key = rootRef.child(firebase.auth().currentUser.uid + "cards").push(obj).key
+                    obj["fireKey"] = key
+                    rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(obj)
+    
+                    var d = new Date();
+                    obj = {
+                        connector: "You",
+                        text: "created a new",
+                        connectee: "BridgeCard",
+                        icon: "md-card",
+                        image: "",
+                        time: d.toString()
+                    }
+                    rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+    
+                    this.makeAlertAppear()
+                    setTimeout(() => {
+                        this.makeAlertDisappear()
+                    }, 3000)
                 }
-
-                key = rootRef.child(firebase.auth().currentUser.uid + "cards").push(obj).key
-                obj["fireKey"] = key
-                rootRef.child(firebase.auth().currentUser.uid + "cards/" + key).update(obj)
-
-                var d = new Date();
-                obj = {
-                    connector: "You",
-                    text: "created a new",
-                    connectee: "BridgeCard",
-                    icon: "md-card",
-                    image: "",
-                    time: d.toString()
-                }
-                rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
-
-                this.makeAlertAppear()
-                setTimeout(() => {
-                    this.makeAlertDisappear()
-                }, 3000)
-            }
+            })
         })
 
     }

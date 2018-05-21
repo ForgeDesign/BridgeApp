@@ -1,6 +1,6 @@
 {
   "name": "RNIap",
-  "version": "0.3.15",
+  "version": "0.3.24",
   "summary": "RNIap",
   "description": "React Native In App Purchase Module.",
   "homepage": "https://github.com/dooboolab/react-native-iap",
