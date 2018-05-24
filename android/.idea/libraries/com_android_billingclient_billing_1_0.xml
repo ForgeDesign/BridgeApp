@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.android.billingclient:billing-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../node_modules/react-native-iap/android/build/intermediates/exploded-aar/com.android.billingclient/billing/1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../node_modules/react-native-iap/android/build/intermediates/exploded-aar/com.android.billingclient/billing/1.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.billingclient/billing/1.0/2974af04233d5eff78803927bf44e621fb1c8dfb/billing-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

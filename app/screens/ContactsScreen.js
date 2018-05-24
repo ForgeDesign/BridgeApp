@@ -791,7 +791,52 @@ class ContactsScreen extends React.Component {
                                     }
                                     this.setState({createContact_Name: "", createContact_Address: "", createContact_Business: ""})
                                     rootRef.child(firebase.auth().currentUser.uid + "people").push(obj)
+                                    this.getPeople().then(peopleObj => {
+                                        this.getCards(peopleObj).then(foundPeople => {
+                                            removeDuplicates = {
+                                                "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [],
+                                                'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [],
+                                                'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
+                                                'X': [], 'Y': [], 'Z': []
+                                            }
+                                            if(removeDuplicates[person.sectionKey] == undefined) {
+                                                if(person.sectionKey != undefined)
+                                                    removeDuplicates[person.sectionKey] = []
+                                            }
+                                            for (let index = 0; index < Object.keys(foundPeople).length; index++) {
+                                                const section = foundPeople[Object.keys(foundPeople)[index]];
+                                                console.log(section.length)
+                                                for (let index2 = 0; index2 < section.length; index2++) {
+                                                    person = section[index2];
+                                                    person.card = this.filter_array(person.card)
+                                                    goodtogo = true
+                                                    for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                                                        const duplicate = removeDuplicates[person.sectionKey][index3];
+                                                        if(duplicate.key == person.key) {
+                                                            goodtogo = false
+                                                            break
+                                                        }
+                                                    }
+                                                    if(goodtogo) {
+                                                        removeDuplicates[person.sectionKey].push(person)
+                                                    }
+                                                }
+                                            }
+                                            this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
+                                        }).catch(function(error) {
+                                            console.log('There has been a problem with your fetch operation: ' + error.message);
+                                            console.error(error)
+                                            // ADD THIS THROW error
+                                            throw error;
+                                        });
+                                    }).catch(function(error) {
+                                        console.log('There has been a problem with your fetch operation: ' + error.message);
+                                        console.error(error)
+                                        // ADD THIS THROW error
+                                        throw error;
+                                    });
                                     // BOOOOOGA
+
                                     this.setModalVisible(!this.state.modalVisible);
                                 }}
                                 style={{

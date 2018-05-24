@@ -3,10 +3,11 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.google.gms:google-services:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.google.gms:google-services:3.2.1' // Add this
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -14,20 +15,20 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         mavenLocal()
         jcenter()
-
-        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-        maven { url "$rootDir/../node_modules/react-native/android" }
-
-        // -------------------------------------------------
-        // Add this below the existing maven property above
-        // -------------------------------------------------
         maven {
-            url 'https://maven.google.com'
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
         }
-        
-        // jitpack repo is necessary to fetch ucrop dependency
-        maven { url "https://jitpack.io" }
+
+                // ADD THIS
+            maven { url 'https://maven.google.com' }
+
+            // ADD THIS
+            maven { url "https://jitpack.io" }
+        google()
+            
     }
 }

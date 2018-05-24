@@ -3,714 +3,597 @@
 
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/customtabs/27.0.2/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_0f766128cff97e40c67a892c37ccb2e0dcccca24.jar" />
+        revision="27.0.3"
+        sha1="cdebcd9e0580b35115f655f8dc8ed7a66a8ef0fc">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.2_95b7c7c31b530ff3100c1f2925024c900a8b8db5.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-svg/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/15.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="9954db6b107f991f6edc605fca49f08d8da78dff">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-svg-unspecified_aaa4cbcb1c706d58df14407c1b02bef9456f3f97.jar" />
+        revision="27.0.3"
+        sha1="d8fe6d91310b54734f454dd490c3c869f6290576">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-15.0.1_f0cd23c415b21afba29dcd48d34a63664fabe86f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/design/26.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-common/4.33.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-design-26.1.0_f2cd491d145387af99eb28d9d93af354696f5946.jar" />
+        revision="27.0.3"
+        sha1="4d9151b05d74c7d17dba9485cbb56be7e16ed9aa">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-common-4.33.0_bac654668634f1217bad67474ee84b954cfd567d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-crop-picker/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-facebook-login/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="79d031d5673d07e8d444af4fdf198495238a9efb">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-crop-picker-unspecified_3aeb49634ad7081cae4363ba3843230b239ff96f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="c5bc72ad3250d065128d1d7514279be703e57bd0">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-11.8.0_545c63a356e21e0e4800420d72d46568507e72c8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_c571e2ba44e11e84f7f2d521cbb194d85d5af3fe.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_3d7792f219e26e7eb02e645d217b057957ec7609.jar" />
+        revision="27.0.3"
+        sha1="d07d8fabcd57aaaed5c48d3d3e7563ac7afc0d65">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-facebook-login-unspecified_c8dd973d148b2239e06ccd027e197a1ec767e7b0.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
+        revision="27.0.3"
         sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_e0581972cfa5e4362f63c1a353469f6da2438dc8.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_e0581972cfa5e4362f63c1a353469f6da2438dc8.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-vector-icons/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-crop-picker/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
+        revision="27.0.3"
+        sha1="79d031d5673d07e8d444af4fdf198495238a9efb">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-crop-picker-unspecified_b1d433aa1e346ff2fa77d6f09c9e5248bd946261.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fe3916317a699975bcce0cba2d13fd2d8cf88922">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.0.2_0aafb3d0f70e26794c3521323bae876284d59e78.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b1c250352bb7bbd5ea1982ca5165f2a81f36b530">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-android-sdk-4.33.0_9929002593be1c173b44748f0d5d4a109e686008.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-iap/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a2d057903e9390597cccec52718424624673d750">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-iap-unspecified_4de6341e4a6f788c5e60a8330a73ca18621cf046.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-27.0.2_b82b86662be823074c31ff207c57ff8cc4c4db9c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="04cd0cacbedcb338f64665b88bad64d145325fbd">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.0.2_3fc6d7931fe75b653af65bac6473fdfb23b127ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-geocoder/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ae91e4c5567a33a1e23ea6514c37b65c589b39ca">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-geocoder-unspecified_09f402e446bdd9ddad54e237570e8d3307c96e0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_3173b7c342de4b86e814a6be2881d17f2ace11bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/15.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fff6b88f6d7385f1a60a47dbc716b208eef7b0c1">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-15.0.1_375b1a7740e62ccdeacbb9556452af93583e343f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.2/b9ef4342c934a1a8b107506273dc8061662a322/support-annotations-27.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="0b9ef4342c934a1a8b107506273dc8061662a322">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/support-annotations-27.0.2_ac2db61a698a879720536224bb40ce9489fe1942.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_525d688a983fb6bb639acf774aae4f91aabf3385.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="618f75fe11febf263e3234c7da7dc892232a5608">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.0.2_58fbfdde3ca879e093ad6589c074131676166cc8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/core-3.3.0_f58bc0834ac32e6feae5cd2a48cd0f05d96872d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.1-native/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2e492787f157c13839c02e0b7293871dbaed9911">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.github.yalantis-ucrop-2.2.1-native_49399145505d88d9a68fc494b37aa61e46b6f30d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-login/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="95dbd34766d3f158ef20de4b5b0206118e960709">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-login-4.33.0_fde536dc84f16f31d9d4a7b224490e835bb242e4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7d7f60c4783872861222166f6164215f8951c7b1">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/common-1.0.3_4f160b04fc39c01737130af2bd1d89f60fb1486b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_1721a08b57d6edb52403b6a2b7a1b69ec44242df.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="24303e5ddb2c1210dd7e8db9dbab018f50313e48">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.50.3_9800cf50fbf198a1a9d63404541b4ac365a2fc68.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
         sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-vector-icons-unspecified_fb4226e765ca8e5a6560cca94cc2aa47e1bc5735.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-vector-icons-unspecified_45397b35892c2a975b874a32bda83a34b7f0470c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/26.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/15.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="b4d6fbbb48b42dd03fd9c5a09b3b7a53266df6ed">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-26.1.0_c6c6ae359c028105e66e4f4d85e0f8a3d9f229b7.jar" />
+        revision="27.0.3"
+        sha1="4d4d98a0428b2e620e6b4a228ef9f7cb2f0debd2">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-15.0.1_552c713c197f2cacbd2435b206ff614426e02297.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-vector-icons/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.0.2/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-vector-icons-unspecified_fb4226e765ca8e5a6560cca94cc2aa47e1bc5735.jar" />
+        revision="27.0.3"
+        sha1="ac2ce6027755bcf49442e70597bec0feb9064f68">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.0.2_a36661aea56bb1b94532b7347186aa50b98810b6.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/id.zelory/compressor/2.1.0/jars/classes.jar"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/id.zelory-compressor-2.1.0_23c3c7461e15e1313cf4963f8d4e31c54818871d.jar" />
+        revision="27.0.3"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_bd879846ef6c16c092308793736aa09dbfb4b5bc.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/15.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/rxjava-2.1.0_aee5ed82376611ce3a0812183e063dffe821827b.jar" />
+        revision="27.0.3"
+        sha1="8d813c05361147f6f515f749df19223cd6256314">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-15.0.1_2bf33844b0071ce6a43a3bc9a3a1891b137b8df1.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-picker/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_6f4a5329d3cda2d2ee24042567e816d3359153f3.jar" />
+        revision="27.0.3"
+        sha1="db8f26e3aae1c19f2fc81575eade250da4c4e2f3">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-picker-unspecified_f73f14810a896dded9dffa736d4a063967c11dc6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/15.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f03eac74758a738724d98cb4eda0270c1244664a">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-base-15.0.1_7d266e821d5b12bb1edc9756d6f62641f9f10ee4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_16ebcfbc808dcb65c4cf5d89bfab7576786774af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.0.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d7cc5473b9cf4ea159a263cd477fb3ecb2987b96">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.0.3_e938c43c21df57b4fcb7a1b27c058dbe0a4816f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-applinks/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="82ea5a937ab84229fbd2f3fc8cf2a72cbdf0ee0f">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-applinks-4.33.0_fd9dca97ffbce92a722f74901a070f44c869cb48.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_461b94c35bbdf72106ed84d6d1ffbf7371fa8ae1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-messenger/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6d3dda07fbd30171edc150e4f13884fce5cd9926">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-messenger-4.33.0_930f1238824baad4ce154e4e6b1b02a110a47d58.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_ff5500274ae7172889be9f55f574d0259d529a02.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="14bfdbf5594d4d7c320de20831849050788ab1e3">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-27.0.2_0d56ff6a48d8a489114d8385784f8be8fbd3ff3e.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
+        revision="27.0.3"
         sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/common-1.0.0_0a0a0e29154112f207736c046c76c91e553a4b35.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="122de0d704f76d2bb5cb9db66e00fe90a0a41e78">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-11.8.0_96c76a435ef2f0047f88df4582982f4fba8c2ad3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/support-annotations-26.1.0_322f147fb41c775a689e0614b7bd6676c38330fb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_8e4b0881ae994a658e77a7dfabe41c863d94eca6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/transition/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-transition-26.1.0_6392f6b147f5d44435dd8e8ee5d4d593e8ded5c6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-26.1.0_2bce2bc23346d154859df53af7d18a8c6327f2f8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_8e4b0881ae994a658e77a7dfabe41c863d94eca6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_bd879846ef6c16c092308793736aa09dbfb4b5bc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/libs/infer-annotations-4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_e0a7e404aea86407e6ed3ead239b5b55299edd20.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_0f766128cff97e40c67a892c37ccb2e0dcccca24.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="e6aeff19a2ce1eb896557be73cb9ceb56f8d1cf3">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-11.8.0_7a6e6e06dbfe8c42e022c552838310ffe25a9c9f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-26.1.0_4b6d98cfd668f1e7243bb0575ba1e4523859ca0d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-26.1.0_5ba9e27bcbaa5816708b1d587079be1ac12a1f52.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/common-1.0.0_0a0a0e29154112f207736c046c76c91e553a4b35.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
+        revision="27.0.3"
         sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/rxjava-2.1.0_aee5ed82376611ce3a0812183e063dffe821827b.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/rxjava-2.1.0_aee5ed82376611ce3a0812183e063dffe821827b.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.0.2/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_31f79f28817b7c53e32379f56b805a67aadb722b.jar" />
+        revision="27.0.3"
+        sha1="ed6560f31a6a40b5965f5879d8f2eab1f68def05">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.0.2_1177b85885872932f9fedab985b491f5bb95488c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/id.zelory/compressor/2.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-google-sign-in/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/id.zelory-compressor-2.1.0_23c3c7461e15e1313cf4963f8d4e31c54818871d.jar" />
+        revision="27.0.3"
+        sha1="a117b9a3820d996a491cfd0fff28ccc7ee16886f">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-google-sign-in-unspecified_6428c6d24c95d88e57032ae7a98e2b9478ae0853.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-core/4.33.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="24303e5ddb2c1210dd7e8db9dbab018f50313e48">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.50.3_3d7ee883b8d82f613fa24efc24ec37a3a7215288.jar" />
+        revision="27.0.3"
+        sha1="b478831814c5b6a1337f9e75d696d5faa6973519">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-core-4.33.0_6aa531849fa9a1a5f8817868df8ad957c7b40228.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/26.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.0.2/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-26.1.0_6452e42f8c788b49877689d42d9544c3b8c8797a.jar" />
+        revision="27.0.3"
+        sha1="caa03787689212c10939f308a55a8dc8a3333ed2">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.0.2_25bd9103b4b87614d9b887a6a6d9248d44518cd9.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/libs/infer-annotations-4.0.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-places/4.33.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_e0a7e404aea86407e6ed3ead239b5b55299edd20.jar" />
+        revision="27.0.3"
+        sha1="6ab689d36e3c7425adf1e32986075045d1baf4b2">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-places-4.33.0_88020d1bed12c24e33648c6482f16bf1b5a22f56.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/11.8.0/jars/classes.jar"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="5ad3911825107d8dd4b017fdecebfd23c08048dd">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-11.8.0_2ebaa88278a04c51ac5345ba74a8cdf1e8ff0ed9.jar" />
+        revision="27.0.3"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_8e4b0881ae994a658e77a7dfabe41c863d94eca6.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-svg/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="24303e5ddb2c1210dd7e8db9dbab018f50313e48">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.50.3_3d7ee883b8d82f613fa24efc24ec37a3a7215288.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_bd879846ef6c16c092308793736aa09dbfb4b5bc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-share/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e1a2da5755f1565b15ce4f7c200ec18b93cf01f2">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-share-unspecified_94dc845f99daf18d3855bb723c9eba30c6e08d16.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-26.1.0_0e1bcd82193f2c2009607814d0bc22a6c6c6b0a5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-text-size/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="872314d5bcc07da203aa30327b7cb3ce28c3f7b7">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-text-size-unspecified_aaaa6701d8ab82a29074998622cc777c1c051d4b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_fad937e57d360e91202cdfa7fc0c9a3a149e312b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-26.1.0_cd298bbe3a427bf31e74a75cbe8621362980213b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.1-native/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="2e492787f157c13839c02e0b7293871dbaed9911">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.github.yalantis-ucrop-2.2.1-native_03dd66da0507a3b10fb454ae741c9799df2c659e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_802e0310b026ebae2f6bf715062f160200e288bd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-26.1.0_35cbff42db31578f81edff9442e49c8583002d91.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_df6ccfd0ded493a4e5c9f075154e05e49f8043f0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.1-native/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="2e492787f157c13839c02e0b7293871dbaed9911">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.github.yalantis-ucrop-2.2.1-native_03dd66da0507a3b10fb454ae741c9799df2c659e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="d2af2ef4d987d753f2e8ee2d1480ab964d5c7273">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-11.8.0_08977fac57988aa890ccdeff7e272fb06a5ee18a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_b97332aaf06dcc3c8c6c8fad1717b7b95f25028c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_8068fea1b0d60ad2286e829261d6baa33cda10e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="264ad23f9752aabecfa41115c52a25a023a08839">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-11.8.0_7407b2384b9ffbef48aa766d8dbe6f76bef2d298.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_31f79f28817b7c53e32379f56b805a67aadb722b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_525d688a983fb6bb639acf774aae4f91aabf3385.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_a93772f20ba3c3db392d9646b7747c5e83b716fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_d95d5823204047aed985f5764819f6d4661d5035.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-firebase/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="7116f1df9eff8716018dc527e2608daad43380e8">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-firebase-unspecified_aa04385380925b8b0ea057954c2fcc0a37553ba0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_a93772f20ba3c3db392d9646b7747c5e83b716fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-crop-picker/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="4fc333312dca384c08ebe6617b3b3b1b075c7957">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-crop-picker-unspecified_3aeb49634ad7081cae4363ba3843230b239ff96f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_6f4a5329d3cda2d2ee24042567e816d3359153f3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_802e0310b026ebae2f6bf715062f160200e288bd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-svg/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
         sha1="9954db6b107f991f6edc605fca49f08d8da78dff">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-svg-unspecified_aaa4cbcb1c706d58df14407c1b02bef9456f3f97.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-svg-unspecified_6b4e644b2292a7cf3d0c7b03b01ddf0f943f6677.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-share/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="e1a2da5755f1565b15ce4f7c200ec18b93cf01f2">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-share-unspecified_94dc845f99daf18d3855bb723c9eba30c6e08d16.jar" />
+        revision="27.0.3"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_e86322c00a5658b60a561afe79e361df81aea19e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.0.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-fbsdk/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.0.0_785abd7794adf381d48b2af82e02de61e60478a5.jar" />
+        revision="27.0.3"
+        sha1="44f21b570dd38d9a7ebe2c9587febfde2f493e99">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-fbsdk-unspecified_083653bbdf4a52da0097ab8cd8e4d7defab6cb6e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/26.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/id.zelory/compressor/2.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-26.1.0_9b2ad728ce745f5c62dbce7e96674178975e251d.jar" />
+        revision="27.0.3"
+        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/id.zelory-compressor-2.1.0_d1e9657c2bef70d32b09019755ca279ed00881d7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-picker/unspecified/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/jars/libs/infer-annotations-4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="efeb573638d6b2c0d30fbf3e60641272600cf3fe">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-picker-unspecified_7a081c16e9f6b77e073e3df000a43a671fa2722f.jar" />
+        revision="27.0.3"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_6a165bd52ec1699c0e4efac8292700fe8660254d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/26.1.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-text-size/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-26.1.0_f465ea3597505ec614f6375b5aa2264c3f6ddb51.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_fad937e57d360e91202cdfa7fc0c9a3a149e312b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_c571e2ba44e11e84f7f2d521cbb194d85d5af3fe.jar" />
+        revision="27.0.3"
+        sha1="872314d5bcc07da203aa30327b7cb3ce28c3f7b7">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-text-size-unspecified_076c4eac8c477b5034f2b9772a066c53401fe99f.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
+        revision="27.0.3"
         sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_3d7792f219e26e7eb02e645d217b057957ec7609.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_3d7792f219e26e7eb02e645d217b057957ec7609.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/11.8.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-share/4.33.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="233d88c6f961d2a84758dfe27b7af61318190c7b">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-11.8.0_ec84eeafa25628e9e664901c22fcb5046cce4197.jar" />
+        revision="27.0.3"
+        sha1="f64aa03e24769f0e10f35f1c08e4d004b5db067b">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-share-4.33.0_20a7db84feaeef180227ba6f3b072e444c999a80.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-share/unspecified/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_e0581972cfa5e4362f63c1a353469f6da2438dc8.jar" />
+        revision="27.0.3"
+        sha1="e1a2da5755f1565b15ce4f7c200ec18b93cf01f2">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-share-unspecified_83594ee475e488a45fedb08373801fd91aa68575.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
         sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_8068fea1b0d60ad2286e829261d6baa33cda10e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/26.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="508f50705b4fde51a16259f29c854201a3044516">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-26.1.0_5d665900ad92947f983c2ed4027efdc95bffa4d5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-picker/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="efeb573638d6b2c0d30fbf3e60641272600cf3fe">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-picker-unspecified_7a081c16e9f6b77e073e3df000a43a671fa2722f.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_b94032869e4bb0f12929a2836195b3030d87d427.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
         sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_df6ccfd0ded493a4e5c9f075154e05e49f8043f0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_d95d5823204047aed985f5764819f6d4661d5035.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/11.8.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.1"
-        sha1="42c9659c973e311ffdb645ed057e5053e0ab5c78">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-11.8.0_eda2f79f6d0735bfa7aa992097866834262edf98.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_525d688a983fb6bb639acf774aae4f91aabf3385.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_df6ccfd0ded493a4e5c9f075154e05e49f8043f0.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_b97332aaf06dcc3c8c6c8fad1717b7b95f25028c.jar" />
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_b97332aaf06dcc3c8c6c8fad1717b7b95f25028c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
-        <dex dex="/Users/arongates/Library/Mobile Documents/com~apple~CloudDocs/Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/common-1.0.0_1254d03f820c503b226bb3d99ab6bcd9e9f0e6f5.jar" />
+        revision="27.0.3"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_ad0c77fdae7adc6300bdd256f1ecfaf149cb22f0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-firebase/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7116f1df9eff8716018dc527e2608daad43380e8">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-firebase-unspecified_c5ab14d9a7b140175c77581704545dd83ea51de0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-api-phone/15.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7c9f3ed917984af2e50b56f65f0398c9e5756035">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-api-phone-15.0.1_67b71b4567625588089c687744ba37b2fa87eff4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b432e82447a3af781e927b9ba0bbb9fe2a496d4a">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.0.2_051f12c1a5834bde8a14f5f9bb4ece60cad43b32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.4.0_40f641c38dc1b8f26474f29b15a7d00a7a9e7740.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_fad937e57d360e91202cdfa7fc0c9a3a149e312b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.billingclient/billing/1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d79b3dd1b26bcaf6b9d5f545c04907ad3168f3d2">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.billingclient-billing-1.0_63a2aeac49a10b24f9f4df78dc9ffc7d752b50c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="25c8cb628374f9a2d59ff9e1172753751e9a9f84">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.0.2_bb9b823e3f3496cd8065d483f53ad13687252af2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/exploded-aar/BridgeCard/react-native-image-picker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="efeb573638d6b2c0d30fbf3e60641272600cf3fe">
+        <dex dex="/Users/arongates/Offline Workspace/BridgeApp/android/app/build/intermediates/pre-dexed/debug/BridgeCard-react-native-image-picker-unspecified_3c4d2e2536003e7df65e60bc122a193edd9a495a.jar" />
     </item>
 
 </items>

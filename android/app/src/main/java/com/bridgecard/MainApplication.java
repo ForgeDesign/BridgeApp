@@ -3,32 +3,39 @@ package com.bridgecard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.github.yamill.orientation.OrientationPackage;
-import com.devfd.RNGeocoder.RNGeocoderPackage;
-import com.dooboolab.RNIap.RNIapPackage;
-import com.beefe.picker.PickerViewPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.magus.fblogin.FacebookLoginPackage;
-import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
-import io.amarcruz.rnmeasuretext.RNMeasureTextPackage;
-// import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
-
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import io.amarcruz.rnmeasuretext.RNMeasureTextPackage;
 import com.horcrux.svg.SvgPackage;
 import cl.json.RNSharePackage;
+import com.beefe.picker.PickerViewPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.dooboolab.RNIap.RNIapPackage;
+import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
+
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.magus.fblogin.FacebookLoginPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.facebook.CallbackManager;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -40,21 +47,21 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new OrientationPackage(),
-            new RNGeocoderPackage(),
-            new RNIapPackage(),
-            new PickerViewPackage(),
-            new FBSDKPackage(),
-            new FacebookLoginPackage(),
-            new RNGoogleSignInPackage(),
-            new RNMeasureTextPackage(),
-            new RNFirebasePackage(),
-            new RNFirebaseAuthPackage(), // <-- Add this line
-            new PickerPackage(),
             new VectorIconsPackage(),
+            new RNMeasureTextPackage(),
             new SvgPackage(),
             new RNSharePackage(),
-            new ImagePickerPackage()
+            new PickerViewPackage(),
+            new ImagePickerPackage(),
+            new PickerPackage(),
+            new RNIapPackage(),
+            new RNGoogleSignInPackage(),
+            new RNGeocoderPackage(),
+            new RNFirebasePackage(),
+            new FBSDKPackage(mCallbackManager),
+            new RNFirebaseDatabasePackage(),
+            new RNFirebaseAuthPackage(),
+            new FacebookLoginPackage()
       );
     }
 
