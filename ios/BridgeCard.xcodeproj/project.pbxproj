@@ -14,8 +14,8 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		01F5A38522E748ADA33B5A54 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B1F7C7EA97D49F3AD8D59E9 /* Octicons.ttf */; };
 		065F8B5F5BBF437B8F033865 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 442781D953B84D729D0EDA83 /* MaterialIcons.ttf */; };
-		0A01A0F420A00C0700485CA4 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A01A0F220A00BD500485CA4 /* libRNGeocoder.a */; };
 		0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A033835205F6D51003FF310 /* libRCTFBLogin.a */; };
+		0A12D27920B37BE800E92F83 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A01A0F220A00BD500485CA4 /* libRNGeocoder.a */; };
 		0A3F9FEE205624F200B970CB /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FBF205624F200B970CB /* Octicons.ttf */; };
 		0A3F9FEF205624F200B970CB /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC0205624F200B970CB /* Feather.ttf */; };
 		0A3F9FF0205624F200B970CB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC1205624F200B970CB /* Entypo.ttf */; };
@@ -35,7 +35,6 @@
 		0A76EA04205F903A002E488E /* RNGoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */; };
 		0A76EA05205F903A002E488E /* RNGoogleSignInBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */; };
 		0A76EA06205F91F0002E488E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		0A7F9BD520A015A0003F29D3 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A7F9BBA20A0158D003F29D3 /* libRCTOrientation.a */; };
 		0AE8EB05205639C7005ECD5C /* libRSKImageCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -364,6 +363,7 @@
 		078E02E11020449E94FBBB5D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		0A01A0C720A00BD400485CA4 /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
+		0A12D24E20B37BD800E92F83 /* libreact-native-geocoder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-geocoder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A3F9FBF205624F200B970CB /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		0A3F9FC0205624F200B970CB /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		0A3F9FC1205624F200B970CB /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -445,8 +445,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A7F9BD520A015A0003F29D3 /* libRCTOrientation.a in Frameworks */,
-				0A01A0F420A00C0700485CA4 /* libRNGeocoder.a in Frameworks */,
+				0A12D27920B37BE800E92F83 /* libRNGeocoder.a in Frameworks */,
 				0A6C1A4620843F2C0096484E /* libFBSDKCoreKit.a in Frameworks */,
 				0A6C1A4820843F2C0096484E /* libFBSDKLoginKit.a in Frameworks */,
 				0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */,
@@ -554,6 +553,7 @@
 		0A316FFA1FF0F5080050BE80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A12D24E20B37BD800E92F83 /* libreact-native-geocoder.a */,
 				0A6C1AA8208446150096484E /* FBSDKCoreKit.framework */,
 				0A6C1AA9208446150096484E /* FBSDKLoginKit.framework */,
 				0A6C1A80208446150096484E /* FBSDKShareKit.framework */,
@@ -1415,7 +1415,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 66;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1472,7 +1472,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

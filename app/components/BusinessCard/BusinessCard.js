@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform, Dimensions } from 'react-native';
+import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform, Dimensions, AppState } from 'react-native';
 import Hero from 'react-native-hero';
 import CardStyle from '../../data/CardTemplates/CardStyle'
 // import { Shaders, Node, GLSL } from 'gl-react';
@@ -16,7 +16,6 @@ const rootRef = firebase.database().ref();
 import Geocoder from 'react-native-geocoder';
 import Swiper from 'react-native-swiper';
 import openMap from 'react-native-open-maps';
-import Orientation from 'react-native-orientation';
 
 var {height, width} = Dimensions.get('window');
 
@@ -29,6 +28,7 @@ const available_media = [
 export default class BusinessCard extends React.Component {
 
     state = {
+        appState: AppState.currentState,
         loaded: false,
         hidden: false,
         style : "",
@@ -68,6 +68,12 @@ export default class BusinessCard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if(this.state.cameFromOutside) {
+            this.setState({cameFromOutside: false})
+            return            
+        }
+        if(this.state.appState == "inactive" || this.state.appState == "background")
+            return
         if(this.props != nextProps) {
             if (this.props.cardnum != nextProps.cardnum)
                 this.updateWith(nextProps, false)
@@ -78,6 +84,22 @@ export default class BusinessCard extends React.Component {
                 this.setState({notes: notes})
             })
         }
+    }
+
+    _handleAppStateChange = (nextAppState) => {
+        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+            this.setState({cameFromOutside: true})
+            console.log('App has come to the foreground!')
+        }
+        this.setState({appState: nextAppState});
+    }
+
+    componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+    
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
     async getNotes(key) {
@@ -579,7 +601,8 @@ export default class BusinessCard extends React.Component {
                                             var latitude = res[0].position.lat
                                             var longitude = res[0].position.lng
                                             openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
-                                            Orientation.lockToLandscape();
+                                            this._landscape()
+                                            // Orientation.lockToLandscape();
                                         })
                                         .catch(err => console.log(err))
                                     }}
@@ -596,7 +619,9 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={ () => Linking.openURL("mailto:" + this.state.email)}
+                                    onPress={ () => Linking.openURL("mailto:" + this.state.email).then(val => {
+                                        this._landscape()
+                                    })}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.emailTouch}>
                                         <TextInput
@@ -610,7 +635,9 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website)}
+                                    onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website).then(val => {
+                                        this._landscape()
+                                    })}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.websiteTouch}>
                                         <TextInput
@@ -624,7 +651,9 @@ export default class BusinessCard extends React.Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity 
-                                    onPress={ () => Linking.openURL("tel:" + this.state.phonenum)}
+                                    onPress={ () => Linking.openURL("tel:" + this.state.phonenum).then(val => {
+                                        this._landscape()
+                                    })}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.phonenumTouch}>
                                         <TextInput
@@ -639,6 +668,17 @@ export default class BusinessCard extends React.Component {
 
                                     <TouchableOpacity 
                                     activeOpacity={1}
+                                    onPress={() => {
+                                        var combined = this.state.address + this.state.city + " " + this.state.stateabb + " " + this.state.zip
+                                        Geocoder.geocodeAddress(combined).then(res => {
+                                            var latitude = res[0].position.lat
+                                            var longitude = res[0].position.lng
+                                            openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
+                                            this._landscape()
+                                            // Orientation.lockToLandscape();
+                                        })
+                                        .catch(err => console.log(err))
+                                    }}
                                     disabled={ !this.state.isLandscaped }
                                     style={this.state.style.address2Touch}>
                                         <TextInput
@@ -704,7 +744,7 @@ export default class BusinessCard extends React.Component {
                     <Image
                         style={this.state.style.image}
                         colorOverlay={this.state.color}
-                        source={typeof this.state.image == "number" ? this.state.image : this.state.image != "" ? {uri : this.props.justImage == "IMAGE" ? this.state.image : this.state.image[this.state.chosenImage]} : {uri: " "}}
+                        source={typeof this.state.image == "number" ? this.state.image : (this.state.image != "" && this.state.image != undefined) ? {uri : this.props.justImage == "IMAGE" ? this.state.image : this.state.image[this.state.chosenImage ? this.state.chosenImage : 0]} : {uri: " "}}
                         resizeMode="stretch"
                     />
                     <Image
@@ -723,7 +763,8 @@ export default class BusinessCard extends React.Component {
                                         var latitude = res[0].position.lat
                                         var longitude = res[0].position.lng
                                         openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
-                                        Orientation.lockToLandscape();
+                                        this._landscape()
+                                        // Orientation.lockToLandscape();
                                     })
                                     .catch(err => console.log(err))
                                 }}
@@ -740,7 +781,9 @@ export default class BusinessCard extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL("mailto:" + this.state.email)}
+                                onPress={() => Linking.openURL("mailto:" + this.state.email).then(val => {
+                                    this._landscape()
+                                })}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.emailTouch}>
                                     <TextInput
@@ -754,7 +797,9 @@ export default class BusinessCard extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website)}
+                                onPress={() => Linking.openURL(this.state.website.toLowerCase().includes("http") || this.state.website.toLowerCase().includes("https") ? this.state.website : "http://" + this.state.website).then(val => {
+                                    this._landscape()
+                                })}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.websiteTouch}>
                                     <TextInput
@@ -768,7 +813,9 @@ export default class BusinessCard extends React.Component {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
-                                onPress={() => Linking.openURL("tel:" + this.state.phonenum)}
+                                onPress={() => Linking.openURL("tel:" + this.state.phonenum).then(val => {
+                                    this._landscape()
+                                })}
                                 disabled={ !this.state.isLandscaped }
                                 style={this.state.style.phonenumTouch}>
                                     <TextInput
@@ -788,7 +835,8 @@ export default class BusinessCard extends React.Component {
                                         var latitude = res[0].position.lat
                                         var longitude = res[0].position.lng
                                         openMap({ latitude: latitude, longitude: longitude, name: this.state.businame });
-                                        Orientation.lockToLandscape();
+                                        this._landscape()
+                                        // Orientation.lockToLandscape();
                                     })
                                     .catch(err => console.log(err))
                                 }}

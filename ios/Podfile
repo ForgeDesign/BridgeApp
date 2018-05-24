@@ -32,7 +32,6 @@ target 'BridgeCard' do
     pod 'FBSDKLoginKit'
 
     pod 'Google/SignIn'
-    pod 'RNIap', :path => '../node_modules/react-native-iap'
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 
@@ -46,11 +45,8 @@ target 'BridgeCard' do
 
     pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
 
-  pod 'RNIap', :path => '../node_modules/react-native-iap'
 
-  pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
-
-  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+#pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
   
   pod 'RNIap', :path => '../node_modules/react-native-iap'
 
