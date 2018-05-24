@@ -330,7 +330,6 @@ confirmChanges = () => {
                 <BusinessCard
                     logoFrame={this.state.logoFrame}
                     createOrEdit={false}
-                    ref={(ref) => this.businessCard1 = ref}
                     chosenImage={this.state.chosenImageThingy}
                     loadAfter={true}
                     font={this.state.prefont}

@@ -71,6 +71,7 @@ export default class EditCardScreen extends React.Component {
             modalVisible: false,
             recents: ['#247ba0', '#70c1b3', '#b2dbbf', '#f3ffbd', '#ff1654'],
             logo: this.props.navigation.state.params.card.item.logo,
+            chosenImageThingy: this.props.navigation.state.params.card.item.chosenImage,
             fonts : [
                 {
                     value: 'American Typewriter'
@@ -136,6 +137,7 @@ export default class EditCardScreen extends React.Component {
     }
 
     swipeableFunc(index) {
+        this.setState({chosenImageThingy : index})
         this.chosenImage = index
     }
 
@@ -158,10 +160,10 @@ render() {
 
         <BusinessCard
             logoFrame={this.state.logoFrame}
-            createOrEdit={true}
-            swipeable={true}
-            swipeableFunc={this.swipeableFunc.bind(this)}
-            chosenImage={this.props.navigation.state.params.card.item.chosenImage}
+            createOrEdit={false}
+            // swipeable={true}
+            // swipeableFunc={this.swipeableFunc.bind(this)}
+            chosenImage={this.state.chosenImageThingy}
             font={this.state.font}
             cardnum={this.state.cardnum}
             logo={this.state.logo} 

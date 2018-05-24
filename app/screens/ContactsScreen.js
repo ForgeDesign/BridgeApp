@@ -159,7 +159,6 @@ class ContactsScreen extends React.Component {
                     }
                     for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                         const section = foundPeople[Object.keys(foundPeople)[index]];
-                        console.log(section.length)
                         for (let index2 = 0; index2 < section.length; index2++) {
                             person = section[index2];
                             person.card = this.filter_array(person.card)
