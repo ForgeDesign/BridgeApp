@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, Linking, Button, Alert } from 'react-native';
+import { View, Text, AppRegistry, Platform, ScrollView, RefreshControl, FlatList, TouchableOpacity, Modal, Dimensions, Linking, Button, Alert } from 'react-native';
 
 import styles from './ProfileStyles'
 
@@ -20,6 +20,17 @@ import { Face } from 'react-native-flip-card';
 const rootRef = firebase.database().ref();
 var { FBLogin, FBLoginManager } = require('react-native-facebook-login');
 import GoogleSignIn from 'react-native-google-sign-in';
+
+import * as RNIap from 'react-native-iap';
+
+const itemSkus = Platform.select({
+  ios: [
+    'Pro'
+  ],
+  android: [
+    'Pro'
+  ]
+});
 
 const Facebook = {
     login: (permissions) => {
@@ -61,6 +72,16 @@ class ProfileScreen extends Component {
     componentWillUnmount() {
         clearInterval(this.interval)
     }
+
+    async componentDidMount() {
+        try {
+          await RNIap.prepare();
+          const products = await RNIap.getSubscriptions(itemSkus);
+          console.log(products)
+        } catch(err) {
+          console.warn(err); // standardized err.code and err.message available
+        }
+      }
 
     constructor(props) {
         super(props)
@@ -344,6 +365,51 @@ class ProfileScreen extends Component {
                         rootRef.child(pathPerson).once().then(val => {
                             if(val.val().level == "Pro")
                                 Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
+                            else {
+                                Alert.alert(
+                                    'Upgrade to Pro',
+                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nOnly $6.99 a month!',
+                                    [
+                                      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                      {text: 'UPGRADE', onPress: () => {
+                                            try {
+                                            RNIap.prepare().then(val => {
+                                                RNIap.buySubscription('Pro').then(val => {
+                                                    var pathPerson = firebase.auth().currentUser.uid + "person"
+                                                    rootRef.child(pathPerson).once().then(val2 => {
+                                                        var person = val2._value
+                                                        if (person == null) {
+                                                            obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                                            obj.level = "Pro"
+                                                            delete obj.refreshToken
+                                                            delete obj.providerId
+                                                            delete obj.providerData
+                                                            delete obj.uid
+                                                            delete obj.metadata
+                                                            delete obj.phoneNumber
+                                                            delete obj.isAnonymous
+                                                            delete obj.emailVerified
+                                                            delete obj.email
+                                                            rootRef.child(pathPerson).set(obj)
+                                                        }
+                                                        else {
+                                                            var poo = val.val()
+                                                            poo.level = "Pro"
+                                                            rootRef.child(pathPerson).set(poo)
+                                                        }
+                                                    })
+                                                })
+                                            });
+                                          //   const products = await RNIap.getAvailablePurchases();
+                                          //   console.log(products)
+                                          } catch(err) {
+                                            console.warn(err); // standardized err.code and err.message available
+                                          }
+                                      }},
+                                    ],
+                                    { cancelable: false }
+                                )
+                            }
                         })
                         // GoogleSignIn.signOut()
                         // Facebook.logout().then(val => {

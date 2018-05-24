@@ -144,6 +144,7 @@ class ContactsScreen extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
+            console.log("CONTACTS")
             this.getPeople().then(peopleObj => {
                 this.getCards(peopleObj).then(foundPeople => {
                     removeDuplicates = {

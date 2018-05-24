@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hero from 'react-native-hero';
 import { Icon } from 'native-base';
-import { View, TouchableOpacity, AppRegistry, Text, Picker, AsyncStorage, Image } from 'react-native';
+import { View, TouchableOpacity, AppRegistry, Text, Picker, AsyncStorage, Image, Platform } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import ImageCropper from 'react-native-image-crop-picker';
 
@@ -13,10 +13,33 @@ import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 const circleWidth = Dimensions.get('window').width / 6;
+import * as RNIap from 'react-native-iap';
 
+const itemSkus = Platform.select({
+  ios: [
+    'Pro'
+  ],
+  android: [
+    'Pro'
+  ]
+});
 
 export default class ProfilePictureAndLevel extends React.Component
 {
+
+    // async componentDidMount() {
+    //     try {
+    //       await RNIap.prepare();
+    //       RNIap.getPurchaseHistory().then(val => {
+
+    //           console.log(val)
+    //       })
+    //     //   const products = await RNIap.getAvailablePurchases();
+    //     //   console.log(products)
+    //     } catch(err) {
+    //       console.warn(err); // standardized err.code and err.message available
+    //     }
+    //   }
 
     constructor(props) {
         super(props)
@@ -70,7 +93,11 @@ export default class ProfilePictureAndLevel extends React.Component
                 delete obj.isAnonymous
                 delete obj.emailVerified
                 delete obj.email
-                rootRef.child(pathPerson).set(obj)
+                rootRef.child(pathPerson).set(obj).then(val => {
+                    rootRef.child(firebase.auth().currentUser.uid + "person").once().then((val) => {
+                        this.setState({ profilePic: val.val().photoURL, level: val.val().level })
+                    })
+                })
             }
         })
     }

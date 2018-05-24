@@ -14,6 +14,7 @@ import StatusBarAlert from 'react-native-statusbar-alert';
 import { SearchBar } from 'react-native-elements'
 import { Fab, Icon } from 'native-base';
 import Swipeable from 'react-native-swipeable';
+import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 
 import firebase, { Firebase } from 'react-native-firebase';
 const rootRef = firebase.database().ref();
@@ -28,7 +29,68 @@ const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
-export default class IsoScreen extends React.Component {
+class IsoScreen extends React.Component {
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.isFocused && nextProps.isFocused) {
+            foundISO = []
+        rootRef.child(firebase.auth().currentUser.uid + "iso").once().then(val => {
+            var iso = []
+            val.forEach(child => {
+                shit = child.val()
+                shit.key = child.key
+                if(shit.fireUID == firebase.auth().currentUser.uid) {
+                    shit.connector = "You"
+                    shit.text = "are looking for"
+                }
+                iso.push(shit)
+            })
+
+            rootRef.child(firebase.auth().currentUser.uid + "people").once().then(val => {
+                var people = []
+                val.forEach(child => {
+                    if(child.val().person != firebase.auth().currentUser.uid)
+                        people.push(child.val())
+                })
+
+                var promises = []
+                for (let index = 0; index < people.length; index++) {
+                    const element = people[index];
+                    promises.push(
+                        rootRef.child(element.person + "iso").once()
+                    )
+                }
+                Promise.all(promises).then( (val) => {
+                    if(val.length == 0) {
+                        this.setState({activity: iso.reverse(), yourISO: iso.reverse(), foundISO: []})
+                        this._onRefresh()
+                    }
+                    val.forEach((child) => {
+                        if(child.val() != null) {
+                            const personUID = child.key.substring(0, child.key.length - 3)
+                            
+                            rootRef.child(personUID + "person").once().then(person => {
+                                for (let pIndex = 0; pIndex < Object.keys(child.val()).length; pIndex++) {
+                                    var personISO = child.val()[Object.keys(child.val())[pIndex]]
+                                    personISO.connector = person.val().displayName
+                                    personISO.text = "is looking for"
+                                    personISO.image = person.val().photoURL
+                                    personISO.fireUID = personUID
+                                    personISO.fireKey = Object.keys(child.val())[pIndex]
+                                    foundISO.push(personISO)
+                                }
+                                this.setState({activity: [], yourISO: [], foundISO: []})
+                                this.setState({activity: iso.reverse().concat(foundISO), yourISO: iso.reverse(), foundISO: foundISO})
+                                this._onRefresh()
+                            })
+                        }
+                    })
+                })
+
+            })
+        })
+        }
+    }
 
     constructor(props) {
         super(props)
@@ -330,7 +392,7 @@ export default class IsoScreen extends React.Component {
         for (let index = 0; index < this.state.people.length; index++) {
             if (this.trackContactChecks[this.popupRelatedConnect][index]) {
                 peopleRecommended.push(this.state.abstractPeople[index])
-                peopleRecommended[index].recommendedBy = firebase.auth().currentUser.uid
+                peopleRecommended[peopleRecommended.length - 1].recommendedBy = firebase.auth().currentUser.uid
             }
                 
         }
@@ -878,6 +940,8 @@ export default class IsoScreen extends React.Component {
         )
     }
 }
+
+export default withNavigationFocus(IsoScreen, 'ISO')
 
 const styles = EStyleSheet.create({
     scroll: {

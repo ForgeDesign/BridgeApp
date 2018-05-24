@@ -57,6 +57,7 @@
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
+            
             this._onRefresh()
         }
         if (this.props.isFocused && !nextProps.isFocused) {

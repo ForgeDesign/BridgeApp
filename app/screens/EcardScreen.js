@@ -27,6 +27,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import ImagePicker from 'react-native-image-picker'
 import ImageCropper from 'react-native-image-crop-picker'
 import StatusBarAlert from 'react-native-statusbar-alert';
+import { withNavigationFocus } from 'react-navigation-is-focused-hoc'
 
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
@@ -43,7 +44,7 @@ import {
 
 const {height, width} = Dimensions.get('window');
 
-export default class EcardScreen extends React.Component {
+class EcardScreen extends React.Component {
 
     async getTemplateNames() {
         templates = Array()
@@ -60,6 +61,16 @@ export default class EcardScreen extends React.Component {
             templates.sort()
             this.setState({availableTemplates : templates})
         })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.isFocused && nextProps.isFocused) {
+            // here we are in screen
+            console.log("in the ecard screen")
+        }
+        if (this.props.isFocused && !nextProps.isFocused) {
+            // NOT HERE
+        }
     }
 
 state = {
@@ -106,6 +117,7 @@ state = {
             value: 'Verdana'
         },
     ],
+    chosenImageThingy: 0,
     precity: '',
     city: '',
     prestateabb: '',
@@ -252,6 +264,7 @@ confirmChanges = () => {
     }
 
     swipeableFunc(index) {
+        this.setState({chosenImageThingy : index})
         this.chosenImage = index
     }
 
@@ -316,11 +329,9 @@ confirmChanges = () => {
 
                 <BusinessCard
                     logoFrame={this.state.logoFrame}
-                    createOrEdit={true}
+                    createOrEdit={false}
                     ref={(ref) => this.businessCard1 = ref}
-                    swipeable={true}
-                    swipeableFunc={this.swipeableFunc.bind(this)}
-                    chosenImage={0}
+                    chosenImage={this.state.chosenImageThingy}
                     loadAfter={true}
                     font={this.state.prefont}
                     cardnum={this.state.cardnum}
@@ -347,7 +358,7 @@ confirmChanges = () => {
                     placeholder="Select One"
                     selectedValue={this.state.cardnum}
                     onValueChange={(itemValue, itemIndex) => {
-                        this.setState({ cardnum: itemValue })
+                        this.setState({ cardnum: itemValue, chosenImageThingy: 0 })
                     }}>
                     {this.state.availableTemplates.map((item, index) => {
                         if (typeof item == "string")
@@ -732,6 +743,8 @@ confirmChanges = () => {
         })
     }
 }
+
+export default withNavigationFocus(EcardScreen, 'Ecard')
 
 const styles = EStyleSheet.create({
     container: {
