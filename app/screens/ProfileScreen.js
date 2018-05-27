@@ -373,58 +373,62 @@ class ProfileScreen extends Component {
                     if(latest <= expires) {
                         var pathPerson = firebase.auth().currentUser.uid + "person"
                         rootRef.child(pathPerson).once().then(val2 => {
-                            var person = val2._value
-                            if (person == null) {
-                                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                obj.level = "Pro"
-                                delete obj.refreshToken
-                                delete obj.providerId
-                                delete obj.providerData
-                                delete obj.uid
-                                delete obj.metadata
-                                delete obj.phoneNumber
-                                delete obj.isAnonymous
-                                delete obj.emailVerified
-                                delete obj.email
-                                rootRef.child(pathPerson).set(obj).then(() => {
-                                    this.forceUpdate()
-                                })
-                            }
-                            else {
-                                var poo = val2.val()
-                                poo.level = "Pro"
-                                rootRef.child(pathPerson).set(poo).then(() => {
-                                    this.forceUpdate()
-                                })
+                            if(val2.val().transactionId == val[val.length - 1].transactionId) {
+                                var person = val2._value
+                                if (person == null) {
+                                    obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                    obj.level = "Pro"
+                                    delete obj.refreshToken
+                                    delete obj.providerId
+                                    delete obj.providerData
+                                    delete obj.uid
+                                    delete obj.metadata
+                                    delete obj.phoneNumber
+                                    delete obj.isAnonymous
+                                    delete obj.emailVerified
+                                    delete obj.email
+                                    rootRef.child(pathPerson).set(obj).then(() => {
+                                        this.forceUpdate()
+                                    })
+                                }
+                                else {
+                                    var poo = val2.val()
+                                    poo.level = "Pro"
+                                    rootRef.child(pathPerson).set(poo).then(() => {
+                                        this.forceUpdate()
+                                    })
+                                }
                             }
                         })
                     }
                     else {
                         var pathPerson = firebase.auth().currentUser.uid + "person"
                         rootRef.child(pathPerson).once().then(val2 => {
-                            var person = val2._value
-                            if (person == null) {
-                                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                obj.level = "Lite"
-                                delete obj.refreshToken
-                                delete obj.providerId
-                                delete obj.providerData
-                                delete obj.uid
-                                delete obj.metadata
-                                delete obj.phoneNumber
-                                delete obj.isAnonymous
-                                delete obj.emailVerified
-                                delete obj.email
-                                rootRef.child(pathPerson).set(obj).then(() => {
-                                    this.forceUpdate()
-                                })
-                            }
-                            else {
-                                var poo = val2.val()
-                                poo.level = "Lite"
-                                rootRef.child(pathPerson).set(poo).then(() => {
-                                    this.forceUpdate()
-                                })
+                            if(val2.val().transactionId == val[val.length - 1].transactionId) {
+                                var person = val2._value
+                                if (person == null) {
+                                    obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                    obj.level = "Lite"
+                                    delete obj.refreshToken
+                                    delete obj.providerId
+                                    delete obj.providerData
+                                    delete obj.uid
+                                    delete obj.metadata
+                                    delete obj.phoneNumber
+                                    delete obj.isAnonymous
+                                    delete obj.emailVerified
+                                    delete obj.email
+                                    rootRef.child(pathPerson).set(obj).then(() => {
+                                        this.forceUpdate()
+                                    })
+                                }
+                                else {
+                                    var poo = val2.val()
+                                    poo.level = "Lite"
+                                    rootRef.child(pathPerson).set(poo).then(() => {
+                                        this.forceUpdate()
+                                    })
+                                }
                             }
                         })
                     }
@@ -452,8 +456,8 @@ class ProfileScreen extends Component {
                     }}
                     upgrade={() => {
                         var pathPerson = firebase.auth().currentUser.uid + "person"
-                        rootRef.child(pathPerson).once().then(val => {
-                            if(val.val().level == "Pro")
+                        rootRef.child(pathPerson).once().then(firePerson => {
+                            if(firePerson.val().level == "Pro")
                                 Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
                             else {
                                 Alert.alert(
@@ -464,30 +468,30 @@ class ProfileScreen extends Component {
                                       {text: 'UPGRADE', onPress: () => {
                                             try {
                                             RNIap.prepare().then(val => {
-                                                RNIap.buySubscription('Pro').then(val => {
-                                                    var pathPerson = firebase.auth().currentUser.uid + "person"
-                                                    rootRef.child(pathPerson).once().then(val2 => {
-                                                        var person = val2._value
-                                                        if (person == null) {
-                                                            obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                                            obj.level = "Pro"
-                                                            delete obj.refreshToken
-                                                            delete obj.providerId
-                                                            delete obj.providerData
-                                                            delete obj.uid
-                                                            delete obj.metadata
-                                                            delete obj.phoneNumber
-                                                            delete obj.isAnonymous
-                                                            delete obj.emailVerified
-                                                            delete obj.email
-                                                            rootRef.child(pathPerson).set(obj)
-                                                        }
-                                                        else {
-                                                            var poo = val.val()
-                                                            poo.level = "Pro"
-                                                            rootRef.child(pathPerson).set(poo)
-                                                        }
-                                                    })
+                                                RNIap.buySubscription('Pro').then(subscription => {
+                                                    console.log(subscription)
+                                                    var person = firePerson._value
+                                                    if (person == null) {
+                                                        obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                                        obj.level = "Pro"
+                                                        obj.transactionId = subscription.transactionId
+                                                        delete obj.refreshToken
+                                                        delete obj.providerId
+                                                        delete obj.providerData
+                                                        delete obj.uid
+                                                        delete obj.metadata
+                                                        delete obj.phoneNumber
+                                                        delete obj.isAnonymous
+                                                        delete obj.emailVerified
+                                                        delete obj.email
+                                                        rootRef.child(pathPerson).set(obj)
+                                                    }
+                                                    else {
+                                                        var poo = firePerson.val()
+                                                        poo.level = "Pro"
+                                                        poo.transactionId = subscription.transactionId
+                                                        rootRef.child(pathPerson).set(poo)
+                                                    }
                                                 })
                                             });
                                           //   const products = await RNIap.getAvailablePurchases();
