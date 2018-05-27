@@ -66,6 +66,7 @@ class EcardScreen extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
+            this.forceUpdate()
             console.log("in the ecard screen")
         }
         if (this.props.isFocused && !nextProps.isFocused) {
@@ -75,7 +76,6 @@ class EcardScreen extends React.Component {
 
 state = {
     logoFrame: false,
-    cardnum: 1,
     availableTemplates : [
         ""
     ],
@@ -178,11 +178,13 @@ confirmChanges = () => {
         var pathPerson = firebase.auth().currentUser.uid + "person"
         var pathCards = firebase.auth().currentUser.uid + "cards"
         rootRef.child(pathPerson).once().then(val => {
+            console.log(val)
             rootRef.child(pathCards).once().then(val2 => {
-                if(val2.val() != null) {
-                    if(val.val().level == "Lite" && Object.keys( val2.val() ).length > 0)
-                        Alert.alert("As a free user, you may only have 1 BridgeCard. \n\nUpgrade today!")
+                console.log(val2)
+                if(val2.val() != null && val.val().level == "Lite" && Object.keys( val2.val() ).length > 0) {
+                    Alert.alert("As a free user, you may only have 1 BridgeCard. \n\nUpgrade today!")
                 } else {
+                    console.log("GOT HERE")
                     instagram = "thisisafakeprofiledonotusethisinprod"
                     if (this.state.instagram != undefined && this.state.instagram != "")
                         instagram = this.state.instagram
@@ -248,6 +250,7 @@ confirmChanges = () => {
 
     constructor(props) {
         super(props)
+        bigThingy = this
         this.removeLogo = this.removeLogo.bind(this)
         this.addLogo = this.addLogo.bind(this);
     }
@@ -264,7 +267,7 @@ confirmChanges = () => {
     }
 
     swipeableFunc(index) {
-        this.setState({chosenImageThingy : index})
+        // this.setState({chosenImageThingy : index})
         this.chosenImage = index
     }
 
@@ -329,9 +332,12 @@ confirmChanges = () => {
 
                 <BusinessCard
                     logoFrame={this.state.logoFrame}
-                    createOrEdit={false}
+                    createOrEdit={true}
                     chosenImage={this.state.chosenImageThingy}
+                    ref={ref => this.bigbusinesscardbugfix = ref}
                     loadAfter={true}
+                    swipeable
+                    swipeableFunc={this.swipeableFunc.bind(this)}
                     font={this.state.prefont}
                     cardnum={this.state.cardnum}
                     logo={this.state.logo} 

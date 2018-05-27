@@ -163,15 +163,17 @@ class ContactsScreen extends React.Component {
                             person = section[index2];
                             person.card = this.filter_array(person.card)
                             goodtogo = true
-                            for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
-                                const duplicate = removeDuplicates[person.sectionKey][index3];
-                                if(duplicate.key == person.key) {
-                                    goodtogo = false
-                                    break
+                            if (removeDuplicates[person.sectionKey] != undefined) {
+                                for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                                    const duplicate = removeDuplicates[person.sectionKey][index3];
+                                    if(duplicate.key == person.key) {
+                                        goodtogo = false
+                                        break
+                                    }
                                 }
-                            }
-                            if(goodtogo) {
-                                removeDuplicates[person.sectionKey].push(person)
+                                if(goodtogo) {
+                                    removeDuplicates[person.sectionKey].push(person)
+                                }
                             }
                         }
                     }
@@ -218,16 +220,18 @@ class ContactsScreen extends React.Component {
                     for (let index2 = 0; index2 < section.length; index2++) {
                         person = section[index2];
                         goodtogo = true
-                        for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
-                            const duplicate = removeDuplicates[person.sectionKey][index3];
-                            if(duplicate.key == person.key) {
-                                goodtogo = false
-                                break
+                        if(removeDuplicates[person.sectionKey]) {
+                            for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                                const duplicate = removeDuplicates[person.sectionKey][index3];
+                                if(duplicate.key == person.key) {
+                                    goodtogo = false
+                                    break
+                                }
                             }
-                        }
-                        if(goodtogo) {
-                            person.card = this.filter_array(person.card)
-                            removeDuplicates[person.sectionKey].push(person)
+                            if(goodtogo) {
+                                person.card = this.filter_array(person.card)
+                                removeDuplicates[person.sectionKey].push(person)
+                            }
                         }
                     }
                 }
@@ -267,16 +271,18 @@ class ContactsScreen extends React.Component {
                     for (let index2 = 0; index2 < section.length; index2++) {
                         person = section[index2];
                         goodtogo = true
-                        for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
-                            const duplicate = removeDuplicates[person.sectionKey][index3];
-                            if(duplicate.key == person.key) {
-                                goodtogo = false
-                                break
+                        if(removeDuplicates[person.sectionKey]) {
+                            for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                                const duplicate = removeDuplicates[person.sectionKey][index3];
+                                if(duplicate.key == person.key) {
+                                    goodtogo = false
+                                    break
+                                }
                             }
-                        }
-                        if(goodtogo) {
-                            person.card = this.filter_array(person.card)
-                            removeDuplicates[person.sectionKey].push(person)
+                            if(goodtogo) {
+                                person.card = this.filter_array(person.card)
+                                removeDuplicates[person.sectionKey].push(person)
+                            }
                         }
                     }
                 }
@@ -810,15 +816,17 @@ class ContactsScreen extends React.Component {
                                                     person = section[index2];
                                                     person.card = this.filter_array(person.card)
                                                     goodtogo = true
-                                                    for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
-                                                        const duplicate = removeDuplicates[person.sectionKey][index3];
-                                                        if(duplicate.key == person.key) {
-                                                            goodtogo = false
-                                                            break
+                                                    if(removeDuplicates[person.sectionKey]) {
+                                                        for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                                                            const duplicate = removeDuplicates[person.sectionKey][index3];
+                                                            if(duplicate.key == person.key) {
+                                                                goodtogo = false
+                                                                break
+                                                            }
                                                         }
-                                                    }
-                                                    if(goodtogo) {
-                                                        removeDuplicates[person.sectionKey].push(person)
+                                                        if(goodtogo) {
+                                                            removeDuplicates[person.sectionKey].push(person)
+                                                        }
                                                     }
                                                 }
                                             }

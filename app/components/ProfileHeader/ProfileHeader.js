@@ -14,7 +14,6 @@ import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 import Moment from 'moment';
-import * as RNIap from 'react-native-iap';
 
 export default class ProfileHeader extends React.Component {
 
@@ -33,17 +32,6 @@ export default class ProfileHeader extends React.Component {
         this.state.time = formatted
     }
 
-    checkPro() {
-        // try {
-        //     //also tried RNIap.getSubscriptions().then((data) => ....);
-        //     RNIap.getProducts().then((item_receipt) => {
-        //                     console.log(item_receipt);
-        //     }).catch(err => alert('errror :' + err))
-        // } catch (err) {
-        // alert('errror :' + err);
-        // }
-    }
-
     componentWillMount() {
         value = firebase.auth().currentUser.displayName
         if (value !== null) {
@@ -52,8 +40,6 @@ export default class ProfileHeader extends React.Component {
         else {
             this.setState({ profileName: 'Tap to add name' })
         }
-
-        this.checkPro()
 
         var pathPerson = firebase.auth().currentUser.uid + "person"
         rootRef.child(pathPerson).once().then(val => {

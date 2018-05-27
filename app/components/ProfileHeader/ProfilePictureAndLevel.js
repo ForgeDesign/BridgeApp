@@ -13,33 +13,33 @@ import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 const circleWidth = Dimensions.get('window').width / 6;
-import * as RNIap from 'react-native-iap';
 
-const itemSkus = Platform.select({
-  ios: [
-    'Pro'
-  ],
-  android: [
-    'Pro'
-  ]
-});
+Date.isLeapYear = function (year) { 
+    return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)); 
+};
+
+Date.getDaysInMonth = function (year, month) {
+    return [31, (Date.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+};
+
+Date.prototype.isLeapYear = function () { 
+    return Date.isLeapYear(this.getFullYear()); 
+};
+
+Date.prototype.getDaysInMonth = function () { 
+    return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
+};
+
+Date.prototype.addMonths = function (value) {
+    var n = this.getDate();
+    this.setDate(1);
+    this.setMonth(this.getMonth() + value);
+    this.setDate(Math.min(n, this.getDaysInMonth()));
+    return this;
+};
 
 export default class ProfilePictureAndLevel extends React.Component
 {
-
-    // async componentDidMount() {
-    //     try {
-    //       await RNIap.prepare();
-    //       RNIap.getPurchaseHistory().then(val => {
-
-    //           console.log(val)
-    //       })
-    //     //   const products = await RNIap.getAvailablePurchases();
-    //     //   console.log(products)
-    //     } catch(err) {
-    //       console.warn(err); // standardized err.code and err.message available
-    //     }
-    //   }
 
     constructor(props) {
         super(props)

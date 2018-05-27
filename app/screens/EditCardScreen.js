@@ -137,7 +137,7 @@ export default class EditCardScreen extends React.Component {
     }
 
     swipeableFunc(index) {
-        this.setState({chosenImageThingy : index})
+        // this.setState({chosenImageThingy : index})
         this.chosenImage = index
     }
 
@@ -160,9 +160,9 @@ render() {
 
         <BusinessCard
             logoFrame={this.state.logoFrame}
-            createOrEdit={false}
-            // swipeable={true}
-            // swipeableFunc={this.swipeableFunc.bind(this)}
+            createOrEdit={true}
+            swipeable={true}
+            swipeableFunc={this.swipeableFunc.bind(this)}
             chosenImage={this.state.chosenImageThingy}
             font={this.state.font}
             cardnum={this.state.cardnum}
@@ -384,7 +384,7 @@ render() {
                     withRef={true}
                     ref={(ref) => this.TwitterInputRef = ref}
                     editable={!isLoading}
-                    value={this.state.socialMedia.twitter}
+                    value={this.state.socialMedia.twitter == "thisisafakeprofiledonotusethisinprod" ? "" : this.state.socialMedia.twitter}
                     returnKeyType = {"next"}
                     onSubmitEditing={(event) => { 
                         this.InstagramInputRef.focus(); 
@@ -403,7 +403,7 @@ render() {
                     withRef={true}
                     ref={(ref) => this.InstagramInputRef = ref}
                     editable={!isLoading}
-                    value={this.state.socialMedia.instagram}
+                    value={this.state.socialMedia.instagram == "thisisafakeprofiledonotusethisinprod" ? "" : this.state.socialMedia.instagram}
                     returnKeyType = {"next"}
                     onSubmitEditing={(event) => { 
                         this.LinkedinInputRef.focus(); 
@@ -422,7 +422,7 @@ render() {
                     withRef={true}
                     ref={(ref) => this.LinkedinInputRef = ref}
                     editable={!isLoading}
-                    value={this.state.socialMedia.linkedin}
+                    value={this.state.socialMedia.linkedin == "thisisafakeprofiledonotusethisinprod" ? "" : this.state.socialMedia.linkedin}
                     returnKeyType = {"next"}
                     onSubmitEditing={(event) => { 
                         this.AddressInputRef.focus(); 

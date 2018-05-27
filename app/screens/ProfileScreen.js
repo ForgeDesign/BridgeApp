@@ -23,12 +23,36 @@ import GoogleSignIn from 'react-native-google-sign-in';
 
 import * as RNIap from 'react-native-iap';
 
+Date.isLeapYear = function (year) { 
+    return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)); 
+};
+
+Date.getDaysInMonth = function (year, month) {
+    return [31, (Date.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+};
+
+Date.prototype.isLeapYear = function () { 
+    return Date.isLeapYear(this.getFullYear()); 
+};
+
+Date.prototype.getDaysInMonth = function () { 
+    return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
+};
+
+Date.prototype.addMonths = function (value) {
+    var n = this.getDate();
+    this.setDate(1);
+    this.setMonth(this.getMonth() + value);
+    this.setDate(Math.min(n, this.getDaysInMonth()));
+    return this;
+};
+
 const itemSkus = Platform.select({
   ios: [
-    'Pro'
+    'Pro2'
   ],
   android: [
-    'Pro'
+    'Pro2'
   ]
 });
 
@@ -72,16 +96,6 @@ class ProfileScreen extends Component {
     componentWillUnmount() {
         clearInterval(this.interval)
     }
-
-    async componentDidMount() {
-        try {
-          await RNIap.prepare();
-          const products = await RNIap.getSubscriptions(itemSkus);
-          console.log(products)
-        } catch(err) {
-          console.warn(err); // standardized err.code and err.message available
-        }
-      }
 
     constructor(props) {
         super(props)
@@ -223,10 +237,15 @@ class ProfileScreen extends Component {
         })
     }
 
+    componentWillMount() {
+        this.getTheLevel()
+    }
+
     // this tells you if the profile screen is active
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
+            this.getTheLevel()
             this._getActivity()
             this._getCards()
             this.getPeople().then(people => {
@@ -342,6 +361,77 @@ class ProfileScreen extends Component {
         }
     
         return result;
+    }
+
+    async getTheLevel() {
+        RNIap.prepare().then(val => {
+            RNIap.getPurchaseHistory().then(val => {
+                if(val) {
+                    var latest = new Date(val[val.length - 1].transactionDate)
+                    var expires = new Date(val[val.length - 1].transactionDate)
+                    expires = expires.addMonths(1)
+                    if(latest <= expires) {
+                        var pathPerson = firebase.auth().currentUser.uid + "person"
+                        rootRef.child(pathPerson).once().then(val2 => {
+                            var person = val2._value
+                            if (person == null) {
+                                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                obj.level = "Pro"
+                                delete obj.refreshToken
+                                delete obj.providerId
+                                delete obj.providerData
+                                delete obj.uid
+                                delete obj.metadata
+                                delete obj.phoneNumber
+                                delete obj.isAnonymous
+                                delete obj.emailVerified
+                                delete obj.email
+                                rootRef.child(pathPerson).set(obj).then(() => {
+                                    this.forceUpdate()
+                                })
+                            }
+                            else {
+                                var poo = val2.val()
+                                poo.level = "Pro"
+                                rootRef.child(pathPerson).set(poo).then(() => {
+                                    this.forceUpdate()
+                                })
+                            }
+                        })
+                    }
+                    else {
+                        var pathPerson = firebase.auth().currentUser.uid + "person"
+                        rootRef.child(pathPerson).once().then(val2 => {
+                            var person = val2._value
+                            if (person == null) {
+                                obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                obj.level = "Lite"
+                                delete obj.refreshToken
+                                delete obj.providerId
+                                delete obj.providerData
+                                delete obj.uid
+                                delete obj.metadata
+                                delete obj.phoneNumber
+                                delete obj.isAnonymous
+                                delete obj.emailVerified
+                                delete obj.email
+                                rootRef.child(pathPerson).set(obj).then(() => {
+                                    this.forceUpdate()
+                                })
+                            }
+                            else {
+                                var poo = val2.val()
+                                poo.level = "Lite"
+                                rootRef.child(pathPerson).set(poo).then(() => {
+                                    this.forceUpdate()
+                                })
+                            }
+                        })
+                    }
+                }
+                console.log(val)
+            })
+        });
     }
 
     render() {

@@ -555,6 +555,18 @@ export default class BusinessCard extends React.Component {
         this.setState({autoplay: false})
     }
 
+    _startAutoplay() {
+        setTimeout(() => {
+            this.setState({autoplay : true})
+        }, 300)
+    }
+
+    _stopAutoplay() {
+        setTimeout(() => {
+            this.setState({autoplay : false})
+        }, 500)
+    }
+
     _renderFront = () => {
 
         if ( !this.state.loaded )
@@ -564,7 +576,7 @@ export default class BusinessCard extends React.Component {
             this.state.swipeable ? (
                 <Swiper
                 loop={true}
-                // autoplay={this.props.loadAfter ? this.state.autoplay : false}
+                autoplay={this.props.loadAfter ? this.state.autoplay : false}
                 ref={(ref) => this.swiper = ref}
                 onIndexChanged={(index) => {
                     this.props.swipeableFunc(index)

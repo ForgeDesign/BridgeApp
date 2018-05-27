@@ -11,6 +11,8 @@ import ContactsScreen from '../screens/ContactsScreen';
 
 var {height, width} = Dimensions.get('window');
 
+bigThingy = undefined
+
 export default TabNavigator(
     {
         Profile: {
@@ -96,6 +98,13 @@ export default TabNavigator(
                     index: 0,
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
                 });
+                if(scene.scene.route.key == "Ecard") {
+                    bigThingy.bigbusinesscardbugfix._stopAutoplay()
+                    //  bigbusinesscardbugfix
+                }
+                // else {
+                //     bigThingy.bigbusinesscardbugfix._startAutoplay()
+                // }
                 if(scene.scene.route.key == "Profile" && scene.previousScene.key == "Profile") {
                     if (scene.scene.route.routes.length > 1) {
                         navigation.dispatch(resetAction);
