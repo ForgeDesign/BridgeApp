@@ -289,6 +289,8 @@ class IsoScreen extends React.Component {
                         this.setState({activity: iso.reverse(), yourISO: iso.reverse(), foundISO: []})
                         this._onRefresh()
                     }
+                    console.log(val)
+                    
                     val.forEach((child) => {
                         if(child.val() != null) {
                             const personUID = child.key.substring(0, child.key.length - 3)
@@ -296,6 +298,7 @@ class IsoScreen extends React.Component {
                             rootRef.child(personUID + "person").once().then(person => {
                                 for (let pIndex = 0; pIndex < Object.keys(child.val()).length; pIndex++) {
                                     var personISO = child.val()[Object.keys(child.val())[pIndex]]
+                                    console.log(person.val())
                                     personISO.connector = person.val().displayName
                                     personISO.text = "is looking for"
                                     personISO.image = person.val().photoURL
@@ -304,6 +307,7 @@ class IsoScreen extends React.Component {
                                     foundISO.push(personISO)
                                 }
                                 this.setState({activity: iso.reverse().concat(foundISO), yourISO: iso.reverse(), foundISO: foundISO})
+                                console.log(this.state.activity, this.state.yourISO, this.state.foundISO)
                                 this._onRefresh()
                             })
                         }

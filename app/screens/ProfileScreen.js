@@ -468,6 +468,9 @@ class ProfileScreen extends Component {
                                       {text: 'UPGRADE', onPress: () => {
                                             try {
                                             RNIap.prepare().then(val => {
+                                                RNIap.getSubscriptions(itemSkus).then(val => {
+                                                    console.log(val)
+                                                })
                                                 RNIap.buySubscription('Pro2').then(subscription => {
                                                     console.log(subscription)
                                                     var person = firePerson._value
