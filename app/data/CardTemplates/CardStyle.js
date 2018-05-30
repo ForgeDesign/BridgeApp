@@ -5,11 +5,20 @@ var {height, width} = Dimensions.get('window');
 
 var widthRatio = (1050 / 355) * 1.0009
 var heightRatio = (600 / 202.35) * 1.0009
+const aspectRatio = height/width;
 
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
 export default class CardStyle {
+
+    constructor() {
+
+        if (aspectRatio < 1.6) {
+            widthRatio = widthRatio * 1.029
+            heightRatio = heightRatio * 1.024
+        }
+    }
 
     async getTemplates() {
         templates = Array()
@@ -85,8 +94,8 @@ export default class CardStyle {
                     },
                     cardLandscapedAndroid: {
                         padding: 0,
-                        width: 355,
-                        height: 202.35,
+                        width: aspectRatio<1.6 ? 300 : 355,
+                        height: aspectRatio<1.6 ? 171 : 202.35,
                         transform: [
                             { rotate: '90deg'}, 
                             { scaleX: 1.55 }, 
@@ -128,8 +137,8 @@ export default class CardStyle {
                         zIndex: 100
                     },
                     container: {
-                        width: 355,
-                        height: 202.35,
+                        width: aspectRatio<1.6 ? 300 : 355,
+                        height: aspectRatio<1.6 ? 171 : 202.35,
                         left: 10,
                         marginTop: 10
                     },
@@ -192,8 +201,8 @@ export default class CardStyle {
                     },
                     cardLandscapedAndroid: {
                         padding: 0,
-                        width: 355,
-                        height: 202.35,
+                        width: aspectRatio<1.6 ? 300 : 355,
+                        height: aspectRatio<1.6 ? 171 : 202.35,
                         transform: [
                             { rotate: '90deg'}, 
                             { scaleX: 1.55 }, 
@@ -256,8 +265,8 @@ export default class CardStyle {
                         left: logo.left / widthRatio
                     },
                     container: {
-                        width: 355,
-                        height: 202.35,
+                        width: aspectRatio<1.6 ? 300 : 355,
+                        height: aspectRatio<1.6 ? 171 : 202.35,
                         left: 10,
                         marginTop: 10
                     },
@@ -269,14 +278,14 @@ export default class CardStyle {
                     businameInput: {
                         textAlign: businame.textAlign,
                         color: businame.fill,
-                        fontSize: businame.fontSize / 3.45,
+                        fontSize: businame.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     businameInputPlaceholder: {
                         textAlign: businame.textAlign,
                         color: businame.fill,
-                        fontSize: businame.fontSize / 3.45,
+                        fontSize: businame.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -288,19 +297,19 @@ export default class CardStyle {
                         right: businame.right / widthRatio,
                         left: businame.left / widthRatio,
                         height: businame.height / heightRatio,
-                        width: 1.4 * businame.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * businame.width / widthRatio,
                     },
                     websiteInput: {
                         textAlign: website.textAlign,
                         color: website.fill,
-                        fontSize: website.fontSize / 3.45,
+                        fontSize: website.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     websiteInputPlaceholder: {
                         textAlign: website.textAlign,
                         color: website.fill,
-                        fontSize: website.fontSize / 3.45,
+                        fontSize: website.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -312,19 +321,19 @@ export default class CardStyle {
                         right: website.right / widthRatio,
                         left: website.left / widthRatio,
                         height: website.height / heightRatio,
-                        width: 1.4 * website.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * website.width / widthRatio,
                     },
                     positionInput: {
                         textAlign: position.textAlign,
                         color: position.fill,
-                        fontSize: position.fontSize / 3.45,
+                        fontSize: position.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     positionInputPlaceholder: {
                         textAlign: position.textAlign,
                         color: position.fill,
-                        fontSize: position.fontSize / 3.45,
+                        fontSize: position.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -336,19 +345,19 @@ export default class CardStyle {
                         right: position.right / widthRatio,
                         left: position.left / widthRatio,
                         height: position.height / heightRatio,
-                        width: 3 * position.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 2.5352 : 3) * position.width / widthRatio,
                     },
                     phonenumInput: {
                         textAlign: phonenum.textAlign,
                         color: phonenum.fill,
-                        fontSize: phonenum.fontSize / 3.45,
+                        fontSize: phonenum.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     phonenumInputPlaceholder: {
                         textAlign: phonenum.textAlign,
                         color: phonenum.fill,
-                        fontSize: phonenum.fontSize / 3.45,
+                        fontSize: phonenum.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -360,19 +369,19 @@ export default class CardStyle {
                         right: phonenum.right / widthRatio,
                         left: phonenum.left / widthRatio,
                         height: phonenum.height / heightRatio,
-                        width: 1.4 * phonenum.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * phonenum.width / widthRatio,
                     },
                     nameInput: {
                         textAlign: name.textAlign,
                         color: name.fill,
-                        fontSize: name.fontSize / 3.45,
+                        fontSize: name.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     nameInputPlaceholder: {
                         textAlign: name.textAlign,
                         color: name.fill,
-                        fontSize: name.fontSize / 3.45,
+                        fontSize: name.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -384,19 +393,19 @@ export default class CardStyle {
                         right: name.right / widthRatio,
                         left: name.left / widthRatio,
                         height: name.height / heightRatio,
-                        width: 1.4 * name.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * name.width / widthRatio,
                     },
                     emailInput: {
                         textAlign: email.textAlign,
                         color: email.fill,
-                        fontSize: email.fontSize / 3.45,
+                        fontSize: email.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     emailInputPlaceholder: {
                         textAlign: email.textAlign,
                         color: email.fill,
-                        fontSize: email.fontSize / 3.45,
+                        fontSize: email.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -408,19 +417,19 @@ export default class CardStyle {
                         right: email.right / widthRatio,
                         left: email.left / widthRatio,
                         height: email.height / heightRatio,
-                        width: 1.4 * email.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * email.width / widthRatio,
                     },
                     addressInput: {
                         textAlign: address.textAlign,
                         color: address.fill,
-                        fontSize: address.fontSize / 3.45,
+                        fontSize: address.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     addressInputPlaceholder: {
                         textAlign: address.textAlign,
                         color: address.fill,
-                        fontSize: address.fontSize / 3.45,
+                        fontSize: address.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -432,19 +441,19 @@ export default class CardStyle {
                         right: address.right / widthRatio,
                         left: address.left / widthRatio,
                         height: address.height / heightRatio,
-                        width: 1.4 * address.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * address.width / widthRatio,
                     },
                     address2Input: {
                         textAlign: address2.textAlign,
                         color: address2.fill,
-                        fontSize: address2.fontSize / 3.45,
+                        fontSize: address2.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
                     address2InputPlaceholder: {
                         textAlign: address2.textAlign,
                         color: address2.fill,
-                        fontSize: address2.fontSize / 3.45,
+                        fontSize: address2.fontSize / (aspectRatio<1.6 ? 4.08 : 3.45),
                         fontFamily: fontFamily,
                         backgroundColor: "transparent",
                     },
@@ -456,7 +465,7 @@ export default class CardStyle {
                         right: address2.right / widthRatio,
                         left: address2.left / widthRatio,
                         height: address2.height / heightRatio,
-                        width: 1.4 * address2.width / widthRatio,
+                        width: (aspectRatio<1.6 ? 1.183 : 1.4) * address2.width / widthRatio,
                     },
                 }),
                 image: element.card_schemes

@@ -2,6 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
 
 var {height, width} = Dimensions.get('window');
+const aspectRatio = height/width;
 
 export default EStyleSheet.create({
     container: {
@@ -17,7 +18,7 @@ export default EStyleSheet.create({
     },
     logout: {
         position: "absolute",
-        fontSize: 12,
+        fontSize: aspectRatio < 1.6 ? 10 : 12,
         color: 'white',
         textAlign: 'center',
         right: 15,
@@ -26,11 +27,11 @@ export default EStyleSheet.create({
     },
     upgrade: {
         position: "absolute",
-        fontSize: 12,
+        fontSize: aspectRatio < 1.6 ? 10 : 12,
         color: 'white',
         textAlign: 'center',
         paddingLeft: '12%',
-        right: 315,
+        right: aspectRatio < 1.6 ? 265 : 315,
         bottom: -7,
         // bottom: '2%'
     },

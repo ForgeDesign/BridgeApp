@@ -10,6 +10,21 @@ import ProfilePictureAndLevel from './ProfilePictureAndLevel';
 import BigTextAndLowerText from './BigTextAndLowerText';
 import Prompt from 'rn-prompt';
 
+import { Dimensions } from 'react-native';
+const {height, width} = Dimensions.get('window'); 
+const aspectRatio = height/width;
+
+// if(aspectRatio>1.6) {
+
+//    // Code for Iphone
+
+// }
+// else {
+
+//    // Code for Ipad
+
+// }
+
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
@@ -93,31 +108,37 @@ export default class ProfileHeader extends React.Component {
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: '2%' }}>
-                    <Text style={{ fontSize: 20, color: 'white' }} onPress={() => this.setState({ promptVisible: true })}>
+                    <Text style={{ fontSize: aspectRatio<1.6 ? 15 : 20, color: 'white' }} onPress={() => this.setState({ promptVisible: true })}>
                         {this.state.profileName}
                     </Text>
 
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '2%' }}>
+                {
+                    aspectRatio<1.6 ? (
+                        <View style={{opacity : 0.0}}/>
+                    ) : (
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '2%' }}>
+                            <View style={{left: 10, }}>
+                                <BigTextAndLowerText bigText={this.state.cardConnectCount} lowerText='Bridges' />
+                            </View>
+                            
+                            <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
 
-                    <View style={{left: 10, }}>
-                        <BigTextAndLowerText bigText={this.state.cardConnectCount} lowerText='Bridges' />
-                    </View>
+                            <View style={{left: 20, }}>
+                                <BigTextAndLowerText bigText={this.state.cardCount} lowerText='BridgeCards' />
+                            </View>
+                            
+                            <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
+
+                            <View style={{}}>
+                                <BigTextAndLowerText bigText={this.state.time} lowerText='MemberSince' />
+                            </View>
+                        </View>
+                    )
+                }
                     
-                    <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
 
-                    <View style={{left: 20, }}>
-                        <BigTextAndLowerText bigText={this.state.cardCount} lowerText='BridgeCards' />
-                    </View>
-                    
-                    <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
-
-                    <View style={{}}>
-                        <BigTextAndLowerText bigText={this.state.time} lowerText='MemberSince' />
-                    </View>
-
-                </View>
                 <Prompt
                     title="What is your name? "
                     placeholder="John Doe"

@@ -71,7 +71,7 @@ export default EStyleSheet.create({
       top: '10%'
     },
     activity: {
-        fontSize: 12,
+        fontSize: 9,
         top: '10%',
         // color: '$primaryBlue',
     },

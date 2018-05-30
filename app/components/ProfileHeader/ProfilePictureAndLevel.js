@@ -38,11 +38,19 @@ Date.prototype.addMonths = function (value) {
     return this;
 };
 
+const {height, width} = Dimensions.get('window'); 
+const aspectRatio = height/width;
+
 export default class ProfilePictureAndLevel extends React.Component
 {
 
     constructor(props) {
         super(props)
+
+        this.fontSize = 13
+        if (aspectRatio < 1.6)
+            this.fontSize = 10
+
 
         this.state =
         {
@@ -152,7 +160,7 @@ export default class ProfilePictureAndLevel extends React.Component
 
                         </View>
                         <View style={this.state.level == "Pro" ? styles.oval : styles.oval2}>
-                            <Text style={this.state.level == "Pro" ? {fontSize:13, fontWeight:"bold", color:"black"} : {fontSize:10}}>{this.state.level}</Text>
+                            <Text style={this.state.level == "Pro" ? {fontSize:this.fontSize, fontWeight:"bold", color:"black"} : {fontSize:10}}>{this.state.level}</Text>
                         </View>
 
 
