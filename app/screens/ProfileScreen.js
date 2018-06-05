@@ -462,7 +462,7 @@ class ProfileScreen extends Component {
                             else {
                                 Alert.alert(
                                     'Upgrade to Pro',
-                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nOnly $6.99 a month!',
+                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nOnly $2.99 a month!',
                                     [
                                       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                                       {text: 'UPGRADE', onPress: () => {

@@ -35,6 +35,7 @@
 		0A76EA04205F903A002E488E /* RNGoogleSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9D9205F903A002E488E /* RNGoogleSignIn.swift */; };
 		0A76EA05205F903A002E488E /* RNGoogleSignInBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */; };
 		0A76EA06205F91F0002E488E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		0A8AA12420C1AC5D0017E22E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8AA12320C1AC5D0017E22E /* StoreKit.framework */; };
 		0AE8EB05205639C7005ECD5C /* libRSKImageCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -392,6 +393,7 @@
 		0A76E9DA205F903A002E488E /* RNGoogleSignIn-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNGoogleSignIn-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A76E9DB205F903A002E488E /* RNGoogleSignInBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignInBridge.m; sourceTree = "<group>"; };
 		0A7F9BA720A0158D003F29D3 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
+		0A8AA12320C1AC5D0017E22E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0AE8EB06205639C7005ECD5C /* libRSKImageCropper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRSKImageCropper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E3F2AE54A30DB37E8F39107 /* libPods-BridgeCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BridgeCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1159CCBE204249ADA3DF0C9E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
+				0A8AA12420C1AC5D0017E22E /* StoreKit.framework in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
@@ -553,6 +556,7 @@
 		0A316FFA1FF0F5080050BE80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A8AA12320C1AC5D0017E22E /* StoreKit.framework */,
 				0A12D24E20B37BD800E92F83 /* libreact-native-geocoder.a */,
 				0A6C1AA8208446150096484E /* FBSDKCoreKit.framework */,
 				0A6C1AA9208446150096484E /* FBSDKLoginKit.framework */,
@@ -844,6 +848,9 @@
 						DevelopmentTeam = BJ54VZZN3B;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
