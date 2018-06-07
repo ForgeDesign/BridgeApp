@@ -48,6 +48,21 @@ export default class LoginScreen extends React.Component {
     activity: false,
   }
 
+  componentWillMount() {
+    //   console.log(GoogleSignIn)
+    //   GoogleSignin.configure({
+    //   })
+    //   .then(() => {
+    //     // you can now call currentUserAsync()
+    //   });
+    // GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+    //     // play services are available. can now configure library
+    // })
+    // .catch((err) => {
+    //   console.log("Play services error", err.code, err.message);
+    // })
+  }
+
   onSubmit = async () => {
     
     this.setState({activity: true})
@@ -84,8 +99,7 @@ export default class LoginScreen extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.main}>
-            {/* <Text style={{top: 30, fontSize: 20, color: "white"}}>BridgeCard</Text>
-            <Text style={{top: 38, fontSize: 12, color: "white"}}>Create. Exchange. Organize.</Text> */}
+
           <View style={styles.imageView}>
           <StatusBar translucent={false} barStyle="light-content" />
             <Image
@@ -108,7 +122,14 @@ export default class LoginScreen extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.onSubmit()}>
-              <Text style={styles.buttonText}>{!this.state.activity ? (!this.state.register ? "Log in" : "Register") : (<ActivityIndicator style={{width: 5, height: 5}} size="small" color="#0000ff" />)}</Text>
+              <Text style={styles.buttonText}>{!this.state.activity ? (!this.state.register ? "Log in" : "Register") : ""}</Text>
+              <View>
+                  {this.state.activity ? (
+              <ActivityIndicator style={{width: 5, height: 5}} size="small" color="#0000ff" />
+                      
+                  ) : 
+                  <View/>}
+                </View>
             </TouchableOpacity>
             <Text style={styles.forgotText}>Forgot Password?</Text>
             <View style={styles.iconRow}>
@@ -135,7 +156,7 @@ export default class LoginScreen extends React.Component {
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={async () => {
-                                                    this.setState({activity: true})                                                    
+                                                    this.setState({activity: true})
                                                     GoogleSignIn.currentUser().then((user) => {
                                                         if (user != undefined) {
                                                             GoogleSignIn.signOut()
@@ -154,6 +175,8 @@ export default class LoginScreen extends React.Component {
                                                             this.setState({activity: false})
                                                             console.log(err)
                                                         })
+                                                    }).catch(() => {
+                                                        console.log("uh oh")
                                                     })
 
                                                   }}>
