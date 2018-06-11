@@ -462,7 +462,7 @@ class ProfileScreen extends Component {
                             else {
                                 Alert.alert(
                                     'Upgrade to Pro',
-                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nOnly $2.99 a month!',
+                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nPrice will be displayed next page when you click Upgrade!\n\n Payment will be charged to iTunes Account at confirmation of purchase\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\nView our privacy policy at bridgecardapp.com/privacy.html\nView our terms of use at bridgecardapp.com/use.html',
                                     [
                                       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                                       {text: 'UPGRADE', onPress: () => {
