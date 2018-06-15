@@ -365,10 +365,10 @@ confirmChanges = () => {
                     onValueChange={(itemValue, itemIndex) => {
                         this.setState({ cardnum: itemValue, chosenImageThingy: 0 })
                     }}>
-                    {this.state.availableTemplates.map((item, index) => {
+                    {this.state.availableTemplates ? this.state.availableTemplates.map((item, index) => {
                         if (typeof item == "string")
                             return (<Picker.Item label={item} value={item} key={index}/>) 
-                    })}
+                    }) : <View/>}
                 </Picker>
                 </View>
 
@@ -813,7 +813,7 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
-        marginBottom: 30,
+        marginBottom: 10,
     },
     
     button3: {
@@ -839,7 +839,7 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
-        marginBottom: 10,
+        // marginBottom: 10,
     },
     buttonText: {
         fontSize: 16,
@@ -854,6 +854,6 @@ const styles = EStyleSheet.create({
 
     },
     picker: {
-
+        height: 180
     }
 })

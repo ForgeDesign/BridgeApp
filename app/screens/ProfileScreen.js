@@ -237,7 +237,13 @@ class ProfileScreen extends Component {
         })
     }
 
+    level = "loading"
+
     componentWillMount() {
+        var pathPerson = firebase.auth().currentUser.uid + "person"
+        rootRef.child(pathPerson).once().then(firePerson => {
+            this.level = firePerson.val().level
+        })
         this.getTheLevel()
     }
 
@@ -245,6 +251,10 @@ class ProfileScreen extends Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
+            var pathPerson = firebase.auth().currentUser.uid + "person"
+            rootRef.child(pathPerson).once().then(firePerson => {
+                this.level = firePerson.val().level
+            })
             this.getTheLevel()
             this._getActivity()
             this._getCards()
@@ -455,9 +465,10 @@ class ProfileScreen extends Component {
                         })
                     }}
                     upgrade={() => {
-                        var pathPerson = firebase.auth().currentUser.uid + "person"
-                        rootRef.child(pathPerson).once().then(firePerson => {
-                            if(firePerson.val().level == "Pro")
+                        console.log("pressed")
+                        if(this.level != "loading") {
+                            console.log(this.level)
+                            if(this.level == "Pro")
                                 Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
                             else {
                                 Alert.alert(
@@ -507,7 +518,63 @@ class ProfileScreen extends Component {
                                     { cancelable: false }
                                 )
                             }
-                        })
+                        }
+                        else {
+                            var pathPerson = firebase.auth().currentUser.uid + "person"
+                            rootRef.child(pathPerson).once().then(firePerson => {
+                                if(firePerson.val().level == "Pro")
+                                    Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
+                                else {
+                                    Alert.alert(
+                                        'Upgrade to Pro',
+                                        'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nPrice will be displayed next page when you click Upgrade!\n\n Payment will be charged to iTunes Account at confirmation of purchase\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\nView our privacy policy at bridgecardapp.com/privacy.html\nView our terms of use at bridgecardapp.com/use.html',
+                                        [
+                                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                          {text: 'UPGRADE', onPress: () => {
+                                                try {
+                                                RNIap.prepare().then(val => {
+                                                    RNIap.getSubscriptions(itemSkus).then(val => {
+                                                        console.log(val)
+                                                    })
+                                                    RNIap.buySubscription('Pro2').then(subscription => {
+                                                        console.log(subscription)
+                                                        var person = firePerson._value
+                                                        if (person == null) {
+                                                            obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                                            obj.level = "Pro"
+                                                            obj.transactionId = subscription.transactionId
+                                                            delete obj.refreshToken
+                                                            delete obj.providerId
+                                                            delete obj.providerData
+                                                            delete obj.uid
+                                                            delete obj.metadata
+                                                            delete obj.phoneNumber
+                                                            delete obj.isAnonymous
+                                                            delete obj.emailVerified
+                                                            delete obj.email
+                                                            rootRef.child(pathPerson).set(obj)
+                                                        }
+                                                        else {
+                                                            var poo = firePerson.val()
+                                                            poo.level = "Pro"
+                                                            poo.transactionId = subscription.transactionId
+                                                            rootRef.child(pathPerson).set(poo)
+                                                        }
+                                                    })
+                                                });
+                                              //   const products = await RNIap.getAvailablePurchases();
+                                              //   console.log(products)
+                                              } catch(err) {
+                                                console.warn(err); // standardized err.code and err.message available
+                                              }
+                                          }},
+                                        ],
+                                        { cancelable: false }
+                                    )
+                                }
+                            })
+                        }
+                        
                         // GoogleSignIn.signOut()
                         // Facebook.logout().then(val => {
                         //     firebase.auth().signOut()

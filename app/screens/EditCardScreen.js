@@ -641,7 +641,7 @@ const styles = EStyleSheet.create({
         borderRadius: 5,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10,
+        marginBottom: 10,
     },
     button3: {
         justifyContent: 'center',
@@ -653,7 +653,7 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
-        marginBottom: 30,
+        marginBottom: 10,
     },
     button4: {
         justifyContent: 'center',
@@ -693,6 +693,6 @@ const styles = EStyleSheet.create({
 
     },
     picker: {
-
+        height: 180
     }
 })

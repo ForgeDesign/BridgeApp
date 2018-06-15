@@ -48,20 +48,19 @@ export default class LoginScreen extends React.Component {
     activity: false,
   }
 
-  componentWillMount() {
-    //   console.log(GoogleSignIn)
-    //   GoogleSignin.configure({
-    //   })
-    //   .then(() => {
-    //     // you can now call currentUserAsync()
-    //   });
-    // GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
-    //     // play services are available. can now configure library
-    // })
-    // .catch((err) => {
-    //   console.log("Play services error", err.code, err.message);
-    // })
-  }
+    componentDidMount() {        
+        GoogleSignIn.configure({ offlineAccess: true }).then(() => {
+            // you can now call currentUserAsync()
+            console.log(GoogleSignIn)
+        });
+        // GoogleSignIn.hasPlayServices({ autoResolve: true }).then(() => {
+        //     // play services are available. can now configure library
+            
+        // })
+        // .catch((err) => {
+        //     console.log("Play services error", err.code, err.message);
+        // })
+    }
 
   onSubmit = async () => {
     
@@ -161,8 +160,13 @@ export default class LoginScreen extends React.Component {
                                                         if (user != undefined) {
                                                             GoogleSignIn.signOut()
                                                         }
+                                                    GoogleSignIn.signOut()
+                                                    console.log("pooooopity here we go")
+                                                    console.log(GoogleSignIn)
                                                         GoogleSignIn.signInPromise()
-                                                        .then((user) => {
+                                                        .then(user => {
+                                                            console.log(user)
+                                                            console.log("poo")
                                                             firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
                                                                 this.setState({activity: false})
                                                                 this.props.navigation.navigate('Main')
