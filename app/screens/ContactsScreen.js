@@ -400,11 +400,12 @@ class ContactsScreen extends React.Component {
             }
             else {
                 rootRef.child(pathPerson).once().then(val => {
+                    // console.log(val)
                     var personFound = val._value
-                    var firstLast = personFound.displayName.split(" ")
+                    var firstLast = personFound.displayName ? personFound.displayName.split(" ") : ["First", "Last"]
                     var sectionKey = firstLast[firstLast.length - 1][0]
                     obj = {
-                        name: personFound.displayName,
+                        name: personFound.displayName ? personFound.displayName : "First Last",
                         location: person.location,
                         imagepath: personFound.photoURL,
                         sectionKey: sectionKey,
@@ -416,6 +417,7 @@ class ContactsScreen extends React.Component {
                         var pathCard = person.person + "cards/" + element.id
                         obj.card.push(this.getSingleCard(pathCard))
                     }
+                    console.log(obj)
                     resolve(obj)
                 })
             }

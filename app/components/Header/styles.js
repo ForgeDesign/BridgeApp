@@ -25,14 +25,17 @@ export default EStyleSheet.create({
         bottom: -7,
         // bottom: '2%'
     },
-    upgrade: {
+    upgrade2: {
         position: "absolute",
-        fontSize: aspectRatio < 1.6 ? 10 : 12,
-        color: 'white',
-        textAlign: 'center',
         paddingLeft: '12%',
         right: aspectRatio < 1.6 ? 265 : 315,
         bottom: -7,
+        // bottom: '2%'
+    },
+    upgrade: {
+        fontSize: aspectRatio < 1.6 ? 10 : 12,
+        color: 'white',
+        textAlign: 'center',
         // bottom: '2%'
     },
     grid: {

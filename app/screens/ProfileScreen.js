@@ -3,6 +3,8 @@ import { View, Text, AppRegistry, Platform, ScrollView, RefreshControl, FlatList
 
 import styles from './ProfileStyles'
 
+import AwesomeAlert from 'react-native-awesome-alerts'
+
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
 import { ProfileHeader } from '../components/ProfileHeader';
@@ -101,8 +103,10 @@ class ProfileScreen extends Component {
         super(props)
 
         this.state = {
+            price: "$0.0",
             disabled: true,
             activity: [ ],
+            showAlert: false,
             capturedCards: 0,
             cardCount: 0,
             cards: []
@@ -139,6 +143,29 @@ class ProfileScreen extends Component {
             this.setState({capturedCards: capturedCards})
         })
     }
+
+    showAlert = () => {
+        this.promessage = 
+        'Upgrade to "Pro" to get access to these features:\n' + 
+        'Unlimited BridgeCards\n' + 
+        'Unlimited Connects\n' + 
+        'Unlimited Search Board Access\n' + 
+        this.state.price + " for \"Pro\"\n" +
+        'Monthly subscription\n\n' + 
+        'Payment will be charged to iTunes Account at confirmation of purchase\n' + 
+        'Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n' + 
+        'Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n' + 
+        'Manage your subscription in the iTunes store after purchase\n'
+        this.setState({
+          showAlert: true
+        });
+      };
+    
+      hideAlert = () => {
+        this.setState({
+          showAlert: false
+        });
+      };
 
     arraysEqual(arr1, arr2) {
         if(arr1.length !== arr2.length)
@@ -244,6 +271,9 @@ class ProfileScreen extends Component {
         rootRef.child(pathPerson).once().then(firePerson => {
             this.level = firePerson.val().level
         })
+        RNIap.getProducts(itemSkus).then(val => {
+            this.setState({price : val["0"].localizedPrice})
+        })
         this.getTheLevel()
     }
 
@@ -254,6 +284,9 @@ class ProfileScreen extends Component {
             var pathPerson = firebase.auth().currentUser.uid + "person"
             rootRef.child(pathPerson).once().then(firePerson => {
                 this.level = firePerson.val().level
+            })
+            RNIap.getProducts(itemSkus).then(val => {
+                this.setState({price : val["0"].localizedPrice})
             })
             this.getTheLevel()
             this._getActivity()
@@ -448,6 +481,10 @@ class ProfileScreen extends Component {
         });
     }
 
+    state = {
+        price: "$0.0"
+    }
+
     render() {
         const { navigate } = this.props.navigation;
 
@@ -466,114 +503,7 @@ class ProfileScreen extends Component {
                     }}
                     upgrade={() => {
                         console.log("pressed")
-                        if(this.level != "loading") {
-                            console.log(this.level)
-                            if(this.level == "Pro")
-                                Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
-                            else {
-                                Alert.alert(
-                                    'Upgrade to Pro',
-                                    'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nPrice will be displayed next page when you click Upgrade!\n\n Payment will be charged to iTunes Account at confirmation of purchase\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\nView our privacy policy at bridgecardapp.com/privacy.html\nView our terms of use at bridgecardapp.com/use.html',
-                                    [
-                                      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                                      {text: 'UPGRADE', onPress: () => {
-                                            try {
-                                            RNIap.prepare().then(val => {
-                                                RNIap.getSubscriptions(itemSkus).then(val => {
-                                                    console.log(val)
-                                                })
-                                                RNIap.buySubscription('Pro2').then(subscription => {
-                                                    console.log(subscription)
-                                                    var person = firePerson._value
-                                                    if (person == null) {
-                                                        obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                                        obj.level = "Pro"
-                                                        obj.transactionId = subscription.transactionId
-                                                        delete obj.refreshToken
-                                                        delete obj.providerId
-                                                        delete obj.providerData
-                                                        delete obj.uid
-                                                        delete obj.metadata
-                                                        delete obj.phoneNumber
-                                                        delete obj.isAnonymous
-                                                        delete obj.emailVerified
-                                                        delete obj.email
-                                                        rootRef.child(pathPerson).set(obj)
-                                                    }
-                                                    else {
-                                                        var poo = firePerson.val()
-                                                        poo.level = "Pro"
-                                                        poo.transactionId = subscription.transactionId
-                                                        rootRef.child(pathPerson).set(poo)
-                                                    }
-                                                })
-                                            });
-                                          //   const products = await RNIap.getAvailablePurchases();
-                                          //   console.log(products)
-                                          } catch(err) {
-                                            console.warn(err); // standardized err.code and err.message available
-                                          }
-                                      }},
-                                    ],
-                                    { cancelable: false }
-                                )
-                            }
-                        }
-                        else {
-                            var pathPerson = firebase.auth().currentUser.uid + "person"
-                            rootRef.child(pathPerson).once().then(firePerson => {
-                                if(firePerson.val().level == "Pro")
-                                    Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
-                                else {
-                                    Alert.alert(
-                                        'Upgrade to Pro',
-                                        'Upgrade to get access to these features:\nUnlimited BridgeCards\nUnlimited Connects\nUnlimited Search Board Access\nPrice will be displayed next page when you click Upgrade!\n\n Payment will be charged to iTunes Account at confirmation of purchase\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\nView our privacy policy at bridgecardapp.com/privacy.html\nView our terms of use at bridgecardapp.com/use.html',
-                                        [
-                                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                                          {text: 'UPGRADE', onPress: () => {
-                                                try {
-                                                RNIap.prepare().then(val => {
-                                                    RNIap.getSubscriptions(itemSkus).then(val => {
-                                                        console.log(val)
-                                                    })
-                                                    RNIap.buySubscription('Pro2').then(subscription => {
-                                                        console.log(subscription)
-                                                        var person = firePerson._value
-                                                        if (person == null) {
-                                                            obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                                            obj.level = "Pro"
-                                                            obj.transactionId = subscription.transactionId
-                                                            delete obj.refreshToken
-                                                            delete obj.providerId
-                                                            delete obj.providerData
-                                                            delete obj.uid
-                                                            delete obj.metadata
-                                                            delete obj.phoneNumber
-                                                            delete obj.isAnonymous
-                                                            delete obj.emailVerified
-                                                            delete obj.email
-                                                            rootRef.child(pathPerson).set(obj)
-                                                        }
-                                                        else {
-                                                            var poo = firePerson.val()
-                                                            poo.level = "Pro"
-                                                            poo.transactionId = subscription.transactionId
-                                                            rootRef.child(pathPerson).set(poo)
-                                                        }
-                                                    })
-                                                });
-                                              //   const products = await RNIap.getAvailablePurchases();
-                                              //   console.log(products)
-                                              } catch(err) {
-                                                console.warn(err); // standardized err.code and err.message available
-                                              }
-                                          }},
-                                        ],
-                                        { cancelable: false }
-                                    )
-                                }
-                            })
-                        }
+                        this.showAlert()
                         
                         // GoogleSignIn.signOut()
                         // Facebook.logout().then(val => {
@@ -657,6 +587,122 @@ class ProfileScreen extends Component {
                           time={ref.time}/>
                     )}
                 </ScrollView>
+
+                <AwesomeAlert
+                    show={this.state.showAlert}
+                    showProgress={false}
+                    title="Upgrade to Pro"
+                    message={this.promessage}
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    cancelText="Cancel"
+                    confirmText="UPGRADE"
+                    confirmButtonColor="#5D9CBF"
+                    onCancelPressed={() => {
+                        this.hideAlert();
+                    }}
+                    onConfirmPressed={() => {
+                        this.hideAlert();
+                        if(this.level != "loading") {
+                            console.log(this.level)
+                            if(this.level == "Pro")
+                                Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
+                            else {
+                                try {
+                                RNIap.prepare().then(val => {
+                                    RNIap.getSubscriptions(itemSkus).then(val => {
+                                        console.log(val)
+                                    })
+                                    RNIap.buySubscription('Pro2').then(subscription => {
+                                        console.log(subscription)
+                                        var person = firePerson._value
+                                        if (person == null) {
+                                            obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                            obj.level = "Pro"
+                                            obj.transactionId = subscription.transactionId
+                                            delete obj.refreshToken
+                                            delete obj.providerId
+                                            delete obj.providerData
+                                            delete obj.uid
+                                            delete obj.metadata
+                                            delete obj.phoneNumber
+                                            delete obj.isAnonymous
+                                            delete obj.emailVerified
+                                            delete obj.email
+                                            rootRef.child(pathPerson).set(obj)
+                                        }
+                                        else {
+                                            var poo = firePerson.val()
+                                            poo.level = "Pro"
+                                            poo.transactionId = subscription.transactionId
+                                            rootRef.child(pathPerson).set(poo)
+                                        }
+                                    })
+                                });
+                                //   const products = await RNIap.getAvailablePurchases();
+                                //   console.log(products)
+                                } catch(err) {
+                                console.warn(err); // standardized err.code and err.message available
+                                }
+                            }
+                        }
+                        else {
+                            var pathPerson = firebase.auth().currentUser.uid + "person"
+                            rootRef.child(pathPerson).once().then(firePerson => {
+                                if(firePerson.val().level == "Pro")
+                                    Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
+                                else {
+                                    try {
+                                        RNIap.prepare().then(val => {
+                                            RNIap.getSubscriptions(itemSkus).then(val => {
+                                                console.log(val)
+                                            })
+                                            RNIap.buySubscription('Pro2').then(subscription => {
+                                                console.log(subscription)
+                                                var person = firePerson._value
+                                                if (person == null) {
+                                                    obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+                                                    obj.level = "Pro"
+                                                    obj.transactionId = subscription.transactionId
+                                                    delete obj.refreshToken
+                                                    delete obj.providerId
+                                                    delete obj.providerData
+                                                    delete obj.uid
+                                                    delete obj.metadata
+                                                    delete obj.phoneNumber
+                                                    delete obj.isAnonymous
+                                                    delete obj.emailVerified
+                                                    delete obj.email
+                                                    rootRef.child(pathPerson).set(obj)
+                                                }
+                                                else {
+                                                    var poo = firePerson.val()
+                                                    poo.level = "Pro"
+                                                    poo.transactionId = subscription.transactionId
+                                                    rootRef.child(pathPerson).set(poo)
+                                                }
+                                            })
+                                        });
+                                      //   const products = await RNIap.getAvailablePurchases();
+                                      //   console.log(products)
+                                      } catch(err) {
+                                        console.warn(err); // standardized err.code and err.message available
+                                      }
+                                }
+                            })
+                        }
+                    }}
+                    >
+                        <TouchableOpacity onPress={() => Linking.openURL("http://www.bridgecardapp.com/privacy.html")}>
+                        <Text>Privacy Policy</Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity onPress={() => Linking.openURL("http://www.bridgecardapp.com/use.html")}>
+                        <Text>Terms of Use</Text>
+                        </TouchableOpacity>
+                    </AwesomeAlert>
             </Container>
         )
     }

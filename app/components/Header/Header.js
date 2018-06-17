@@ -40,7 +40,7 @@ class Header extends React.Component {
 
         upgrade = <View/>
         if (this.state.props.upgrade)
-        upgrade = <TouchableOpacity onPress={() => this.state.props.upgrade()}> 
+        upgrade = <TouchableOpacity style={styles.upgrade2} onPress={() => this.state.props.upgrade()}> 
                     <Text style={styles.upgrade}>Upgrade</Text>
                 </TouchableOpacity>
         
