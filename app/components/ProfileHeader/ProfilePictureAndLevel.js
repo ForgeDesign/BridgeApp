@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hero from 'react-native-hero';
 import { Icon } from 'native-base';
-import { View, TouchableOpacity, AppRegistry, Text, Picker, AsyncStorage, Image, Platform } from 'react-native';
+import { View, TouchableOpacity, AppRegistry, Text, Alert, Picker, AsyncStorage, Image, Platform } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import ImageCropper from 'react-native-image-crop-picker';
 
@@ -110,6 +110,14 @@ export default class ProfilePictureAndLevel extends React.Component
         })
     }
 
+    subscriptionInfo() {
+        Alert.alert("Subscription Info", 'Monthly subscription\n\n' + 
+        'Payment will be charged to iTunes Account at confirmation of purchase\n' + 
+        'Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n' + 
+        'Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n' + 
+        'Manage your subscription in the iTunes store after purchase\n')
+    }
+
     async addProfilePic() {
         await ImagePicker.showImagePicker(this.options, (response) => {
 
@@ -149,22 +157,26 @@ export default class ProfilePictureAndLevel extends React.Component
 
     render(){
         return(
-                <TouchableOpacity  onPress={this.addProfilePic} style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
+                <View style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
 
                     <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width:circleWidth *2, height:circleWidth*2, borderRadius:circleWidth, backgroundColor:'black'}}>
 
-                        <View>
-                            <Image source={{uri:this.state.profilePic}} style={styles.profileIcon}/>
-                        </View>
+                        <TouchableOpacity  onPress={this.addProfilePic} style={{alignItems:'center', justifyContent: 'center', flexDirection:'column'}}>
+                            <View>
+                                <Image source={{uri:this.state.profilePic}} style={styles.profileIcon}/>
+                            </View>
+                        </TouchableOpacity>
 
 
                         </View>
-                        <View style={this.state.level == "Pro" ? styles.oval : styles.oval2}>
-                            <Text style={this.state.level == "Pro" ? {fontSize:this.fontSize, fontWeight:"bold", color:"black"} : {fontSize:10}}>{this.state.level}</Text>
-                        </View>
+                        <TouchableOpacity onPress={this.subscriptionInfo}>
+                            <View style={this.state.level == "Pro" ? styles.oval : styles.oval2}>
+                                <Text style={this.state.level == "Pro" ? {fontSize:this.fontSize, fontWeight:"bold", color:"black"} : {fontSize:10}}>{this.state.level}</Text>
+                            </View>
+                        </TouchableOpacity>
 
 
-                </TouchableOpacity>
+                </View>
         )
     }
 }

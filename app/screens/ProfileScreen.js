@@ -591,6 +591,7 @@ class ProfileScreen extends Component {
                 <AwesomeAlert
                     show={this.state.showAlert}
                     showProgress={false}
+                    messageStyle={{fontSize: 11}}
                     title="Upgrade to Pro"
                     message={this.promessage}
                     closeOnTouchOutside={true}
