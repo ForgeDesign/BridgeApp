@@ -599,7 +599,7 @@ class ProfileScreen extends Component {
                     showCancelButton={true}
                     showConfirmButton={true}
                     cancelText="Cancel"
-                    confirmText="UPGRADE"
+                    confirmText={"Upgrade for " + this.state.price}
                     confirmButtonColor="#5D9CBF"
                     onCancelPressed={() => {
                         this.hideAlert();
