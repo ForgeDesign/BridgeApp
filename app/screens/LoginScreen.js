@@ -51,7 +51,6 @@ export default class LoginScreen extends React.Component {
     componentDidMount() {        
         GoogleSignIn.configure({ offlineAccess: true }).then(() => {
             // you can now call currentUserAsync()
-            console.log(GoogleSignIn)
         });
         // GoogleSignIn.hasPlayServices({ autoResolve: true }).then(() => {
         //     // play services are available. can now configure library
@@ -161,12 +160,8 @@ export default class LoginScreen extends React.Component {
                                                             GoogleSignIn.signOut()
                                                         }
                                                     GoogleSignIn.signOut()
-                                                    console.log("pooooopity here we go")
-                                                    console.log(GoogleSignIn)
                                                         GoogleSignIn.signInPromise()
                                                         .then(user => {
-                                                            console.log(user)
-                                                            console.log("poo")
                                                             firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
                                                                 this.setState({activity: false})
                                                                 this.props.navigation.navigate('Main')

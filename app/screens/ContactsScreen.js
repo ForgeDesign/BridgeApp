@@ -125,7 +125,6 @@ class ContactsScreen extends React.Component {
     async addProfilePic() {
         var pathPerson = firebase.auth().currentUser.uid + "person"
         rootRef.child(pathPerson).once().then(val => {
-            console.log(this.state)
             peopleCount = 0
             for (let index = 0; index < Object.keys(this.state.peopleFound).length; index++) {
                 const element = Object.keys(this.state.peopleFound)[index];
@@ -367,7 +366,6 @@ class ContactsScreen extends React.Component {
                 //     resolve(foundPeople)
                 // })
             }).catch(test => {
-                console.log(test)
             })
         });
     }
@@ -417,7 +415,6 @@ class ContactsScreen extends React.Component {
                         var pathCard = person.person + "cards/" + element.id
                         obj.card.push(this.getSingleCard(pathCard))
                     }
-                    console.log(obj)
                     resolve(obj)
                 })
             }

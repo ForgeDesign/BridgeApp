@@ -178,13 +178,10 @@ confirmChanges = () => {
         var pathPerson = firebase.auth().currentUser.uid + "person"
         var pathCards = firebase.auth().currentUser.uid + "cards"
         rootRef.child(pathPerson).once().then(val => {
-            console.log(val)
             rootRef.child(pathCards).once().then(val2 => {
-                console.log(val2)
                 if(val2.val() != null && val.val().level == "Lite" && Object.keys( val2.val() ).length > 0) {
                     Alert.alert("As a free user, you may only have 1 BridgeCard. \n\nUpgrade today!")
                 } else {
-                    console.log("GOT HERE")
                     instagram = "thisisafakeprofiledonotusethisinprod"
                     if (this.state.instagram != undefined && this.state.instagram != "")
                         instagram = this.state.instagram

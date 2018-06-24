@@ -74,7 +74,6 @@ export default class ProfilePictureAndLevel extends React.Component
 
     componentWillMount() {
         value = firebase.auth().currentUser.photoURL
-        console.log(firebase.auth().currentUser)
         if (value !== null) {
             this.setState({ profilePic: value });
         }

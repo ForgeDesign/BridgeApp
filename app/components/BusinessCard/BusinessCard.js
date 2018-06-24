@@ -493,7 +493,6 @@ export default class BusinessCard extends React.Component {
                                 <TouchableOpacity disabled={false} style={{zIndex: 1999, position: "absolute", width: '20%', height: '100%', top: 150, left: 300}} 
                                 onPress={() => 
                                     { 
-                                        console.log("YO") 
                                         this.setState({qrCode: true})
                                     }
                                 }>

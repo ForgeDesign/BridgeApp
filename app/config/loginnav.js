@@ -50,7 +50,6 @@ const AppNavigator2 = StackNavigator({
 });
 
 const handleUrl = ({ url }) => {
-    console.log(url)
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         DeepLinking.evaluateUrl(url);

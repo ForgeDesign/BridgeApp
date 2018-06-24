@@ -153,7 +153,6 @@ class IsoScreen extends React.Component {
                 }
                 resolve(allPeople)
             }).catch(test => {
-                console.log(test)
             })
         });
     }
@@ -289,7 +288,6 @@ class IsoScreen extends React.Component {
                         this.setState({activity: iso.reverse(), yourISO: iso.reverse(), foundISO: []})
                         this._onRefresh()
                     }
-                    console.log(val)
                     
                     val.forEach((child) => {
                         if(child.val() != null) {
@@ -298,7 +296,6 @@ class IsoScreen extends React.Component {
                             rootRef.child(personUID + "person").once().then(person => {
                                 for (let pIndex = 0; pIndex < Object.keys(child.val()).length; pIndex++) {
                                     var personISO = child.val()[Object.keys(child.val())[pIndex]]
-                                    console.log(person.val())
                                     personISO.connector = person.val().displayName
                                     personISO.text = "is looking for"
                                     personISO.image = person.val().photoURL
@@ -307,7 +304,6 @@ class IsoScreen extends React.Component {
                                     foundISO.push(personISO)
                                 }
                                 this.setState({activity: iso.reverse().concat(foundISO), yourISO: iso.reverse(), foundISO: foundISO})
-                                console.log(this.state.activity, this.state.yourISO, this.state.foundISO)
                                 this._onRefresh()
                             })
                         }
@@ -490,7 +486,6 @@ class IsoScreen extends React.Component {
             }
             rootRef.child(fireUID + "iso/" + fireISOKey).once().then(val => {
                 obj = val.val()
-                console.log(obj)
                 if(obj.recommended != undefined) {
                     obj.recommended = obj.recommended.concat(peopleRecommended)
                 }

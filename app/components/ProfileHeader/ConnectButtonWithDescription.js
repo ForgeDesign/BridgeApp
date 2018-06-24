@@ -50,9 +50,7 @@ export default class ConnectButtonWithDescription extends React.Component {
         cardNumStr = "a BridgeCard"
         if (cardNum != undefined && cardNum > 1)
             cardNumStr = cardNum + " BridgeCards"
-        console.log(value)
         Share.open(value).then(result => {
-            console.log(result, cardNum)
             var d = new Date();
             obj = {
                 connector: "You",

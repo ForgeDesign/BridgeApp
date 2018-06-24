@@ -410,17 +410,22 @@ class ProfileScreen extends Component {
         RNIap.prepare().then(val => {
             RNIap.getPurchaseHistory().then(val => {
                 if(val) {
+                    console.log(val)
                     var latest = new Date(val[val.length - 1].transactionDate)
                     var expires = new Date(val[val.length - 1].transactionDate)
                     expires = expires.addMonths(1)
                     if(latest <= expires) {
+                        console.log("currently valid subscription")
                         var pathPerson = firebase.auth().currentUser.uid + "person"
                         rootRef.child(pathPerson).once().then(val2 => {
-                            if(val2.val().transactionId == val[val.length - 1].transactionId) {
+                            console.log("updating user", val2.val().transactionId)
+                            if(val2.val().transactionId == val[val.length - 1].transactionId || val2.val().transactionId == undefined) {
                                 var person = val2._value
                                 if (person == null) {
+                                    console.log("intializing person")
                                     obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
                                     obj.level = "Pro"
+                                    obj.transactionId = val[val.length - 1].transactionId
                                     delete obj.refreshToken
                                     delete obj.providerId
                                     delete obj.providerData
@@ -431,14 +436,19 @@ class ProfileScreen extends Component {
                                     delete obj.emailVerified
                                     delete obj.email
                                     rootRef.child(pathPerson).set(obj).then(() => {
+                                        console.log(obj)
                                         this.forceUpdate()
                                     })
                                 }
                                 else {
+                                    console.log("updating existing person")
                                     var poo = val2.val()
                                     poo.level = "Pro"
+                                    poo.transactionId = val[val.length - 1].transactionId
                                     rootRef.child(pathPerson).set(poo).then(() => {
                                         this.forceUpdate()
+                                    }).catch(err => {
+                                        console.log(err)
                                     })
                                 }
                             }
@@ -476,7 +486,6 @@ class ProfileScreen extends Component {
                         })
                     }
                 }
-                console.log(val)
             })
         });
     }
@@ -607,15 +616,14 @@ class ProfileScreen extends Component {
                     onConfirmPressed={() => {
                         this.hideAlert();
                         if(this.level != "loading") {
-                            console.log(this.level)
                             if(this.level == "Pro")
                                 Alert.alert("You are already upgraded to the pro version. Thank you for your support and keep Bridging!\n\n BridgeCard Team")
                             else {
                                 try {
                                 RNIap.prepare().then(val => {
-                                    RNIap.getSubscriptions(itemSkus).then(val => {
-                                        console.log(val)
-                                    })
+                                    // RNIap.getSubscriptions(itemSkus).then(val => {
+                                    //     console.log(val)
+                                    // })
                                     RNIap.buySubscription('Pro2').then(subscription => {
                                         console.log(subscription)
                                         var person = firePerson._value
@@ -657,9 +665,9 @@ class ProfileScreen extends Component {
                                 else {
                                     try {
                                         RNIap.prepare().then(val => {
-                                            RNIap.getSubscriptions(itemSkus).then(val => {
-                                                console.log(val)
-                                            })
+                                            // RNIap.getSubscriptions(itemSkus).then(val => {
+                                            //     console.log(val)
+                                            // })
                                             RNIap.buySubscription('Pro2').then(subscription => {
                                                 console.log(subscription)
                                                 var person = firePerson._value
