@@ -460,7 +460,7 @@ export default class BusinessCard extends React.Component {
                         if (key == "instagram")
                             return (
                                 <View style={{opacity: opacity, zIndex: 2, backgroundColor: 'transparent'}} key={key} >
-                                    <TouchableOpacity disabled={disabled} style={{width: '10%'}} onPress={() => Linking.openURL("https://www.instagram.com/" + value)}>
+                                    <TouchableOpacity disabled={disabled} style={{width: Platform.OS == "android" ? '12%' : '10%'}} onPress={() => Linking.openURL("https://www.instagram.com/" + value)}>
                                         <Icon name='logo-instagram' style={{top: 5, left: 10, fontSize: 36, color: '#bc2a8d'}} />
                                     </TouchableOpacity>
                                 </View>
@@ -468,7 +468,7 @@ export default class BusinessCard extends React.Component {
                         else if (key == "linkedin")
                             return (
                                 <View style={{opacity: opacity, zIndex: 2, backgroundColor: 'transparent'}} key={key} >
-                                    <TouchableOpacity disabled={disabled} style={{width: '10%'}} onPress={() => Linking.openURL("https://www.linkedin.com/in/" + value)}>
+                                    <TouchableOpacity disabled={disabled} style={{width: Platform.OS == "android" ? '12%' : '10%'}} onPress={() => Linking.openURL("https://www.linkedin.com/in/" + value)}>
                                         <Icon name='logo-linkedin' style={{top: 5, left: 10, fontSize: 36, color: '#0077B5'}} />
                                     </TouchableOpacity>
                                 </View>
@@ -476,7 +476,7 @@ export default class BusinessCard extends React.Component {
                         else if (key == "twitter")
                             return (
                                 <View style={{opacity: opacity, zIndex: 2, backgroundColor: 'transparent'}} key={key} >
-                                    <TouchableOpacity disabled={disabled} style={{width: '10%'}} onPress={() => Linking.openURL("https://www.twitter.com/" + value)}>
+                                    <TouchableOpacity disabled={disabled} style={{width: Platform.OS == "android" ? '12%' : '10%'}} onPress={() => Linking.openURL("https://www.twitter.com/" + value)}>
                                         <Icon name='logo-twitter' style={{top: 5, left: 10, fontSize: 36, color: '#0077B5'}} />
                                     </TouchableOpacity>
                                 </View>

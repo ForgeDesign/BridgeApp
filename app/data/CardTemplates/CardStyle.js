@@ -1,10 +1,10 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions, AsyncStorage } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 var {height, width} = Dimensions.get('window');
 
-var widthRatio = (1050 / 355) * 1.0009
-var heightRatio = (600 / 202.35) * 1.0009
+var widthRatio = Platform.OS == "android" ? (1050 / 355) * 1.0009 : (1050 / 355) * 1.0009
+var heightRatio =  Platform.OS == "android" ? (600 / 202.35) * 1.14 : (600 / 202.35) * 1.0009
 const aspectRatio = height/width;
 
 import firebase from 'react-native-firebase';
@@ -296,7 +296,7 @@ export default class CardStyle {
                         bottom: businame.bottom / heightRatio,
                         right: businame.right / widthRatio,
                         left: businame.left / widthRatio,
-                        height: businame.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : businame.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * businame.width / widthRatio,
                     },
                     websiteInput: {
@@ -320,7 +320,7 @@ export default class CardStyle {
                         bottom: website.bottom / heightRatio,
                         right: website.right / widthRatio,
                         left: website.left / widthRatio,
-                        height: website.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : website.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * website.width / widthRatio,
                     },
                     positionInput: {
@@ -344,7 +344,7 @@ export default class CardStyle {
                         bottom: position.bottom / heightRatio,
                         right: position.right / widthRatio,
                         left: position.left / widthRatio,
-                        height: position.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : position.height / heightRatio,
                         width: (aspectRatio<1.6 ? 2.5352 : 3) * position.width / widthRatio,
                     },
                     phonenumInput: {
@@ -368,7 +368,7 @@ export default class CardStyle {
                         bottom: phonenum.bottom / heightRatio,
                         right: phonenum.right / widthRatio,
                         left: phonenum.left / widthRatio,
-                        height: phonenum.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : phonenum.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * phonenum.width / widthRatio,
                     },
                     nameInput: {
@@ -392,7 +392,7 @@ export default class CardStyle {
                         bottom: name.bottom / heightRatio,
                         right: name.right / widthRatio,
                         left: name.left / widthRatio,
-                        height: name.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : name.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * name.width / widthRatio,
                     },
                     emailInput: {
@@ -416,7 +416,7 @@ export default class CardStyle {
                         bottom: email.bottom / heightRatio,
                         right: email.right / widthRatio,
                         left: email.left / widthRatio,
-                        height: email.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : email.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * email.width / widthRatio,
                     },
                     addressInput: {
@@ -440,7 +440,7 @@ export default class CardStyle {
                         bottom: address.bottom / heightRatio,
                         right: address.right / widthRatio,
                         left: address.left / widthRatio,
-                        height: address.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : address.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * address.width / widthRatio,
                     },
                     address2Input: {
@@ -464,7 +464,7 @@ export default class CardStyle {
                         bottom: address2.bottom / heightRatio,
                         right: address2.right / widthRatio,
                         left: address2.left / widthRatio,
-                        height: address2.height / heightRatio,
+                        height: Platform.OS == "android" ? undefined : address2.height / heightRatio,
                         width: (aspectRatio<1.6 ? 1.183 : 1.4) * address2.width / widthRatio,
                     },
                 }),

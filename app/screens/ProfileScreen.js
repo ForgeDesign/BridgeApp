@@ -537,15 +537,21 @@ class ProfileScreen extends Component {
                     capturedCards={this.state.capturedCards}
                 />
 
-                <View style={{
-                    borderBottomColor: '#003E5B',
-                    borderBottomWidth: 4,
-                    shadowOffset: { width: 0, height:2.8 },
-                    shadowOpacity: 0.8,
-                    shadowRadius: 2,
-                    elevation: 1,
-                    bottom: 3
-                }}/>
+                {Platform.OS == "android" ? (
+                    <View/>
+                ) : (
+                    <View style={{
+                        borderBottomColor: '#003E5B',
+                        borderBottomWidth: 4,
+                        shadowOffset: { width: 0, height:2.8 },
+                        shadowOpacity: 0.8,
+                        shadowRadius: 2,
+                        elevation: 1,
+                        bottom: 3
+                    }}/>
+                )}
+
+                
 
                 <PopupDialog
                     dialogTitle={<DialogTitle title="Select a Card" />}

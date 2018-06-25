@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { 
     View, 
     Text, 
-    AppRegistry, 
+    Platform, 
     TouchableOpacity, 
     Modal, 
     KeyboardAvoidingView, 
@@ -851,6 +851,6 @@ const styles = EStyleSheet.create({
 
     },
     picker: {
-        height: 180
+        height: Platform.OS == "android" ? 50 : 180
     }
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, TouchableOpacity, Modal, KeyboardAvoidingView, Switch, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Platform, TouchableOpacity, Modal, KeyboardAvoidingView, Switch, Dimensions, Picker, Image, ScrollView, StyleSheet } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Header } from '../components/Header';
@@ -693,6 +693,6 @@ const styles = EStyleSheet.create({
 
     },
     picker: {
-        height: 180
+        height: Platform.OS == "android" ? 50 : 180
     }
 })

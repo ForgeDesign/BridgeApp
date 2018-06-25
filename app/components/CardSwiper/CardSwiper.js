@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, Modal, KeyboardAvoidingView, } from 'react-native';
+import { View, Text, Image, Platform, Modal, KeyboardAvoidingView, } from 'react-native';
 import styles from './styles';
 import { Icon } from 'native-base';
 import firebase from 'react-native-firebase';
@@ -28,6 +28,43 @@ class CardSwiper extends React.Component {
     render() {
         recommended = this.props.recommendation == undefined ? false : true
         allCards = this.filter_array(this.props.card)
+
+        if(Platform.OS == "android")
+            return(
+                allCards.map(function(item, i){
+                    if(item != null)
+                    return (
+                        <View style={styles.slide1} key={i + "view"}>
+                            <BusinessCard
+                                logoFrame={item.logoFrame}
+                                justImage={item.id == "IMAGE" ? item.id : undefined}
+                                justImageImage={item.image}
+                                recommendation={recommended}
+                                key={i}
+                                font={item.font}
+                                chosenImage={item.chosenImage}
+                                cardnum={item.cardnum}
+                                logo={item.logo}
+                                color={item.color} 
+                                position={item.position} 
+                                website={item.website} 
+                                businame={item.businame} 
+                                phonenum={item.phonenum} 
+                                name={item.name} 
+                                email={item.email} 
+                                address={item.address}
+                                stateabb={item.stateabb}
+                                city={item.city}
+                                zip={item.zip}
+                                socialMedia={item.socialMedia}
+                                section={item.fireKey}
+                                index={i}
+                                contact={true}
+                            />
+                        </View>
+                    )
+                })
+            )
 
         if(this.props.fromContactsPage) {
             return(

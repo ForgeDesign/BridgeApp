@@ -8,6 +8,11 @@ export default EStyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    swiper: {
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+    },
     button: {
         justifyContent: 'center',
         alignItems: 'center',
