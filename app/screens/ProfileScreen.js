@@ -350,7 +350,7 @@ class ProfileScreen extends Component {
     _renderItem(ref) {
         return (
             <Grid style={{marginTop: '12%'}}>
-                <Col size={75}>
+                <Col size={Platform.OS == "android" ? 195 : 75}>
                     <BusinessCard
                         logoFrame={ref.item.logoFrame}
                         chosenImage={ref.item.chosenImage}
@@ -376,7 +376,7 @@ class ProfileScreen extends Component {
                 </Col>
                 <Col size={25}>
                     <Checkbox
-                        style={{left: '45%', flex: 1, top: '-12%'}}
+                        style={{left: Platform.OS == "android" ? '0%' : '45%', flex: 1, top: '-12%'}}
                         onChange={(val) => this._handleCheck(val, ref)}
                         checked={false}
                         ref={(check) => {this["check" + ref.index] = check}}

@@ -486,11 +486,14 @@ export default class BusinessCard extends React.Component {
                     <View
                     style={{
                         position: "absolute",
-                        zIndex: 2000
+                        zIndex: 2000,
+                        width: '100%', height: '100%'
                     }}>
                         {
                             this.state.qr ? (
-                                <TouchableOpacity disabled={false} style={{zIndex: 1999, position: "absolute", width: '20%', height: '100%', top: 150, left: 300}} 
+                                <TouchableOpacity disabled={false} 
+                                style={Platform.OS == "ios" ? {zIndex: 1999, position: "absolute", width: '20%', height: '100%', top: 150, left: 300} 
+                                : {top: 150, left: 300, width: '100%', height: '100%'}} 
                                 onPress={() => 
                                     { 
                                         this.setState({qrCode: true})
@@ -520,7 +523,7 @@ export default class BusinessCard extends React.Component {
                                             </TouchableOpacity>
                                         </View>
                                     </Modal>
-                                    <View>
+                                    <View style={{}}>
                                         <QRCode
                                         value={"bridgecard://connectRemote/" + firebase.auth().currentUser.uid + "/card/" + this.state.section}
                                         size={30}
