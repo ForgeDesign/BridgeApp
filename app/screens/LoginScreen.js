@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar, Alert, ActivityIndicator } from 'react-native';
+import { Text, Platform, View, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback, Keyboard, StatusBar, Alert, ActivityIndicator } from 'react-native';
 import { Icon } from 'native-base';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
@@ -155,30 +155,48 @@ export default class LoginScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity onPress={async () => {
                                                     this.setState({activity: true})
-                                                    GoogleSignIn.currentUser().then((user) => {
-                                                        if (user != undefined) {
+                                                    if(Platform.OS == "ios") {
+                                                        GoogleSignIn.currentUser().then((user) => {
+                                                            if (user != undefined) {
+                                                                GoogleSignIn.signOut()
+                                                            }
                                                             GoogleSignIn.signOut()
-                                                        }
-                                                    GoogleSignIn.signOut()
-                                                        GoogleSignIn.signInPromise()
-                                                        .then(user => {
-                                                            firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
+                                                            GoogleSignIn.signInPromise()
+                                                            .then(user => {
+                                                                firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
+                                                                    this.setState({activity: false})
+                                                                    this.props.navigation.navigate('Main')
+                                                                }).catch((error2) => {
+                                                                    this.setState({activity: false})
+                                                                    console.log(JSON.stringify(error2))
+                                                                    Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                                })
+                                                            }).catch((err) => {
                                                                 this.setState({activity: false})
-                                                                this.props.navigation.navigate('Main')
-                                                            }).catch((error2) => {
-                                                                this.setState({activity: false})
-                                                                console.log(JSON.stringify(error2))
-                                                                Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                                console.log(err)
                                                             })
-                                                        }).catch((err) => {
-                                                            this.setState({activity: false})
-                                                            console.log(err)
+                                                        }).catch(() => {
+                                                            console.log("uh oh")
                                                         })
-                                                    }).catch(() => {
-                                                        console.log("uh oh")
-                                                    })
-
-                                                  }}>
+                                                    } else {
+                                                        GoogleSignIn.signOut()
+                                                        GoogleSignIn.signInPromise()
+                                                            .then(user => {
+                                                                console.log(user)
+                                                                firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
+                                                                    this.setState({activity: false})
+                                                                    this.props.navigation.navigate('Main')
+                                                                }).catch((error2) => {
+                                                                    this.setState({activity: false})
+                                                                    console.log(JSON.stringify(error2))
+                                                                    Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                                })
+                                                            }).catch((err) => {
+                                                                this.setState({activity: false})
+                                                                console.log(err)
+                                                            })
+                                                    }
+                                            }}>
               <View style={styles.icon}>
                 <Text style={styles.iconText}>{'g'}</Text>
               </View>
