@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Grid } from "react-native-easy-grid"
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Platform } from 'react-native';
 import { Icon } from 'native-base'
 import styles from './styles';
 
@@ -35,12 +35,12 @@ class Header extends React.Component {
         logout = <View/>
         if (this.state.props.logout)
             logout = <TouchableOpacity onPress={() => this.state.props.logout()}> 
-                        <Text style={styles.logout}>Log out</Text>
+                        <Text style={Platform.OS == "android" ? styles.logout2 : styles.logout}>Log out</Text>
                     </TouchableOpacity>
 
         upgrade = <View/>
         if (this.state.props.upgrade)
-        upgrade = <TouchableOpacity style={styles.upgrade2} onPress={() => this.state.props.upgrade()}> 
+        upgrade = <TouchableOpacity style={Platform.OS == "android" ? styles.upgrade3 : styles.upgrade2} onPress={() => this.state.props.upgrade()}> 
                     <Text style={styles.upgrade}>Upgrade</Text>
                 </TouchableOpacity>
         

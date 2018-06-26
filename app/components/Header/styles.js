@@ -16,6 +16,15 @@ export default EStyleSheet.create({
       color: 'white',
       textAlign: 'center'
     },
+    logout2: {
+        // position: "absolute",
+        fontSize: aspectRatio < 1.6 ? 10 : 12,
+        color: 'white',
+        textAlign: 'center',
+        // right: 15,
+        // bottom: -7,
+        // bottom: '2%'
+    },
     logout: {
         position: "absolute",
         fontSize: aspectRatio < 1.6 ? 10 : 12,
@@ -23,6 +32,12 @@ export default EStyleSheet.create({
         textAlign: 'center',
         right: 15,
         bottom: -7,
+        // bottom: '2%'
+    },
+    upgrade3: {
+        position: "absolute",
+        right: aspectRatio < 1.6 ? 265 : 335,
+        // bottom: -7,
         // bottom: '2%'
     },
     upgrade2: {
