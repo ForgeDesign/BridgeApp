@@ -1,0 +1,2 @@
+json_key_file("app/api-5711863087501144902-49019-99788081d40d.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.bridgecard") # e.g. com.krausefx.app

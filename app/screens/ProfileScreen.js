@@ -54,7 +54,7 @@ const itemSkus = Platform.select({
     'Pro2'
   ],
   android: [
-    'Pro2'
+    '2_pro.'
   ]
 });
 
@@ -630,7 +630,7 @@ class ProfileScreen extends Component {
                                     // RNIap.getSubscriptions(itemSkus).then(val => {
                                     //     console.log(val)
                                     // })
-                                    RNIap.buySubscription('Pro2').then(subscription => {
+                                    RNIap.buySubscription(itemSkus[0]).then(subscription => {
                                         console.log(subscription)
                                         var person = firePerson._value
                                         if (person == null) {
@@ -674,7 +674,7 @@ class ProfileScreen extends Component {
                                             // RNIap.getSubscriptions(itemSkus).then(val => {
                                             //     console.log(val)
                                             // })
-                                            RNIap.buySubscription('Pro2').then(subscription => {
+                                            RNIap.buySubscription(itemSkus[0]).then(subscription => {
                                                 console.log(subscription)
                                                 var person = firePerson._value
                                                 if (person == null) {
