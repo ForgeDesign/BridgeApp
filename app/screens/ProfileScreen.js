@@ -408,6 +408,8 @@ class ProfileScreen extends Component {
 
     async getTheLevel() {
         RNIap.prepare().then(val => {
+            console.log(val)
+            console.log("HERE I AM STUPID BITCH")
             RNIap.getPurchaseHistory().then(val => {
                 if(val) {
                     console.log(val)

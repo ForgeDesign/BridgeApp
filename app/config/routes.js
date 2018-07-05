@@ -1,5 +1,5 @@
 import { TabNavigator, TabBarTop, NavigationActions } from 'react-navigation';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import { Icon } from 'native-base';
 import React from 'react';
 
@@ -98,7 +98,7 @@ export default TabNavigator(
                     index: 0,
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
                 });
-                if(scene.scene.route.key == "Ecard") {
+                if(scene.scene.route.key == "Ecard" && Platform.OS != "android") {
                     bigThingy.bigbusinesscardbugfix._stopAutoplay()
                     //  bigbusinesscardbugfix
                 }

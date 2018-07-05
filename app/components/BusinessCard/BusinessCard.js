@@ -578,7 +578,7 @@ export default class BusinessCard extends React.Component {
             this.state.swipeable ? (
                 <Swiper
                 loop={true}
-                autoplay={this.props.loadAfter ? this.state.autoplay : false}
+                autoplay={this.props.loadAfter ? (this.state.autoplay && Platform.OS != "android") : false}
                 ref={(ref) => this.swiper = ref}
                 onIndexChanged={(index) => {
                     this.props.swipeableFunc(index)
