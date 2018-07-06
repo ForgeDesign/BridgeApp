@@ -108,8 +108,7 @@ android {
         applicationId "com.bridgecard"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionName '1.1'
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         ndk {
@@ -147,6 +146,8 @@ android {
             }
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -165,10 +166,10 @@ dependencies {
     implementation(project(':react-native-firebase')) {
         transitive = false
     }
-    implementation "com.google.android.gms:play-services-base:15.0.0"
-    implementation "com.google.firebase:firebase-core:15.0.2"
-    implementation "com.google.firebase:firebase-database:15.0.0"
-    implementation "com.google.firebase:firebase-auth:15.1.0"
+    implementation 'com.google.android.gms:play-services-base:15.0.0'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-database:15.0.0'
+    implementation 'com.google.firebase:firebase-auth:15.1.0'
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-facebook-login')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
