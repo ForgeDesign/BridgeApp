@@ -89,7 +89,7 @@ export default class CardStyle {
                             { scaleY: 1.85 }
                         ], 
                         borderWidth: 0,
-                        top: '135%',
+                        top: height <= 667 ? '100%' : '135%',
                         left: '-5%', 
                     },
                     cardLandscapedAndroid: {
@@ -196,7 +196,7 @@ export default class CardStyle {
                             { scaleY: 1.85 }
                         ], 
                         borderWidth: 0,
-                        top: '135%',
+                        top: height <= 667 ? '100%' : '135%',
                         left: '-5%', 
                     },
                     cardLandscapedAndroid: {

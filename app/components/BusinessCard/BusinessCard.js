@@ -1,5 +1,16 @@
 import React from 'react';
-import { TextInput, View, TouchableOpacity, Text, Image, Easing, Linking, Platform, Dimensions, AppState } from 'react-native';
+import { 
+    TextInput, 
+    View, 
+    TouchableOpacity, 
+    Text, 
+    Image, 
+    Easing, 
+    Linking, 
+    Platform, 
+    Dimensions, 
+    AppState,
+    ActivityIndicator } from 'react-native';
 import Hero from 'react-native-hero';
 import CardStyle from '../../data/CardTemplates/CardStyle'
 // import { Shaders, Node, GLSL } from 'gl-react';
@@ -12,6 +23,11 @@ import Modal from "react-native-modal";
 import QRCode from 'react-native-qrcode';
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
+
+
+var widthRatio = Platform.OS == "android" ? (1050 / 355) * 1.0009 : (1050 / 355) * 1.0009
+var heightRatio =  Platform.OS == "android" ? (600 / 202.35) * 1.14 : (600 / 202.35) * 1.0009
+const aspectRatio = height/width;
 
 import Geocoder from 'react-native-geocoder';
 import Swiper from 'react-native-swiper';
@@ -83,7 +99,12 @@ export default class BusinessCard extends React.Component {
             this.getNotes(nextProps.id).done(notes => {
                 this.setState({notes: notes})
             })
-        }
+
+            // if(nextProps.loadedCallback) {
+            //     console.log("GOT THE THING")
+            //     nextProps.loadedCallback()
+            // }
+        }        
     }
 
     _handleAppStateChange = (nextAppState) => {
@@ -94,8 +115,31 @@ export default class BusinessCard extends React.Component {
         this.setState({appState: nextAppState});
     }
 
+    fixSwiper() {
+        console.log(this.swiper)
+        if(this.swiper)
+            this.swiper.scrollBy(0, false)
+        // this.swiper.loopJump()
+        // this.forceUpdate()
+    }
+
+    updateForce() {
+        console.log("fuck")
+        setTimeout(() => {
+            this.forceUpdate()
+            console.log(this.props)
+            // this.setState({logo: undefined})
+        }, 300)
+    }
+
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this._handleAppStateChange);        
+
+        if(this.props.refreshOn) {
+            setTimeout(() => {
+                this.forceUpdate()
+            }, 300)
+        }
     }
     
     componentWillUnmount() {
@@ -223,7 +267,7 @@ export default class BusinessCard extends React.Component {
         if(!skip)
         this.setState(object, () => {
             setTimeout(() => {
-                this.setState({loaded : true})
+                this.callLoaded()
             },350);
         })
     }
@@ -271,10 +315,20 @@ export default class BusinessCard extends React.Component {
             }
             this.setState(object, () => {
                 setTimeout(() => {
-                    this.setState({loaded : true})
+                    this.callLoaded()
                 },350);
             })
         })
+    }
+
+    callLoaded(ref = false) {
+        if(ref)
+            setTimeout(() => {
+                this.fixSwiper()
+            }, 300)
+        else
+            this.setState({loaded : true})
+        // this.fixSwiper()
     }
 
     _flip = () => {
@@ -318,10 +372,22 @@ export default class BusinessCard extends React.Component {
                                         style={{borderWidth: 0, width: '100%', height: '100%'}}
                                     >
                                         {/* Face Side */}
-                                        {this.isLandscaped ? <View/> : this._renderFront()}
+                                        {this.isLandscaped ? <View style={{
+                height: '100%',
+                paddingBottom: 20,
+                marginBottom: 20
+            }}>
+            
+            </View> : this._renderFront()}
 
                                         {/* Back Side */}
-                                        {this.isLandscaped ? <View/> : this._renderBack()}
+                                        {this.isLandscaped ? <View style={{
+                height: '100%',
+                paddingBottom: 20,
+                marginBottom: 20
+            }}>
+            
+            </View> : this._renderBack()}
                                     </FlipCard>
                                 </View>                    
                             </View>
@@ -572,14 +638,25 @@ export default class BusinessCard extends React.Component {
     _renderFront = () => {
 
         if ( !this.state.loaded )
-            return(<View/>)
+            // return(<View/>)
+            return(<View style={{
+                height: '100%',
+                width: '100%'
+            }}>
+                <ActivityIndicator style={{height: '100%'}} color="blue" animating={true} />
+            </View>)
         else
         return (
             this.state.swipeable ? (
                 <Swiper
-                loop={true}
-                autoplay={this.props.loadAfter ? (this.state.autoplay && Platform.OS != "android") : false}
-                ref={(ref) => this.swiper = ref}
+                // loop={true}
+                loadMinimalLoader={<ActivityIndicator color="blue" animating={true} />}
+                loadMinimal={true}
+                // autoplay={this.props.loadAfter ? (this.state.autoplay && Platform.OS != "android") : false}
+                ref={(ref) => {
+                    this.swiper = ref
+                    this.callLoaded(true)
+                }}
                 onIndexChanged={(index) => {
                     this.props.swipeableFunc(index)
                 }}
@@ -751,7 +828,13 @@ export default class BusinessCard extends React.Component {
                         </View>
                     </View>
                     )
-                }.bind(this)) : <View/>}
+                }.bind(this)) : <View style={{
+                    height: '100%',
+                    paddingBottom: 20,
+                    marginBottom: 20
+                }}>
+                
+                </View>}
             </Swiper>
             ) : (
                 <View style={this.state.style.card}>

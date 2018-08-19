@@ -132,6 +132,22 @@ export default class App extends React.Component {
                                 person.card.push(contact.card[index2])
                             }
                         }
+                        
+                        rootRef.child(uid + "person").once().then(firePerson => {
+
+                            var d = new Date();
+                            obj = {
+                                connector: "You",
+                                text: "bridged with",
+                                connectee: firePerson._value.displayName,
+                                icon: "md-person",
+                                image: "",
+                                time: d.toString()
+                            }
+                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+    
+                        })
+
                         rootRef.child(firebase.auth().currentUser.uid + "people/" + contact.key).update(person)
                         found = true
                         break
@@ -139,6 +155,23 @@ export default class App extends React.Component {
                 }
                 if (!found) {
                     rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
+
+                    rootRef.child(uid + "person").once().then(firePerson => {
+
+                        var d = new Date();
+                        obj = {
+                            connector: "You",
+                            text: "bridged with",
+                            connectee: firePerson._value.displayName,
+                            icon: "",
+                            image: "",
+                            time: d.toString()
+                        }
+                        rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+
+                    })
+
+                    
                 }
             })
         });

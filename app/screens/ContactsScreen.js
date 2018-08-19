@@ -468,9 +468,9 @@ class ContactsScreen extends React.Component {
         Object.keys(peopleFound).filter(key => {
             for (let index = 0; index < peopleFound[key].length; index++) {
                 peopleFound[key].map((person, index) => {
-                    if (
+                    if (person &&
                         person.name.toLowerCase().indexOf(term.toLowerCase()) == -1
-                        && person.location.toLowerCase().indexOf(term.toLowerCase()) == -1
+                        && person.location && person.location.toLowerCase().indexOf(term.toLowerCase()) == -1
                     ) {
                         notFound = false
                         for (let cardIndex = 0; cardIndex < person.card.length; cardIndex++) {
@@ -507,7 +507,7 @@ class ContactsScreen extends React.Component {
         // }, 200);
 
         var editImage = <View/>
-        if(person.person == "IMAGE")
+        if(person && person.person == "IMAGE")
             editImage = <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -522,7 +522,7 @@ class ContactsScreen extends React.Component {
             thething[index] = " "
             // this.setState({peoplePositions: thething})
         }
-        if(person.position != undefined) {
+        if(person && person.position != undefined) {
             stuff = person.business + " : " + person.position
             var thething = JSON.parse(JSON.stringify(this.state.peoplePositions))
             thething[index] = stuff
@@ -607,7 +607,7 @@ class ContactsScreen extends React.Component {
 
     sectionListItem(test) {
         return (
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3 }}>
+            <Text style={{ fontSize: 12.5, fontWeight: 'bold', color: $primaryBlue, marginRight: 15, marginBottom: 3 }}>
                 {test.sectionId}
             </Text>
         )
@@ -716,6 +716,7 @@ class ContactsScreen extends React.Component {
 
                 <AtoZListView
                     style={{ marginTop: 16, bottom: 30 }}
+                    sectionListTextStyle={{ fontSize: 5 }}
                     data={this.state.filteredPeople}        // required array|object
                     renderRow={this.renderRow}              // required func
                     rowHeight={150}                         // required number

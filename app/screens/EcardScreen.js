@@ -13,10 +13,15 @@ import {
     ScrollView, 
     StyleSheet,
     Alert,
-    Switch
+    Switch,
+    ActivityIndicator
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+var widthRatio = Platform.OS == "android" ? (1050 / 355) * 1.0009 : (1050 / 355) * 1.0009
+var heightRatio =  Platform.OS == "android" ? (600 / 202.35) * 1.14 : (600 / 202.35) * 1.0009
+const aspectRatio = height/width;
 
 import { Header } from '../components/Header';
 import { CardInput } from '../components/CardInput';
@@ -66,7 +71,7 @@ class EcardScreen extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
-            this.forceUpdate()
+            // this.forceUpdate()
             console.log("in the ecard screen")
         }
         if (this.props.isFocused && !nextProps.isFocused) {
@@ -149,8 +154,17 @@ state = {
     alertVisible: false
 }
 
-_showModal = () => { this.setState({ isModalVisible: true }) }
-_hideModal = () => { this.setState({ isModalVisible: false }) }
+_showModal = () => { 
+    console.log(this.bigbusinesscardbugfix)
+    this.setState({ isModalVisible: true }) 
+}
+_hideModal = () => { 
+    this.setState({ isModalVisible: false }) 
+
+    console.log(this.bigbusinesscardbugfix)
+    this.bigbusinesscardbugfix.fixSwiper()
+    this.forceUpdate()
+}
 _showColorModal = () => { this.setState({ modalVisible: true }) }
 
 confirmChanges = () => {
@@ -172,9 +186,15 @@ confirmChanges = () => {
         logo: this.state.logo 
     });
     this._hideModal();
+
+    this.bigbusinesscardbugfix.fixSwiper()
+    this.forceUpdate()
 }
 
     saveData = () => {
+        this.bigbusinesscardbugfix.fixSwiper()
+        this.bigbusinesscardbugfix.fixSwiper()
+        // this.forceUpdate()
         var pathPerson = firebase.auth().currentUser.uid + "person"
         var pathCards = firebase.auth().currentUser.uid + "cards"
         rootRef.child(pathPerson).once().then(val => {
@@ -249,7 +269,8 @@ confirmChanges = () => {
         super(props)
         bigThingy = this
         this.removeLogo = this.removeLogo.bind(this)
-        this.addLogo = this.addLogo.bind(this);
+        this.addLogo = this.addLogo.bind(this)
+        this.loadedCallback = this.loadedCallback.bind(this)
     }
 
     makeAlertAppear() {
@@ -262,6 +283,9 @@ confirmChanges = () => {
     update(key, value) {
         this.setState({[key] : value})
     }
+
+    chosenImage = 0
+    hackyWorkAround = 0
 
     swipeableFunc(index) {
         // this.setState({chosenImageThingy : index})
@@ -300,6 +324,11 @@ confirmChanges = () => {
         });
     }
 
+    loadedCallback() {
+        console.log("SETTING STATE", this)
+        this.setState({loadingCard: false})
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         const { position, website, businame, instagram, twitter, linkedin, phonenum, cardnum, name, email, address, city, stateabb, zip, font } = this.state;
@@ -327,30 +356,46 @@ confirmChanges = () => {
                 shadowRadius: 2,
                 elevation: 1}}/>
 
-                <BusinessCard
-                    logoFrame={this.state.logoFrame}
-                    createOrEdit={true}
-                    chosenImage={this.state.chosenImageThingy}
-                    ref={ref => this.bigbusinesscardbugfix = ref}
-                    loadAfter={true}
-                    swipeable
-                    swipeableFunc={this.swipeableFunc.bind(this)}
-                    font={this.state.prefont}
-                    cardnum={this.state.cardnum}
-                    logo={this.state.logo} 
-                    color={this.state.color} 
-                    city={this.state.precity} 
-                    stateabb={this.state.prestateabb} 
-                    zip={this.state.prezip} 
-                    position={this.state.preposition} 
-                    website={this.state.prewebsite} 
-                    businame={this.state.prebusiname} 
-                    phonenum={this.state.prephonenum} 
-                    name={this.state.prename} 
-                    email={this.state.preemail} 
-                    address={this.state.preaddress}
-                    socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin, twitter: this.state.pretwitter}}
-                />
+                <View>
+
+                    {this.state.loadingCard ? (
+                        <View style={{
+                            height: aspectRatio<1.6 ? 171 : 202.35,
+                            paddingBottom: 20,
+                            marginBottom: 20
+                        }}>
+                            {/* <ActivityIndicator color="blue" animating={this.state.loadingCard} /> */}
+                        </View>
+                    ) : (
+                        <BusinessCard
+                            logoFrame={this.state.logoFrame}
+                            createOrEdit={true}
+                            loadedCallback={() => this.loadedCallback()}
+                            chosenImage={this.chosenImage}
+                            ref={ref => this.bigbusinesscardbugfix = ref}
+                            key={this.state.cardnum}
+                            loadAfter={true}
+                            swipeable
+                            swipeableFunc={this.swipeableFunc.bind(this)}
+                            font={this.state.prefont}
+                            cardnum={this.state.cardnum}
+                            logo={this.state.logo} 
+                            color={this.state.color} 
+                            city={this.state.precity} 
+                            stateabb={this.state.prestateabb} 
+                            zip={this.state.prezip} 
+                            position={this.state.preposition} 
+                            website={this.state.prewebsite} 
+                            businame={this.state.prebusiname} 
+                            phonenum={this.state.prephonenum} 
+                            name={this.state.prename} 
+                            email={this.state.preemail} 
+                            address={this.state.preaddress}
+                            socialMedia={{instagram: this.state.preinstagram, linkedin: this.state.prelinkedin, twitter: this.state.pretwitter}}
+                        />
+                    )}
+
+                </View>
 
                 <View style={styles.pickWrapper}>
                 <Picker
@@ -360,7 +405,15 @@ confirmChanges = () => {
                     placeholder="Select One"
                     selectedValue={this.state.cardnum}
                     onValueChange={(itemValue, itemIndex) => {
-                        this.setState({ cardnum: itemValue, chosenImageThingy: 0 })
+                        // this.hackyWorkAround += 1
+                        this.setState({ cardnum: itemValue, loadingCard: true }, () => {
+                            setTimeout(() => {
+                                this.setState({ loadingCard: false })
+                                // this.bigbusinesscardbugfix.fixSwiper()
+                            }, 200)
+                            // this.bigbusinesscardbugfix.fixSwiper()
+                        })
+                        // this.chosenImage = 0
                     }}>
                     {this.state.availableTemplates ? this.state.availableTemplates.map((item, index) => {
                         if (typeof item == "string")
@@ -435,10 +488,11 @@ confirmChanges = () => {
 
                     <BusinessCard
                         logoFrame={this.state.logoFrame}
-                        createOrEdit={true}
-                        swipeable={true}
-                        swipeableFunc={this.swipeableFunc.bind(this)}
-                        chosenImage={0}
+                        createOrEdit={false}
+                        key={this.state.cardnum * 10}
+                        // swipeable={true}
+                        // swipeableFunc={this.swipeableFunc.bind(this)}
+                        chosenImage={this.chosenImage}
                         font={this.state.prefont}
                         cardnum={this.state.cardnum}
                         logo={this.state.logo} 
@@ -739,6 +793,7 @@ confirmChanges = () => {
                         this.setState({
                             logo: based64
                         });
+                        this.forceUpdate()
                 });
 
             }
@@ -836,7 +891,7 @@ const styles = EStyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10,
-        // marginBottom: 10,
+        marginBottom: 10,
     },
     buttonText: {
         fontSize: 16,

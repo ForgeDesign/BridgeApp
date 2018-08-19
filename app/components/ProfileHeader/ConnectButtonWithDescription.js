@@ -47,6 +47,7 @@ export default class ConnectButtonWithDescription extends React.Component {
     }
 
     _share(value, cardNum = undefined) {
+        console.log(value)
         cardNumStr = "a BridgeCard"
         if (cardNum != undefined && cardNum > 1)
             cardNumStr = cardNum + " BridgeCards"

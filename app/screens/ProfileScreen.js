@@ -253,13 +253,30 @@ class ProfileScreen extends Component {
         return result;
     }
 
-    _getCards() {
+    _onRefresh() {
+        this.setState({refreshing: true});
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
             var cardArray = []
             val.forEach(child => {
                 cardArray.push(child.val())
             })
             cardArray = this.filter_array(cardArray)
+            this.setState({cards: cardArray, refreshing: false});
+        })
+    }
+
+    _getCards() {
+        console.log(firebase.auth().currentUser.uid)
+        rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
+            console.log(val)
+            var cardArray = []
+            val.forEach(child => {
+                cardArray.push(child.val())
+            })
+            // console.log(cardArray)
+
+            cardArray = this.filter_array(cardArray)
+            
             this.setState({cards: cardArray, cardCount: cardArray.length});
         })
     }
@@ -307,12 +324,26 @@ class ProfileScreen extends Component {
     }
 
     openPopup() {
+        this._onRefresh()
         if (this.state.cards != undefined)
             for (let index = 0; index < this.state.cards.length; index++) {
                 this["check" + index].uncheck()
             }
             this.cardChecked = {}
+        this.setState({disabled: true})
+        // for (let index = 0; index < this.state.cards.length; index++) {
+        //     if(this[index] && this[index].updateForce)
+        //         this[index].updateForce()
+        // }
+        setTimeout(() => {
+            this._onRefresh()
+        },400)
+        //MARKMARK
         this.popupDialog.show()
+        // setTimeout(() => {
+        //     this.forceUpdate()
+        // },300)
+        
     }
 
     cardChecked = {}
@@ -348,10 +379,13 @@ class ProfileScreen extends Component {
     }
 
     _renderItem(ref) {
+        console.log(ref)
         return (
             <Grid style={{marginTop: '12%'}}>
                 <Col size={Platform.OS == "android" ? 195 : 75}>
                     <BusinessCard
+                        ref={(card) => this[ref.index] = card}
+                        refreshOn={true}
                         logoFrame={ref.item.logoFrame}
                         chosenImage={ref.item.chosenImage}
                         font={ref.item.font}
@@ -407,89 +441,87 @@ class ProfileScreen extends Component {
     }
 
     async getTheLevel() {
-        RNIap.prepare().then(val => {
-            console.log(val)
-            console.log("HERE I AM STUPID BITCH")
-            RNIap.getPurchaseHistory().then(val => {
-                if(val) {
-                    console.log(val)
-                    var latest = new Date(val[val.length - 1].transactionDate)
-                    var expires = new Date(val[val.length - 1].transactionDate)
-                    expires = expires.addMonths(1)
-                    if(latest <= expires) {
-                        console.log("currently valid subscription")
-                        var pathPerson = firebase.auth().currentUser.uid + "person"
-                        rootRef.child(pathPerson).once().then(val2 => {
-                            console.log("updating user", val2.val().transactionId)
-                            if(val2.val().transactionId == val[val.length - 1].transactionId || val2.val().transactionId == undefined) {
-                                var person = val2._value
-                                if (person == null) {
-                                    console.log("intializing person")
-                                    obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                    obj.level = "Pro"
-                                    obj.transactionId = val[val.length - 1].transactionId
-                                    delete obj.refreshToken
-                                    delete obj.providerId
-                                    delete obj.providerData
-                                    delete obj.uid
-                                    delete obj.metadata
-                                    delete obj.phoneNumber
-                                    delete obj.isAnonymous
-                                    delete obj.emailVerified
-                                    delete obj.email
-                                    rootRef.child(pathPerson).set(obj).then(() => {
-                                        console.log(obj)
-                                        this.forceUpdate()
-                                    })
-                                }
-                                else {
-                                    console.log("updating existing person")
-                                    var poo = val2.val()
-                                    poo.level = "Pro"
-                                    poo.transactionId = val[val.length - 1].transactionId
-                                    rootRef.child(pathPerson).set(poo).then(() => {
-                                        this.forceUpdate()
-                                    }).catch(err => {
-                                        console.log(err)
-                                    })
-                                }
-                            }
-                        })
-                    }
-                    else {
-                        var pathPerson = firebase.auth().currentUser.uid + "person"
-                        rootRef.child(pathPerson).once().then(val2 => {
-                            if(val2.val().transactionId == val[val.length - 1].transactionId) {
-                                var person = val2._value
-                                if (person == null) {
-                                    obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
-                                    obj.level = "Lite"
-                                    delete obj.refreshToken
-                                    delete obj.providerId
-                                    delete obj.providerData
-                                    delete obj.uid
-                                    delete obj.metadata
-                                    delete obj.phoneNumber
-                                    delete obj.isAnonymous
-                                    delete obj.emailVerified
-                                    delete obj.email
-                                    rootRef.child(pathPerson).set(obj).then(() => {
-                                        this.forceUpdate()
-                                    })
-                                }
-                                else {
-                                    var poo = val2.val()
-                                    poo.level = "Lite"
-                                    rootRef.child(pathPerson).set(poo).then(() => {
-                                        this.forceUpdate()
-                                    })
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-        });
+        // RNIap.prepare().then(val => {
+        //     RNIap.getPurchaseHistory().then(val => {
+        //         if(val) {
+        //             console.log(val)
+        //             var latest = new Date(val[val.length - 1].transactionDate)
+        //             var expires = new Date(val[val.length - 1].transactionDate)
+        //             expires = expires.addMonths(1)
+        //             if(latest <= expires) {
+        //                 console.log("currently valid subscription")
+        //                 var pathPerson = firebase.auth().currentUser.uid + "person"
+        //                 rootRef.child(pathPerson).once().then(val2 => {
+        //                     console.log("updating user", val2.val().transactionId)
+        //                     if(val2.val().transactionId == val[val.length - 1].transactionId || val2.val().transactionId == undefined) {
+        //                         var person = val2._value
+        //                         if (person == null) {
+        //                             console.log("intializing person")
+        //                             obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+        //                             obj.level = "Pro"
+        //                             obj.transactionId = val[val.length - 1].transactionId
+        //                             delete obj.refreshToken
+        //                             delete obj.providerId
+        //                             delete obj.providerData
+        //                             delete obj.uid
+        //                             delete obj.metadata
+        //                             delete obj.phoneNumber
+        //                             delete obj.isAnonymous
+        //                             delete obj.emailVerified
+        //                             delete obj.email
+        //                             rootRef.child(pathPerson).set(obj).then(() => {
+        //                                 console.log(obj)
+        //                                 this.forceUpdate()
+        //                             })
+        //                         }
+        //                         else {
+        //                             console.log("updating existing person")
+        //                             var poo = val2.val()
+        //                             poo.level = "Pro"
+        //                             poo.transactionId = val[val.length - 1].transactionId
+        //                             rootRef.child(pathPerson).set(poo).then(() => {
+        //                                 this.forceUpdate()
+        //                             }).catch(err => {
+        //                                 console.log(err)
+        //                             })
+        //                         }
+        //                     }
+        //                 })
+        //             }
+        //             else {
+        //                 var pathPerson = firebase.auth().currentUser.uid + "person"
+        //                 rootRef.child(pathPerson).once().then(val2 => {
+        //                     if(val2.val().transactionId == val[val.length - 1].transactionId) {
+        //                         var person = val2._value
+        //                         if (person == null) {
+        //                             obj = JSON.parse(JSON.stringify( firebase.auth().currentUser._user ))
+        //                             obj.level = "Lite"
+        //                             delete obj.refreshToken
+        //                             delete obj.providerId
+        //                             delete obj.providerData
+        //                             delete obj.uid
+        //                             delete obj.metadata
+        //                             delete obj.phoneNumber
+        //                             delete obj.isAnonymous
+        //                             delete obj.emailVerified
+        //                             delete obj.email
+        //                             rootRef.child(pathPerson).set(obj).then(() => {
+        //                                 this.forceUpdate()
+        //                             })
+        //                         }
+        //                         else {
+        //                             var poo = val2.val()
+        //                             poo.level = "Lite"
+        //                             rootRef.child(pathPerson).set(poo).then(() => {
+        //                                 this.forceUpdate()
+        //                             })
+        //                         }
+        //                     }
+        //                 })
+        //             }
+        //         }
+        //     })
+        // });
     }
 
     state = {
