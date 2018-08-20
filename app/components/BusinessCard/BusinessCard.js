@@ -115,6 +115,13 @@ export default class BusinessCard extends React.Component {
         this.setState({appState: nextAppState});
     }
 
+    fixBlankCard() {
+        if(this.swiper) {
+            this.swiper.scrollBy(1, false)
+            this.swiper.scrollBy(0, false)
+        }
+    }
+
     fixSwiper() {
         console.log(this.swiper)
         if(this.swiper)
@@ -124,7 +131,6 @@ export default class BusinessCard extends React.Component {
     }
 
     updateForce() {
-        console.log("fuck")
         setTimeout(() => {
             this.forceUpdate()
             console.log(this.props)
