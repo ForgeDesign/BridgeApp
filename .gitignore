@@ -48,7 +48,7 @@ build/Release
 
 node_modules/*
 !node_modules/react-native-atoz-listview/
-!node_modules/react-native-swiper/src/
+!node_modules/react-native-swiper/
 
 jspm_packages/
 
