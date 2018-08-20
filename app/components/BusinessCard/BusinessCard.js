@@ -117,8 +117,10 @@ export default class BusinessCard extends React.Component {
 
     fixBlankCard() {
         if(this.swiper) {
-            this.swiper.scrollBy(1, false)
-            this.swiper.scrollBy(0, false)
+            // this.swiper.scrollBy(1, true)
+            setTimeout(() => {
+                this.swiper.sendToBeginning()
+            }, 100)
         }
     }
 

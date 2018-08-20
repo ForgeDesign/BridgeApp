@@ -99,7 +99,11 @@ export default TabNavigator(
                     actions: [NavigationActions.navigate({routeName: scene.scene.route.key})]
                 });
                 if(scene.scene.route.key == "Ecard" && Platform.OS != "android") {
-                    bigThingy.bigbusinesscardbugfix._stopAutoplay()
+                    setTimeout(() => {
+                        if(bigThingy.bigbusinesscardbugfix.swiper)
+                        bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning()
+                        bigThingy.bigbusinesscardbugfix.fixSwiper()
+                    }, 300)
                     //  bigbusinesscardbugfix
                 }
                 // else {
