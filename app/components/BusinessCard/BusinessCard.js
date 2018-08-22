@@ -125,7 +125,6 @@ export default class BusinessCard extends React.Component {
     }
 
     fixSwiper() {
-        console.log(this.swiper)
         if(this.swiper)
             this.swiper.scrollBy(0, false)
         // this.swiper.loopJump()
@@ -143,11 +142,11 @@ export default class BusinessCard extends React.Component {
     componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);        
 
-        if(this.props.refreshOn) {
-            setTimeout(() => {
-                this.forceUpdate()
-            }, 300)
-        }
+        // if(this.props.refreshOn) {
+        //     setTimeout(() => {
+        //         this.forceUpdate()
+        //     }, 300)
+        // }
     }
     
     componentWillUnmount() {

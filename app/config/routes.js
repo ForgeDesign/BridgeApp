@@ -12,6 +12,7 @@ import ContactsScreen from '../screens/ContactsScreen';
 var {height, width} = Dimensions.get('window');
 
 bigThingy = undefined
+didOnce = false
 
 export default TabNavigator(
     {
@@ -100,8 +101,10 @@ export default TabNavigator(
                 });
                 if(scene.scene.route.key == "Ecard" && Platform.OS != "android") {
                     setTimeout(() => {
-                        if(bigThingy.bigbusinesscardbugfix.swiper)
-                        bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning()
+                        if(bigThingy.bigbusinesscardbugfix.swiper && !didOnce) {
+                            didOnce = true
+                            bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning()
+                        }
                         bigThingy.bigbusinesscardbugfix.fixSwiper()
                     }, 300)
                     //  bigbusinesscardbugfix
