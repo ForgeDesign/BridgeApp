@@ -27,6 +27,7 @@
 		0A3F9FF6205624F200B970CB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC7205624F200B970CB /* EvilIcons.ttf */; };
 		0A3F9FF7205624F200B970CB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */; };
 		0A3F9FF8205624F200B970CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */; };
+		0A572EEC212DB30F0078C1E2 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A572EEB212DB30F0078C1E2 /* main.jsbundle */; };
 		0A6C1A4620843F2C0096484E /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6C1A4520843F2C0096484E /* libFBSDKCoreKit.a */; };
 		0A6C1A4820843F2C0096484E /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6C1A4720843F2C0096484E /* libFBSDKLoginKit.a */; };
 		0A71B820208A7FC000BB15BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A71B81F208A7FC000BB15BB /* GoogleService-Info.plist */; };
@@ -376,6 +377,7 @@
 		0A3F9FC7205624F200B970CB /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC8205624F200B970CB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		0A3F9FC9205624F200B970CB /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		0A572EEB212DB30F0078C1E2 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = BridgeCard/main.jsbundle; sourceTree = "<group>"; };
 		0A67C7E12060EDE9005DDA46 /* BridgeCard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BridgeCard.entitlements; path = BridgeCard/BridgeCard.entitlements; sourceTree = "<group>"; };
 		0A6C1A4520843F2C0096484E /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6C1A4720843F2C0096484E /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKLoginKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -660,6 +662,7 @@
 		13B07FAE1A68108700A75B9A /* BridgeCard */ = {
 			isa = PBXGroup;
 			children = (
+				0A572EEB212DB30F0078C1E2 /* main.jsbundle */,
 				0A71B81F208A7FC000BB15BB /* GoogleService-Info.plist */,
 				0A67C7E12060EDE9005DDA46 /* BridgeCard.entitlements */,
 				0A76E9D6205F903A002E488E /* RNGoogleSignIn */,
@@ -1257,6 +1260,7 @@
 				61B9DC9E86314A69AFC7A061 /* Roboto_medium.ttf in Resources */,
 				411F03E2DB8948BD8A318FBC /* Roboto.ttf in Resources */,
 				F820B3FCCEDE4B35B711EEA5 /* rubicon-icon-font.ttf in Resources */,
+				0A572EEC212DB30F0078C1E2 /* main.jsbundle in Resources */,
 				0A3F9FEE205624F200B970CB /* Octicons.ttf in Resources */,
 				0A3F9FF1205624F200B970CB /* MaterialCommunityIcons.ttf in Resources */,
 				0A3F9FF0205624F200B970CB /* Entypo.ttf in Resources */,
