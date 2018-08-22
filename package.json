@@ -19,6 +19,7 @@
     "device": "react-native run-ios --device",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "lint": "eslint app/",
+    "buildios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/BridgeCard/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
     "lint:fix": "eslint app/ --fix",
     "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js"
   },
