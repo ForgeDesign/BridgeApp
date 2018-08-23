@@ -25,9 +25,18 @@ class CardSwiper extends React.Component {
         return result;
     }
 
+    constructor(props) {
+        super(props)
+        this.state = props
+    }
+
+    componentDidMount() {
+        this.forceUpdate()
+    }
+
     render() {
         recommended = this.props.recommendation == undefined ? false : true
-        allCards = this.filter_array(this.props.card)
+        allCards = this.filter_array(this.state.card)
 
         if(Platform.OS == "android")
             return(
@@ -81,7 +90,7 @@ class CardSwiper extends React.Component {
                                     justImage={item.id == "IMAGE" ? item.id : undefined}
                                     justImageImage={item.image}
                                     recommendation={recommended}
-                                    key={i}
+                                    key={i + "allpagesprobabbly"}
                                     font={item.font}
                                     chosenImage={item.chosenImage}
                                     cardnum={item.cardnum}

@@ -685,6 +685,7 @@ export default class BusinessCard extends React.Component {
                         <Image
                             style={this.props.logoFrame ? this.state.style.logo1 : this.state.style.logo}
                             source={this.state.logo != "" ? this.state.logo : undefined}
+                            key={i}
                         />
                         <View style={this.state.style.inputs}>
                             {this.props.justImage == "IMAGE" ? (

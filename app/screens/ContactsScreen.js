@@ -468,28 +468,49 @@ class ContactsScreen extends React.Component {
         Object.keys(peopleFound).filter(key => {
             for (let index = 0; index < peopleFound[key].length; index++) {
                 peopleFound[key].map((person, index) => {
+                    if(person.person == "IMAGE") {
+                        if(!person.displayName)
+                            person.displayName = ""
+                        if(!person.position)
+                            person.position = ""
+                        if(!person.business)
+                            person.business = ""
+                        if(person.displayName.toLowerCase().indexOf(term.toLowerCase()) == -1
+                        && person.position.toLowerCase().indexOf(term.toLowerCase()) == -1
+                        && person.business.toLowerCase().indexOf(term.toLowerCase()) == -1) {
+                            filteredPeople[key][index] = undefined
+                            return
+                        }
+                    }
                     if (person &&
                         person.name.toLowerCase().indexOf(term.toLowerCase()) == -1
                         && person.location && person.location.toLowerCase().indexOf(term.toLowerCase()) == -1
                     ) {
-                        notFound = false
-                        for (let cardIndex = 0; cardIndex < person.card.length; cardIndex++) {
-                            const card = person.card[cardIndex]
-                            if (card.position.toLowerCase().indexOf(term.toLowerCase()) == -1
-                            && card.website.toLowerCase().indexOf(term.toLowerCase()) == -1
-                            && card.businame.toLowerCase().indexOf(term.toLowerCase()) == -1
-                            && card.phonenum.toLowerCase().indexOf(term.toLowerCase()) == -1
-                            && card.email.toLowerCase().indexOf(term.toLowerCase()) == -1)
-                            {
-                                notFound = true
+                        if(person.person != "IMAGE") {
+                            notFound = false
+                            for (let cardIndex = 0; cardIndex < person.card.length; cardIndex++) {
+                                const card = person.card[cardIndex]
+                                if(!card) {
+                                    notFound = true
+                                    continue
+                                }
+                                if (
+                                    (card.position.toLowerCase().indexOf(term.toLowerCase())) == -1
+                                && (card.website.toLowerCase().indexOf(term.toLowerCase())) == -1
+                                && (card.businame.toLowerCase().indexOf(term.toLowerCase())) == -1
+                                && (card.phonenum.toLowerCase().indexOf(term.toLowerCase())) == -1
+                                && (card.email.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                {
+                                    notFound = true
+                                }
+                                else {
+                                    notFound = false
+                                    break
+                                }
                             }
-                            else {
-                                notFound = false
-                                break
-                            }
+                            if (notFound)
+                                filteredPeople[key][index] = undefined
                         }
-                        if (notFound)
-                            filteredPeople[key][index] = undefined
                     }
                 }, this)
             }

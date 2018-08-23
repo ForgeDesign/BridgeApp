@@ -25,9 +25,7 @@
             cards: [],
             landscapedCard: []
         };
-    }
 
-    componentWillMount() {
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
             var cardArray = []
             val.forEach(child => {
@@ -37,10 +35,23 @@
         })
     }
 
+    componentWillMount() {
+        
+    }
+
+    doThisOnce = false
+
+    componentDidUpdate() {
+        if(!this.doThisOnce) {
+            this.doThisOnce = true
+            setTimeout(() => {
+                this._onRefresh()
+            }, 300)
+        }
+    }
+
     componentDidMount() {
-        setTimeout(() => {
-            this._onRefresh()
-        },300)
+        
     }
 
     _onRefresh() {
@@ -74,6 +85,7 @@
     _renderItem(item) {
         return(
             <Swipeable
+                key={item.index}
                 ref={ref => this["swipable" + item.index] = ref}
                 // swipeStartMinLeftEdgeClearance={50}
                 leftButtons={

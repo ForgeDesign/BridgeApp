@@ -147,10 +147,19 @@ class IsoScreen extends React.Component {
                     for (let index2 = 0; index2 < person.card.length; index2++) {
                         const card = person.card[index2];
                         Promise.resolve(card).then(val => {
-                            allPeople[index].card[index2] = val
+                            copyVal = JSON.parse(JSON.stringify(val))
+                            bigArray = Object.keys(copyVal)
+                            filterKeys = ['position', 'website', 'businame', 'phonenum', 'email', 'cardnum']
+                            for (let bigTime = 0; bigTime < filterKeys.length; bigTime++) {
+                                const bigTimeFilter = filterKeys[bigTime];
+                                if(!bigArray.includes(bigTimeFilter))
+                                    copyVal[bigTimeFilter] = ""
+                            }
+                            allPeople[index].card[index2] = copyVal
                         })
                     }
-                }
+                }//mark
+                
                 resolve(allPeople)
             }).catch(test => {
             })
