@@ -494,15 +494,21 @@ class ContactsScreen extends React.Component {
                                     notFound = true
                                     continue
                                 }
-                                if (
-                                    (card.position.toLowerCase().indexOf(term.toLowerCase())) == -1
-                                && (card.website.toLowerCase().indexOf(term.toLowerCase())) == -1
-                                && (card.businame.toLowerCase().indexOf(term.toLowerCase())) == -1
-                                && (card.phonenum.toLowerCase().indexOf(term.toLowerCase())) == -1
-                                && (card.email.toLowerCase().indexOf(term.toLowerCase())) == -1)
-                                {
-                                    notFound = true
-                                }
+                                if(card.position)
+                                    if((card.position.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                        notFound = true
+                                else if(card.website)
+                                    if((card.website.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                        notFound = true
+                                else if(card.businame)
+                                    if((card.businame.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                        notFound = true
+                                else if(card.phonenum)
+                                    if((card.phonenum.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                        notFound = true
+                                else if(card.email)
+                                    if((card.email.toLowerCase().indexOf(term.toLowerCase())) == -1)
+                                        notFound = true
                                 else {
                                     notFound = false
                                     break

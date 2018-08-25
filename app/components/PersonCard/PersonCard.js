@@ -90,7 +90,8 @@ class PersonCard extends React.Component {
   }
 
   updateVisible(num) {
-      this.visible = num
+        this.visible = num
+        this.swiper.fixLogo(num)
   }
 
   filter_array(test_array) {
@@ -163,6 +164,7 @@ class PersonCard extends React.Component {
             behavior={'position'}
             style={{ backgroundColor: 'whitesmoke', flex: 1, justifyContent: 'center'}}>
             <CardSwiper 
+                ref={(ref) => this.swiper = ref}
                 updateVisible={this.updateVisible.bind(this)}
                 fromContactsPage={this.props.fromContactsPage}
                 recommendation={this.props.recommendation}

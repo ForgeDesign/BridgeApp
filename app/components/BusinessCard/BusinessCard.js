@@ -216,7 +216,7 @@ export default class BusinessCard extends React.Component {
         qr = false
         if(storeKey == "cards")
             qr = true
-        logo = {uri: props.logo}
+        logo = {uri: props.logo ? props.logo.substring(0) : ""}
         var object
         var skip = false
         if(props.justImage == "IMAGE") {
@@ -286,7 +286,7 @@ export default class BusinessCard extends React.Component {
         qr = false
         if(storeKey == "cards")
             qr = true
-        logo = {uri: props.logo}
+        logo = {uri: props.logo ? props.logo.substring(0) : ""}
         new CardStyle().getCardStyle(props.cardnum, props.font).then(cardStyle => {
             object = {
                 cardnum: props.cardnum,
@@ -684,7 +684,7 @@ export default class BusinessCard extends React.Component {
                         />
                         <Image
                             style={this.props.logoFrame ? this.state.style.logo1 : this.state.style.logo}
-                            source={this.state.logo != "" ? this.state.logo : undefined}
+                            source={this.state.logo}
                             key={i}
                         />
                         <View style={this.state.style.inputs}>
@@ -854,7 +854,8 @@ export default class BusinessCard extends React.Component {
                     />
                     <Image
                         style={this.props.logoFrame ? this.state.style.logo1 : this.state.style.logo}
-                        source={this.state.logo != "" ? this.state.logo : undefined}
+                        source={this.state.logo}
+                        key={"logo"}
                     />
                     <View style={this.state.style.inputs}>
                         {this.props.justImage == "IMAGE" ? (
