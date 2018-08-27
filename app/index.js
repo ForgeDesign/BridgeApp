@@ -20,7 +20,7 @@ $inputText = '#797979'
 $darkText = '#343434'
 $offwhite = 'whitesmoke'
 console.ignoredYellowBox = ['Remote debugger'];
-
+console.disableYellowBox = true;
 $defaultAssets = {
     jamessmith: require('./assets/images/jamessmith.jpg'),
     brianamin: require('./assets/images/brianamin.jpg'),
