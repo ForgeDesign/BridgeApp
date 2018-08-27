@@ -261,6 +261,9 @@ class ContactsScreen extends React.Component {
                     'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
                     'X': [], 'Y': [], 'Z': []
                 }
+                console.log(Object.keys(foundPeople).length)
+                console.log(foundPeople)
+
                 if(removeDuplicates[person.sectionKey] == undefined) {
                     if(person.sectionKey != undefined)
                         removeDuplicates[person.sectionKey] = []
@@ -334,7 +337,11 @@ class ContactsScreen extends React.Component {
                 }
                 data = filterPeopleStuff
                 for (let index = 0; index < data.length; index++) {
-                    const person = data[index];
+                    person = data[index];
+                    if(person && person.name && person.name.length > 1 && person.name.slice(-1) == " ") {
+                        person.name = person.name.substring(0, person.name.length - 1)
+                        person.sectionKey = person.name.slice(-1).toUpperCase()
+                    }
                     if (person.person != "IMAGE")
                         for (let index2 = 0; index2 < person.card.length; index2++) {
                             const card = person.card[index2];
