@@ -338,9 +338,12 @@ class ContactsScreen extends React.Component {
                 data = filterPeopleStuff
                 for (let index = 0; index < data.length; index++) {
                     person = data[index];
+                    //MARM
                     if(person && person.name && person.name.length > 1 && person.name.slice(-1) == " ") {
                         person.name = person.name.substring(0, person.name.length - 1)
-                        person.sectionKey = person.name.slice(-1).toUpperCase()
+                        var firstLast = person.name.split(" ")
+                        var sectionKey = firstLast[firstLast.length - 1][0]
+                        person.sectionKey = sectionKey
                     }
                     if (person.person != "IMAGE")
                         for (let index2 = 0; index2 < person.card.length; index2++) {

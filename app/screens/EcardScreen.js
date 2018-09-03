@@ -156,13 +156,11 @@ state = {
 }
 
 _showModal = () => { 
-    console.log(this.bigbusinesscardbugfix)
     this.setState({ isModalVisible: true }) 
 }
 _hideModal = () => { 
     this.setState({ isModalVisible: false }) 
 
-    console.log(this.bigbusinesscardbugfix)
     this.bigbusinesscardbugfix.fixSwiper()
     this.forceUpdate()
 }

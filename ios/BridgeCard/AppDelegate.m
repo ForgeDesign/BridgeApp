@@ -13,6 +13,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <GoogleSignIn/GoogleSignIn.h>
 
+//#import <React/RCTLog.h>
+
 #import <Firebase.h>
 #import "AppDelegate.h"
 
@@ -27,6 +29,8 @@
 {
   [FIRApp configure];
   [FIRDatabase database].persistenceEnabled = YES;
+  
+//  RCTSetLogThreshold(RCTLogLevelInfo - 1);
   
   NSURL *jsCodeLocation;
   
