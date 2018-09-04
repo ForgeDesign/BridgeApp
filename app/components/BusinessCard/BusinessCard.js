@@ -100,11 +100,7 @@ export default class BusinessCard extends React.Component {
                 this.setState({notes: notes})
             })
 
-            // if(nextProps.loadedCallback) {
-            //     console.log("GOT THE THING")
-            //     nextProps.loadedCallback()
-            // }
-        }        
+        }
     }
 
     _handleAppStateChange = (nextAppState) => {
@@ -134,7 +130,6 @@ export default class BusinessCard extends React.Component {
     updateForce() {
         setTimeout(() => {
             this.forceUpdate()
-            console.log(this.props)
             // this.setState({logo: undefined})
         }, 300)
     }
@@ -277,6 +272,10 @@ export default class BusinessCard extends React.Component {
                 this.callLoaded()
             },350);
         })
+    }
+
+    updateChosenImage(index) {
+        this.setState({chosenImage: index})
     }
 
     updateWith(props, constructor) {

@@ -45,7 +45,6 @@ class CardSwiper extends React.Component {
 
     fixLogo(index) {
         if(this.props.fromContactsPage) {
-            console.log(this)
             this[index].fixSwiper()
             this[index].updateForce()
             this[index].fixBlankCard()

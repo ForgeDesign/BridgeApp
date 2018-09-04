@@ -521,6 +521,7 @@ class IsoScreen extends React.Component {
             <Col size={75}>
                 <PersonCard
                     section={item.item.section}
+                    key={item.item.name}
                     imageFireKey={item.item.key}
                     index={item.item.index}
                     name={item.item.name ? item.item.name : item.item.displayName}

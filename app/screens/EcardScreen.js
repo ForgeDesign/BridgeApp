@@ -184,9 +184,12 @@ confirmChanges = () => {
         linkedin: this.state.prelinkedin,
         logo: this.state.logo 
     });
+
+    this.bigbusinesscardbugfix.updateChosenImage(this.chosenImage)
+    this.bigbusinesscardbugfix.fixSwiper()
+
     this._hideModal();
 
-    this.bigbusinesscardbugfix.fixSwiper()
     this.forceUpdate()
 }
 
@@ -289,6 +292,7 @@ confirmChanges = () => {
     swipeableFunc(index) {
         // this.setState({chosenImageThingy : index})
         this.chosenImage = index
+        console.log(this.chosenImage)
     }
 
     reset() {
@@ -370,7 +374,7 @@ confirmChanges = () => {
                             logoFrame={this.state.logoFrame}
                             createOrEdit={true}
                             loadedCallback={() => this.loadedCallback()}
-                            chosenImage={this.chosenImage}
+                            chosenImage={this.chosenImage ? this.chosenImage : 0}
                             ref={ref => this.bigbusinesscardbugfix = ref}
                             key={this.state.cardnum}
                             loadAfter={true}
@@ -412,7 +416,7 @@ confirmChanges = () => {
                             }, 200)
                             // this.bigbusinesscardbugfix.fixSwiper()
                         })
-                        // this.chosenImage = 0
+                        this.chosenImage = 0
                     }}>
                     {this.state.availableTemplates ? this.state.availableTemplates.map((item, index) => {
                         if (typeof item == "string")
@@ -491,7 +495,7 @@ confirmChanges = () => {
                         key={this.state.cardnum * 10}
                         // swipeable={true}
                         // swipeableFunc={this.swipeableFunc.bind(this)}
-                        chosenImage={this.chosenImage}
+                        chosenImage={this.chosenImage ? this.chosenImage : 0}
                         font={this.state.prefont}
                         cardnum={this.state.cardnum}
                         logo={this.state.logo} 
