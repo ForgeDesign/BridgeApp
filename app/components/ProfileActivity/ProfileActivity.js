@@ -129,12 +129,24 @@ class ProfileActivity extends React.Component {
                 <Icon name="ios-card-outline" style={{fontSize: 24, color: $primaryBlue}}/>
             </TouchableOpacity>;
         }
+
+        propsText = undefined
+        if(this.props.icon)
+            propsText = JSON.parse(JSON.stringify(this.props.icon))
+        
+
+        if(this.props.text == "bridged with") {
+            console.log(this.props)
+            propsText = "md-contact"
+            isIcon = true
+        }
+
         return(
             <View style={style}>
                 <View style={styles.piccontainer}>
                     {isIcon ? (
                         <Icon
-                        name={this.props.icon}
+                        name={propsText}
                         style={{color: iconColor}}
                         />
                     ) : (

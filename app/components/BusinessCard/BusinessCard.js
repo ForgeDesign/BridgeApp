@@ -134,6 +134,10 @@ export default class BusinessCard extends React.Component {
         }, 300)
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return true
+    }
+
     componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);        
 
@@ -275,6 +279,7 @@ export default class BusinessCard extends React.Component {
     }
 
     updateChosenImage(index) {
+        this.props.chosenImage = index
         this.setState({chosenImage: index})
     }
 
@@ -667,7 +672,7 @@ export default class BusinessCard extends React.Component {
                     this.props.swipeableFunc(index)
                 }}
                 horizontal={true} 
-                // index={this.state.chosenImage ? this.state.chosenImage : 0} 
+                index={this.state.chosenImage ? this.state.chosenImage : 0} 
                 showsButtons={this.state.image.length > 1 ? true : false} 
                 showsPagination={true}
                 >

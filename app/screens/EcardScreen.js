@@ -160,9 +160,6 @@ _showModal = () => {
 }
 _hideModal = () => { 
     this.setState({ isModalVisible: false }) 
-
-    this.bigbusinesscardbugfix.fixSwiper()
-    this.forceUpdate()
 }
 _showColorModal = () => { this.setState({ modalVisible: true }) }
 
@@ -185,12 +182,8 @@ confirmChanges = () => {
         logo: this.state.logo 
     });
 
-    this.bigbusinesscardbugfix.updateChosenImage(this.chosenImage)
-    this.bigbusinesscardbugfix.fixSwiper()
-
+    console.log(this.chosenImage)
     this._hideModal();
-
-    this.forceUpdate()
 }
 
     saveData = () => {
@@ -292,7 +285,7 @@ confirmChanges = () => {
     swipeableFunc(index) {
         // this.setState({chosenImageThingy : index})
         this.chosenImage = index
-        console.log(this.chosenImage)
+        console.log(this.chosenImage, "swiping")
     }
 
     reset() {
@@ -376,7 +369,7 @@ confirmChanges = () => {
                             loadedCallback={() => this.loadedCallback()}
                             chosenImage={this.chosenImage ? this.chosenImage : 0}
                             ref={ref => this.bigbusinesscardbugfix = ref}
-                            key={this.state.cardnum}
+                            key={"this.state.cardnum" + this.chosenImage}
                             loadAfter={true}
                             swipeable
                             swipeableFunc={this.swipeableFunc.bind(this)}
@@ -491,10 +484,10 @@ confirmChanges = () => {
 
                     <BusinessCard
                         logoFrame={this.state.logoFrame}
-                        createOrEdit={false}
+                        createOrEdit={true}
                         key={this.state.cardnum * 10}
-                        // swipeable={true}
-                        // swipeableFunc={this.swipeableFunc.bind(this)}
+                        swipeable={true}
+                        swipeableFunc={this.swipeableFunc.bind(this)}
                         chosenImage={this.chosenImage ? this.chosenImage : 0}
                         font={this.state.prefont}
                         cardnum={this.state.cardnum}

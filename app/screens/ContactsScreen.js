@@ -361,6 +361,13 @@ class ContactsScreen extends React.Component {
                         foundPeople[element.sectionKey] = Array()
                     foundPeople[element.sectionKey].push(element)
                 }
+                for (let index = 0; index < Object.keys(foundPeople).length; index++) {
+                    const sectionKey = Object.keys(foundPeople)[index];
+
+                    var sorted = foundPeople[sectionKey].sort(this.sortLastName);
+                    foundPeople[sectionKey] = sorted
+                }
+                console.log("YO YO YO", foundPeople)
                 resolve(foundPeople)
                 // Promise.all(promises2).then(datadata => {
                 //     // console.log(datadata, crossReference)
@@ -378,6 +385,24 @@ class ContactsScreen extends React.Component {
             }).catch(test => {
             })
         });
+    }
+
+    sortLastName(a, b) {
+        var splitA = a.name.split(" ");
+        var splitB = b.name.split(" ");
+        var lastA = splitA[splitA.length - 1];
+        var lastB = splitB[splitB.length - 1];
+
+        var firstA = splitA[0];
+        var firstB = splitB[0];
+
+        if(lastA == lastB) {
+            if(firstA < firstB) return -1;
+            if(firstA > firstB) return 1;
+        }
+        if (lastA < lastB) return -1;
+        if (lastA > lastB) return 1;
+        return 0;
     }
 
     filter_array(test_array) {

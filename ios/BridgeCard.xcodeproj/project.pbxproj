@@ -16,6 +16,7 @@
 		065F8B5F5BBF437B8F033865 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 442781D953B84D729D0EDA83 /* MaterialIcons.ttf */; };
 		0A033856205F6D7A003FF310 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A033835205F6D51003FF310 /* libRCTFBLogin.a */; };
 		0A12D27920B37BE800E92F83 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A01A0F220A00BD500485CA4 /* libRNGeocoder.a */; };
+		0A16324921505EC2003A6E7E /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 0A16322021505EC2003A6E7E /* assets */; };
 		0A3F9FEE205624F200B970CB /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FBF205624F200B970CB /* Octicons.ttf */; };
 		0A3F9FEF205624F200B970CB /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC0205624F200B970CB /* Feather.ttf */; };
 		0A3F9FF0205624F200B970CB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A3F9FC1205624F200B970CB /* Entypo.ttf */; };
@@ -366,6 +367,7 @@
 		0A01A0C720A00BD400485CA4 /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		0A03382B205F6D51003FF310 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		0A12D24E20B37BD800E92F83 /* libreact-native-geocoder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-geocoder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A16322021505EC2003A6E7E /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../app/assets; sourceTree = "<group>"; };
 		0A3F9FBF205624F200B970CB /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		0A3F9FC0205624F200B970CB /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		0A3F9FC1205624F200B970CB /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0A16322021505EC2003A6E7E /* assets */,
 				0A3F9FBE205624F200B970CB /* Fonts */,
 				13B07FAE1A68108700A75B9A /* BridgeCard */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1269,6 +1272,7 @@
 				0A3F9FEF205624F200B970CB /* Feather.ttf in Resources */,
 				065F8B5F5BBF437B8F033865 /* MaterialIcons.ttf in Resources */,
 				0A71B820208A7FC000BB15BB /* GoogleService-Info.plist in Resources */,
+				0A16324921505EC2003A6E7E /* assets in Resources */,
 				01F5A38522E748ADA33B5A54 /* Octicons.ttf in Resources */,
 				0A3F9FF8205624F200B970CB /* MaterialIcons.ttf in Resources */,
 				9F4B04050AB841D08CA07061 /* SimpleLineIcons.ttf in Resources */,
