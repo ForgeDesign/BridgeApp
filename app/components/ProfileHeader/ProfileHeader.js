@@ -132,7 +132,7 @@ export default class ProfileHeader extends React.Component {
                             <View style={{ left: 20, borderRightWidth: 1, height: '100%', borderRightColor: '#668b9d' }} />
 
                             <View style={{}}>
-                                <BigTextAndLowerText bigText={this.state.time} lowerText='MemberSince' />
+                                <BigTextAndLowerText bigText={this.state.time} lowerText='Member Since' />
                             </View>
                         </View>
                     )
