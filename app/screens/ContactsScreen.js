@@ -70,6 +70,7 @@ class ContactsScreen extends React.Component {
         // this.addProfilePic = this.addProfilePic.bind(this);
 
     }
+
     options =
     {
         title: 'Select New Contact Business Card',
@@ -139,7 +140,6 @@ class ContactsScreen extends React.Component {
         })
     }
 
-
     componentWillReceiveProps(nextProps) {
         if (!this.props.isFocused && nextProps.isFocused) {
             // here we are in screen
@@ -197,59 +197,59 @@ class ContactsScreen extends React.Component {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this._handleAppStateChange);
-      }
+    }
 
-      _handleAppStateChange = (nextAppState) => {
-        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-          console.log('App has come to the foreground!')
-          this.getPeople().then(peopleObj => {
-            this.getCards(peopleObj).then(foundPeople => {
-                removeDuplicates = {
-                    "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [],
-                    'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [],
-                    'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
-                    'X': [], 'Y': [], 'Z': []
-                }
-                if(removeDuplicates[person.sectionKey] == undefined) {
-                    if(person.sectionKey != undefined)
-                        removeDuplicates[person.sectionKey] = []
-                }
-                for (let index = 0; index < Object.keys(foundPeople).length; index++) {
-                    const section = foundPeople[Object.keys(foundPeople)[index]];
-                    for (let index2 = 0; index2 < section.length; index2++) {
-                        person = section[index2];
-                        goodtogo = true
-                        if(removeDuplicates[person.sectionKey]) {
-                            for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
-                                const duplicate = removeDuplicates[person.sectionKey][index3];
-                                if(duplicate.key == person.key) {
-                                    goodtogo = false
-                                    break
-                                }
+    _handleAppStateChange = (nextAppState) => {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+        console.log('App has come to the foreground!')
+        this.getPeople().then(peopleObj => {
+        this.getCards(peopleObj).then(foundPeople => {
+            removeDuplicates = {
+                "A": [], "B": [], "C": [], 'D': [], 'E': [], 'F': [], 'G': [],
+                'H': [], 'I': [], 'J': [], 'K': [], 'L': [], 'M': [], 'N': [], 'O': [],
+                'P': [], 'Q': [], 'R': [], 'S': [], 'T': [], 'U': [], 'V': [], 'W': [],
+                'X': [], 'Y': [], 'Z': []
+            }
+            if(removeDuplicates[person.sectionKey] == undefined) {
+                if(person.sectionKey != undefined)
+                    removeDuplicates[person.sectionKey] = []
+            }
+            for (let index = 0; index < Object.keys(foundPeople).length; index++) {
+                const section = foundPeople[Object.keys(foundPeople)[index]];
+                for (let index2 = 0; index2 < section.length; index2++) {
+                    person = section[index2];
+                    goodtogo = true
+                    if(removeDuplicates[person.sectionKey]) {
+                        for (let index3 = 0; index3 < removeDuplicates[person.sectionKey].length; index3++) {
+                            const duplicate = removeDuplicates[person.sectionKey][index3];
+                            if(duplicate.key == person.key) {
+                                goodtogo = false
+                                break
                             }
-                            if(goodtogo) {
-                                person.card = this.filter_array(person.card)
-                                removeDuplicates[person.sectionKey].push(person)
-                            }
+                        }
+                        if(goodtogo) {
+                            person.card = this.filter_array(person.card)
+                            removeDuplicates[person.sectionKey].push(person)
                         }
                     }
                 }
-                this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
-            }).catch(function(error) {
-                console.log('There has been a problem with your fetch operation: ' + error.message);
-                console.error(error)
-                // ADD THIS THROW error
-                throw error;
-            });
+            }
+            this.setState({ people: peopleObj, peopleFound: removeDuplicates, filteredPeople: removeDuplicates, ready: true })
         }).catch(function(error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
             console.error(error)
             // ADD THIS THROW error
             throw error;
         });
-        }
-        this.setState({appState: nextAppState});
-      }
+    }).catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        console.error(error)
+        // ADD THIS THROW error
+        throw error;
+    });
+    }
+    this.setState({appState: nextAppState});
+    }
 
     componentWillMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
@@ -345,15 +345,16 @@ class ContactsScreen extends React.Component {
                         var sectionKey = firstLast[firstLast.length - 1][0]
                         person.sectionKey = sectionKey
                     }
-                    if (person.person != "IMAGE")
+                    if (person.person != "IMAGE") {
                         for (let index2 = 0; index2 < person.card.length; index2++) {
                             const card = person.card[index2];
                             promises2.push(card)
                             crossReference.push({index1: index, index2: index2, index3: person.sectionKey})
-                            Promise.resolve(card).then(val => {
+                            Promise.resolve(card).then((val) => {
                                 data[index].card[index2] = val
                             })
                         }
+                    }
                 }
                 for (let index = 0; index < data.length; index++) {
                     element = data[index];
@@ -363,25 +364,10 @@ class ContactsScreen extends React.Component {
                 }
                 for (let index = 0; index < Object.keys(foundPeople).length; index++) {
                     const sectionKey = Object.keys(foundPeople)[index];
-
                     var sorted = foundPeople[sectionKey].sort(this.sortLastName);
                     foundPeople[sectionKey] = sorted
                 }
-                console.log("YO YO YO", foundPeople)
                 resolve(foundPeople)
-                // Promise.all(promises2).then(datadata => {
-                //     // console.log(datadata, crossReference)
-                //     for (let indexindex = 0; indexindex < datadata.length; indexindex++) {
-                //         thingthing = JSON.parse(JSON.stringify(datadata[indexindex]))
-                //         keykey1 = crossReference[indexindex].index1
-                //         keykey2 = crossReference[indexindex].index2
-                //         keykey3 = crossReference[indexindex].index3
-                //         foundPeople[keykey3][keykey1].card = []
-                //         console.log(JSON.parse(JSON.stringify(foundPeople[keykey3][keykey1].card)))
-                //         foundPeople[keykey3][keykey1].card.push(thingthing)
-                //     }
-                //     resolve(foundPeople)
-                // })
             }).catch(test => {
             })
         });
@@ -489,13 +475,14 @@ class ContactsScreen extends React.Component {
     makeAlertAppear() {
         this.setState({ alertVisible: true })
     }
+
     makeAlertDisappear() {
         this.setState({ alertVisible: false })
     }
+
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
-
 
     searchUpdated(term) {
         const filteredPeople = JSON.parse(JSON.stringify(this.state.peopleFound))

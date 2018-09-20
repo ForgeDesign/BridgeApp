@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.yalantis:ucrop-2.2.1-native">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../node_modules/react-native-image-crop-picker/android/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.1-native/res" />
-      <root url="jar://$PROJECT_DIR$/../node_modules/react-native-image-crop-picker/android/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.1-native/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ucrop-2.2.1-native.aar/290efe44fc1948833d58df7ef9e59922/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ucrop-2.2.1-native.aar/290efe44fc1948833d58df7ef9e59922/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

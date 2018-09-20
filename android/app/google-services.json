@@ -15,12 +15,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "641928333306-hs10p7stb4qmchn2v9uhlbkb7vat0cv3.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "641928333306-pi18g9ms0okgr146kjtq44bd1opev4tv.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "641928333306-8ca96iklai9objjposbsojfhfhu03dt4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bridgecard",
+            "certificate_hash": "c2587c6ba445c2c941f01401cfcd01cb4f8188b2"
+          }
         },
         {
           "client_id": "641928333306-pi18g9ms0okgr146kjtq44bd1opev4tv.apps.googleusercontent.com",
@@ -40,15 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
+              "client_id": "641928333306-hs10p7stb4qmchn2v9uhlbkb7vat0cv3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
               "client_id": "641928333306-t3a73ilslcn5h7qf3m2ak8i14r33kr30.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "card.bridge.app"
               }
-            },
-            {
-              "client_id": "641928333306-hs10p7stb4qmchn2v9uhlbkb7vat0cv3.apps.googleusercontent.com",
-              "client_type": 3
             }
           ]
         },

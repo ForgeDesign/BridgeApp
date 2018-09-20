@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BridgeCard</string>
     <string name="facebook_app_id">192331154831400</string>
+    <string name="fb_app_id">192331154831400</string>
+    <string name="fb_login_protocol_scheme">fb192331154831400</string>
 </resources>

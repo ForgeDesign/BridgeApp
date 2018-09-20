@@ -38,7 +38,7 @@ class CardSwiper extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             this.setState({animate: false})
-            if(this.props.fromContactsPage)
+            if(this.props.fromContactsPage && Platform.OS == "ios")
                 this.realSwiper.sendToBeginning()
         }, 500)
     }

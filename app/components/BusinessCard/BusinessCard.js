@@ -454,6 +454,8 @@ export default class BusinessCard extends React.Component {
     }
 
     mapObject(object, callback) {
+        if(typeof object !== 'object')
+            return
         return Object.keys(object).map(function (key) {
             return callback(key, object[key]);
         });

@@ -70,8 +70,8 @@ export default class Checkbox extends Component {
         return (
             <TouchableOpacity
                 onPress={this._onChange.bind(this)}
-                style={style}
-            >
+                style={style}>
+            
                 {this._renderContent.call(this)}
             </TouchableOpacity>
         )

@@ -83,6 +83,7 @@ class EcardScreen extends React.Component {
 state = {
     logoFrame: false,
     availableTemplates : [
+        "",
         ""
     ],
     fonts : [
@@ -397,9 +398,9 @@ confirmChanges = () => {
                 <Picker
                     ref={(ref) => this.picker = ref}
                     style={styles.picker}
-                    mode="dialog"
-                    placeholder="Select One"
-                    selectedValue={this.state.cardnum}
+                    mode={"dialog"}
+                    placeholder={"Select One"}
+                    selectedValue={this.state.cardnum ? this.state.cardnum : 0}
                     onValueChange={(itemValue, itemIndex) => {
                         // this.hackyWorkAround += 1
                         this.setState({ cardnum: itemValue, loadingCard: true }, () => {
@@ -410,11 +411,11 @@ confirmChanges = () => {
                             // this.bigbusinesscardbugfix.fixSwiper()
                         })
                         this.chosenImage = 0
-                    }}>
-                    {this.state.availableTemplates ? this.state.availableTemplates.map((item, index) => {
-                        if (typeof item == "string")
-                            return (<Picker.Item label={item} value={item} key={index}/>) 
-                    }) : <View/>}
+                    }}
+                    >
+                    {(this.state && this.state.availableTemplates) ? this.state.availableTemplates.map((item, index) =>
+                            <Picker.Item label={typeof item == "string" ? item : ""} value={item} key={index}/>
+                    ) : <View/>}
                 </Picker>
                 </View>
 
