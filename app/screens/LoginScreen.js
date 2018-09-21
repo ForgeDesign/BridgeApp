@@ -49,7 +49,7 @@ export default class LoginScreen extends React.Component {
   }
 
     componentDidMount() {        
-        GoogleSignIn.configure({ offlineAccess: true }).then(() => {
+        GoogleSignIn.configure({ offlineAccess: true, serverClientID: "641928333306-hs10p7stb4qmchn2v9uhlbkb7vat0cv3.apps.googleusercontent.com" }).then(() => {
             // you can now call currentUserAsync()
         });
         // GoogleSignIn.hasPlayServices({ autoResolve: true }).then(() => {
@@ -62,10 +62,13 @@ export default class LoginScreen extends React.Component {
     }
 
   onSubmit = async () => {
-    
+
+    if(!this.state.email || this.state.email == "" || !this.state.password || this.state.password == "")
+        return
+        
     this.setState({activity: true})
     if (this.state.register) {
-        user = await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
+        firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
         .then(value => {
             this.setState({activity: false})
             this.props.navigation.navigate('Main')
@@ -76,7 +79,7 @@ export default class LoginScreen extends React.Component {
         });;
     }
     else {
-        user = await firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
+        firebase.auth().signInAndRetrieveDataWithEmailAndPassword(this.state.email, this.state.password)
         .then(value => {
             this.setState({activity: false})
             this.props.navigation.navigate('Main')
@@ -182,14 +185,14 @@ export default class LoginScreen extends React.Component {
                                                         GoogleSignIn.signOut()
                                                         GoogleSignIn.signInPromise()
                                                             .then(user => {
-                                                                console.log(user)
+                                                                // alert(JSON.stringify(user))
                                                                 firebase.auth().signInAndRetrieveDataWithCredential(firebase.auth.GoogleAuthProvider.credential(user.idToken)).then(loggedUser => {
                                                                     this.setState({activity: false})
                                                                     this.props.navigation.navigate('Main')
                                                                 }).catch((error2) => {
                                                                     this.setState({activity: false})
-                                                                    console.log(JSON.stringify(error2))
-                                                                    Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
+                                                                    alert(JSON.stringify(error2))
+                                                                    // Alert.alert("Uh oh!", "Something went wrong - we think you already have an account under the same email address, but the credentials used is different than what we've got stored. Try again with your original login method!")
                                                                 })
                                                             }).catch((err) => {
                                                                 this.setState({activity: false})
