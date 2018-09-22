@@ -39,8 +39,6 @@ target 'BridgeCard' do
 
     pod 'RNShare', :path => '../node_modules/react-native-share'
 
-    pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
     pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
@@ -50,7 +48,6 @@ target 'BridgeCard' do
   
   pod 'RNIap', :path => '../node_modules/react-native-iap'
 
-  pod 'Picker', :path => '../node_modules/react-native-picker'
 
 end
 

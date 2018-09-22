@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2A79CD0ABB4F0DE39F65A56D29FA129"
+               BlueprintIdentifier = "8305F58365A1D8148F5C30C270B36019"
                BlueprintName = "FBSDKPlacesKit"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libFBSDKPlacesKit.a">

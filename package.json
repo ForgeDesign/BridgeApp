@@ -25,7 +25,8 @@
     "lint": "eslint app/",
     "buildios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/BridgeCard/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
     "lint:fix": "eslint app/ --fix",
-    "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js"
+    "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js",
+    "postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json"
   },
   "jest": {
     "preset": "jest-expo"
