@@ -19,7 +19,8 @@ target 'BridgeCard' do
         'RCTSettings',
         'RCTText',
         'RCTVibration',
-        'RCTWebSocket'
+        'RCTWebSocket',
+        'ART'
     ]
     pod 'Firebase/Core'
     pod 'Firebase/Database'
@@ -41,13 +42,9 @@ target 'BridgeCard' do
 
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-    pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+    # pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
 
-
-#pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
-  
-  pod 'RNIap', :path => '../node_modules/react-native-iap'
-
+    pod 'RNIap', :path => '../node_modules/react-native-iap'
 
 end
 
