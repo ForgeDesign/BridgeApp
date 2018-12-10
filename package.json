@@ -25,7 +25,7 @@
     "buildios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/BridgeCard/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
     "lint:fix": "eslint app/ --fix",
     "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js",
-    "postinstall": "cd ./node_modules/react-native && scripts/ios-install-third-party.sh && cd third-party && cd $(ls | grep 'glog' | awk '{print $1}') && ./configure"
+    "postinstall": "cd ./node_modules/react-native && scripts/ios-install-third-party.sh && cd third-party && cd $(ls | grep 'glog' | awk '{print $1}') && ./configure && cd ../../../.. && node ./android-release-gradle-fix.js"
   },
   "dependencies": {
     "@babel/cli": "7.0.0",
