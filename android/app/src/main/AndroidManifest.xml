@@ -22,7 +22,7 @@
       android:authorities="${applicationId}.provider"
       android:grantUriPermissions="true"
       android:exported="false">
-      
+
       <!--add FacebookActivity-->
       <activity tools:replace="android:theme"
         android:name="com.facebook.FacebookActivity"
@@ -57,11 +57,19 @@
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
+        android:launchMode="singleTask"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter android:label="addConnection">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!-- Accepts URIs that begin with "bridgecard://connectremote -->
+            <data android:scheme="bridgecard" android:host="connectremote" />
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

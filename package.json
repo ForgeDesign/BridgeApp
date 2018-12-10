@@ -50,6 +50,7 @@
     "react-native-awesome-alerts": "^1.0.7",
     "react-native-citycheck-flip-view": "github:agates4/react-native-flip-view",
     "react-native-color": "0.0.10",
+    "react-native-deep-link": "^0.2.3",
     "react-native-deep-linking": "^2.1.0",
     "react-native-dropdownalert": "^3.4.0",
     "react-native-easy-grid": "^0.2.0",

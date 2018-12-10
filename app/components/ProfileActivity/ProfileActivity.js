@@ -136,7 +136,6 @@ class ProfileActivity extends React.Component {
         
 
         if(this.props.text == "bridged with") {
-            console.log(this.props)
             propsText = "md-contact"
             isIcon = true
         }

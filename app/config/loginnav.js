@@ -8,6 +8,27 @@ import { Linking } from 'react-native'
 
 import DeepLinking from 'react-native-deep-linking';
 
+// import { createDeepLinkingHandler } from 'react-native-deep-link';
+
+// const handleInvitationToChannel = function(response) {
+//     console.log(response)
+// }
+
+// const schemes = [
+//     {
+//         name: 'bridgecard:',
+//         routes: [
+//             {
+//                 expression: '/connectRemote/:uid/card/:id',
+//                 callback: handleInvitationToChannel
+//             }
+//         ]
+//     }
+// ];
+
+// const withDeepLinking = createDeepLinkingHandler(schemes);
+
+
 import firebase from 'react-native-firebase';
 const rootRef = firebase.database().ref();
 
@@ -57,12 +78,19 @@ const handleUrl = ({ url }) => {
     });
   };
 
-export default class App extends React.Component {
+class App extends React.Component {
 
     state = {
         loading: true,
         authenticated: false,
-    };
+    };    
+    
+    constructor(props) {
+        super(props)
+
+        this.handleActivateLink = this.handleActivateLink.bind(this)
+        // handleInvitationToChannel = this.handleActivateLink
+    }
 
     getPeople() {
         return new Promise((resolve, reject) => {
@@ -106,56 +134,29 @@ export default class App extends React.Component {
         return result;
     }
 
-    componentDidMount() {
-        DeepLinking.addScheme('bridgecard://');
-        Linking.addEventListener('url', this.handleUrl);
-
-        DeepLinking.addRoute('/connectRemote/:uid/card/:id', (response) => {
-            var cardid = response.id
-            var location = "Remote connection"
-            var uid = response.uid
-            var person = {
-                card: [{id: cardid, notes: ""}],
-                location: location,
-                person: uid,
-                notes: ""
-            }
-            this.getPeople().then(people => {
-                var found = false
-                for (let index = 0; index < people.length; index++) {
-                    const contact = people[index];
-                    if (contact.person == person.person) {
-                        contact.card = this.filter_array(contact.card)
-                        for (let index2 = 0; index2 < contact.card.length; index2++) {
-                            const card = contact.card[index2]
-                            if (card.id != person.card[0].id) {
-                                person.card.push(contact.card[index2])
-                            }
+    handleActivateLink(response) {
+        var cardid = response.id
+        var location = "Remote connection"
+        var uid = response.uid
+        var person = {
+            card: [{id: cardid, notes: ""}],
+            location: location,
+            person: uid,
+            notes: ""
+        }
+        this.getPeople().then(people => {
+            var found = false
+            for (let index = 0; index < people.length; index++) {
+                const contact = people[index];
+                if (contact.person == person.person) {
+                    contact.card = this.filter_array(contact.card)
+                    for (let index2 = 0; index2 < contact.card.length; index2++) {
+                        const card = contact.card[index2]
+                        if (card.id != person.card[0].id) {
+                            person.card.push(contact.card[index2])
                         }
-                        
-                        rootRef.child(uid + "person").once().then(firePerson => {
-
-                            var d = new Date();
-                            obj = {
-                                connector: "You",
-                                text: "bridged with",
-                                connectee: firePerson._value.displayName,
-                                icon: "md-person",
-                                image: "",
-                                time: d.toString()
-                            }
-                            rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
-    
-                        })
-
-                        rootRef.child(firebase.auth().currentUser.uid + "people/" + contact.key).update(person)
-                        found = true
-                        break
                     }
-                }
-                if (!found) {
-                    rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
-
+                    
                     rootRef.child(uid + "person").once().then(firePerson => {
 
                         var d = new Date();
@@ -163,7 +164,7 @@ export default class App extends React.Component {
                             connector: "You",
                             text: "bridged with",
                             connectee: firePerson._value.displayName,
-                            icon: "",
+                            icon: "md-person",
                             image: "",
                             time: d.toString()
                         }
@@ -171,9 +172,35 @@ export default class App extends React.Component {
 
                     })
 
-                    
+                    rootRef.child(firebase.auth().currentUser.uid + "people/" + contact.key).update(person)
+                    found = true
+                    break
                 }
-            })
+            }
+            if (!found) {
+                rootRef.child(firebase.auth().currentUser.uid + "people").push(person)
+                rootRef.child(uid + "person").once().then(firePerson => {
+                    var d = new Date();
+                    obj = {
+                        connector: "You",
+                        text: "bridged with",
+                        connectee: firePerson._value.displayName,
+                        icon: "",
+                        image: "",
+                        time: d.toString()
+                    }
+                    rootRef.child(firebase.auth().currentUser.uid + "activity").push(obj)
+                })
+            }
+        })
+    }
+
+    componentDidMount() {
+        DeepLinking.addScheme('bridgecard://');
+        Linking.addEventListener('url', this.handleUrl);
+
+        DeepLinking.addRoute('/connectRemote/:uid/card/:id', (response) => {
+            this.handleActivateLink(response)
         });
     
         Linking.getInitialURL().then((url) => {
@@ -227,4 +254,6 @@ export default class App extends React.Component {
             />
         )
     }
-  }
+}
+export default App
+// export default withDeepLinking(App)

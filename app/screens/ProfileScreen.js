@@ -462,7 +462,6 @@ class ProfileScreen extends Component {
         RNIap.initConnection().then(val => {
             RNIap.getPurchaseHistory().then(val => {
                 if(val) {
-                    console.log(val)
                     var latest = new Date(val[val.length - 1].transactionDate)
                     var expires = new Date(val[val.length - 1].transactionDate)
                     expires = expires.addMonths(1)
