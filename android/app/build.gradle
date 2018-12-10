@@ -100,12 +100,13 @@ android {
         applicationId "com.bridgecard"
         minSdkVersion 22
         targetSdkVersion 27
-        versionName '2.0'
+        versionName '3.0'
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
         vectorDrawables.useSupportLibrary = true
+        versionCode 10
     }
     splits {
         abi {
@@ -163,7 +164,7 @@ dependencies {
         exclude group: "com.google.android.gms" // very important
     }
     api 'com.facebook.react:react-native:+'
-    api "android.arch.lifecycle:extensions:1.1.1"
+    api 'android.arch.lifecycle:extensions:1.1.1'
     // From node_modules
 }
 

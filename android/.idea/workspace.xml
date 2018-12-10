@@ -15,10 +15,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6953e35d-b96c-40ca-8470-55225e9c9acb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/screens/ProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/node_modules_reactnavigation_src_views_assets_backicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_brianamin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_davidrodriguez.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_frankbarnes.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_jamessmith.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_markbrown.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_marylewis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/app_assets_images_ryan.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnativeelements_src_rating_images_bell.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnativeelements_src_rating_images_heart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnativeelements_src_rating_images_rocket.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnativeelements_src_rating_images_star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnavigation_src_views_assets_backicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/node_modules_reactnavigation_src_views_assets_backiconmask.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/node_modules_reactnavigation_src_views_assets_backicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/node_modules_reactnavigation_src_views_assets_backicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/node_modules_reactnavigation_src_views_assets_backicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,16 +77,22 @@
       <file leaf-file-name="Theme Editor" pinned="false" current-in-tab="true">
         <entry file="android-dummy:///Users/arongates/Offline Workspace/BridgeApp/android//Theme Editor">
           <provider selected="true" editor-type-id="themeEditor">
-            <state theme-name="android:Theme.Material.Light.NoActionBar" module-name="react-native-share" proportion="0.67" />
+            <state theme-name="android:Theme.Material.Light.NoActionBar" module-name="react-native-google-sign-in" proportion="0.67" />
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>node_modules_reactnavigation_src_views_assets_backicon</find>
+    </findStrings>
+  </component>
   <component name="GenerateSignedApkSettings">
     <option name="KEY_STORE_PATH" value="$USER_HOME$/Downloads/KeyStore2.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -12967,7 +12992,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -12991,25 +13016,25 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="show.do.not.ask.upgrade.gradle.plugin" value="2.2.3" />
-    <property name="android.project.structure.last.selected" value="app" />
-    <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="Nexus_5X_API_28" />
-    <property name="ExportApk.ApkPath" value="$USER_HOME$/Downloads/HERE IT IS" />
-    <property name="ExportApk.Flavors" value="" />
-    <property name="ExportApk.BuildType" value="release" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542168767608" />
-    <property name="ExportApk.SignV2" value="true" />
-    <property name="ExportApk.SignV1" value="true" />
-    <property name="android.profiler.active" value="true" />
     <property name="DEBUGGABLE_DEVICE" value="emulator-5554" />
     <property name="DEBUGGABLE_PROCESS" value="com.bridgecard" />
-    <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="DEBUGGER_ID" value="Auto" />
+    <property name="ExportApk.ApkPath" value="$USER_HOME$/Downloads/HERE IT IS" />
+    <property name="ExportApk.BuildType" value="release" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.SignV1" value="true" />
+    <property name="ExportApk.SignV2" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="android.profiler.active" value="true" />
+    <property name="android.project.structure.last.selected" value="app" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542168767608" />
+    <property name="device.picker.selection" value="Nexus_5X_API_28" />
+    <property name="show.do.not.ask.upgrade.gradle.plugin" value="2.2.3" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -13403,9 +13428,9 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49574015" weight="0.32996973" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Build Variants" order="2" sideWeight="0.67571646" side_tool="true" visible="true" weight="0.2667417" />
+      <window_info id="Build Variants" order="2" sideWeight="0.67948717" side_tool="true" visible="true" weight="0.2667417" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4749578" side_tool="true" visible="true" weight="0.32962587" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.26505345" side_tool="true" visible="true" weight="0.6056623" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32896066" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4957794" weight="0.32996973" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49127743" weight="0.32996973" />
@@ -13413,9 +13438,9 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.32428357" visible="true" weight="0.2667417" />
-      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.5250422" visible="true" weight="0.32962587" />
-      <window_info anchor="right" id="Gradle" order="3" visible="true" weight="0.3483399" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.32051283" visible="true" weight="0.2667417" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.73494655" visible="true" weight="0.6056623" />
+      <window_info active="true" anchor="right" id="Gradle" order="3" visible="true" weight="0.3483399" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -13442,6 +13467,16 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
+    <entry file="android-dummy:///Users/arongates/Offline Workspace/BridgeApp/android//Theme Editor">
+      <provider selected="true" editor-type-id="themeEditor">
+        <state module-name="react-native-google-sign-in" proportion="0.67" />
+      </provider>
+    </entry>
+    <entry file="android-dummy:///Users/arongates/Offline Workspace/BridgeApp/android//Theme Editor">
+      <provider selected="true" editor-type-id="themeEditor">
+        <state module-name="react-native-firebase" proportion="0.67" />
+      </provider>
+    </entry>
     <entry file="android-dummy:///Users/arongates/Offline Workspace/BridgeApp/android//Theme Editor">
       <provider selected="true" editor-type-id="themeEditor">
         <state module-name="react-native-share" proportion="0.67" />
@@ -13537,7 +13572,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
     <entry file="android-dummy:///Users/arongates/Offline Workspace/BridgeApp/android//Theme Editor">
       <provider selected="true" editor-type-id="themeEditor">
-        <state theme-name="android:Theme.Material.Light.NoActionBar" module-name="react-native-share" proportion="0.67" />
+        <state theme-name="android:Theme.Material.Light.NoActionBar" module-name="react-native-google-sign-in" proportion="0.67" />
       </provider>
     </entry>
   </component>
