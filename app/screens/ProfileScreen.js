@@ -54,7 +54,7 @@ const itemSkus = Platform.select({
     'Pro2'
   ],
   android: [
-    'Pro'
+    '2_pro.'
   ]
 });
 
@@ -266,9 +266,7 @@ class ProfileScreen extends Component {
     }
 
     _getCards() {
-        console.log(firebase.auth().currentUser.uid)
         rootRef.child(firebase.auth().currentUser.uid + "cards").once().then(val => {
-            console.log(val)
             var cardArray = []
             val.forEach(child => {
                 cardArray.push(child.val())
@@ -289,15 +287,11 @@ class ProfileScreen extends Component {
             this.level = firePerson.val().level
         })
         if(Platform.OS == "android") {
-            RNIap.prepare().then(val => {
-                console.log(val)
+            RNIap.initConnection().then((val) => {
                 RNIap.getSubscriptions(itemSkus).then(val => {
-                    console.log(val)
                     this.setState({price : val["0"].localizedPrice})
                 })
                 this.getTheLevel()
-            }).catch(err => {
-                console.log(err)
             })
         } else {
             RNIap.getProducts(itemSkus).then(val => {
@@ -315,10 +309,21 @@ class ProfileScreen extends Component {
             rootRef.child(pathPerson).once().then(firePerson => {
                 this.level = firePerson.val().level
             })
-            RNIap.getProducts(itemSkus).then(val => {
-                this.setState({price : val["0"].localizedPrice})
-            })
-            this.getTheLevel()
+
+            if(Platform.OS == "android") {
+                RNIap.initConnection().then((val) => {
+                    RNIap.getSubscriptions(itemSkus).then(val => {
+                        this.setState({price : val["0"].localizedPrice})
+                    })
+                    this.getTheLevel()
+                })
+            } else {
+                RNIap.getProducts(itemSkus).then(val => {
+                    this.setState({price : val["0"].localizedPrice})
+                })
+                this.getTheLevel()
+            }
+
             this._getActivity()
             this._getCards()
             this.getPeople().then(people => {
@@ -454,7 +459,7 @@ class ProfileScreen extends Component {
     }
 
     async getTheLevel() {
-        RNIap.prepare().then(val => {
+        RNIap.initConnection().then(val => {
             RNIap.getPurchaseHistory().then(val => {
                 if(val) {
                     console.log(val)
