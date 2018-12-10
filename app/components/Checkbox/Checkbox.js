@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const { Component } = React
 const { View, Text, TouchableOpacity, StyleSheet } = ReactNative
-const defaultIcon = iconDb[8]
+defaultIcon = iconDb[8]
 
 export default class Checkbox extends Component {
 

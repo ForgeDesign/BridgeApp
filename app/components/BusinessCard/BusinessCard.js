@@ -193,9 +193,11 @@ export default class BusinessCard extends React.Component {
                 }
             } else {
                 var cardArray = []
-                val.forEach(child => {
-                    cardArray.push(child.val())
-                })
+                if(val) {
+                    val.forEach(child => {
+                        cardArray.push(child.val())
+                    })
+                }
                 if (cardArray.length > 0) {
                     if(this.state.key !== undefined && cardArray != undefined && cardArray[this.state.key] != undefined && cardArray[this.state.key]["notes"] != undefined) {
                         notes = cardArray[this.state.key]["notes"]

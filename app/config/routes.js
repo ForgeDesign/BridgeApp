@@ -103,7 +103,8 @@ export default TabNavigator(
                     setTimeout(() => {
                         if(bigThingy.bigbusinesscardbugfix.swiper && !didOnce) {
                             didOnce = true
-                            bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning()
+                            if(bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning)
+                                bigThingy.bigbusinesscardbugfix.swiper.sendToBeginning()
                         }
                         bigThingy.bigbusinesscardbugfix.fixSwiper()
                     }, 300)

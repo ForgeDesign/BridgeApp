@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'BridgeCard' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -22,9 +22,6 @@ target 'BridgeCard' do
         'RCTWebSocket',
         'ART'
     ]
-    pod 'Firebase/Core'
-    pod 'Firebase/Database'
-    pod 'Firebase/Auth'
     
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
@@ -32,9 +29,18 @@ target 'BridgeCard' do
     pod 'FBSDKMessengerShareKit'
     pod 'FBSDKLoginKit'
 
-    pod 'Google/SignIn'
+    pod 'GoogleSignIn', '~> 4.0'
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
+
+    pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+    pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+
+    pod 'Firebase/Core', '~> 5.14.0'
+    pod 'Firebase/Database', '~> 5.14.0'
+    pod 'Firebase/Auth', '~> 5.14.0'
+    pod 'FirebaseAnalytics', '~> 5.4.0'
 
     pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 

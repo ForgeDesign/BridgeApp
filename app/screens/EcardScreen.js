@@ -73,7 +73,8 @@ class EcardScreen extends React.Component {
             // here we are in screen
             // this.forceUpdate()
             console.log("in the ecard screen")
-            this.bigbusinesscardbugfix.swiper.sendToBeginning()
+            if(this.bigbusinesscardbugfix && this.bigbusinesscardbugfix.swiper && this.bigbusinesscardbugfix.swiper.sendToBeginning)
+                this.bigbusinesscardbugfix.swiper.sendToBeginning()
         }
         if (this.props.isFocused && !nextProps.isFocused) {
             // NOT HERE

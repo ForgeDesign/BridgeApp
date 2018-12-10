@@ -54,7 +54,7 @@ const itemSkus = Platform.select({
     'Pro2'
   ],
   android: [
-    '2_pro.'
+    'Pro'
   ]
 });
 
@@ -288,10 +288,23 @@ class ProfileScreen extends Component {
         rootRef.child(pathPerson).once().then(firePerson => {
             this.level = firePerson.val().level
         })
-        RNIap.getProducts(itemSkus).then(val => {
-            this.setState({price : val["0"].localizedPrice})
-        })
-        this.getTheLevel()
+        if(Platform.OS == "android") {
+            RNIap.prepare().then(val => {
+                console.log(val)
+                RNIap.getSubscriptions(itemSkus).then(val => {
+                    console.log(val)
+                    this.setState({price : val["0"].localizedPrice})
+                })
+                this.getTheLevel()
+            }).catch(err => {
+                console.log(err)
+            })
+        } else {
+            RNIap.getProducts(itemSkus).then(val => {
+                this.setState({price : val["0"].localizedPrice})
+            })
+            this.getTheLevel()
+        }
     }
 
     // this tells you if the profile screen is active
@@ -327,7 +340,8 @@ class ProfileScreen extends Component {
         this._onRefresh()
         if (this.state.cards != undefined)
             for (let index = 0; index < this.state.cards.length; index++) {
-                this["check" + index].uncheck()
+                if(this["check" + index] && this["check" + index].uncheck)
+                    this["check" + index].uncheck()
             }
             this.cardChecked = {}
         this.setState({disabled: true})
@@ -588,7 +602,7 @@ class ProfileScreen extends Component {
 
                 <PopupDialog
                     dialogTitle={<DialogTitle title="Select a Card" />}
-                    ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog }}
                     dialogAnimation={slideAnimation}
                     height={0.70}
                     actions={[

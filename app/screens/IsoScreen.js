@@ -373,7 +373,8 @@ class IsoScreen extends React.Component {
         }
 
         this.setState({searchTerm: ''})
-        this.popupDialog.show()
+        if(this.popupDialog && this.popupDialog.show)
+            this.popupDialog.show()
     }
 
     _handleCheck(val, item) {

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "979FD05F468D2842A0D8CAED0974ADE4"
+               BlueprintIdentifier = "311DB348084B5CA7D4ABCFFC132D35DE"
                BlueprintName = "RNIap"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libRNIap.a">
